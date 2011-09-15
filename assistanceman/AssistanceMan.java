@@ -21,37 +21,24 @@ public class AssistanceMan {
         
         Connection c = Utils.dbConnection(Constants.DBNAME);
         Utils.createTables(c);
-        
-        /*
         Customer x = new Customer("Claudio", "Rauso", "via Mascagni 186", "060606", "");
-        Customer y = new Customer("Claudio", "Rauso", "via Mascagni 186", "060606", "puzza");
+        Customer y = new Customer("Jaume", "Rauso", "via Mascagni 186", "060606", "puzza");
        
         int a = x.dbInsert(c);
         int b = y.dbInsert(c);
-        /*
-        Customer z = new Customer("Claudio", "Urquinaona");
-        ArrayList<Customer> ret = Customer.results(z.search(c));
         
-        for (Customer mammeta : ret)         
-            System.out.println(mammeta.toString());
+        x.setID(a);
+        y.setID(b);
         
-        if(a == 0)
-            System.out.println("Primo inserimento andato");
+        Device z = new Device("LG", "Optimus chat", Constants.MOBILE, "123456789");
         
-        if(b == 1)
-            System.out.println("Utente già esistente");
-        */
+        int d = z.dbInsert(c);
         
-        Device d = new Device("LG", "Optimus Chat", Constants.MOBILE, "123456789");
+        z.setID(d);
         
-        int a = d.dbInsert(c);
-        int b = d.dbInsert(c);
+        Repair r = new Repair(x, z, "batteria");
         
-        if(a == 0)
-            System.out.println("Primo inserimento andato");
-        
-        if(b == 1)
-            System.out.println("Device già esistente");
+        r.dbInsert(c);
         
     }
 }

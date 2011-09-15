@@ -27,10 +27,11 @@ public class Constants {
     public static final String SET = " SET ";
     public static final String W = " WHERE ";
     public static final String UNI = " UNIQUE (";
+    public static final String DEF_DATE = " DEFAULT CURRENT_TIMESTAMP";
     
     // exception messages
     public static final String EXC_UM = "are not unique";
-    public static final String EXC_UO = "is not unique";
+    public static final String EXC_US = "is not unique";
     
     // device type codes
     public static final int MOBILE = 0;

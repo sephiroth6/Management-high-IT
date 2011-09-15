@@ -43,9 +43,22 @@ public class Device {
         
     }
     
+    // TODO setID needed
+    public void setID (int i) {
+        
+        this.id = i;
+        
+    }
+    
+    
+    public int getID() {
+        
+        return this.id;
+        
+    }
+    
     // database methods
     // TODO search into devices table? I don't think it's necessary
-    
     
     public int dbInsert (Connection c) throws SQLException {
         
@@ -76,16 +89,16 @@ public class Device {
         try {
             
             s.execute();
-            // if it's all ok, returns 0
-            return 0;
+            // if it's all ok, returns the id of the inserted row
+            return s.getGeneratedKeys().getInt(1);
             
         } catch (SQLException e) {
             
-            // if the device already exists, returns 1
-            if(e.getMessage().contains(Constants.EXC_UO))
-                return 1;
+            // if the device already exists, returns 0
+            if(e.getMessage().contains(Constants.EXC_US))
+                return 0;
             else    // another exception occourred
-                return 2;
+                return -1;
             
         }
         

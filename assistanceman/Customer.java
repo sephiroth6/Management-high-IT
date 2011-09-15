@@ -56,7 +56,7 @@ public class Customer {
     
     // setters
     public void setID (int i) {
-        // TODO delete this method
+        
         this.id = i;
         
     }
@@ -170,16 +170,16 @@ public class Customer {
         try {
             
             s.execute();
-            // if it's all ok, returns 0
-            return 0;
+            // if it's all ok, returns the id of the inserted row
+            return s.getGeneratedKeys().getInt(1);
             
         } catch (SQLException e) {
             
-            // if the customer already exists, returns 1
+            // if the customer already exists, returns 0
             if(e.getMessage().contains(Constants.EXC_UM))
-                return 1;
+                return 0;
             else    // another exception occourred
-                return 2;
+                return -1;
             
         }
         

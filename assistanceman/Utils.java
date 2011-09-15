@@ -65,7 +65,9 @@ public class Utils {
         q.append(Constants.REF);
         q.append("customer(id), id_d INTEGER");
         q.append(Constants.REF);
-        q.append("device(id), date_in NUMERIC, date_out NUMERIC, status INTEGER, optional TEXT,");
+        q.append("device(id), date_in NUMERIC");
+        q.append(Constants.DEF_DATE);
+        q.append(", date_out NUMERIC, status INTEGER DEFAULT 0, optional TEXT,");
         q.append(Constants.PKEY);
         q.append("(id_c, id_d, date_in));");
         
