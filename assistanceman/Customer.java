@@ -160,11 +160,11 @@ public class Customer {
         PreparedStatement s = c.prepareStatement(new String(q));
         
         // bind values
-        s.setString(1, this.name.toUpperCase());
-        s.setString(2, this.surname.toUpperCase());
-        s.setString(3, this.address.toUpperCase());
-        s.setString(4, this.tel.toUpperCase());
-        s.setString(5, this.note.toUpperCase());
+        s.setString(1, this.name);
+        s.setString(2, this.surname);
+        s.setString(3, this.address);
+        s.setString(4, this.tel);
+        s.setString(5, this.note);
         
         // execute query
         try {

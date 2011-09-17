@@ -23,10 +23,13 @@ public class AssistanceMan {
         Utils.createTables(c);
         Customer x = new Customer("Claudio", "Rauso", "via Mascagni 186", "060606", "");
         Customer y = new Customer("Jaume", "Rauso", "via Mascagni 186", "060606", "puzza");
+        Customer found_c;
+        Device found_d;
+        Repair found_r;
        
         int a = x.dbInsert(c);
         int b = y.dbInsert(c);
-        
+
         x.setID(a);
         y.setID(b);
         
@@ -39,6 +42,16 @@ public class AssistanceMan {
         Repair r = new Repair(x, z, "batteria");
         
         r.dbInsert(c);
+        
+        ArrayList<Object> results = Utils.repairResults(Repair.search(c, x));
+        
+        if(!results.isEmpty()) {
+            found_c = (Customer)results.get(0);
+            System.out.println(found_c.toString());
+            found_r = (Repair)results.get(1);
+            System.out.println(found_r.toString());
+            
+        }
         
     }
 }

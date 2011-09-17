@@ -6,8 +6,10 @@ package assistanceman;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -113,6 +115,40 @@ public class Utils {
         
     }
     
-    
-    
-}
+    // create objects from a searching repair query
+    public static ArrayList<Object> repairResults (ResultSet r) throws SQLException {
+        
+        ArrayList<Object> ret = new ArrayList<Object>();
+        
+        while(r.next()) {
+            
+            int id_c = r.getInt(1);
+            int id_d = r.getInt(10);
+            int type = r.getInt(12);
+            String serial;
+            
+            if(type == Constants.MOBILE)
+                serial = r.getString(13);
+            else
+                serial = r.getString(14);
+            
+            // create the customer
+            Customer c = new Customer(id_c, r.getString(2), r.getString(3), r.getString(4), r.getString(5), "");
+            ret.add(c);
+            
+            // create the repair status
+            Repair rep = new Repair(id_c, id_d, r.getString(6), r.getString(7), r.getInt(8), r.getString(9));
+            ret.add(rep);
+          
+            // create the device
+            Device d = new Device(id_d, r.getString(10), r.getString(11), type, serial);
+            ret.add(d);
+            
+        }
+        // TODO manage objects inserted into ArrayList
+        return ret;
+        
+    }
+      
+        
+    }

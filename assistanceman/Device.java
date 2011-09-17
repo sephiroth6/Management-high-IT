@@ -58,7 +58,7 @@ public class Device {
     }
     
     // database methods
-    // TODO search into devices table? I don't think it's necessary
+    // TODO search into device table? I don't think it's necessary
     
     public int dbInsert (Connection c) throws SQLException {
         

@@ -12,8 +12,8 @@ public class Details {
     
     private int id_c;
     private int id_d;
-    private String date_in;
-    private String date_start;
+    private String in;
+    private String start;
     private String declared;
     private String found;
     private double spare_price;
@@ -24,7 +24,7 @@ public class Details {
         
         this.id_c = c.getID();
         this.id_d = dev.getID();
-        this.date_in = r.getDateIn();
+        this.in = r.getDateIn();
         this.declared = dec;
         
     }
