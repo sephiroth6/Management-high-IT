@@ -67,9 +67,9 @@ public class Utils {
         q.append(Constants.REF);
         q.append("customer(id), id_d INTEGER");
         q.append(Constants.REF);
-        q.append("device(id), date_in NUMERIC");
+        q.append("device(id), date_in TEXT");
         q.append(Constants.DEF_DATE);
-        q.append(", date_out NUMERIC, status INTEGER DEFAULT 0, optional TEXT,");
+        q.append(", date_out TEXT, status INTEGER DEFAULT 0, optional TEXT,");
         q.append(Constants.PKEY);
         q.append("(id_c, id_d, date_in));");
         
@@ -81,9 +81,9 @@ public class Utils {
         q.append(Constants.REF);
         q.append("customer(id), id_d INTEGER");
         q.append(Constants.REF);
-        q.append("device(id), date_in NUMERIC");
+        q.append("device(id), date_in TEXT");
         q.append(Constants.REF);
-        q.append("repair(date_in), date_start NUMERIC, declared TEXT, found TEXT, spare_price REAL, work_price REAL, note TEXT,");
+        q.append("repair(date_in), date_start TEXT, declared TEXT, found TEXT, spare_price REAL, work_price REAL, note TEXT,");
         q.append(Constants.PKEY);
         q.append("(id_c, id_d, date_in));");
         
@@ -103,7 +103,7 @@ public class Utils {
         q.append(Constants.REF);
         q.append("customer(id), id_d INTEGER");
         q.append(Constants.REF);
-        q.append("device(id), date_in NUMERIC");
+        q.append("device(id), date_in TEXT");
         q.append(Constants.REF);
         q.append("repair(date_in), serial TEXT");
         q.append(Constants.REF);

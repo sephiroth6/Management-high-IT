@@ -35,6 +35,8 @@ public class AssistanceMan {
         
         Device z = new Device("LG", "Optimus chat", Constants.MOBILE, "123456789");
         
+        found_r = new Repair(x, z, "batteria");
+        
         int d = z.dbInsert(c);
         
         z.setID(d);
@@ -44,6 +46,18 @@ public class AssistanceMan {
         r.dbInsert(c);
         
         ArrayList<Object> results = Utils.repairResults(Repair.search(c, x));
+        
+        if(!results.isEmpty()) {
+            found_c = (Customer)results.get(0);
+            System.out.println(found_c.toString());
+            found_r = (Repair)results.get(1);
+            System.out.println(found_r.toString());
+            
+        }
+        
+        found_r.deviceOut(c);
+        
+        results = Utils.repairResults(Repair.search(c, x));
         
         if(!results.isEmpty()) {
             found_c = (Customer)results.get(0);

@@ -34,7 +34,7 @@ public class Repair {
     }
     
     // useful when retrieving data from database
-    public Repair (int c, int d, String in, String out, int s, String o) {
+    public Repair (int c, int d, String in, String out, int s, String o) { 
         
         this.id_c = c;
         this.id_d = d;
@@ -119,7 +119,8 @@ public class Repair {
         ret.append("\n");
         ret.append(this.id_d);
         ret.append("\n");
-        ret.append(this.in.toString());
+        // TODO manage how the dates are displayed
+        ret.append(this.in);
         ret.append("\n");
         ret.append(this.out);
         ret.append("\n");
@@ -223,7 +224,7 @@ public class Repair {
         
     }
     
-    // TODO search repair through device; set date_out (device exits)
+    // TODO search repair through device
     
     // search repair through customer
     public static ResultSet search (Connection c, Customer x) throws SQLException {
@@ -248,6 +249,26 @@ public class Repair {
         
     }
     
+    // sets date_out for a repair
+    public void deviceOut (Connection c) throws SQLException {
+        
+        StringBuilder q = new StringBuilder(Constants.UP);
+        q.append("repair");
+        q.append(Constants.SET);
+        // happening in this moment
+        q.append("date_out = CURRENT_TIMESTAMP");
+        q.append(Constants.W);
+        q.append("id_c = ? AND id_d = ? AND date_in = ?;");
+        
+        PreparedStatement s = c.prepareStatement(new String(q));
+        
+        s.setInt(1, this.id_c);
+        s.setInt(2, this.id_d);
+        s.setString(3, this.in);
+     
+        s.execute();
+        
+    }
     
     
 }
