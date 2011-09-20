@@ -142,6 +142,7 @@ public class Customer {
         ret.append(this.tel);
         ret.append("\n");
         ret.append(this.note);
+        ret.append("\n");
         
         return new String(ret);
         

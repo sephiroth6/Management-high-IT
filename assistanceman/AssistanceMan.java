@@ -5,6 +5,7 @@
 package assistanceman;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -66,6 +67,14 @@ public class AssistanceMan {
             System.out.println(found_r.toString());
             
         }
+        
+        Details det = new Details(x, z, found_r, "niente da dichiarare", "nessuna nota");
+        
+        det.dbInsert(c);
+        
+        ResultSet r_det = det.search(c);
+        
+        System.out.println(new Details(r_det).toString());
         
     }
 }

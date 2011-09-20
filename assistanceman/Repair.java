@@ -44,6 +44,7 @@ public class Repair {
         this.optional = o;
         
     }
+        
     
     // Setters
     
@@ -127,6 +128,7 @@ public class Repair {
         ret.append(this.optional);
         ret.append("\n");
         ret.append(this.status);
+        ret.append("\n");
         
         return new String(ret);
         
