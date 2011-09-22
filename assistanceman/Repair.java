@@ -16,6 +16,7 @@ import java.util.ArrayList;
  */
 public class Repair {
     
+    private int id;
     private int id_c;
     private int id_d;
     private String in;
@@ -34,8 +35,9 @@ public class Repair {
     }
     
     // useful when retrieving data from database
-    public Repair (int c, int d, String in, String out, int s, String o) { 
+    public Repair (int i, int c, int d, String in, String out, int s, String o) { 
         
+        this.id = i;
         this.id_c = c;
         this.id_d = d;
         this.in = in;
@@ -74,6 +76,12 @@ public class Repair {
     
     // end Setters
     // Getters
+    
+    public int getID () {
+        
+        return this.id;
+        
+    }
     
     public int getCusID () {
         
@@ -120,7 +128,6 @@ public class Repair {
         ret.append("\n");
         ret.append(this.id_d);
         ret.append("\n");
-        // TODO manage how the dates are displayed
         ret.append(this.in);
         ret.append("\n");
         ret.append(this.out);
@@ -163,13 +170,11 @@ public class Repair {
         q.append(Constants.SET);
         q.append("status = ?");
         q.append(Constants.W);
-        q.append("id_c = ? AND id_d = ? AND date_in = ?;");
+        q.append("id = ?;");
         
         PreparedStatement r = c.prepareStatement(new String(q));
         r.setInt(1, this.status);
-        r.setInt(2, this.id_c);
-        r.setInt(3, this.id_d);
-        r.setString(4, this.in);
+        r.setInt(2, this.id);
         
         return r;
            
@@ -182,13 +187,11 @@ public class Repair {
         q.append(Constants.SET);
         q.append("optional = ?");
         q.append(Constants.W);
-        q.append("id_c = ? AND id_d = ? AND date_in = ?;");
+        q.append("id = ?;");
         
         PreparedStatement r = c.prepareStatement(new String(q));
         r.setString(1, this.optional);
-        r.setInt(2, this.id_c);
-        r.setInt(3, this.id_d);
-        r.setString(4, this.in);
+        r.setInt(2, this.id);
         
         return r;
            
@@ -235,7 +238,7 @@ public class Repair {
         // customer's informations that have to be retrieved
         q.append("customer.id, customer.name, customer.surname, customer.address, customer.tel, ");
         // repair's informations that have to be retrieved
-        q.append("repair.date_in, repair.date_out, repair.status, repair.optional, ");
+        q.append("repair.id, repair.date_in, repair.date_out, repair.status, repair.optional, ");
         // device's informations that have to be retrieved
         q.append("device.id, device.producer, device.model, device.type, device.imei, device.serial ");
         // inner join
@@ -260,14 +263,11 @@ public class Repair {
         // happening in this moment
         q.append("date_out = CURRENT_TIMESTAMP");
         q.append(Constants.W);
-        q.append("id_c = ? AND id_d = ? AND date_in = ?;");
+        q.append("id = ?;");
         
         PreparedStatement s = c.prepareStatement(new String(q));
         
-        s.setInt(1, this.id_c);
-        s.setInt(2, this.id_d);
-        s.setString(3, this.in);
-     
+        s.setInt(1, this.id);
         s.execute();
         
     }

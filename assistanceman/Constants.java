@@ -28,6 +28,7 @@ public class Constants {
     public static final String W = " WHERE ";
     public static final String UNI = " UNIQUE (";
     public static final String DEF_DATE = " DEFAULT CURRENT_TIMESTAMP";
+    public static final String FOR = " FOREIGN KEY(";
     
     // exception messages
     public static final String EXC_UM = "are not unique";

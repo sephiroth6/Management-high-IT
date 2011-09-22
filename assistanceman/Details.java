@@ -15,9 +15,7 @@ import java.sql.SQLException;
  */
 public class Details {
     
-    private int id_c;
-    private int id_d;
-    private String in;
+    private int rep_id;
     private String start;
     private String declared;        // defect declared
     private String found;           // defect found
@@ -27,11 +25,9 @@ public class Details {
     
     // useful when creating new repair's details
     // (called when accepting a device)
-    public Details (Customer c, Device dev, Repair r, String dec, String n) {
-        
-        this.id_c = c.getID();
-        this.id_d = dev.getID();
-        this.in = r.getDateIn();
+    public Details (Repair r, String dec, String n) {
+    
+        this.rep_id = r.getID();
         this.declared = dec.toUpperCase();
         this.note = n.toUpperCase();
         
@@ -42,15 +38,13 @@ public class Details {
         
         while (r.next()) {
             
-            this.id_c = r.getInt(1);
-            this.id_d = r.getInt(2);
-            this.in = r.getString(3);
-            this.start = r.getString(4);
-            this.declared = r.getString(5);
-            this.found = r.getString(6);
-            this.spare_price = r.getDouble(7);
-            this.work_price = r.getDouble(8);
-            this.note = r.getString(9);
+            this.rep_id = r.getInt(1);
+            this.start = r.getString(2);
+            this.declared = r.getString(3);
+            this.found = r.getString(4);
+            this.spare_price = r.getDouble(5);
+            this.work_price = r.getDouble(6);
+            this.note = r.getString(7);
             
         }
         
@@ -84,24 +78,6 @@ public class Details {
     
     // END SETTERS
     // GETTERS
-    
-    public int getCusID () {
-        
-        return this.id_c;
-        
-    }
-    
-    public int getDevID () {
-        
-        return this.id_d;
-        
-    }
-    
-    public String getDateIn () {
-        
-        return this.in;
-        
-    }
     
     public String getDateStart () {
         
@@ -144,11 +120,7 @@ public class Details {
     @Override
     public String toString () {
         
-        StringBuilder ret = new StringBuilder(Integer.toString(this.id_c));
-        ret.append("\n");
-        ret.append(Integer.toString(this.id_d));
-        ret.append("\n");
-        ret.append(this.in);
+        StringBuilder ret = new StringBuilder(Integer.toString(this.rep_id));
         ret.append("\n");
         ret.append(this.start);
         ret.append("\n");
@@ -170,39 +142,53 @@ public class Details {
     public void dbInsert (Connection c) throws SQLException {
         
         StringBuilder q = new StringBuilder(Constants.INS);
-        q.append("details(id_c, id_d, date_in, declared, note)");
+        q.append("details(rep_id, declared, note)");
         q.append(Constants.VAL);
-        q.append("?, ?, ?, ?, ?);");
+        q.append("?, ?, ?);");
         
         // statement to execute
         PreparedStatement s = c.prepareStatement(new String(q));
         
         // bind values
-        s.setInt(1, this.id_c);
-        s.setInt(2, this.id_d);
-        s.setString(3, this.in);
-        s.setString(4, this.declared);
-        s.setString(5, this.note);
+        s.setInt(1, this.rep_id);
+        s.setString(2, this.declared);
+        s.setString(3, this.note);
         
         s.execute();
         
     }
     
     // searches the details about a given repair
+    // id_c, id_d and date_in are the primary key for the details
     public ResultSet search (Connection c) throws SQLException {
         
         StringBuilder q = new StringBuilder(Constants.SEL);
         q.append("details");
         q.append(Constants.W);
-        q.append("id_c = ? AND id_d = ? AND date_in = ?;");
+        q.append("rep_id = ?;");
         
         PreparedStatement s = c.prepareStatement(new String(q));
         
-        s.setInt(1, id_c);
-        s.setInt(2, id_d);
-        s.setString(3, in);
-        
+        s.setInt(1, this.rep_id);
         return s.executeQuery();
+        
+    }
+    
+    // TODO edit start date of repair, prices and notes
+    public void setStart (Connection c) throws SQLException {
+        
+        StringBuilder q = new StringBuilder(Constants.UP);
+        q.append("details");
+        q.append(Constants.SET);
+        q.append("date_start = CURRENT_TIMESTAMP");
+        q.append(Constants.W);
+        q.append("rep_id = ?;");
+        
+        PreparedStatement s = c.prepareStatement(new String(q));
+        
+        s.setInt(1, this.rep_id);
+        
+        s.execute();
         
     }
     

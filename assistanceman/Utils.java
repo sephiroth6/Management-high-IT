@@ -6,6 +6,7 @@ package assistanceman;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,6 +24,10 @@ public class Utils {
         Class.forName("org.sqlite.JDBC");
         
         Connection c = DriverManager.getConnection(db);
+        
+        // set foreign keys ON (default from SQLite 3.6.19 version is OFF)
+        Statement s = c.createStatement();
+        s.execute("PRAGMA foreign_keys=on;");
         
         return c;
         
@@ -63,29 +68,27 @@ public class Utils {
         
         // third query, repair
         q = new StringBuilder(Constants.CRTABLE);
-        q.append("repair (id_c INTEGER");
+        q.append("repair");
+        q.append(Constants.ID);
+        q.append("id_c INTEGER");
         q.append(Constants.REF);
         q.append("customer(id), id_d INTEGER");
         q.append(Constants.REF);
         q.append("device(id), date_in TEXT");
         q.append(Constants.DEF_DATE);
         q.append(", date_out TEXT, status INTEGER DEFAULT 0, optional TEXT,");
-        q.append(Constants.PKEY);
-        q.append("(id_c, id_d, date_in));");
+        q.append(Constants.UNI);
+        q.append("id_c, id_d, date_in));");
         
         s.executeUpdate(new String(q));
         
         // fourth query, details of each repair
         q = new StringBuilder(Constants.CRTABLE);
-        q.append("details (id_c INTEGER");
+        q.append("details(rep_id INTEGER, date_start TEXT, declared TEXT, found TEXT, spare_price REAL, work_price REAL, note TEXT,");
+        q.append(Constants.FOR);
+        q.append("rep_id)");
         q.append(Constants.REF);
-        q.append("customer(id), id_d INTEGER");
-        q.append(Constants.REF);
-        q.append("device(id), date_in TEXT");
-        q.append(Constants.REF);
-        q.append("repair(date_in), date_start TEXT, declared TEXT, found TEXT, spare_price REAL, work_price REAL, note TEXT,");
-        q.append(Constants.PKEY);
-        q.append("(id_c, id_d, date_in));");
+        q.append("repair(id));");
         
         s.executeUpdate(new String(q));
         
@@ -98,19 +101,14 @@ public class Utils {
         
         // last query, usage: spare parts used in each repair
         q = new StringBuilder(Constants.CRTABLE);
-        q.append("usage ");
-        q.append("(id_c INTEGER");
-        q.append(Constants.REF);
-        q.append("customer(id), id_d INTEGER");
-        q.append(Constants.REF);
-        q.append("device(id), date_in TEXT");
-        q.append(Constants.REF);
-        q.append("repair(date_in), serial TEXT");
+        q.append("usage (rep_id INTEGER, serial TEXT");
         q.append(Constants.REF);
         q.append("warehouse(serial), used INTEGER,");
-        q.append(Constants.PKEY);
-        q.append("(id_c, id_d, date_in, serial));");
-        
+        q.append(Constants.FOR);
+        q.append("rep_id)");
+        q.append(Constants.REF);
+        q.append("repair(id));");
+       
         s.executeUpdate(new String(q));
         
     }
@@ -123,25 +121,26 @@ public class Utils {
         while(r.next()) {
             
             int id_c = r.getInt(1);
-            int id_d = r.getInt(10);
-            int type = r.getInt(12);
+            int rep_id = r.getInt(6);
+            int id_d = r.getInt(11);
+            int type = r.getInt(14);
             String serial;
             
             if(type == Constants.MOBILE)
-                serial = r.getString(13);
+                serial = r.getString(15);
             else
-                serial = r.getString(14);
+                serial = r.getString(16);
             
             // create the customer
             Customer c = new Customer(id_c, r.getString(2), r.getString(3), r.getString(4), r.getString(5), "");
             ret.add(c);
             
             // create the repair status
-            Repair rep = new Repair(id_c, id_d, r.getString(6), r.getString(7), r.getInt(8), r.getString(9));
+            Repair rep = new Repair(rep_id, id_c, id_d, r.getString(7), r.getString(8), r.getInt(9), r.getString(10));
             ret.add(rep);
           
             // create the device
-            Device d = new Device(id_d, r.getString(10), r.getString(11), type, serial);
+            Device d = new Device(id_d, r.getString(12), r.getString(13), type, serial);
             ret.add(d);
             
         }
@@ -149,6 +148,17 @@ public class Utils {
         return ret;
         
     }
+    
+    // this method is only to try the foreign key
+    public static void insertUsage (Connection c) throws SQLException {
+         
+        PreparedStatement s = c.prepareStatement("insert into usage(rep_id) values(1000);");
+            
+        s.execute();
+            
+    }
+        
+    // TODO manage how the dates are displayed
       
         
     }
