@@ -120,20 +120,18 @@ public class Details {
     @Override
     public String toString () {
         
-        StringBuilder ret = new StringBuilder(Integer.toString(this.rep_id));
-        ret.append("\n");
+        StringBuilder ret = new StringBuilder("inizio lavori: ");
         ret.append(this.start);
-        ret.append("\n");
+        ret.append(" - difetto dichiarato: ");
         ret.append(this.declared);
-        ret.append("\n");
+        ret.append(" - difetto riscontrato: ");
         ret.append(this.found);
-        ret.append("\n");
+        ret.append(" - costo ricambi: ");
         ret.append(this.spare_price);
-        ret.append("\n");
+        ret.append(" - costo manodopera: ");
         ret.append(this.work_price);
-        ret.append("\n");
+        ret.append(" - note:");
         ret.append(this.note);
-        ret.append("\n");
         
         return new String(ret);
         
@@ -174,7 +172,6 @@ public class Details {
         
     }
     
-    // TODO edit start date of repair, prices and notes
     public void setStart (Connection c) throws SQLException {
         
         StringBuilder q = new StringBuilder(Constants.UP);
@@ -191,5 +188,7 @@ public class Details {
         s.execute();
         
     }
+    
+    // TODO edit prices and notes
     
 }

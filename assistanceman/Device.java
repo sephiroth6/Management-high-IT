@@ -57,6 +57,46 @@ public class Device {
         
     }
     
+    public int getType() {
+        
+        return this.type;
+        
+    }
+    
+    // gives the imei or the serial number, according to the type of device
+    public String getSerial () {
+        
+        if(this.type == Constants.MOBILE)
+            return this.IMEI;
+        
+        return this.serial;
+        
+    }
+    
+    @Override
+    public String toString() {
+        
+        StringBuilder ret = new StringBuilder(Integer.toString(this.id));
+        ret.append(" - ");
+        
+        if(this.type == Constants.MOBILE)
+            ret.append("TELEFONO");
+        else if(this.type == Constants.COM)
+            ret.append("COMPUTER");
+        else
+            ret.append("ALTRO");
+        
+        ret.append(" - ");
+        ret.append(this.producer);
+        ret.append(" ");
+        ret.append(this.model);
+        ret.append(" - ");
+        ret.append(this.getSerial());
+        
+        return new String(ret);
+        
+    }
+    
     // database methods
     // TODO search into device table? I don't think it's necessary
     

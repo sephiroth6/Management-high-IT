@@ -6,7 +6,6 @@ package assistanceman;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -113,10 +112,10 @@ public class Utils {
         
     }
     
-    // create objects from a searching repair query
-    public static ArrayList<Object> repairResults (ResultSet r) throws SQLException {
+    // creates objects from a searching repair query
+    public static ArrayList<CustomerRepList> repairResults (ResultSet r) throws SQLException {
         
-        ArrayList<Object> ret = new ArrayList<Object>();
+        ArrayList<CustomerRepList> list = new ArrayList<CustomerRepList>();
         
         while(r.next()) {
             
@@ -133,32 +132,51 @@ public class Utils {
             
             // create the customer
             Customer c = new Customer(id_c, r.getString(2), r.getString(3), r.getString(4), r.getString(5), "");
-            ret.add(c);
-            
             // create the repair status
             Repair rep = new Repair(rep_id, id_c, id_d, r.getString(7), r.getString(8), r.getInt(9), r.getString(10));
-            ret.add(rep);
-          
             // create the device
             Device d = new Device(id_d, r.getString(12), r.getString(13), type, serial);
-            ret.add(d);
+            
+            list.add(new CustomerRepList(c, rep, d));
             
         }
-        // TODO manage objects inserted into ArrayList
-        return ret;
         
+        return list;
+        
+    }
+            
+    // manages the search result of a repair
+    public static void displayResults (ArrayList<CustomerRepList> x) {
+        
+        for(CustomerRepList v : x) {
+            
+            System.out.println(v.getCustomer().toString());
+            System.out.println(v.getDevice().toString());
+            System.out.println(v.getRepair().toString());
+            System.out.println();
+            
+        }
+
     }
     
-    // this method is only to try the foreign key
-    public static void insertUsage (Connection c) throws SQLException {
-         
-        PreparedStatement s = c.prepareStatement("insert into usage(rep_id) values(1000);");
-            
-        s.execute();
-            
-    }
+    // manages how the dates are displayed
+    public static String formatDate (String date) {
         
-    // TODO manage how the dates are displayed
-      
+        if(date != null) {
+            
+            String year = date.substring(0, 4);
+            String month = date.substring(5, 7);
+            String day = date.substring(8, 10);
+            String hour = date.substring(11);
+        
+            return day.concat("/").concat(month).concat("/").concat(year).concat(" alle ").concat(hour);
+        
+        } else {
+        
+            return "non registrata";
+        
+        }
+    
+    }
         
     }

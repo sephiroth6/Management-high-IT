@@ -27,11 +27,19 @@ public class Customer {
     // useful when creating a new customer
     public Customer (String na, String s, String a, String t, String no) {
         // every string to upper case, to simplify the management of informations
-        this.name = na.toUpperCase();
-        this.surname = s.toUpperCase();
-        this.address = a.toUpperCase();
+        if(na != null)
+            this.name = na.toUpperCase();
+        
+        if(s != null)
+            this.surname = s.toUpperCase();
+        
+        if(a != null)
+            this.address = a.toUpperCase();
+        
         this.tel = t;
-        this.note = no.toUpperCase();
+        
+        if(no != null)
+            this.note = no.toUpperCase();
         
     }
     
@@ -47,8 +55,11 @@ public class Customer {
     // useful to search into database
     public Customer (String n, String s) {
         
-        this.name = n.toUpperCase();
-        this.surname = s.toUpperCase();
+        if(n != null)
+            this.name = n.toUpperCase();
+        
+        if(s != null)
+            this.surname = s.toUpperCase();
         
     }
     
@@ -129,20 +140,20 @@ public class Customer {
        
     }
     
-    // TODO toString can be useful or not?
     @Override
     public String toString () {
         
-        StringBuilder ret = new StringBuilder(this.name);
-        ret.append("\n");
+        StringBuilder ret = new StringBuilder(Integer.toString(this.id));
+        ret.append(" - ");
+        ret.append(this.name);
+        ret.append(" ");
         ret.append(this.surname);
-        ret.append("\n");
+        ret.append(" - ");
         ret.append(this.address);
-        ret.append("\n");
+        ret.append(" - ");
         ret.append(this.tel);
-        ret.append("\n");
+        ret.append(" - ");
         ret.append(this.note);
-        ret.append("\n");
         
         return new String(ret);
         
@@ -189,37 +200,46 @@ public class Customer {
     // search a customer with a specific name and/or surname
     public ResultSet search (Connection c) throws SQLException {
         
+        int set = 0;
+        boolean isName = false;
         ResultSet r;
+        String aux = null;
+        
         PreparedStatement s = c.prepareStatement("SELECT * FROM customer;");
         StringBuilder q = new StringBuilder(Constants.SEL);
         q.append("customer WHERE ");
         
-        if(!this.name.equals("")) {
+        if(this.name != null) {
             // name provided
             q.append("name = ?");
-            
-            if(!this.surname.equals("")) {
-                // surname too
-                q.append("AND surname = ?;");
-                s = c.prepareStatement(new String(q));
-                s.setString(1, this.name.toUpperCase());
-                s.setString(2, this.surname.toUpperCase());
-            } else {
-                // name only
-                q.append(";");
-                s = c.prepareStatement(new String(q));
-                s.setString(1, this.name.toUpperCase());
-            }
-                
-        } else {
-            
-            if(!this.surname.equals("")) {
-                // surname only
-                q.append("surname = ?;");
-                s = c.prepareStatement(new String(q));
-                s.setString(1, this.surname.toUpperCase());
-            }
+            isName = true;
+            set++;
+        }
         
+        if(this.surname != null) {
+            set++;
+            if(set == 2)    // name and surname
+                q.append("AND surname = ?");
+            else            // only surname provided
+                q.append("surname = ?");
+        }
+        // close query
+        q.append(";");
+        s = c.prepareStatement(new String(q));
+        
+        if(set == 2) {
+            // set name and surname
+            s.setString(1, this.name.toUpperCase());
+            s.setString(2, this.surname.toUpperCase());
+        } else {
+            // name or surname provided?
+            if(isName)
+                aux = this.name.toUpperCase();
+            else
+                aux = this.surname.toUpperCase();
+            
+            s.setString(1, aux);
+            
         }
         
         // returns the result of the search as a ResultSet
@@ -237,7 +257,7 @@ public class Customer {
         
         while(r.next()) {
             
-            Customer c = new Customer(r.getString("name"), r.getString("surname"), r.getString("address"), r.getString("tel"), r.getString("note"));
+            Customer c = new Customer(r.getInt(1), r.getString(2), r.getString(3), r.getString(4), r.getString(5), r.getString(6));
             ret.add(c);
             
         }
