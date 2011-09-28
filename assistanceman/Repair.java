@@ -291,7 +291,7 @@ public class Repair {
             isSerial = true;
         
         StringBuilder q = new StringBuilder("SELECT ");
-        // customer's informations that have to be retrieved
+        // TODO customer's informations that have to be retrieved; select customer's note?
         q.append("customer.id, customer.name, customer.surname, customer.address, customer.tel, ");
         // repair's informations that have to be retrieved
         q.append("repair.id, repair.date_in, repair.date_out, repair.status, repair.optional, ");

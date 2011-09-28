@@ -167,7 +167,7 @@ public class Utils {
             String year = date.substring(0, 4);
             String month = date.substring(5, 7);
             String day = date.substring(8, 10);
-            String hour = date.substring(11);
+            String hour = date.substring(11, 16);
         
             return day.concat("/").concat(month).concat("/").concat(year).concat(" alle ").concat(hour);
         

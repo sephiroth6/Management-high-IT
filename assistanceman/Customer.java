@@ -268,7 +268,7 @@ public class Customer {
     
     // START - PRIVATE METHODS FOR CUSTOMERS' EDITING
     // creates the query to modify the customer's name
-    private PreparedStatement modifyName (Connection c) throws SQLException {
+    private PreparedStatement editName (Connection c) throws SQLException {
         
         StringBuilder q = new StringBuilder(Constants.UP);
         q.append("customer");
@@ -286,7 +286,7 @@ public class Customer {
     }
      
     // creates the query to modify the customer's surname
-     private PreparedStatement modifySurname (Connection c) throws SQLException {
+     private PreparedStatement editSurname (Connection c) throws SQLException {
          
          StringBuilder q = new StringBuilder(Constants.UP);
          q.append("customer");
@@ -304,7 +304,7 @@ public class Customer {
      }
     
      // creates the query to modify the customer's addresss
-     private PreparedStatement modifyAddress (Connection c) throws SQLException {
+     private PreparedStatement editAddress (Connection c) throws SQLException {
         
         StringBuilder q = new StringBuilder(Constants.UP);
         q.append("customer");
@@ -322,7 +322,7 @@ public class Customer {
     }
      
      // creates the query to modify the customer's telephone number
-     private PreparedStatement modifyTelephone (Connection c) throws SQLException {
+     private PreparedStatement editTelephone (Connection c) throws SQLException {
         
         StringBuilder q = new StringBuilder(Constants.UP);
         q.append("customer");
@@ -340,7 +340,7 @@ public class Customer {
     }
      
      // creates the query to modify the notes about a customer
-     private PreparedStatement modifyNote (Connection c) throws SQLException {
+     private PreparedStatement editNote (Connection c) throws SQLException {
         
         StringBuilder q = new StringBuilder(Constants.UP);
         q.append("customer");
@@ -359,7 +359,7 @@ public class Customer {
      // END - PRIVATE METHODS FOR CUSTOMERS' EDITING
      
      // executes the queries needed to edit a customer
-     public void edit (Connection x, Customer c) throws SQLException {
+     public int edit (Connection x, Customer c) throws SQLException {
          // call it on the object that has to be modified
          // Customer c is the object with the new informations
          
@@ -368,39 +368,48 @@ public class Customer {
          if(!this.name.equals(c.name)) {
              // name must be modified
              this.name = c.name;
-             to.add(this.modifyName(x));
+             to.add(this.editName(x));
          }
          
          if(!this.surname.equals(c.surname)) {
              // surname must be modified
              this.surname = c.surname;
-             to.add(this.modifySurname(x));
+             to.add(this.editSurname(x));
          }
          
          if(!this.address.equals(c.address)) {
              // address must be modified
              this.address = c.address;
-             to.add(this.modifyAddress(x));
+             to.add(this.editAddress(x));
          }
            
          if(!this.tel.equals(c.tel)) {
              // telephone number must be modified
              this.tel = c.tel;
-             to.add(this.modifyTelephone(x));
+             to.add(this.editTelephone(x));
          }
          
          if(!this.note.equals(c.note)) {
              // notes must be modified
              this.note = c.note;
-             to.add(this.modifyNote(x));
+             to.add(this.editNote(x));
          }
          
-         x.setAutoCommit(false);
+         try {
          
-         for(PreparedStatement q : to)
-             q.execute();
-         
-         x.setAutoCommit(true);
+             x.setAutoCommit(false);
+
+             for(PreparedStatement q : to)
+                 q.execute();
+
+             x.setAutoCommit(true);
+             
+             return 0;      // ok
+             
+         } catch (SQLException e) {
+             
+             return 1;      // something wrong happened
+         }
          
      }
      

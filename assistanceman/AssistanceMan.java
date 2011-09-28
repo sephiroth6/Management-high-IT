@@ -23,7 +23,7 @@ public class AssistanceMan {
         Utils.createTables(c);
         
         Customer x = new Customer("Claudio", "Rauso", "via Mascagni 186", "0697602153", "nulla");
-        Customer a = new Customer("Claudio", "Ranieri", "Milanello", "020202", "debitore");
+        Customer a = new Customer("Claudio", "Ranieri", "pinetina", "020202", "debitore");
         Device y = new Device("lg", "optimus chat", Constants.MOBILE, "123456789");
         Device b = new Device("asus", "k50j", Constants.COM, "987654321");
         Repair z = null;
@@ -56,7 +56,17 @@ public class AssistanceMan {
         
         results = Utils.repairResults(Repair.search(c, search, null, null));
         
-        Utils.displayResults(results);
+        //Utils.displayResults(results);
+        
+        Warehouse p = new Warehouse("abc123", "chip 98", 12, 2.5, "ottimi");
+        p.dbInsert(c);
+        
+        Warehouse pe = new Warehouse(p.search(c));
+        Warehouse p_mod = new Warehouse("abc123", "", 42, 0, "");
+        
+        
+        pe = new Warehouse(p.search(c));
+        System.out.println(pe.toString());
   
         
     }
