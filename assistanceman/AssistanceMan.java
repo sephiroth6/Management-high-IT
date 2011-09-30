@@ -4,6 +4,7 @@
  */
 package assistanceman;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -58,14 +59,14 @@ public class AssistanceMan {
         
         //Utils.displayResults(results);
         
-        Warehouse p = new Warehouse("abc123", "chip 98", 12, 2.5, "ottimi");
+        Warehouse p = new Warehouse("abc123", "chip 98", 12, new BigDecimal(2.5), "ottimi");
         p.dbInsert(c);
         
-        Warehouse pe = new Warehouse(p.search(c));
-        Warehouse p_mod = new Warehouse("abc123", "", 42, 0, "");
-        
+        Warehouse pe = new Warehouse("abc124", "chip 88", 12, new BigDecimal(2.75), "ottimi");
+        p.edit(c, pe);
         
         pe = new Warehouse(p.search(c));
+        
         System.out.println(pe.toString());
   
         

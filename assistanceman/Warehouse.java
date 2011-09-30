@@ -4,6 +4,7 @@
  */
 package assistanceman;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public class Warehouse {
     private String serial;
     private String name;
     private int available;
-    private double unit_price;
+    private BigDecimal unit_price;      // float type is not precise
     private String note;
     
     @Override
@@ -34,7 +35,7 @@ public class Warehouse {
             ret.append(" - disponibilità: ");
             ret.append(Integer.toString(this.available));
             ret.append(" - prezzo unitario: ");
-            ret.append(Double.toString(this.unit_price));
+            ret.append(this.unit_price.toString());
             ret.append(" - note: ");
             ret.append(this.note);
 
@@ -49,7 +50,7 @@ public class Warehouse {
     }
     
     // useful when creating a record for a new piece
-    public Warehouse (String s, String na, int a, double u, String no) {
+    public Warehouse (String s, String na, int a, BigDecimal u, String no) {
         
         this.serial = s.toUpperCase();
         this.name = na.toUpperCase();
@@ -68,7 +69,7 @@ public class Warehouse {
             this.serial = r.getString(1);
             this.name = r.getString(2);
             this.available = r.getInt(3);
-            this.unit_price = r.getDouble(4);
+            this.unit_price = new BigDecimal(r.getString(4));
             this.note = r.getString(5);
         
         }
@@ -83,7 +84,7 @@ public class Warehouse {
         s.setString(1, this.serial);
         s.setString(2, this.name);
         s.setInt(3, this.available);
-        s.setDouble(4, this.unit_price);
+        s.setDouble(4, this.unit_price.doubleValue());
         s.setString(5, this.note);
         
         try {
@@ -94,9 +95,9 @@ public class Warehouse {
         } catch (SQLException e) {
             // something wrong's happened
             if(e.getMessage().contains(Constants.EXC_US))   // already exists
-                return 1;
-            else    // other problem
                 return -1;
+            else    // other problem
+                return 1;
             
         }
         
@@ -154,6 +155,45 @@ public class Warehouse {
     }
     
     // START - PRIVATE METHODS NEEDED TO EDIT A RECORD
+    
+    // change the serial number of a record
+    private PreparedStatement editSerial (Connection c, String sn) throws SQLException {
+        
+        PreparedStatement s = null;
+        StringBuilder q = new StringBuilder(Constants.UP);
+        q.append("warehouse");
+        q.append(Constants.SET);
+        q.append("serial = ?");
+        q.append(Constants.W);
+        q.append("serial = ?;");
+        
+        s = c.prepareStatement(new String(q));
+        s.setString(1, sn);
+        s.setString(2, this.serial);
+        
+        return s;
+        
+    }
+    
+    // change the name of a record
+    private PreparedStatement editName (Connection c) throws SQLException {
+        
+        PreparedStatement s = null;
+        StringBuilder q = new StringBuilder(Constants.UP);
+        q.append("warehouse");
+        q.append(Constants.SET);
+        q.append("name = ?");
+        q.append(Constants.W);
+        q.append("serial = ?;");
+        
+        s = c.prepareStatement(new String(q));
+        s.setString(1, this.name);
+        s.setString(2, this.serial);
+        
+        return s;
+        
+    }
+    
     // set the availability for an existing spare part
     private PreparedStatement editAvailability (Connection c) throws SQLException {
         
@@ -171,6 +211,25 @@ public class Warehouse {
         
         return s;
      
+    }
+    
+    // edit the unit price for an existing spare part
+    private PreparedStatement editPrice (Connection c) throws SQLException {
+        
+        PreparedStatement s = null;
+        StringBuilder q = new StringBuilder(Constants.UP);
+        q.append("warehouse");
+        q.append(Constants.SET);
+        q.append("unit_price = ?");
+        q.append(Constants.W);
+        q.append("serial = ?");
+        
+        s = c.prepareStatement(new String(q));
+        s.setDouble(1, this.unit_price.doubleValue());
+        s.setString(2, this.serial);
+        
+        return s;
+        
     }
     
     // set notes for an existing spare part
@@ -193,17 +252,35 @@ public class Warehouse {
     }
     // END - PRIVATE METHODS NEEDED TO EDIT A RECORD
     
-    // TODO edit all fields
+    // edit a record
     public int edit (Connection c, Warehouse w) throws SQLException {
         // call it on the object that has to be modified
         // Warehouse w is the object with the new informations
         
         ArrayList<PreparedStatement> to = new ArrayList<PreparedStatement>(5);
         
+        if(!this.serial.equals(w.serial)) {
+            // serial number has to be modofied
+            to.add(this.editSerial(c, w.serial));
+            this.serial = w.serial;
+        }
+        
+        if(!this.name.equals(w.name)) {
+            // change name of a spare part
+            this.name = w.name;
+            to.add(this.editName(c));
+        }
+        
         if(this.available != w.available) {
             // availability has to be modified
             this.available = w.available;
             to.add(this.editAvailability(c));
+        }
+        
+        if(this.unit_price.compareTo(w.unit_price) != 0) {
+            // unit price has to be modified
+            this.unit_price = w.unit_price;
+            to.add(this.editPrice(c));
         }
         
         if(!this.note.equals(w.note)) {
@@ -231,14 +308,81 @@ public class Warehouse {
         
     }
    
-    // TODO write this method
-    public void increaseAvailability (Connection c, int i) throws SQLException {
+    // increase of i units the availability of a specified spare part
+    public int increaseAvailability (Connection c, int i) throws SQLException {
         // no control needed to increase availability
+        PreparedStatement s = null;
+        StringBuilder q = new StringBuilder(Constants.UP);
+        q.append("warehouse");
+        q.append(Constants.SET);
+        q.append("available = available + ?");
+        q.append(Constants.W);
+        q.append("serial = ?;");
+        
+        s = c.prepareStatement(new String(q));
+        s.setInt(1, i);
+        s.setString(2, this.serial);
+        
+        try {
+            
+            if(s.executeUpdate() == 1)  // record modified successfully
+                return 0;
+            else
+                return -1;               // record doesn't exist
+            
+        } catch (SQLException e) {
+            
+            return 1;                  // something wrong happened
+            
+        }
+        
     }
     
-    // TODO write this method
-    public void decreaseAvailability (Connection c, int i) throws SQLException {
-        // control if is possible to decrease availability (i <= available)
+    // decrease of i units the availability of a specified spare part (control needed)
+    public int decreaseAvailability (Connection c, int i) throws SQLException {
+        // check if is possible to decrease availability (i <= available)
+        int av;
+        ResultSet av_set = null;
+        PreparedStatement s = null;
+        StringBuilder q = new StringBuilder("SELECT available FROM warehouse WHERE serial = ?;");
+        
+        s = c.prepareStatement(new String(q));
+        s.setString(1, this.serial);
+        
+        try {
+            
+            av_set = s.executeQuery();
+            
+            if(av_set.next())   // try to retrieve the number of available pieces
+                av = av_set.getInt(1);
+            else
+                return -1;      // serial not found
+            
+            if(av < i)
+                return -2;      // not enough pieces
+            
+            // serial and availability ok
+            q = new StringBuilder(Constants.UP);
+            q.append("warehouse");
+            q.append(Constants.SET);
+            q.append("available = available - ?");
+            q.append(Constants.W);
+            q.append("serial = ?;");
+            
+            s = c.prepareStatement(new String(q));
+            s.setInt(1, i);
+            s.setString(2, this.serial);
+            
+            s.execute();
+            
+            return 0;           // ok
+            
+        } catch (SQLException e) {
+            
+            return 1;           // something wrong happened
+            
+        }
+        
     }
     
 }
