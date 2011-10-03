@@ -23,6 +23,12 @@ public class Warehouse {
     private BigDecimal unit_price;      // float type is not precise
     private String note;
     
+    public String getSerial () {
+        
+        return this.serial;
+        
+    }
+    
     @Override
     public String toString () {
         
