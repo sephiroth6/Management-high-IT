@@ -4,6 +4,7 @@
 
 package managgui;
 
+import java.util.Date;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -11,15 +12,19 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * The application's main frame.
  */
 public class ManagGuiView extends FrameView {
+    private int flagCliente=0;
 
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -38,6 +43,7 @@ public class ManagGuiView extends FrameView {
         //front-end accettazione
        jPanel9.setVisible(false);
        jPanel10.setVisible(false);
+       
         
         
         
@@ -1181,12 +1187,46 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
         // esci e resetta valori 
+        flagCliente=0;
+        jComboBox3.setSelectedIndex(0);
+        jTextField24.setText(null);
+        jTextField25.setText(null);
+        jCheckBox2.setSelected(false);
+        jTextField26.setText(null);
+        jTextArea5.setText(null);
+        
         jPanel9.setVisible(false);
+               
     }//GEN-LAST:event_jButton17MouseClicked
 
     private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
         // salve valori ed esci
-        jPanel9.setVisible(false);
+        flagCliente=1;
+        
+        if(flagCliente==0)
+            JOptionPane.showMessageDialog(jPanel9, "Dati cliente incompleti.", "Errore dati incompleti", JOptionPane.ERROR_MESSAGE);
+        
+        if(jComboBox3.getSelectedIndex()==0)
+            JOptionPane.showMessageDialog(jPanel9, "Selezionare una tipologia.", "Warning", JOptionPane.WARNING_MESSAGE);
+        
+        if(jTextField24.getText().equals(""))
+            JOptionPane.showMessageDialog(jPanel9, "Inserire un modello del prodotto.", "Warning", JOptionPane.WARNING_MESSAGE);
+        
+        if(jTextField25.getText().equals(""))
+            JOptionPane.showMessageDialog(jPanel9, "Manca Imei/Serial Number.", "Warning", JOptionPane.WARNING_MESSAGE);
+        
+        if(jCheckBox2.isSelected())
+            if(jTextField26.getText().equals(""))
+                JOptionPane.showMessageDialog(jPanel9, "Controllare casella accessori.", "Warning", JOptionPane.WARNING_MESSAGE);
+        
+        if(jTextArea5.getText().equals(""))
+            JOptionPane.showMessageDialog(jPanel9, "Inserire una descrizione del difetto.", "Errore", JOptionPane.ERROR_MESSAGE);
+        
+        
+        
+        //jPanel9.setVisible(false);
+        
+        
     }//GEN-LAST:event_jButton18MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -1211,6 +1251,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         //problematiche
         jTextArea6.setEditable(false);
         jTextArea7.setEditable(false);
+        //orario
+        c = Calendar.getInstance();
+        Date data = c.getTime();
+        jTextField21.setText(c.getTime());
         //fine setting//
         
         
@@ -1372,6 +1416,29 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
+    
+    private String dataOra(){
+      
+        Calendar calendar = new GregorianCalendar();
+  
+      String orario;
+      int ore = calendar.get(Calendar.HOUR);
+      int minuti = calendar.get(Calendar.MINUTE);
+      
+      if(calendar.get(Calendar.AM_PM) == 0)
+        orario = "A.M.";
+      else
+        orario = "P.M.";
+      
+      System.out.println("Sono le : " + ore + ":" 
+      + minuti + ":" + secondi + " " + orario);
+      
+      int giorno = cal.get(Calendar.DAY_OF_MONTH);
+      int mese = cal.get(Calendar.MONTH);
+      int anno = cal.get(Calendar.YEAR);
+      System.out.println(giorno + "-" + (mese + 1) + "-" + anno);
+     
+    }
     
     
     
