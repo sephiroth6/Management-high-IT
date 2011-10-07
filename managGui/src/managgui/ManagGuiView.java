@@ -5,7 +5,9 @@
 package managgui;
 
 import java.awt.Component;
-import java.util.Date;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -25,7 +27,13 @@ import javax.swing.JOptionPane;
  * The application's main frame.
  */
 public class ManagGuiView extends FrameView {
-    private int flagCliente=0;
+    
+    private boolean flagCliente=false;
+    private MonitorCen p = new MonitorCen(0, 0);
+    FinestraSwing DatiCliente;
+    
+    
+    
 
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -222,6 +230,20 @@ public class ManagGuiView extends FrameView {
         statusMessageLabel = new javax.swing.JLabel();
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
+        jPanel7 = new javax.swing.JPanel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
@@ -248,6 +270,11 @@ public class ManagGuiView extends FrameView {
 
         jButton15.setText(resourceMap.getString("jButton15.text")); // NOI18N
         jButton15.setName("jButton15"); // NOI18N
+        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton15MouseClicked(evt);
+            }
+        });
 
         jButton16.setText(resourceMap.getString("jButton16.text")); // NOI18N
         jButton16.setName("jButton16"); // NOI18N
@@ -591,9 +618,9 @@ public class ManagGuiView extends FrameView {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel43)
                             .addComponent(jLabel40))
@@ -614,7 +641,7 @@ public class ManagGuiView extends FrameView {
                                 .addComponent(jButton12)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton11))))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1018, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -659,7 +686,7 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -675,7 +702,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(68, 68, 68)
@@ -1124,6 +1151,117 @@ public class ManagGuiView extends FrameView {
                 .addGap(3, 3, 3))
         );
 
+        jPanel7.setName("jPanel7"); // NOI18N
+
+        jButton13.setText(resourceMap.getString("jButton13.text")); // NOI18N
+        jButton13.setName("jButton13"); // NOI18N
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
+
+        jButton14.setText(resourceMap.getString("jButton14.text")); // NOI18N
+        jButton14.setName("jButton14"); // NOI18N
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton14MouseClicked(evt);
+            }
+        });
+
+        jScrollPane4.setName("jScrollPane4"); // NOI18N
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.setName("jTextArea2"); // NOI18N
+        jScrollPane4.setViewportView(jTextArea2);
+
+        jLabel16.setText(resourceMap.getString("jLabel16.text")); // NOI18N
+        jLabel16.setName("jLabel16"); // NOI18N
+
+        jLabel15.setText(resourceMap.getString("jLabel15.text")); // NOI18N
+        jLabel15.setName("jLabel15"); // NOI18N
+
+        jTextField10.setName("jTextField10"); // NOI18N
+
+        jTextField9.setName("jTextField9"); // NOI18N
+
+        jLabel14.setText(resourceMap.getString("jLabel14.text")); // NOI18N
+        jLabel14.setName("jLabel14"); // NOI18N
+
+        jTextField8.setText(resourceMap.getString("jTextField8.text")); // NOI18N
+        jTextField8.setName("jTextField8"); // NOI18N
+
+        jTextField7.setText(resourceMap.getString("jTextField7.text")); // NOI18N
+        jTextField7.setName("jTextField7"); // NOI18N
+
+        jLabel13.setText(resourceMap.getString("jLabel13.text")); // NOI18N
+        jLabel13.setName("jLabel13"); // NOI18N
+
+        jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
+        jLabel12.setName("jLabel12"); // NOI18N
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(jButton14)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton13)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton14)
+                    .addComponent(jButton13))
+                .addContainerGap())
+        );
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -1184,20 +1322,16 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // cambia stato di accessorio
         if(jCheckBox2.isSelected())
             jTextField26.setEditable(true);
-        else
+        else{
             jTextField26.setEditable(false);
-        
+            jTextField26.setText(null);
+        }
     }//GEN-LAST:event_jCheckBox2StateChanged
 
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
         // esci e resetta valori 
-        flagCliente=0;
-        jComboBox3.setSelectedIndex(0);
-        jTextField24.setText(null);
-        jTextField25.setText(null);
-        jCheckBox2.setSelected(false);
-        jTextField26.setText(null);
-        jTextArea5.setText(null);
+        flagCliente=false;
+        resetValScheda();
         
         jPanel9.setVisible(false);
                
@@ -1205,11 +1339,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
         // salve valori ed esci
-        flagCliente=1;
+        //flagCliente=true;
         
         int flagError=0;
         
-        if(flagCliente==0){
+        if(flagCliente==false){
             showWinAlert(jPanel9, "Dati cliente incompleti.", "Errore dati incompleti", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
@@ -1236,9 +1370,22 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
         
         
-        if(flagError<1)
+        if(flagError<1){
+            
+            flagCliente=false;
+            //showWinAlert(jPanel9, "Inserire una descrizione del difetto.", "Errore", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane optionPane = new JOptionPane("Scheda prodotto n° " + jLabel28.getText() + "\nStampare la ricevuta?", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+            
+            int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + jLabel28.getText() + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
+            
+            if(n==JOptionPane.YES_OPTION){
+            
+            }else{}
+                //(n==JOptionPane.NO_OPTION){}
+            
+            resetValScheda();
             jPanel9.setVisible(false);
-        
+        }
         
     }//GEN-LAST:event_jButton18MouseClicked
 
@@ -1303,11 +1450,76 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
        jTable3.setVisible(true);
     }//GEN-LAST:event_jButton12MouseClicked
 
+    private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
+        // aggiungi cliente
+        
+        setCenterMonitorDim(jPanel7, 503, 300);
+        DatiCliente = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel7);
+        
+        //reset val cliente
+        jTextField7.setText(null);
+        jTextField8.setText(null);
+        jTextField9.setText(null);
+        jTextField10.setText(null);
+        jTextArea2.setText(null);
+        
+        
+    }//GEN-LAST:event_jButton15MouseClicked
+
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+        //close the window e reset val
+        jTextField7.setText(null);
+        jTextField8.setText(null);
+        jTextField9.setText(null);
+        jTextField10.setText(null);
+        jTextArea2.setText(null);
+        DatiCliente.dispose();
+        
+    }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
+        // salva ed imposta cliente
+        
+        int flagError=0;
+        
+        if(jTextField7.getText().equals("")){
+            showWinAlert(jPanel7, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        if(jTextField8.getText().equals("")){
+            showWinAlert(jPanel7, "Manca il Nome.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        if(jTextField10.getText().equals("")){
+            showWinAlert(jPanel7, "Manca un recapito telefonico.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        
+        if(flagError<1){
+            //dati da caricare
+            jTextField7.getText();//cognome
+            jTextField8.getText();//nome
+            jTextField9.getText();//indirizzo
+            jTextField10.getText();//recapito tel
+            jTextArea2.getText();//note
+            
+            flagCliente=true;
+            
+            if(flagCliente){
+                DatiCliente.dispose();
+                jTextField19.setText(jTextField7.getText());
+                jTextField20.setText(jTextField8.getText());
+            }
+        }
+    }//GEN-LAST:event_jButton14MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1326,6 +1538,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1358,10 +1575,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
@@ -1370,10 +1589,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextArea jTextArea7;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
@@ -1391,6 +1612,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
@@ -1424,7 +1648,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     
-    private void resetVal(){
+    private void resetValScheda(){
+        jComboBox3.setSelectedIndex(0);
+        jTextField19.setText("Cognome");
+        jTextField20.setText("Nome");
+        jTextField24.setText(null);
+        jTextField25.setText(null);
+        jCheckBox2.setSelected(false);
+        jTextField26.setText(null);
+        jTextArea5.setText(null);
         
     }
     
@@ -1439,14 +1671,32 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
       int giorno = calendar.get(Calendar.DAY_OF_MONTH);
       int mese = calendar.get(Calendar.MONTH);
       int anno = calendar.get(Calendar.YEAR);
-     
-     
+        
       return giorno+"/"+(mese+1)+"/"+anno+" "+ore+":"+minuti;
     }
     
     
     private void showWinAlert(Component cmp, Object o, String s, int i){
         JOptionPane.showMessageDialog(cmp, o, s, i);
+    }
+    
+    
+    
+    private void setCenterMonitorDim (JPanel jP, int w, int h){
+        
+        // Get the size of the screen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+ 
+        // Determine the new location of the window
+        //int w = jP.getSize().width;
+        //int h = jP.getSize().height;
+        int x = (dim.width-w)/2;
+        int y = (dim.height-h)/2;
+
+        // Move the window
+        p.setPX(x);
+        p.setPY(y);
+        
     }
     
     
