@@ -4,6 +4,7 @@
 
 package managgui;
 
+import java.awt.Component;
 import java.util.Date;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
@@ -367,7 +368,7 @@ public class ManagGuiView extends FrameView {
                 .addComponent(jLabel36)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 476, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 516, Short.MAX_VALUE)
                 .addComponent(jButton18)
                 .addGap(18, 18, 18)
                 .addComponent(jButton17)
@@ -402,7 +403,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jCheckBox2)
                         .addGap(8, 8, 8)
                         .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addGap(147, 147, 147)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel29)
@@ -411,17 +412,17 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel30)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel32)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField22, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel31)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField23, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -476,24 +477,27 @@ public class ManagGuiView extends FrameView {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel29)
                             .addComponent(jLabel28))
-                        .addGap(12, 12, 12)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                                .addGap(14, 14, 14)
                                 .addComponent(jLabel30))
-                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                                .addGap(15, 15, 15)
                                 .addComponent(jLabel32))
-                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                                .addGap(15, 15, 15)
                                 .addComponent(jLabel31))
-                            .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -655,7 +659,7 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -1203,28 +1207,37 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // salve valori ed esci
         flagCliente=1;
         
-        if(flagCliente==0)
-            JOptionPane.showMessageDialog(jPanel9, "Dati cliente incompleti.", "Errore dati incompleti", JOptionPane.ERROR_MESSAGE);
+        int flagError=0;
         
-        if(jComboBox3.getSelectedIndex()==0)
-            JOptionPane.showMessageDialog(jPanel9, "Selezionare una tipologia.", "Warning", JOptionPane.WARNING_MESSAGE);
-        
-        if(jTextField24.getText().equals(""))
-            JOptionPane.showMessageDialog(jPanel9, "Inserire un modello del prodotto.", "Warning", JOptionPane.WARNING_MESSAGE);
-        
-        if(jTextField25.getText().equals(""))
-            JOptionPane.showMessageDialog(jPanel9, "Manca Imei/Serial Number.", "Warning", JOptionPane.WARNING_MESSAGE);
-        
+        if(flagCliente==0){
+            showWinAlert(jPanel9, "Dati cliente incompleti.", "Errore dati incompleti", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        if(jComboBox3.getSelectedIndex()==0){
+            showWinAlert(jPanel9, "Selezionare una tipologia.", "Warning", JOptionPane.WARNING_MESSAGE);
+            flagError++;
+        }
+        if(jTextField24.getText().equals("")){
+            showWinAlert(jPanel9, "Inserire un modello del prodotto.", "Warning", JOptionPane.WARNING_MESSAGE);
+            flagError++;
+        }
+        if(jTextField25.getText().equals("")){
+            showWinAlert(jPanel9, "Manca Imei/Serial Number.", "Warning", JOptionPane.WARNING_MESSAGE);
+            flagError++;
+        }
         if(jCheckBox2.isSelected())
-            if(jTextField26.getText().equals(""))
-                JOptionPane.showMessageDialog(jPanel9, "Controllare casella accessori.", "Warning", JOptionPane.WARNING_MESSAGE);
+            if(jTextField26.getText().equals("")){
+                showWinAlert(jPanel9, "Controllare casella accessori.", "Warning", JOptionPane.WARNING_MESSAGE);
+                flagError++;
+            }
+        if(jTextArea5.getText().equals("")){
+            showWinAlert(jPanel9, "Inserire una descrizione del difetto.", "Errore", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
         
-        if(jTextArea5.getText().equals(""))
-            JOptionPane.showMessageDialog(jPanel9, "Inserire una descrizione del difetto.", "Errore", JOptionPane.ERROR_MESSAGE);
         
-        
-        
-        //jPanel9.setVisible(false);
+        if(flagError<1)
+            jPanel9.setVisible(false);
         
         
     }//GEN-LAST:event_jButton18MouseClicked
@@ -1252,9 +1265,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextArea6.setEditable(false);
         jTextArea7.setEditable(false);
         //orario
-        c = Calendar.getInstance();
-        Date data = c.getTime();
-        jTextField21.setText(c.getTime());
+        
+        jTextField21.setText(getDataOra());
         //fine setting//
         
         
@@ -1417,31 +1429,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     
-    private String dataOra(){
+    private String getDataOra(){
       
-        Calendar calendar = new GregorianCalendar();
+      Calendar calendar = new GregorianCalendar();
   
-      String orario;
-      int ore = calendar.get(Calendar.HOUR);
+      int ore = calendar.get(Calendar.HOUR_OF_DAY);
       int minuti = calendar.get(Calendar.MINUTE);
       
-      if(calendar.get(Calendar.AM_PM) == 0)
-        orario = "A.M.";
-      else
-        orario = "P.M.";
-      
-      System.out.println("Sono le : " + ore + ":" 
-      + minuti + ":" + secondi + " " + orario);
-      
-      int giorno = cal.get(Calendar.DAY_OF_MONTH);
-      int mese = cal.get(Calendar.MONTH);
-      int anno = cal.get(Calendar.YEAR);
-      System.out.println(giorno + "-" + (mese + 1) + "-" + anno);
+      int giorno = calendar.get(Calendar.DAY_OF_MONTH);
+      int mese = calendar.get(Calendar.MONTH);
+      int anno = calendar.get(Calendar.YEAR);
      
+     
+      return giorno+"/"+(mese+1)+"/"+anno+" "+ore+":"+minuti;
     }
     
     
-    
+    private void showWinAlert(Component cmp, Object o, String s, int i){
+        JOptionPane.showMessageDialog(cmp, o, s, i);
+    }
     
     
 }
