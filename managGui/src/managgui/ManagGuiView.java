@@ -33,6 +33,7 @@ public class ManagGuiView extends FrameView {
     private MonitorCen p = new MonitorCen(0, 0);
     private FinestraSwing DatiCliente;
     private FinestraSwing cercaCliente;
+    private FinestraSwing schedaProdotto;
     
        
     
@@ -684,6 +685,11 @@ public class ManagGuiView extends FrameView {
         ));
         */
         jTable3.setName("jTable3"); // NOI18N
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jTable3);
         DefaultTableModel model = new DefaultTableModel(){
             private static final long serialVersionUID = 1L;
@@ -730,7 +736,7 @@ public class ManagGuiView extends FrameView {
                                 .addComponent(jButton12)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton11))))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1772, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -766,14 +772,16 @@ public class ManagGuiView extends FrameView {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(741, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -789,12 +797,12 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(106, Short.MAX_VALUE)))
+                    .addContainerGap(129, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
@@ -1520,7 +1528,7 @@ public class ManagGuiView extends FrameView {
         );
 
         jPanel12.setBackground(resourceMap.getColor("jPanel12.background")); // NOI18N
-        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel12.setName("jPanel12"); // NOI18N
 
         jLabel44.setText(resourceMap.getString("jLabel44.text")); // NOI18N
@@ -1614,7 +1622,7 @@ public class ManagGuiView extends FrameView {
         jTextArea10.setName("jTextArea10"); // NOI18N
         jScrollPane12.setViewportView(jTextArea10);
 
-        jButton25.setIcon(null);
+        jButton25.setIcon(resourceMap.getIcon("jButton25.icon")); // NOI18N
         jButton25.setText(resourceMap.getString("jButton25.text")); // NOI18N
         jButton25.setName("jButton25"); // NOI18N
         jButton25.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1623,7 +1631,7 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton26.setIcon(null);
+        jButton26.setIcon(resourceMap.getIcon("jButton26.icon")); // NOI18N
         jButton26.setText(resourceMap.getString("jButton26.text")); // NOI18N
         jButton26.setName("jButton26"); // NOI18N
         jButton26.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1652,61 +1660,63 @@ public class ManagGuiView extends FrameView {
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel52)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 436, Short.MAX_VALUE)
-                .addComponent(jButton26)
+                .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton25)
-                .addContainerGap())
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel49)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel50)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel51)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jCheckBox3)
-                        .addGap(8, 8, 8)
-                        .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(147, 147, 147)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jLabel45)
+                .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(720, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel12Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel52)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel44))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
+                        .addComponent(jButton26)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel46)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton25))
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jLabel48)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel47)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField35, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(jLabel49)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel50)
+                                .addGap(12, 12, 12)
+                                .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel51)
+                                .addGap(12, 12, 12)
+                                .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jCheckBox3)
+                                .addGap(8, 8, 8)
+                                .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel45)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel44))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel46)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel48)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel47)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField35, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)))))
+                .addGap(141, 141, 141))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1714,14 +1724,10 @@ public class ManagGuiView extends FrameView {
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(15, 15, 15)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
@@ -1748,12 +1754,7 @@ public class ManagGuiView extends FrameView {
                                 .addComponent(jCheckBox3))
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addGap(7, 7, 7)
-                                .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel53)
-                            .addComponent(jLabel54)
-                            .addComponent(jLabel55)))
+                                .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel45)
@@ -1779,22 +1780,29 @@ public class ManagGuiView extends FrameView {
                             .addGroup(jPanel12Layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel53)
+                    .addComponent(jLabel54)
+                    .addComponent(jLabel55))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel52)
-                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton25)
-                        .addComponent(jButton26)))
-                .addContainerGap())
+                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton25)
+                            .addComponent(jButton26))
+                        .addGap(14, 14, 14))))
         );
 
         setComponent(mainPanel);
@@ -1893,7 +1901,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         int flagError=0;
         
         if(flagCliente==false){
-            showWinAlert(jPanel9, "Dati cliente incompleti.", "Errore dati incompleti", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel9, "Dati cliente errati.", "Errore dati incompleti", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
         if(jComboBox3.getSelectedIndex()==0){
@@ -1920,14 +1928,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         
         if(flagError<1){
-            
+            setDataDbPracticeCreate();
             flagCliente=false;
-            //showWinAlert(jPanel9, "Inserire una descrizione del difetto.", "Errore", JOptionPane.ERROR_MESSAGE);
-            //JOptionPane optionPane = new JOptionPane("Scheda prodotto n° " + jLabel28.getText() + "\nStampare la ricevuta?", JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
             
             int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + jLabel28.getText() + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
-            
-            if(n==JOptionPane.YES_OPTION){
+            if(n==JOptionPane.YES_OPTION){//BUGFIX
             
             }else{}
                 //(n==JOptionPane.NO_OPTION){}
@@ -1996,7 +2001,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
         // risultato ricerca
         //jScrollPane5.setVisible(true);
-       jTable3.setVisible(true);
+       
+        if(!jTextField27.getText().equals("") || !jTextField28.getText().equals("") || !jTextField29.getText().equals("") || !jTextField30.getText().equals(""))
+            jTable3.setVisible(true);
+        
+        else{
+            showWinAlert(jPanel10, "Inserire almeno un campo.", "Errore in fase di ricerca!", JOptionPane.ERROR_MESSAGE);
+            jTable3.setVisible(false);
+        }
+       
     }//GEN-LAST:event_jButton12MouseClicked
 
     private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
@@ -2152,16 +2165,41 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }//GEN-LAST:event_jButton22MouseClicked
 
     private void jCheckBox3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox3StateChanged
-        // TODO add your handling code here:
+        // cambia stato di accessorio
+        if(jCheckBox3.isSelected())
+            jTextField38.setEditable(true);
+        else{
+            jTextField38.setEditable(false);
+            jTextField38.setText(null);
+        }
     }//GEN-LAST:event_jCheckBox3StateChanged
 
     private void jButton25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton25MouseClicked
-        // TODO add your handling code here:
+        // chiudi scheda pratica aperta per mod
+        schedaProdotto.dispose();
+        
     }//GEN-LAST:event_jButton25MouseClicked
 
     private void jButton26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton26MouseClicked
-        // TODO add your handling code here:
+        // salva ed esci da scheda apertura prodotto
+        if(jTextField36.getText().equals("") || jTextField37.getText().equals(""))
+            showWinAlert(jPanel12, "Controllare modello ed imei", "Warning", JOptionPane.WARNING_MESSAGE);
+        
+        else{
+            setDataDbPracticeView();
+        }
     }//GEN-LAST:event_jButton26MouseClicked
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        // apri scheda esistente
+        if(evt.getClickCount() == 2){
+            setCenterMonitorDim(935, 525);
+            schedaProdotto = new FinestraSwing("Scheda riparazione n° "+jLabel44.getText(), p.getPX(), p.getPY(), 935, 525, jPanel12);
+            getDataDbPracticeView();
+            noEditablePracticeValue();
+        
+        }
+    }//GEN-LAST:event_jTable3MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -2376,22 +2414,71 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         JOptionPane.showMessageDialog(cmp, o, s, i);
     }
     
-    
-    
+        
     private void setCenterMonitorDim (int w, int h){
         // Get the size of the screen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
- 
         // Determine the new location of the window
         //int w = jP.getSize().width;
         //int h = jP.getSize().height;
         int x = (dim.width-w)/2;
         int y = (dim.height-h)/2;
-
         // set position for Moving window
         p.setPX(x);
         p.setPY(y);
+    }
+    
+    private void getDataDbPracticeView(){//BUGFIX prendere i dati dal db
+        jTextField31.setText(null);//cognome
+        jTextField32.setText(null);//nome
+        jComboBox5.setSelectedIndex(1);//tipologia lavorazione 
+        jTextField36.setText(null); //modello
+        jTextField37.setText(null);//imei
+        if(jCheckBox3.isSelected())
+            jTextField38.setText(null);//accessori
+        jTextArea8.setText(null);//dif dich
+        jTextArea9.setText(null);//dif riscon
+        jTextArea10.setText(null);//lav eff
+        jComboBox6.setSelectedIndex(1);//stato lavorazione
+        jTextField33.setText(null);//data in
+        jTextField34.setText(null);//data lav
+        jTextField35.setText(null);//data out
+    }
+    
+    
+    private void setDataDbPracticeView(){//BUGFIX aggiornare i dati dal db
+        jTextField36.getText(); //modello
+        jTextField37.getText();//imei
+        if(jCheckBox3.isSelected())
+            jTextField38.getText();//accessori
+        jTextArea8.getText();//dif dich
+        jTextArea9.getText();//dif riscon
+        jTextArea10.getText();//lav eff
+        jComboBox6.getSelectedItem();//stato lavorazione
+        jTextField34.getText();//data lav
+        jTextField35.getText();//data out
         
+    }
+    
+    private void noEditablePracticeValue(){
+        jTextField31.setEditable(false);
+        jTextField32.setEditable(false);
+        jComboBox5.setEditable(false);
+        jTextField33.setEditable(false);
+    }
+    
+    
+    private void setDataDbPracticeCreate(){
+        jTextField19.getText();         //cognome
+        jTextField20.getText();         //nome
+        jComboBox3.getSelectedItem();   //tipologia prodotto
+        jTextField24.getText();         //modello
+        jTextField25.getText();         //imei
+        if(jCheckBox2.isSelected())
+            jTextField26.getText();     //accessori
+        jTextArea5.getText();           //difetto dichiarato
+        jComboBox4.getSelectedItem();   //a priori si sa lo stato di lavorazione dato è la creazione iniziale
+        jTextField21.getText();         //data in
     }
     
     
