@@ -15,7 +15,7 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
         jTextField41.setText("xxx.xxx.xxx.xxx");
     }
 
-    @Action public void closeAboutBox() {
+    @Action public void closeSettingBox() {
         dispose();
     }
 
@@ -46,7 +46,7 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
         setResizable(false);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(managgui.ManagGuiApp.class).getContext().getActionMap(ManagGuiSettingBox.class, this);
-        closeButton.setAction(actionMap.get("closeAboutBox")); // NOI18N
+        closeButton.setAction(actionMap.get("closeSettingBox")); // NOI18N
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(managgui.ManagGuiApp.class).getContext().getResourceMap(ManagGuiSettingBox.class);
         closeButton.setIcon(resourceMap.getIcon("closeButton.icon")); // NOI18N
         closeButton.setText(resourceMap.getString("closeButton.text")); // NOI18N
@@ -163,8 +163,10 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
         // cancellazione testo ip         jTextField41.setText(null);     }//GEN-LAST:event_jTextField41MouseClicked
     }
         private void jButton30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton30MouseClicked
-
+            //salvere l'ip del server e sulle impostazioni del prog
         // TODO add your handling code here:}//GEN-LAST:event_jButton30MouseClicked
+        //FIXME
+        closeSettingBox();
         }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
