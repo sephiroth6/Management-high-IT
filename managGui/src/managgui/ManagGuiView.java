@@ -21,6 +21,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -2538,6 +2539,11 @@ public class ManagGuiView extends FrameView {
 
         jButton36.setText(resourceMap.getString("jButton36.text")); // NOI18N
         jButton36.setName("jButton36"); // NOI18N
+        jButton36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton36MouseClicked(evt);
+            }
+        });
 
         jTextField51.setText(resourceMap.getString("jTextField51.text")); // NOI18N
         jTextField51.setName("jTextField51"); // NOI18N
@@ -3177,7 +3183,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // apertura view pezzi di magazzino da selezionare
         setCenterMonitorDim(720, 444);
         pezziUtilizzati= new FinestraSwing("Selezionare i pezzi utilizzati per la lavorazione!", p.getPX(), p.getPY(), 720, 444, jPanel17);
+        getSparePartsProduct();
     }//GEN-LAST:event_jButton35MouseClicked
+
+    private void jButton36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton36MouseClicked
+        // cerca corrispondenze tra nome e codice
+        if(jTextField50.getText().equals(""))
+            showWinAlert(jPanel14, "Inserire la quantita' dell'articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jButton36MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -3582,6 +3595,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField5.setText(null);
         jTextField6.setText(null);
         jTextArea1.setText(null);
+    }
+    
+    private void getSparePartsProduct(){
+        String[] data = {"one", "two", "three", "four"};
+        //jList4.setModel(data);
     }
     
     
