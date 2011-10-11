@@ -21,6 +21,8 @@ import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -2546,26 +2548,40 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             flagError++;
         }
         if(flagError<1){
-            setArticleWarehouseDB();
+            setArticleWarehouseDB(jTextField4, jTextField5, jTextField6, jTextArea1);
             jPanel6.setVisible(false);
         }
         
     }//GEN-LAST:event_jButton9MouseClicked
 
     private void jButton28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton28MouseClicked
-        // TODO add your handling code here:
+        // Salve modifiche articolo magazzino ed esci
+        int flagError=0;
+        if(jTextField17.getText().equals("")){
+            showWinAlert(jPanel14, "Inserire il codice articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            flagError++;
+        }
+        if(jTextField39.getText().equals("")){
+            showWinAlert(jPanel14, "Inserire la quantita' dell'articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            flagError++;
+        }
+        if(flagError<1){
+            setArticleWarehouseDB(jTextField17, jTextField18, jTextField39, jTextArea4);
+            schedaArticoloMagazzino.dispose();
+        }
     }//GEN-LAST:event_jButton28MouseClicked
 
     private void jButton29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton29MouseClicked
-        // TODO add your handling code here:
+        // annulla ed esci senza salvare e/o effettuare modifiche all'articolo aperto
+        schedaArticoloMagazzino.dispose();
     }//GEN-LAST:event_jButton29MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // apertura articolo cercato
         if(evt.getClickCount() == 2){
-            setCenterMonitorDim(500, 500);
+            setCenterMonitorDim(465, 340);
             schedaArticoloMagazzino = new FinestraSwing("Scheda Articolo Magazzino", p.getPX(), p.getPY(), 465, 340, jPanel14);
-                    
+            getValArticleWarehouse(jTextField17, jTextField18, jTextField39, jTextArea4);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -2895,18 +2911,18 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextArea3.getText();           //note
     }
     
-    private void setArticleWarehouseDB(){//FIXME
-        jTextField4.getText();
-        jTextField5.getText();
-        jTextField6.getText();
-        jTextArea1.getText();
+    private void setArticleWarehouseDB(JTextField code, JTextField name, JTextField n, JTextArea note){//FIXME
+        code.getText();
+        name.getText();
+        n.getText();
+        note.getText();
     }
     
-    private void getValArticleWarehouse(){//FIXME
-        jTextField4.setText(null);
-        jTextField5.setText(null);
-        jTextField6.setText(null);
-        jTextArea1.setText(null);
+    private void getValArticleWarehouse(JTextField code, JTextField name, JTextField n, JTextArea note){//FIXME
+        code.setText(null);
+        name.setText(null);
+        n.setText(null);
+        note.setText(null);
     }
     
     private void resetValArticleWarehouse(){//FIXME
