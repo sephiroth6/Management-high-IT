@@ -8,15 +8,20 @@ import org.jdesktop.application.Action;
 
 public class ManagGuiSettingBox extends javax.swing.JDialog {
 
+    private String ip;
+    
     public ManagGuiSettingBox(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(closeButton);
-        jTextField41.setText("xxx.xxx.xxx.xxx");
+        
     }
 
     @Action public void closeSettingBox() {
+        if(jTextField41.getText().equals(""))
+            jTextField41.setText("xxx.xxx.xxx.xxx");
         dispose();
+        
     }
 
     /** This method is called from within the constructor to
@@ -178,6 +183,12 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField42;
     // End of variables declaration//GEN-END:variables
     
+   private void setIP(){
+       ip= jTextField41.getText();
+   }
    
+   private void getIP(){
+       jTextField41.setText(ip);
+   }
     
 }
