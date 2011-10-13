@@ -21,7 +21,6 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
         if(jTextField41.getText().equals(""))
             jTextField41.setText("xxx.xxx.xxx.xxx");
         dispose();
-        
     }
 
     /** This method is called from within the constructor to
