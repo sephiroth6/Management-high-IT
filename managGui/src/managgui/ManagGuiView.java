@@ -1358,7 +1358,6 @@ public class ManagGuiView extends FrameView {
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(managgui.ManagGuiApp.class).getContext().getActionMap(ManagGuiView.class, this);
         jMenuItem1.setAction(actionMap.get("showSettingBox")); // NOI18N
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
         jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2536,6 +2535,11 @@ public class ManagGuiView extends FrameView {
 
         jButton38.setText(resourceMap.getString("jButton38.text")); // NOI18N
         jButton38.setName("jButton38"); // NOI18N
+        jButton38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton38MouseClicked(evt);
+            }
+        });
 
         jLabel76.setFont(resourceMap.getFont("jLabel76.font")); // NOI18N
         jLabel76.setText(resourceMap.getString("jLabel76.text")); // NOI18N
@@ -2570,27 +2574,52 @@ public class ManagGuiView extends FrameView {
 
         jButton39.setText(resourceMap.getString("jButton39.text")); // NOI18N
         jButton39.setName("jButton39"); // NOI18N
+        jButton39.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton39MouseClicked(evt);
+            }
+        });
 
         jButton40.setIcon(resourceMap.getIcon("jButton40.icon")); // NOI18N
         jButton40.setText(resourceMap.getString("jButton40.text")); // NOI18N
         jButton40.setToolTipText(resourceMap.getString("jButton40.toolTipText")); // NOI18N
         jButton40.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton40.setName("jButton40"); // NOI18N
+        jButton40.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton40MouseClicked(evt);
+            }
+        });
 
         jButton42.setIcon(resourceMap.getIcon("jButton42.icon")); // NOI18N
         jButton42.setText(resourceMap.getString("jButton42.text")); // NOI18N
         jButton42.setToolTipText(resourceMap.getString("jButton42.toolTipText")); // NOI18N
         jButton42.setName("jButton42"); // NOI18N
+        jButton42.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton42MouseClicked(evt);
+            }
+        });
 
         jButton43.setIcon(resourceMap.getIcon("jButton43.icon")); // NOI18N
         jButton43.setText(resourceMap.getString("jButton43.text")); // NOI18N
         jButton43.setToolTipText(resourceMap.getString("jButton43.toolTipText")); // NOI18N
         jButton43.setName("jButton43"); // NOI18N
+        jButton43.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton43MouseClicked(evt);
+            }
+        });
 
         jButton44.setIcon(resourceMap.getIcon("jButton44.icon")); // NOI18N
         jButton44.setToolTipText(resourceMap.getString("jButton44.toolTipText")); // NOI18N
         jButton44.setAlignmentY(0.0F);
         jButton44.setName("jButton44"); // NOI18N
+        jButton44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton44MouseClicked(evt);
+            }
+        });
 
         jScrollPane17.setName("jScrollPane17"); // NOI18N
 
@@ -3215,7 +3244,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton36MouseClicked
         // cerca corrispondenze tra nome e codice
         if(jTextField50.getText().equals(""))
-            showWinAlert(jPanel14, "Inserire la quantita' dell'articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel17, "Inserire un nome generico\noppure un codice articolo.", "Error Code", JOptionPane.ERROR_MESSAGE);
+        
     }//GEN-LAST:event_jButton36MouseClicked
 
     private void jButton41MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton41MouseClicked
@@ -3223,6 +3253,60 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         flagCliente=false;
         resetValScheda();
     }//GEN-LAST:event_jButton41MouseClicked
+
+    private void jButton39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton39MouseClicked
+        // importa pezzo di ricambio su scheda
+        if(!jList3.isSelectionEmpty()){
+            if(jTextField51.getText().equals(""))
+                showWinAlert(jPanel17, "Inserire una quantità.", "Warning", JOptionPane.WARNING_MESSAGE);
+            else if(Integer.parseInt(jTextField51.getText())>0){
+                //codice da eseguire se tutto corretto
+                importArticle();
+            }
+            else 
+               showWinAlert(jPanel17, "Quantità pezzi inesatta.", "Warning", JOptionPane.WARNING_MESSAGE);
+                
+            
+        }else
+            showWinAlert(jPanel17, "Selezionare un pezzo prima di importalo.", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jButton39MouseClicked
+
+    private void jButton40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton40MouseClicked
+        // aggiungi quantità di un articolo già importato e selezionato
+        if(!jList4.isSelectionEmpty()){
+            
+        }else
+            showWinAlert(jPanel17, "Selezionare prima un pezzo\nper aumentarne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+        
+        
+    }//GEN-LAST:event_jButton40MouseClicked
+
+    private void jButton44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton44MouseClicked
+        // sottrarre quantità articolo selezionato ed importato
+         if(!jList4.isSelectionEmpty()){
+            
+        }else
+            showWinAlert(jPanel17, "Selezionare prima un pezzo\nper diminuirne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+        
+    }//GEN-LAST:event_jButton44MouseClicked
+
+    private void jButton42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton42MouseClicked
+        // cancellare un pezzo e resettare la quantità
+         if(!jList4.isSelectionEmpty()){
+            
+        }else
+            showWinAlert(jPanel17, "Selezionare prima un pezzo\nper cancellarlo dalla lista!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+        
+    }//GEN-LAST:event_jButton42MouseClicked
+
+    private void jButton43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton43MouseClicked
+        // cancella e reimposta le quantità nel magazzino
+        
+    }//GEN-LAST:event_jButton43MouseClicked
+
+    private void jButton38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton38MouseClicked
+        // salva i pezzi importati nella lista dei pezzi utilizzati durante la lavorazione
+    }//GEN-LAST:event_jButton38MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -3633,6 +3717,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void getSparePartsProduct(){
         String[] data = {"one", "two", "three", "four"};
         //jList4.setModel(data);
+    }
+    
+    private void importArticle(){
+        
+        
     }
     
     
