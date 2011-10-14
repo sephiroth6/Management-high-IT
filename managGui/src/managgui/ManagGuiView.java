@@ -796,22 +796,22 @@ public class ManagGuiView extends FrameView {
             }
         });
         jScrollPane5.setViewportView(jTable3);
-        DefaultTableModel model3 = new DefaultTableModel(){
+        DefaultTableModel model33 = new DefaultTableModel(){
             private static final long serialVersionUID = 1L;
             public boolean isCellEditable(int row, int column){
                 return false;
             }
 
         };
-        String[][] data3 = new String[][]{
+        String[][] data33 = new String[][]{
             {null, null, null, null},
             {null, null, null, null},
             {null, null, null, null},
             {null, null, null, null}
         };
-        String[] columnNames3 = new String[]{"Cognome", "Nome", "Imei-S/N", "stato lavorazione"};
-        model3.setDataVector(data3, columnNames3);
-        jTable3.setModel(model3);
+        String[] columnNames33 = new String[]{"Cognome", "Nome", "Imei-S/N", "stato lavorazione"};
+        model33.setDataVector(data33, columnNames33);
+        jTable3.setModel(model33);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -2757,8 +2757,8 @@ public class ManagGuiView extends FrameView {
             {null, null, null, null}
         };
         String[] columnNames4 = new String[]{"Cognome", "Nome", "Imei-S/N", "stato lavorazione"};
-        model3.setDataVector(data4, columnNames4);
-        jTable3.setModel(model4);
+        model4.setDataVector(data4, columnNames4);
+        jTable4.setModel(model4);
 
         jLabel78.setFont(resourceMap.getFont("jLabel78.font")); // NOI18N
         jLabel78.setForeground(resourceMap.getColor("jLabel78.foreground")); // NOI18N
