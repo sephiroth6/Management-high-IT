@@ -4,6 +4,9 @@
 
 package managguiserver;
 
+import Server.Utils;
+import java.io.IOException;
+import java.sql.SQLException;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -11,6 +14,9 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.sql.Connection;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
@@ -20,12 +26,17 @@ import javax.swing.JFrame;
  * The application's main frame.
  */
 public class ManagGuiServerView extends FrameView {
+    
+    private Connection c = null;
+    private ServerSocket s = null;
+    private Server.ServerSingleton ss = null;
+    private Thread t = null;
 
     public ManagGuiServerView(SingleFrameApplication app) {
         super(app);
 
         initComponents();
-
+        
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -79,6 +90,7 @@ public class ManagGuiServerView extends FrameView {
                 }
             }
         });
+        
     }
 
     @Action
@@ -143,12 +155,29 @@ public class ManagGuiServerView extends FrameView {
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
+        jButton2.setEnabled(false);
         jButton2.setName("jButton2"); // NOI18N
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
+        jButton3.setEnabled(false);
         jButton3.setName("jButton3"); // NOI18N
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,7 +198,7 @@ public class ManagGuiServerView extends FrameView {
                         .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(70, 70, 70)
                         .addComponent(jButton2)))
@@ -188,7 +217,7 @@ public class ManagGuiServerView extends FrameView {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -253,7 +282,7 @@ public class ManagGuiServerView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -275,6 +304,58 @@ public class ManagGuiServerView extends FrameView {
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
+
+    // START BUTTON
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+
+        if(jButton1.isEnabled()) {
+            
+            try {
+                this.startOp();
+            } catch (Exception e) {
+                jLabel3.setText(e.toString());
+            }
+            
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    // STOP BUTTON
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+            
+        if(jButton3.isEnabled()) {
+            
+            try {
+                Utils.closeConnection(c);
+                s.close();
+                jLabel3.setText("xxx.xxx.xxx.xxx");
+                jLabel5.setText("xxxx");
+                         
+                Server.ServerSingleton.destroySingleton();
+                t.interrupt();
+                jButton1.setEnabled(true); 
+                jButton2.setEnabled(false);
+                jButton3.setEnabled(false);
+
+            } catch (Exception e) {
+                jLabel3.setText("Impossibile chiudere la connessione: riprova");
+            } 
+            
+        }
+        
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    // RESTART BUTTON
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        
+        if(jButton2.isEnabled()) {
+            this.jButton3MouseClicked(evt);
+            try {
+                this.startOp();
+            } catch (Exception e) {
+                jLabel3.setText("Impossibile riavviare server: riprova");
+            }
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -301,4 +382,23 @@ public class ManagGuiServerView extends FrameView {
     private int busyIconIndex = 0;
 
     private JDialog aboutBox;
+    
+    // operations executed for Start and Restart buttons
+    private void startOp () throws ClassNotFoundException, SQLException, IOException {
+        c = Server.Utils.dbConnection(Server.Constants.DBNAME);
+        Server.Utils.createTables(c);
+        s = new ServerSocket(5000);
+        ss =  Server.ServerSingleton.getSingleton(c);
+
+        jLabel3.setText(InetAddress.getLocalHost().toString());
+        jLabel5.setText("5000");
+
+        t = new Thread(new Listener(this.s, this.ss));
+        t.start();
+
+        jButton1.setEnabled(false);
+        jButton3.setEnabled(true);
+        jButton2.setEnabled(true);
+    }
+    
 }

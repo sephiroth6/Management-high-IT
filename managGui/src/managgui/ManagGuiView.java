@@ -45,6 +45,7 @@ public class ManagGuiView extends FrameView {
     private ImageIcon frontEnd = createImageIcon ("images/frontend2.png", "ico accettazione scheda tab");
     private ImageIcon warehouse = createImageIcon ("images/warehouse.png", "ico magazzino scheda tab");
     private ImageIcon icon = createImageIcon("images/middle.gif", "cio");//prova
+    
     //private Icon frontEnd;
     
     

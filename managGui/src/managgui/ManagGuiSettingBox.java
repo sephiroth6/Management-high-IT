@@ -168,6 +168,7 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
     }
         private void jButton30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton30MouseClicked
             //salvere l'ip del server e sulle impostazioni del prog
+            
         // TODO add your handling code here:}//GEN-LAST:event_jButton30MouseClicked
         //FIXME
         closeSettingBox();
