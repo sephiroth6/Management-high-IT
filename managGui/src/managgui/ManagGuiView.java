@@ -3141,11 +3141,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }//GEN-LAST:event_jButton16MouseClicked
 
     private void jTextField11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField11MouseClicked
-        // TODO add your handling code here:
+        jTextField11.setText(null);
     }//GEN-LAST:event_jTextField11MouseClicked
 
     private void jTextField12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField12MouseClicked
-        // TODO add your handling code here:
+        jTextField12.setText(null);
     }//GEN-LAST:event_jTextField12MouseClicked
 
     private void jButton20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton20MouseClicked
