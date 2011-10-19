@@ -4,6 +4,7 @@
 
 package managguiserver;
 
+import javax.swing.Icon;
 import org.jdesktop.application.Action;
 
 public class ManagGuiServerAboutBox2 extends javax.swing.JDialog {
@@ -128,5 +129,9 @@ public class ManagGuiServerAboutBox2 extends javax.swing.JDialog {
     private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+    
+    public Icon getLogo(){
+        return jLabel1.getIcon();
+    }
     
 }
