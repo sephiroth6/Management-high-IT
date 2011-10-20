@@ -4,6 +4,7 @@
 
 package managgui;
 
+import Client.Utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,6 +15,10 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.Timer;
@@ -45,14 +50,11 @@ public class ManagGuiView extends FrameView {
     private ImageIcon frontEnd = createImageIcon ("images/frontend2.png", "ico accettazione scheda tab");
     private ImageIcon warehouse = createImageIcon ("images/warehouse.png", "ico magazzino scheda tab");
     private ImageIcon icon = createImageIcon("images/middle.gif", "cio");//prova
-    
-    //private Icon frontEnd;
-    
-    
-    
-       
-    
 
+    // objects needed to manage data
+    private SharedClasses.Customer c;
+    private SharedClasses.Device d;
+    
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
 
@@ -72,11 +74,6 @@ public class ManagGuiView extends FrameView {
        jPanel10.setVisible(false);
        ifConnected();
        
-        
-        
-        
-        
-
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -3104,11 +3101,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton13MouseClicked
 
+    // insert a customer into database
     private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
-        // salva ed imposta cliente
+
+        int flagError = 0;
         
-        int flagError=0;
-        
+        // check if all required fields are filled
         if(jTextField7.getText().equals("")){
             showWinAlert(jPanel7, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
             flagError++;
@@ -3122,23 +3120,36 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             flagError++;
         }
         
-        if(flagError<1){
-            //dati da caricare
-            setDatiClienteDb(jTextField8, jTextField7, jTextField9, jTextField10, jTextArea2);//get da jtf
-//            jTextField7.getText();//cognome
-//            jTextField8.getText();//nome
-//            jTextField9.getText();//indirizzo
-//            jTextField10.getText();//recapito tel
-//            jTextArea2.getText();//note
+        if(flagError == 0){          // it's ok
             
-            flagCliente=true;
+            this.c = new SharedClasses.Customer(jTextField8.getText(), jTextField7.getText(), jTextField9.getText(), jTextField10.getText(), jTextArea2.getText());
+            // TODO take the parameters of this method from a file
+            Socket s = Client.Utils.open("localhost", "5000");
+            ObjectOutputStream out = Utils.outStream(s);
+            ObjectInputStream in = Utils.inObjectStream(s);
+            ComClasses.Request r = new ComClasses.Request(this.c, ComClasses.Constants.CUSTOMER, ComClasses.Constants.INSERT, this.c.insert());
+            Client.Utils.sendRequest(out, r);
+            int ret = Client.Utils.readValue(in).intValue();
             
-            if(flagCliente){
+            if(ret > 0)
+                this.c.setID(ret);
+            else if(ret == ComClasses.Constants.RET_EXI)
+                showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+            else if(ret == ComClasses.Constants.RET_EXC)
+                showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            
+            try {
+                out.close();
+                in.close();
+                s.close();
+            } catch (IOException e) {       // TODO when is thrown an IOException is necessary to restart the application in order to release the connection for other clients
+                showWinAlert(jPanel7, "Errore chiusura connessione: riavviare l'applicazione", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            if(ret > 0){
                 DatiCliente.dispose();
                 jTextField19.setText(jTextField7.getText());
                 jTextField20.setText(jTextField8.getText());
-               // jButton15.setEnabled(false);
-                //jButton16.setEnabled(false);
             }
         }
     }//GEN-LAST:event_jButton14MouseClicked
