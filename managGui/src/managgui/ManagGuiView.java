@@ -2487,6 +2487,7 @@ public class ManagGuiView extends FrameView {
                 .addContainerGap())
         );
 
+        jPanel17.setBackground(resourceMap.getColor("jPanel17.background")); // NOI18N
         jPanel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel17.setName("jPanel17"); // NOI18N
 
