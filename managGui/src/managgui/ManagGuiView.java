@@ -979,15 +979,11 @@ public class ManagGuiView extends FrameView {
         jTable5.setAutoCreateRowSorter(true);
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Cognome", "Nome", "Indirizzo", "Recapito", "Note"
-            }
 
+            }
         ));
         jTable5.setName("jTable5"); // NOI18N
         jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -996,7 +992,7 @@ public class ManagGuiView extends FrameView {
             }
         });
         jScrollPane21.setViewportView(jTable5);
-        setJTableClient(jTable2);
+        setJTableClient(jTable5, 1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1601,7 +1597,7 @@ public class ManagGuiView extends FrameView {
             }
         });
         jScrollPane20.setViewportView(jTable2);
-        setJTableClient(jTable2);
+        setJTableClient(jTable2, 1);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -2760,34 +2756,52 @@ public class ManagGuiView extends FrameView {
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
+    // surname search field into second panel
 private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-    jTextField1.setText(null);
+    if(jTextField1.getText().equals("Cognome"))
+            jTextField1.setText("");
+    if(jTextField2.getText().equals("Nome"))
+            jTextField2.setText("");
     
 }//GEN-LAST:event_jTextField1MouseClicked
 
+// name search field into second panel
 private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
-    jTextField2.setText(null);
+    if(jTextField2.getText().equals("Nome"))
+        jTextField2.setText("");
+    if(jTextField1.getText().equals("Cognome"))
+            jTextField1.setText("");
 }//GEN-LAST:event_jTextField2MouseClicked
 
+// reset button into second panel search
 private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
     jTextField1.setText("Cognome");
     jTextField2.setText("Nome");
-    jTable5.setVisible(true);
-    
+    jTable5.setVisible(false);
 }//GEN-LAST:event_jButton4MouseClicked
 
+// customer search request into second panel
 private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
     
-    if(jTextField1.getText().equals("Cognome") && jTextField2.getText().equals("Nome") ||
-           jTextField2.getText().equals("") && jTextField1.getText().equals("") ||
-           jTextField1.getText().equals("") && jTextField2.getText().equals("Nome") ||
-           jTextField1.getText().equals("Cognome") && jTextField2.getText().equals("") ){
-                
-                showWinAlert(jPanel2, "Valori errati, riprovare...", "Error", JOptionPane.ERROR_MESSAGE);
-                //jPanel4.setVisible(false);
-           
+    String surname = jTextField1.getText();
+    String name = jTextField2.getText();
+        
+    if(!checkCustomerSearch(surname, name)) {                               // info not inserted properly
+        showWinAlert(jPanel8, "Valori errati, riprovare...", "Error", JOptionPane.ERROR_MESSAGE);
+        jTable5.setVisible(false);
+    } else {                                                                // search can be executed
+        this.customerSearchResult(name, surname);                           // execute the operation and 
+            
+        if(this.ret != null) {
+            setTableCustomerData(jTable5, this.ret);
+        } else {
+            showWinAlert(jPanel8, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            jTable5.setVisible(false);
         }
-             //jPanel4.setVisible(true);
+            
+            jTable5.setVisible(true);
+    
+    }
 }//GEN-LAST:event_jButton3MouseClicked
 
     private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
@@ -3045,10 +3059,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         cercaCliente = new FinestraSwing("Inserisci i dati per avviare la ricerca...", p.getPX(), p.getPY(), 834, 460, jPanel8);
         jTextField11.setText("Cognome");
         jTextField12.setText("Nome");
-//        jPanel11.setVisible(false);
-        jTable2.setVisible(false);
-        
-        
+        jTable2.setVisible(false);        
     }//GEN-LAST:event_jButton16MouseClicked
 
     // surname search field
@@ -3108,8 +3119,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         int n = a.size();
         SharedClasses.Customer c = null;
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Cognome", "Nome", "Indirizzo", "Recapito", "Note"}, n);
-        t.setModel(model);
+        setJTableClient(t, n);
         
         for(int i = 0; i < n; i++) {
             
@@ -3936,8 +3946,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
-    private void setJTableClient(JTable jt){
-        DefaultTableModel model = new DefaultTableModel(){
+    private static void setJTableClient(JTable jt, int n){
+        String[] columnNames = new String[]{"Cognome", "Nome", "Indirizzo", "Recapito", "Note"};
+        
+        DefaultTableModel model = new DefaultTableModel(columnNames, n){
         
             private static final long serialVersionUID = 1L;
             @Override
@@ -3946,11 +3958,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
         };
         
-        String[][] data = new String[][]{
-        };
-        
-        String[] columnNames = new String[]{"Cognome", "Nome", "Indirizzo", "Recapito", "Note"};
-        model.setDataVector(data, columnNames);
         jt.setModel(model);
     }
     
