@@ -992,7 +992,7 @@ public class ManagGuiView extends FrameView {
             }
         });
         jScrollPane21.setViewportView(jTable5);
-        setJTableClient(jTable5, 1);
+        setJTableClient(jTable5, 0);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1597,7 +1597,7 @@ public class ManagGuiView extends FrameView {
             }
         });
         jScrollPane20.setViewportView(jTable2);
-        setJTableClient(jTable2, 1);
+        setJTableClient(jTable2, 0);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
