@@ -4,6 +4,8 @@
 
 package managgui;
 
+import java.io.IOException;
+import java.net.Socket;
 import org.jdesktop.application.Action;
 
 public class ManagGuiSettingBox extends javax.swing.JDialog {
@@ -167,11 +169,30 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
         // cancellazione testo ip         jTextField41.setText(null);     }//GEN-LAST:event_jTextField41MouseClicked
     }
         private void jButton30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton30MouseClicked
-            //salvere l'ip del server e sulle impostazioni del prog
+           // TODO create a file with the server ip and port inserted the first time
             
+           String add = jTextField41.getText();
+           String port = jTextField42.getText();
+           
+           if(!add.equals("") || !add.contains("x")) {          // check if ip is set
+               
+               if(!port.equals("")) {                           // check if the port is set
+                   Socket s = Client.Utils.open(add, port);     // try to open the connection
+                   if(s != null) {
+                       try {
+                           s.close();
+                       } catch (IOException ex) {
+                           System.out.println(ex.getMessage());
+                       }
+                   } else {
+                        // TODO do something if is not possible to open the connection?
+                   }
+                }       // TODO do something if the port is not set?
+           
+           }            // TODO do something if the ip is not set?
+           
         // TODO add your handling code here:}//GEN-LAST:event_jButton30MouseClicked
-        //FIXME
-        closeSettingBox();
+            closeSettingBox();
         }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
@@ -184,7 +205,7 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     
    private void setIP(){
-       ip= jTextField41.getText();
+       ip = jTextField41.getText();
    }
    
    private void getIP(){
