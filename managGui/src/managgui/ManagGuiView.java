@@ -3028,13 +3028,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             ObjectInputStream in = Utils.inObjectStream(s);
             ComClasses.Request r = new ComClasses.Request(this.c, ComClasses.Constants.CUSTOMER, ComClasses.Constants.INSERT, this.c.insert());
             Client.Utils.sendRequest(out, r);
-            int ret = Client.Utils.readValue(in).intValue();
+            int v = Client.Utils.readValue(in).intValue();
             
-            if(ret > 0)
-                this.c.setID(ret);
-            else if(ret == ComClasses.Constants.RET_EXI)
+            if(v > 0)
+                this.c.setID(v);
+            else if(v == ComClasses.Constants.RET_EXI)
                 showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
-            else if(ret == ComClasses.Constants.RET_EXC)
+            else if(v == ComClasses.Constants.RET_EXC)
                 showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
             
             try {
@@ -3045,10 +3045,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 showWinAlert(jPanel7, "Errore chiusura connessione: riavviare l'applicazione", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
-            if(ret > 0){
+            if(v > 0){
                 DatiCliente.dispose();
-                jTextField19.setText(jTextField7.getText());
-                jTextField20.setText(jTextField8.getText());
+                jTextField19.setText(this.c.getSurname());
+                jTextField20.setText(this.c.getName());
             }
         }
     }//GEN-LAST:event_jButton14MouseClicked
@@ -3219,9 +3219,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         DatiClienteView.dispose();
     }//GEN-LAST:event_jButton23MouseClicked
 
+    // edit selected customer
     private void jButton24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton24MouseClicked
-        // salva ed esci dati cliente già esistente
-        int flagError=0;
+
+        int flagError = 0;
         
         if(jTextField16.getText().equals("")){
             showWinAlert(jPanel13, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -3236,11 +3237,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             flagError++;
         }
         
-        if(flagError<1){
+        if(flagError == 0){
             setDatiClienteDb(jTextField15, jTextField16, jTextField14, jTextField13, jTextArea3);
             DatiClienteView.dispose();
         }
               
+        jTextField1.setText("Cognome");
+        jTextField2.setText("Nome");
+        jTable5.setVisible(false);
+        
     }//GEN-LAST:event_jButton24MouseClicked
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
@@ -3487,10 +3492,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
+    // open the edit window for customer
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
-         // apertura scheda dati cliente
+
         if(evt.getClickCount() == 2){
-            jTable5.getSelectedRow();//importare dati e popolare con getDatuClienteDb
+            int sel = jTable5.getSelectedRow();//importare dati e popolare con getDatuClienteDb
+            this.c = (SharedClasses.Customer)this.ret.get(sel);
+            this.ret = null;
+            
             setCenterMonitorDim(503, 300);
             DatiClienteView = new FinestraSwing("Scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel13);
             getDatiClienteDb(jTextField15, jTextField16, jTextField14, jTextField13, jTextArea3);
@@ -3864,22 +3873,44 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextArea2.setText(null);
     }
     
+    // insert customer's info into edit window
     private void getDatiClienteDb(JTextField nome, JTextField cognome, JTextField indirizzo, JTextField rec, JTextArea note){//FIXME
-        //popolare i campi con i dati dal db
-        nome.setText(null);            //nome
-        cognome.setText(null);         //cognome
-        indirizzo.setText(null);       //indirizzo
-        rec.setText(null);             //recapito tel
-        note.setText(null);            //note
+        
+        nome.setText(this.c.getName());                 // name 
+        cognome.setText(this.c.getSurname());           // surname
+        indirizzo.setText(this.c.getAddress());         // address
+        rec.setText(this.c.getTelephone());             // telephone number
+        note.setText(this.c.getNote());                 // note
     }
     
-    private void setDatiClienteDb(JTextField nome, JTextField cognome, JTextField indirizzo, JTextField rec, JTextArea note){//FIXME
-        //SALVARE I dati dei vari campi nel db
-        nome.getText();            //nome
-        cognome.getText();         //cognome
-        indirizzo.getText();       //indirizzo
-        rec.getText();            //recapito tel
-        note.getText();           //note
+    // send UPDATE request on a customer
+    private void setDatiClienteDb(JTextField nome, JTextField cognome, JTextField indirizzo, JTextField rec, JTextArea note){
+
+        // create the object with new data
+        SharedClasses.Customer cus = new SharedClasses.Customer(this.c.getID(), nome.getText(), cognome.getText(), indirizzo.getText(), rec.getText(), note.getText());
+        // create the request object
+        ComClasses.Request r = new ComClasses.Request(cus, ComClasses.Constants.CUSTOMER, ComClasses.Constants.UPDATE, this.c.update(cus));
+        // communication methods
+        Socket s = Utils.open("localhost", "5000");
+        ObjectOutputStream out = Utils.outStream(s);
+        ObjectInputStream in = Utils.inObjectStream(s);
+        
+        Utils.sendRequest(out, r);
+        int v = Utils.readValue(in).intValue();
+        
+        if(v == ComClasses.Constants.RET_EXI)
+            showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+        else if(v == ComClasses.Constants.RET_EXC)
+            showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+        
+        try {
+            out.close();
+            in.close();
+            s.close();
+        } catch (IOException e) {       // TODO when is thrown an IOException is necessary to restart the application in order to release the connection for other clients
+            showWinAlert(jPanel7, "Errore chiusura connessione: riavviare l'applicazione", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
     
     private void setArticleWarehouseDB(JTextField code, JTextField name, JTextField n, JTextArea note){//FIXME
