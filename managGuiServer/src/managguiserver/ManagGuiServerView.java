@@ -23,7 +23,10 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-
+/**
+ *
+ * @author Angelo
+ */
 /**
  * The application's main frame.
  */

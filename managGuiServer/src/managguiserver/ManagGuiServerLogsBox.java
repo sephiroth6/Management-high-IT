@@ -5,7 +5,10 @@
 package managguiserver;
 
 import org.jdesktop.application.Action;
-
+/**
+ *
+ * @author Angelo
+ */
 public class ManagGuiServerLogsBox extends javax.swing.JDialog {
 
     public ManagGuiServerLogsBox(java.awt.Frame parent) {

@@ -1,6 +1,11 @@
+package managgui;
+
 import java.awt.*;
 import javax.swing.*;
-
+/**
+ *
+ * @author Angelo
+ */
 public class BackgroundPanel extends JPanel {
 
     public BackgroundPanel(String b) {

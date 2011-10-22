@@ -7,7 +7,10 @@ package managgui;
 import java.io.IOException;
 import java.net.Socket;
 import org.jdesktop.application.Action;
-
+/**
+ *
+ * @author Angelo
+ */
 public class ManagGuiSettingBox extends javax.swing.JDialog {
 
     private String ip;

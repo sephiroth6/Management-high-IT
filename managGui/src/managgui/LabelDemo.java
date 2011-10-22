@@ -38,7 +38,10 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.SwingUtilities;
-
+/**
+ *
+ * @author Angelo
+ */
 /*
  * LabelDemo.java needs one other file:
  *   images/middle.gif

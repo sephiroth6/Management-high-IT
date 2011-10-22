@@ -32,7 +32,7 @@
                   <Component id="versionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="vendorLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="homepageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="appDescLabel" alignment="0" pref="398" max="32767" attributes="0"/>
+                  <Component id="appDescLabel" alignment="0" pref="412" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButton30" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -61,7 +61,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="imageLabel" min="-2" pref="169" max="32767" attributes="0"/>
+          <Component id="imageLabel" min="-2" pref="173" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel60" min="-2" max="-2" attributes="0"/>
@@ -92,7 +92,7 @@
                       <Component id="jTextField42" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel62" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="72" max="32767" attributes="0"/>
+                  <EmptySpace pref="78" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>

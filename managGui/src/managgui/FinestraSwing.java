@@ -2,7 +2,10 @@ package managgui;
 
 import javax.swing.*;
 import javax.swing.JPanel;
-
+/**
+ *
+ * @author Angelo
+ */
 class FinestraSwing extends JFrame {
 
     FinestraSwing(String s, int x_Loc, int y_Loc, int x_Siz, int y_Siz, JPanel pann) {

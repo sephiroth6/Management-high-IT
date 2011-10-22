@@ -6,7 +6,10 @@ package managguiserver;
 
 import javax.swing.Icon;
 import org.jdesktop.application.Action;
-
+/**
+ *
+ * @author Angelo
+ */
 public class ManagGuiServerAboutBox2 extends javax.swing.JDialog {
 
     public ManagGuiServerAboutBox2(java.awt.Frame parent) {

@@ -1,5 +1,8 @@
 package managgui;
-
+/**
+ *
+ * @author Angelo
+ */
 class MonitorCen {
 	int x_cent, y_cent;
 	

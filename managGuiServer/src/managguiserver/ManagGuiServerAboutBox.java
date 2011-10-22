@@ -5,7 +5,10 @@
 package managguiserver;
 
 import org.jdesktop.application.Action;
-
+/**
+ *
+ * @author Angelo
+ */
 public class ManagGuiServerAboutBox extends javax.swing.JDialog {
 
     public ManagGuiServerAboutBox(java.awt.Frame parent) {
