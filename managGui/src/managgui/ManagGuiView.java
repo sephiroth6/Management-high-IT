@@ -25,6 +25,7 @@ import java.util.GregorianCalendar;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -66,6 +67,8 @@ public class ManagGuiView extends FrameView {
     private SharedClasses.Customer c;
     private SharedClasses.Device d;
     
+    
+    
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
 
@@ -74,7 +77,6 @@ public class ManagGuiView extends FrameView {
         //magazzino
         jPanel5.setVisible(false);//lista risultato tabella articoli magazzino
         jPanel6.setVisible(false);//aggiungi pezzo
-        //jTable1.setE
         
         
         //front-end accettazione
@@ -105,6 +107,7 @@ public class ManagGuiView extends FrameView {
         statusAnimationLabel.setIcon(idleIcon);
         progressBar.setVisible(false);
 
+        
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
         taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -136,6 +139,7 @@ public class ManagGuiView extends FrameView {
             }
         });
     }
+    
 
     @Action
     public void showAboutBox() {
@@ -851,7 +855,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton12)
                         .addGap(18, 18, 18)
                         .addComponent(jButton11))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -917,7 +921,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -935,12 +939,12 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton46))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(208, Short.MAX_VALUE)))
+                    .addContainerGap(259, Short.MAX_VALUE)))
         );
 
         jButton1.setVisible(false);
@@ -1022,7 +1026,7 @@ public class ManagGuiView extends FrameView {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 991, Short.MAX_VALUE)
+                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1049,7 +1053,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton4)
                     .addComponent(jButton15))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1306,12 +1310,12 @@ public class ManagGuiView extends FrameView {
                         .addGap(49, 49, 49)
                         .addComponent(jButton6))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(540, Short.MAX_VALUE)))
+                    .addContainerGap(575, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1327,12 +1331,12 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(294, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(140, 140, 140)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(300, Short.MAX_VALUE)))
+                    .addContainerGap(351, Short.MAX_VALUE)))
         );
 
         //jLabel83.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1360,11 +1364,6 @@ public class ManagGuiView extends FrameView {
         jMenuItem1.setAction(actionMap.get("showSettingBox")); // NOI18N
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
-            }
-        });
         fileMenu.add(jMenuItem1);
 
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
@@ -2869,8 +2868,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField3.setText(null);
     }//GEN-LAST:event_jTextField3MouseClicked
 
+    //reset cerca articolo
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        //reset cerca articolo
         jTextField3.setText("Codice Articolo");
         jTable1.setVisible(false);
     }//GEN-LAST:event_jButton8MouseClicked
@@ -2890,22 +2889,22 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jButton7MouseClicked
 
+    //aggiungi nuovo articolo magazzino
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        //aggiungi nuovo articolo magazzino
         jPanel5.setVisible(false);
         jPanel6.setVisible(true);
         resetValArticleWarehouse();
         
     }//GEN-LAST:event_jButton5MouseClicked
 
+    //tasto reset valori articolo magazzino
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
-        //tasto reset valori articolo magazzino
         resetValArticleWarehouse();
         
     }//GEN-LAST:event_jButton10MouseClicked
 
+    // cambia stato di accessorio
     private void jCheckBox2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox2StateChanged
-        // cambia stato di accessorio
         if(jCheckBox2.isSelected())
             jTextField26.setEditable(true);
         else{
@@ -2914,8 +2913,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jCheckBox2StateChanged
 
+     // esci e resetta valori 
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
-        // esci e resetta valori 
+       
         flagCliente=false;
         resetValScheda();
         
@@ -2923,8 +2923,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                
     }//GEN-LAST:event_jButton17MouseClicked
 
+    // salve valori ed esci
     private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
-        // salve valori ed esci
+        
         //flagCliente=true;
         
         int flagError=0;
@@ -2972,8 +2973,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton18MouseClicked
 
+     // preimpostazioni crea pratica //
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // preimpostazioni crea pratica //
+       
         jPanel9.setVisible(true);
         jPanel10.setVisible(false);
         //dati cliente
@@ -3002,8 +3004,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton1MouseClicked
 
+    //preimpo cerca pratica
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        //preimpo cerca pratica
+        
         jPanel9.setVisible(false);
         jPanel10.setVisible(true);
         //jScrollPane5.setVisible(false);
@@ -3015,8 +3018,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton2MouseClicked
 
+      // reset ricerca scheda
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-        // reset ricerca scheda
+      
         //jScrollPane5.setVisible(false);
         
         jTable3.setVisible(false);
@@ -3027,8 +3031,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton11MouseClicked
 
+     // risultato ricerca
     private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
-        // risultato ricerca
+       
         //jScrollPane5.setVisible(true);
        
         if(!jTextField27.getText().equals("") || !jTextField28.getText().equals("") || !jTextField29.getText().equals("") || !jTextField30.getText().equals(""))
@@ -3041,8 +3046,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
        
     }//GEN-LAST:event_jButton12MouseClicked
 
+       //close the window e reset val
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
-        //close the window e reset val
+     
         resetDatiCliente();
         DatiCliente.dispose();
         //jButton15.setEnabled(false);
@@ -3218,8 +3224,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton22MouseClicked
 
+     // cambia stato di accessorio
     private void jCheckBox3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox3StateChanged
-        // cambia stato di accessorio
+       
         if(jCheckBox3.isSelected())
             jTextField38.setEditable(true);
         else{
@@ -3351,10 +3358,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField41.setText(null);
     }//GEN-LAST:event_jTextField41MouseClicked
 
-    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
-        // apertura finestra 
-    }//GEN-LAST:event_jMenuItem1MouseClicked
-
     private void jButton27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton27MouseClicked
         // creazione view dati cliente NON MODIFICABILI!
         setCenterMonitorDim(503, 300);
@@ -3471,7 +3474,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             jTable4.setVisible(false);
             jLabel78.setVisible(true);
         }
-            
+        toppy(gestioneRientri);
+
+        
     }//GEN-LAST:event_jButton45MouseClicked
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
@@ -3554,14 +3559,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField11.setText("Cognome");
         jTextField12.setText("Nome");
         jTable2.setVisible(false);     
+        toppy(cercaCliente);
     }//GEN-LAST:event_jButton49MouseClicked
 
     private void jButton48MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton48MouseClicked
         // aggiungi cliente
         setCenterMonitorDim(503, 300);
-        DatiCliente = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel7);
-
         
+        
+        DatiCliente = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel7);
+        toppy(DatiCliente);
+        //mainPanel.enableInputMethods(false);
         //jButton15.setEnabled(false);
        // jButton16.setEnabled(false);
     }//GEN-LAST:event_jButton48MouseClicked
@@ -4081,6 +4089,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         model.setDataVector(data, columnNames);
         jt.setModel(model);
         
+    }
+    
+    private void setOFF (JComponent cmp){
+        cmp.setEnabled(false);
+    }
+    
+    
+    //set always the top
+    private void toppy (FinestraSwing fn){
+        if(fn.isAlwaysOnTopSupported())
+            fn.setAlwaysOnTop(true);
     }
     
     
