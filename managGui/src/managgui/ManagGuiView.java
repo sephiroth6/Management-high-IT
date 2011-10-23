@@ -2974,6 +2974,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton18MouseClicked
 
+    // do proper device operations when inserting a new repair
     private void handleDevice () {
         
         int type = jComboBox3.getSelectedIndex();
@@ -2985,8 +2986,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ObjectInputStream in = Utils.inObjectStream(s);
         
         Utils.sendRequest(out, r);
-        System.out.println(Utils.readValue(in));
-        // TODO handle the case of existing device - set the generated id into the object
+        int v = Utils.readValue(in).intValue();
+        
+        if(v == ComClasses.Constants.RET_EXI) {             // the device already exists: it's necessary to get the id
+            //r = new Comclasses.Request(this.d, ComClasses.Constants.DEVICE, ComClasses.Constants.)
+            System.out.println(v);
+        } else {
+            this.d.setID(v);                                // v already contains the generated id
+        }
         
     }
     
