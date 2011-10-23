@@ -2923,18 +2923,16 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                
     }//GEN-LAST:event_jButton17MouseClicked
 
-    // salve valori ed esci
+    // insert repair into database
     private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
         
-        //flagCliente=true;
-        
-        int flagError=0;
-        
-        if(flagCliente==false){
+        int flagError = 0;
+        /*
+        if(flagCliente == false){
             showWinAlert(jPanel9, "Dati cliente errati.", "Errore dati incompleti", JOptionPane.ERROR_MESSAGE);
             flagError++;
-        }
-        if(jComboBox3.getSelectedIndex()==0){
+        }*/
+        if(jComboBox3.getSelectedIndex() == 0){
             showWinAlert(jPanel9, "Selezionare una tipologia.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
@@ -2956,16 +2954,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             flagError++;
         }
         
-        
-        if(flagError<1){
+        if(flagError == 0){
+            
+            this.handleDevice();
             setDataDbPracticeCreate();
-            flagCliente=false;
-            
+            flagCliente = false;
+            // TODO print id for the new repair inserted
             int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + jLabel28.getText() + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
-            if(n==JOptionPane.YES_OPTION){//FIXME
             
-            }else{}
-                //(n==JOptionPane.NO_OPTION){}
+            if(n == JOptionPane.YES_OPTION) {//FIXME
+            
+            } else {
+            
+            }
             
             resetValScheda();
             jPanel9.setVisible(false);
@@ -2973,6 +2974,22 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton18MouseClicked
 
+    private void handleDevice () {
+        
+        int type = jComboBox3.getSelectedIndex();
+        this.d = new SharedClasses.Device(jTextField24.getText(), type, jTextField25.getText());
+        ComClasses.Request r = new ComClasses.Request(this.d, ComClasses.Constants.DEVICE, ComClasses.Constants.INSERT, this.d.insert());
+        
+        Socket s = Utils.open("localhost", "5000");
+        ObjectOutputStream out = Utils.outStream(s);
+        ObjectInputStream in = Utils.inObjectStream(s);
+        
+        Utils.sendRequest(out, r);
+        System.out.println(Utils.readValue(in));
+        // TODO handle the case of existing device - set the generated id into the object
+        
+    }
+    
      // preimpostazioni crea pratica //
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
        
@@ -3093,14 +3110,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             else if(v == ComClasses.Constants.RET_EXC)
                 showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
             
-            try {
-                out.close();
-                in.close();
-                s.close();
-            } catch (IOException e) {       // TODO when is thrown an IOException is necessary to restart the application in order to release the connection for other clients
-                showWinAlert(jPanel7, "Errore chiusura connessione: riavviare l'applicazione", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
+            this.closeConnection(out, in, s);
+            
             if(v > 0){
                 DatiCliente.dispose();
                 jTextField19.setText(this.c.getSurname());
@@ -3195,13 +3206,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         Utils.sendRequest(out, r);    
         this.ret = Utils.readResponse(in);
         
-        try {
-            out.close();
-            in.close();
-            s.close();
-        } catch (IOException e) {       // TODO when is thrown an IOException is necessary to restart the application in order to release the connection for other clients
-            showWinAlert(jPanel7, "Errore chiusura connessione: riavviare l'applicazione", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        this.closeConnection(out, in, s);
         
     }
     
@@ -3926,7 +3931,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField33.setEditable(false);
     }
     
-    
+    // TODO change this method using Repair and Details classes
     private void setDataDbPracticeCreate(){
         jTextField19.getText();         //cognome
         jTextField20.getText();         //nome
@@ -3938,6 +3943,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextArea5.getText();           //difetto dichiarato
         jComboBox4.getSelectedItem();   //a priori si sa lo stato di lavorazione dato è la creazione iniziale
         jTextField21.getText();         //data in
+        //  TODO after insert in into database, clear all objects used
     }
     
     private void resetDatiCliente(){
@@ -3979,13 +3985,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         else if(v == ComClasses.Constants.RET_EXC)
             showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
         
-        try {
-            out.close();
-            in.close();
-            s.close();
-        } catch (IOException e) {       // TODO when is thrown an IOException is necessary to restart the application in order to release the connection for other clients
-            showWinAlert(jPanel7, "Errore chiusura connessione: riavviare l'applicazione", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        this.closeConnection(out, in, s);
         
     }
     
@@ -4100,6 +4100,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void toppy (FinestraSwing fn){
         if(fn.isAlwaysOnTopSupported())
             fn.setAlwaysOnTop(true);
+    }
+    
+    // close OutputStream, InputStream and Socket
+    private void closeConnection (ObjectOutputStream out, ObjectInputStream in, Socket s) {
+        
+        try {
+            out.close();
+            in.close();
+            s.close();
+        } catch (IOException e) {
+            showWinAlert(jPanel7, "Errore chiusura connessione: riavviare l'applicazione", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
     
     
