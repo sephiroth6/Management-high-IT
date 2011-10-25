@@ -2957,7 +2957,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(flagError == 0){
             
             this.handleDevice();        // do proper operations on device info
-            
+            // TODO maybe here it's possible to set autoCommit off
             SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, "");
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
             
@@ -2966,22 +2966,31 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             ObjectInputStream in = Utils.inObjectStream(s);
             
             Utils.sendRequest(out, req);
-            System.out.println(Utils.readValue(in));
+            int id = Utils.readValue(in).intValue();
             
+            rep.setID(id);
+            
+            SharedClasses.Details det = new SharedClasses.Details(rep, jTextArea5.getText());
+            req = new ComClasses.Request(det, ComClasses.Constants.DETAILS, ComClasses.Constants.INSERT, det.insert());
+            
+            Utils.sendRequest(out, req);
+            Utils.readValue(in);
+            // TODO maybe here it's possible to set autoCommit on
             this.closeConnection(out, in, s);
             
             // TODO manage return value
             
             flagCliente = false;
             // TODO print id for the new repair inserted
-            int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + jLabel28.getText() + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
+            int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + id + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
             
-            if(n == JOptionPane.YES_OPTION) {//FIXME
-            
+            if(n == JOptionPane.YES_OPTION) {
+                // TODO print on paper
             } else {
-            
+                // do nothing
             }
             
+            this.resetObjects();
             resetValScheda();
             jPanel9.setVisible(false);
         }
@@ -3018,6 +3027,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         this.closeConnection(out, in, s);
         
+    }
+    
+    // set to null the objects used for the operations
+    private void resetObjects () {
+        this.c = null;
+        this.d = null;
+        this.ret = null;
     }
     
      // preimpostazioni crea pratica //
