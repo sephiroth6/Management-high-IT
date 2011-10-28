@@ -65,6 +65,7 @@ public class ManagGuiView extends FrameView {
     
     private SharedClasses.Customer c;
     private SharedClasses.Device d;
+    private SharedClasses.Warehouse sp;
     
     
     
@@ -2818,7 +2819,7 @@ private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     jTable5.setVisible(false);
 }//GEN-LAST:event_jButton4MouseClicked
 
-// customer search request into second panel
+// customer SELECT (second panel)
 private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
     
     String surname = jTextField1.getText();
@@ -2845,7 +2846,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField3.setText("");
     }//GEN-LAST:event_jTextField3MouseClicked
 
-    //reset cerca articolo
+    // warehouse search reset
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
         jTextField3.setText("Codice Articolo");
         jTable1.setVisible(false);
@@ -2858,7 +2859,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTable1.setVisible(false);
     }//GEN-LAST:event_jButton6MouseClicked
 
-    // search for a spare part with a given serial into warehouse
+    // warehouse SELECT
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         
         String serial = jTextField3.getText();
@@ -2955,7 +2956,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                
     }//GEN-LAST:event_jButton17MouseClicked
 
-    // insert repair into database
+    // repair INSERT
     private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
         
         int flagError = 0;
@@ -3151,7 +3152,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton13MouseClicked
 
-    // insert a customer into database
+    // customer INSERT
     private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
 
         int flagError = 0;
@@ -3198,7 +3199,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jButton14MouseClicked
 
-    // surname search field
+    // customer SELECT surname field
     private void jTextField11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField11MouseClicked
         if(jTextField11.getText().equals("Cognome"))
             jTextField11.setText("");
@@ -3206,7 +3207,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             jTextField12.setText("");
     }//GEN-LAST:event_jTextField11MouseClicked
 
-    // name search field
+    // customer SELECT name field
     private void jTextField12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField12MouseClicked
         if(jTextField12.getText().equals("Nome"))
             jTextField12.setText("");
@@ -3214,7 +3215,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             jTextField11.setText("");
     }//GEN-LAST:event_jTextField12MouseClicked
 
-    // customer search request
+    // customer SELECT
     private void jButton20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton20MouseClicked
         
         String surname = jTextField11.getText();
@@ -3346,7 +3347,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         DatiClienteView.dispose();
     }//GEN-LAST:event_jButton23MouseClicked
 
-    // edit selected customer
+    // customer UPDATE
     private void jButton24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton24MouseClicked
 
         int flagError = 0;
@@ -3375,7 +3376,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton24MouseClicked
 
-    // insert new spare part into warehouse
+    // warehouse INSERT
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
       
         int flagError = 0;
@@ -3396,9 +3397,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton9MouseClicked
 
+    // warehouse UPDATE
     private void jButton28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton28MouseClicked
-        // Salve modifiche articolo magazzino ed esci
-        int flagError=0;
+        
+        int flagError = 0;
+        
         if(jTextField17.getText().equals("")){
             showWinAlert(jPanel14, "Inserire il codice articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
@@ -3407,17 +3410,39 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             showWinAlert(jPanel14, "Inserire la quantita' dell'articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
-        if(flagError<1){
-            setArticleWarehouseDB(jTextField17, jTextField18, jTextField39, jTextArea4);
+        
+        if(flagError == 0){
+            this.updateSparePart();
             schedaArticoloMagazzino.dispose();
+            jTextField3.setText("Codice Articolo");
+            jTable1.setVisible(false);
         }
     }//GEN-LAST:event_jButton28MouseClicked
 
+    private void updateSparePart () {
+        
+        SharedClasses.Warehouse w = new SharedClasses.Warehouse(this.sp.getSerial(), jTextField17.getText(), jTextField18.getText(), Integer.parseInt(jTextField39.getText()), jTextArea4.getText());
+        ComClasses.Request req = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.UPDATE, this.sp.update(w));
+        
+        Socket s = Utils.open("localhost", "5000");
+        ObjectOutputStream out = Utils.outStream(s);
+        ObjectInputStream in = Utils.inObjectStream(s);
+                
+        Utils.sendRequest(out, req);
+        if(Utils.readValue(in).intValue() != 1)
+            showWinAlert(jPanel7, "Modifica non riuscita. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        this.sp = null;
+        this.closeConnection(out, in, s);
+        
+    }
+    
     private void jButton29MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton29MouseClicked
         // annulla ed esci senza salvare e/o effettuare modifiche all'articolo aperto
         schedaArticoloMagazzino.dispose();
     }//GEN-LAST:event_jButton29MouseClicked
 
+    // open the spare part details to edit it
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // apertura articolo cercato
         if(evt.getClickCount() == 2){
@@ -4042,7 +4067,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         note.setText(this.c.getNote());                 // note
     }
     
-    // send UPDATE request on a customer
+    // customer UPDATE
     private void setDatiClienteDb(JTextField nome, JTextField cognome, JTextField indirizzo, JTextField rec, JTextArea note){
 
         // create the object with new data
@@ -4091,11 +4116,20 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
-    private void getValArticleWarehouse(JTextField code, JTextField name, JTextField n, JTextArea note){//FIXME
-        code.setText(null);
-        name.setText(null);
-        n.setText(null);
-        note.setText(null);
+    // set properly the Warehouse object needed to edit a spare part
+    private void getValArticleWarehouse(JTextField code, JTextField name, JTextField n, JTextArea note){
+        
+        String se = (String)jTable1.getValueAt(0, 0);
+        String na = (String)jTable1.getValueAt(0, 1);
+        Integer av = (Integer)jTable1.getValueAt(0, 2);
+        String no = (String)jTable1.getValueAt(0, 3);
+        
+        this.sp = new SharedClasses.Warehouse(se, na, av.intValue(), no);
+        
+        code.setText(se);
+        name.setText(na);
+        n.setText(av.toString());
+        note.setText(no);
     }
     
     private void resetValArticleWarehouse(){//FIXME
