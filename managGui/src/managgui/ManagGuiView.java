@@ -65,9 +65,9 @@ public class ManagGuiView extends FrameView {
     
     private SharedClasses.Customer c;
     private SharedClasses.Device d;
+    private SharedClasses.Repair re;
     private SharedClasses.Warehouse sp;
-    
-    
+    private SharedClasses.Details de;
     
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -811,22 +811,7 @@ public class ManagGuiView extends FrameView {
             }
         });
         jScrollPane5.setViewportView(jTable3);
-        DefaultTableModel model33 = new DefaultTableModel(){
-            private static final long serialVersionUID = 1L;
-            public boolean isCellEditable(int row, int column){
-                return false;
-            }
-
-        };
-        String[][] data33 = new String[][]{
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null}
-        };
-        String[] columnNames33 = new String[]{"Cognome", "Nome", "Imei-S/N", "stato lavorazione"};
-        model33.setDataVector(data33, columnNames33);
-        jTable3.setModel(model33);
+        setJTableRepair(jTable3, 0);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -2431,7 +2416,7 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel71)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField48, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                        .addComponent(jTextField48, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel68)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2439,11 +2424,11 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel69)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField46, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+                        .addComponent(jTextField46, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel70)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField47, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
+                        .addComponent(jTextField47, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
                     .addComponent(jButton34, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -2990,8 +2975,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(flagError == 0){
             
             this.handleDevice();        // do proper operations on device info
+            // TODO handle optional field
             // TODO maybe here it's possible to set autoCommit off
-            SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, "");
+            SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField26.getText());
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
             
             Socket s = Utils.open("localhost", "5000");
@@ -3127,21 +3113,73 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton11MouseClicked
 
-     // risultato ricerca
+    // repair SELECT
     private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
        
-        //jScrollPane5.setVisible(true);
-       
-        if(!jTextField27.getText().equals("") || !jTextField28.getText().equals("") || !jTextField29.getText().equals("") || !jTextField30.getText().equals(""))
-            jTable3.setVisible(true);
-        
-        else{
+        if(!checkInsertion(jTextField27, jTextField28, jTextField29, jTextField30)) {
             showWinAlert(jPanel10, "Inserire almeno un campo.", "Errore in fase di ricerca!", JOptionPane.ERROR_MESSAGE);
             jTable3.setVisible(false);
+        } else {
+            this.repairSearchResult();
+            
+            if(this.ret != null) {
+                
+                setTableRepairData(jTable3, this.ret);
+                jTable3.setVisible(true);                                       
+            } else {
+                showWinAlert(jPanel8, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                jTable3.setVisible(false);
+            }
+             
         }
        
     }//GEN-LAST:event_jButton12MouseClicked
-
+   
+    private void repairSearchResult () {
+        // parameters are: name, surname, repair id, imei (serial number)
+        SharedClasses.RepairRequest rs = new SharedClasses.RepairRequest(jTextField29.getText(), jTextField28.getText(), jTextField27.getText(), jTextField30.getText());
+        ComClasses.Request r = new ComClasses.Request(rs, ComClasses.Constants.REPSEL, ComClasses.Constants.SELECT, rs.select());
+        // TODO take the parameters of this method from a file and check if the connection is open
+        Socket s = Utils.open("localhost", "5000");
+        ObjectOutputStream out = Utils.outStream(s);
+        ObjectInputStream in = Utils.inObjectStream(s);
+            
+        Utils.sendRequest(out, r);    
+        this.ret = Utils.readResponse(in);
+        
+        this.closeConnection(out, in, s);
+        
+    }
+    
+    private static void setTableRepairData(JTable t, ArrayList<Object> a) {
+        
+        int n = a.size();
+        SharedClasses.RepairResponse r = null;
+        setJTableRepair(t, n);
+        
+        for(int i = 0; i < n; i++) {                        // take the infos for every search result
+            r = (SharedClasses.RepairResponse) a.get(i);
+            System.out.println(r.getRepair().getID());
+            t.setValueAt(r.getRepair().getID(), i, 0);
+            t.setValueAt(r.getOwner().getSurname(), i, 1);
+            t.setValueAt(r.getOwner().getName(), i, 2);
+            t.setValueAt(r.getDevice().getIdentification(), i, 3);
+            t.setValueAt(r.getRepair().getStatus(), i, 4);
+        }
+        
+    }
+    
+    // check if all the fields are empty or not (useful for search)
+    private static boolean checkInsertion (JTextField ... f) {
+        
+        for(int i = 0; i < f.length; i++)
+            if(!f[i].getText().equals(""))      // if one field is not empty, it's ok
+                return true;
+        
+        return false;                           // all fields are empty
+        
+    }
+    
        //close the window e reset val
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
      
@@ -3331,11 +3369,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jButton26MouseClicked
 
+    // open repair with details to edit
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
-        // apri scheda esistente
+        
         if(evt.getClickCount() == 2){
             setCenterMonitorDim(935, 555);
-            schedaProdotto = new FinestraSwing("Scheda riparazione n° "+jLabel44.getText(), p.getPX(), p.getPY(), 935, 555, jPanel12);
+            int i = jTable3.getSelectedRow();
+            SharedClasses.RepairResponse rr = (SharedClasses.RepairResponse)ret.get(i);
+            
+            this.c = rr.getOwner();
+            this.d = rr.getDevice();
+            this.re = rr.getRepair();
+            
+            schedaProdotto = new FinestraSwing("Scheda riparazione n° " + this.re.getID(), p.getPX(), p.getPY(), 935, 555, jPanel12);
             getDataDbPracticeView();
             noEditablePracticeValue();
         
@@ -3433,6 +3479,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             showWinAlert(jPanel7, "Modifica non riuscita. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
 
         this.sp = null;
+        
         this.closeConnection(out, in, s);
         
     }
@@ -3994,19 +4041,45 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         p.setPY(y);
     }
     
-    private void getDataDbPracticeView(){//FIXME prendere i dati dal db
-        jTextField31.setText(null);//cognome
-        jTextField32.setText(null);//nome
-        jComboBox5.setSelectedIndex(1);//tipologia lavorazione 
-        jTextField36.setText(null); //modello
-        jTextField37.setText(null);//imei
-        if(jCheckBox3.isSelected())
-            jTextField38.setText(null);//accessori
-        jTextArea8.setText(null);//dif dich
-        jTextArea9.setText(null);//dif riscon
-        jTextArea10.setText(null);//lav eff
-        jComboBox6.setSelectedIndex(1);//stato lavorazione
-        jTextField33.setText(null);//data in
+    // insert info into repair update window
+    private void getDataDbPracticeView(){
+        // TODO check some fields
+        String optional = this.re.getOptional();
+        
+        jTextField31.setText(this.c.getSurname());                              // customer' surname
+        jTextField32.setText(this.c.getName());                                 // customer's name
+        
+        jComboBox5.setSelectedIndex(this.d.getType());                          // device type
+        jTextField36.setText(this.d.getModel());                                // device model
+        jTextField37.setText(this.d.getIdentification());                       // device serial number
+        
+        if(optional != null) {                                                  // optional
+            jCheckBox3.setSelected(true);
+            jTextField38.setText(optional);
+        }
+        
+        Socket s = Utils.open("localhost", "5000");
+        ObjectOutputStream out = Utils.outStream(s);
+        ObjectInputStream in = Utils.inObjectStream(s);
+        
+        this.de = new SharedClasses.Details(this.re.getID());
+        ComClasses.Request req = new ComClasses.Request(this.de, ComClasses.Constants.DETAILS, ComClasses.Constants.SELECT, this.de.select());
+        
+        Utils.sendRequest(out, req);
+        ArrayList<Object> aux = Utils.readResponse(in);
+
+        if(aux != null)
+            this.de = (SharedClasses.Details) aux.get(0);
+        
+        this.closeConnection(out, in, s);
+
+        jTextArea8.setText(this.de.getDeclared());                              // defect declared
+        jTextArea9.setText(this.de.getFound());                                 // defect found
+        jTextArea10.setText(this.de.getDone());                                 // work done
+        
+        jComboBox6.setSelectedIndex(this.re.getStatus());                       // repair status
+        jTextField33.setText(this.re.getDateIn());                              // date in
+        // TODO manage this fields
         jTextField34.setText(null);//data lav
         jTextField35.setText(null);//data out
     }
@@ -4197,9 +4270,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jt.setModel(model);
     }
     
-    private static void setJTableJob(JTable jt){
+    private static void setJTableRepair(JTable jt, int n){
+        String[] columnNames = new String[]{"Scheda", "Cognome", "Nome", "Imei-S/N", "Stato Lavorazione"};
         
-         DefaultTableModel model = new DefaultTableModel(){
+         DefaultTableModel model = new DefaultTableModel(columnNames, n){
         
             private static final long serialVersionUID = 1L;
             @Override
@@ -4207,18 +4281,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 return false;
             }
         };
-        
-        String[][] data = new String[][]{
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null},
-        {null, null, null, null}
-        };
-        
-        String[] columnNames = new String[]{"Cognome", "Nome", "Imei-S/N", "stato lavorazione"};
-        model.setDataVector(data, columnNames);
+
         jt.setModel(model);
-        
     }
     
     private static void setJTableWarehouse(JTable jt, int n){

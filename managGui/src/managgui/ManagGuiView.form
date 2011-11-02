@@ -769,7 +769,7 @@
                             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable3MouseClicked"/>
                           </Events>
                           <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="DefaultTableModel model33 = new DefaultTableModel(){&#xa;    private static final long serialVersionUID = 1L;&#xa;    public boolean isCellEditable(int row, int column){&#xa;        return false;&#xa;    }&#xa;&#xa;};&#xa;String[][] data33 = new String[][]{&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null},&#xa;        {null, null, null, null}&#xa;};&#xa;String[] columnNames33 = new String[]{&quot;Cognome&quot;, &quot;Nome&quot;, &quot;Imei-S/N&quot;, &quot;stato lavorazione&quot;};&#xa;model33.setDataVector(data33, columnNames33);&#xa;jTable3.setModel(model33);"/>
+                            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="setJTableRepair(jTable3, 0);"/>
                           </AuxValues>
                         </Component>
                       </SubComponents>
@@ -2994,7 +2994,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel71" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField48" pref="189" max="32767" attributes="0"/>
+                          <Component id="jTextField48" pref="222" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel68" min="-2" max="-2" attributes="0"/>
@@ -3004,12 +3004,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel69" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jTextField46" pref="366" max="32767" attributes="0"/>
+                          <Component id="jTextField46" pref="387" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel70" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jTextField47" pref="430" max="32767" attributes="0"/>
+                          <Component id="jTextField47" pref="439" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jButton34" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
