@@ -923,7 +923,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton47)
                     .addComponent(jButton46))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(217, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1695,7 +1695,7 @@ public class ManagGuiView extends FrameView {
         jLabel52.setText(resourceMap.getString("jLabel52.text")); // NOI18N
         jLabel52.setName("jLabel52"); // NOI18N
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "in Accettazione", "in Lavorazione", "attesa pezzi", "LV Sup", "Lav terminata", "Restituito", "Prev non Accettato", "Rip non conveniente" }));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "IN ACCETTAZIONE", "IN LAVORAZIONE", "ATTESA PEZZI", "LV SUP", "LAV TERMINATA", "RESTITUITO", "PREV NON ACCETTATO", "RIP NON CONVENIENTE" }));
         jComboBox6.setName("jComboBox6"); // NOI18N
 
         jLabel53.setText(resourceMap.getString("jLabel53.text")); // NOI18N
@@ -2881,7 +2881,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // TODO take the parameters of this method from a file and check if the connection is open (s != null)
         Socket s = Utils.open("localhost", "5000");
         ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inObjectStream(s);
+        ObjectInputStream in = Utils.inStream(s);
             
         Utils.sendRequest(out, r);    
         this.ret = Utils.readResponse(in);
@@ -2959,7 +2959,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             flagError++;
         }
         if(jTextField25.getText().equals("")){
-            showWinAlert(jPanel9, "Manca Imei/Serial Number.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel9, "Manca Imei/Serial Number.", "Errore", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
         if(jCheckBox2.isSelected())
@@ -2974,27 +2974,23 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         if(flagError == 0){
             
-            this.handleDevice();        // do proper operations on device info
-            // TODO handle optional field
-            // TODO maybe here it's possible to set autoCommit off
+            this.handleDevice();                                // do proper operations on device info
+            
+            Socket s = Utils.open("localhost", "5000");         // create Repair object
+            ObjectOutputStream out = Utils.outStream(s);
+            ObjectInputStream in = Utils.inStream(s);
             SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField26.getText());
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
-            
-            Socket s = Utils.open("localhost", "5000");
-            ObjectOutputStream out = Utils.outStream(s);
-            ObjectInputStream in = Utils.inObjectStream(s);
-            
             Utils.sendRequest(out, req);
             int id = Utils.readValue(in).intValue();
             
             rep.setID(id);
-            
+                                                                // create Details object
             SharedClasses.Details det = new SharedClasses.Details(rep, jTextArea5.getText());
             req = new ComClasses.Request(det, ComClasses.Constants.DETAILS, ComClasses.Constants.INSERT, det.insert());
-            
             Utils.sendRequest(out, req);
-            Utils.readValue(in);
-            // TODO maybe here it's possible to set autoCommit on
+            Utils.readValue(in);                                // the INSERT for Repair and Details will become effective at the same time
+            
             this.closeConnection(out, in, s);
             
             // TODO manage return value
@@ -3025,7 +3021,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         Socket s = Utils.open("localhost", "5000");
         ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inObjectStream(s);
+        ObjectInputStream in = Utils.inStream(s);
         
         Utils.sendRequest(out, r);
         int v = Utils.readValue(in).intValue();
@@ -3100,30 +3096,27 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }//GEN-LAST:event_jButton2MouseClicked
 
-      // reset ricerca scheda
+    // repair SELECT window reset
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
-      
-        //jScrollPane5.setVisible(false);
-        
+
         jTable3.setVisible(false);
-        jTextField27.setText(null);
-        jTextField28.setText(null);
-        jTextField29.setText(null);
-        jTextField30.setText(null);
+        jTextField27.setText("");
+        jTextField28.setText("");
+        jTextField29.setText("");
+        jTextField30.setText("");
         
     }//GEN-LAST:event_jButton11MouseClicked
 
     // repair SELECT
     private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
-       
+
         if(!checkInsertion(jTextField27, jTextField28, jTextField29, jTextField30)) {
-            showWinAlert(jPanel10, "Inserire almeno un campo.", "Errore in fase di ricerca!", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel10, "Inserire almeno un campo.", "Error", JOptionPane.ERROR_MESSAGE);
             jTable3.setVisible(false);
         } else {
             this.repairSearchResult();
             
             if(this.ret != null) {
-                
                 setTableRepairData(jTable3, this.ret);
                 jTable3.setVisible(true);                                       
             } else {
@@ -3142,7 +3135,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // TODO take the parameters of this method from a file and check if the connection is open
         Socket s = Utils.open("localhost", "5000");
         ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inObjectStream(s);
+        ObjectInputStream in = Utils.inStream(s);
             
         Utils.sendRequest(out, r);    
         this.ret = Utils.readResponse(in);
@@ -3151,6 +3144,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
+    // insert repair details into jtable
     private static void setTableRepairData(JTable t, ArrayList<Object> a) {
         
         int n = a.size();
@@ -3159,17 +3153,53 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         for(int i = 0; i < n; i++) {                        // take the infos for every search result
             r = (SharedClasses.RepairResponse) a.get(i);
-            System.out.println(r.getRepair().getID());
             t.setValueAt(r.getRepair().getID(), i, 0);
             t.setValueAt(r.getOwner().getSurname(), i, 1);
             t.setValueAt(r.getOwner().getName(), i, 2);
             t.setValueAt(r.getDevice().getIdentification(), i, 3);
-            t.setValueAt(r.getRepair().getStatus(), i, 4);
+            t.setValueAt(repairStatus(r.getRepair().getStatus()), i, 4);
         }
         
     }
     
-    // check if all the fields are empty or not (useful for search)
+    // return the string corresponding to repair status
+    private static String repairStatus (int i) {
+        
+        switch(i) {
+            
+            case 0:
+                return "IN ACCETTAZIONE";
+                
+            case 1:
+                return "IN LAVORAZIONE";
+                
+            case 2:
+                return "ATTESA PEZZI";
+                
+            case 3:
+                return "LV SUP";
+                
+            case 4:
+                return "LAV TERMINATA";
+                
+            case 5:
+                return "RESTITUITO";
+                
+            case 6:
+                return "PREV NON ACCETTATO";
+                
+            case 7:
+                return "RIP NON CONVENIENTE";
+            
+            default:
+                return "NON RICONOSCIUTO";
+                
+        }
+        
+    }
+    
+    
+    // check if any of the fields is not empty (useful for search)
     private static boolean checkInsertion (JTextField ... f) {
         
         for(int i = 0; i < f.length; i++)
@@ -3177,6 +3207,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 return true;
         
         return false;                           // all fields are empty
+        
+    }
+    
+    // check if every field is not empty
+    private static boolean neededInsertion (JTextField ... f) {
+        
+        for(int i = 0; i < f.length; i++)
+            if(f[i].getText().equals(""))
+                return false;
+        
+        return true;
         
     }
     
@@ -3215,7 +3256,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             // TODO take the parameters of this method from a file
             Socket s = Client.Utils.open("localhost", "5000");
             ObjectOutputStream out = Utils.outStream(s);
-            ObjectInputStream in = Utils.inObjectStream(s);
+            ObjectInputStream in = Utils.inStream(s);
             ComClasses.Request r = new ComClasses.Request(this.c, ComClasses.Constants.CUSTOMER, ComClasses.Constants.INSERT, this.c.insert());
             Client.Utils.sendRequest(out, r);
             int v = Client.Utils.readValue(in).intValue();
@@ -3314,7 +3355,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // TODO take the parameters of this method from a file and check if the connection is open
         Socket s = Utils.open("localhost", "5000");
         ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inObjectStream(s);
+        ObjectInputStream in = Utils.inStream(s);
             
         Utils.sendRequest(out, r);    
         this.ret = Utils.readResponse(in);
@@ -3353,22 +3394,75 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jCheckBox3StateChanged
 
+    // exit from Repair edit mode without make changes
     private void jButton25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton25MouseClicked
-        // chiudi scheda pratica aperta per mod
+
         schedaProdotto.dispose();
         
     }//GEN-LAST:event_jButton25MouseClicked
 
+    // repair UPDATE
+    // TODO execute updates one by one and show alert if one doesn't succeed
     private void jButton26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton26MouseClicked
-        // salva ed esci da scheda apertura prodotto
-        if(jTextField36.getText().equals("") || jTextField37.getText().equals(""))
-            showWinAlert(jPanel12, "Controllare modello ed imei", "Warning", JOptionPane.WARNING_MESSAGE);
-        
-        else{
-            setDataDbPracticeView();
+
+        if(!neededInsertion(jTextField36, jTextField37)) {              // handle device operations
+            showWinAlert(jPanel12, "Controllare modello ed imei", "Errore", JOptionPane.ERROR_MESSAGE);
+        } else {
+            SharedClasses.Device md = new SharedClasses.Device(jTextField36.getText(), jComboBox5.getSelectedIndex(), jTextField37.getText());
+            if(this.checkDeviceChange(md)) {
+                this.updateDevice(md);
+            }
         }
+        /*
+        jTextField38.getText();//accessori
+        jTextArea8.getText();//dif dich
+        jTextArea9.getText();//dif riscon
+        jTextArea10.getText();//lav eff
+        jComboBox6.getSelectedItem();//stato lavorazione
+        jTextField34.getText();//data lav
+        jTextField35.getText();//data out
+        */
+        schedaProdotto.dispose();
+        jTable3.setVisible(false);
+        jTextField27.setText("");
+        jTextField28.setText("");
+        jTextField29.setText("");
+        jTextField30.setText("");
+        
     }//GEN-LAST:event_jButton26MouseClicked
 
+    // check if an update is needed for the device of the selected repair
+    private boolean checkDeviceChange (SharedClasses.Device dev) {
+        
+        if(!this.d.getModel().equals(dev.getModel()))
+            return true;
+        
+        if(!this.d.getIdentification().equals(dev.getIdentification()))
+            return true;
+        
+        if(this.d.getType() != dev.getType())
+            return true;
+        
+        return false;
+        
+    }
+    
+    private void updateDevice (SharedClasses.Device dev) {
+        // TODO manage return value to show alert when exceptions occour
+        dev.setID(this.d.getID());
+        ComClasses.Request req = new ComClasses.Request(dev, ComClasses.Constants.DEVICE, ComClasses.Constants.UPDATE, this.d.update(dev));
+        
+        Socket s = Utils.open("localhost", "5000");
+        ObjectOutputStream out = Utils.outStream(s);
+        ObjectInputStream in = Utils.inStream(s);
+        
+        Utils.sendRequest(out, req);
+        System.out.println("update: " + Utils.readValue(in));
+        
+        this.closeConnection(out, in, s);
+        
+    }
+    
     // open repair with details to edit
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         
@@ -3382,9 +3476,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             this.re = rr.getRepair();
             
             schedaProdotto = new FinestraSwing("Scheda riparazione n° " + this.re.getID(), p.getPX(), p.getPY(), 935, 555, jPanel12);
+            
             getDataDbPracticeView();
             noEditablePracticeValue();
-        
         }
     }//GEN-LAST:event_jTable3MouseClicked
 
@@ -3472,7 +3566,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         Socket s = Utils.open("localhost", "5000");
         ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inObjectStream(s);
+        ObjectInputStream in = Utils.inStream(s);
                 
         Utils.sendRequest(out, req);
         if(Utils.readValue(in).intValue() != 1)
@@ -4042,25 +4136,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     // insert info into repair update window
-    private void getDataDbPracticeView(){
+    private void getDataDbPracticeView() {
         // TODO check some fields
         String optional = this.re.getOptional();
         
-        jTextField31.setText(this.c.getSurname());                              // customer' surname
-        jTextField32.setText(this.c.getName());                                 // customer's name
+        jTextField31.setText(this.c.getSurname().toLowerCase());                                // customer' surname
+        jTextField32.setText(this.c.getName().toLowerCase());                                   // customer's name
         
-        jComboBox5.setSelectedIndex(this.d.getType());                          // device type
-        jTextField36.setText(this.d.getModel());                                // device model
-        jTextField37.setText(this.d.getIdentification());                       // device serial number
+        jComboBox5.setSelectedIndex(this.d.getType());                                          // device type
+        jTextField36.setText(this.d.getModel().toLowerCase());                                  // device model
+        jTextField37.setText(this.d.getIdentification().toLowerCase());                         // device serial number
         
-        if(optional != null) {                                                  // optional
+        if(optional != null) {                                                                  // optional
             jCheckBox3.setSelected(true);
-            jTextField38.setText(optional);
+            jTextField38.setText(optional.toLowerCase());
         }
         
         Socket s = Utils.open("localhost", "5000");
         ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inObjectStream(s);
+        ObjectInputStream in = Utils.inStream(s);
         
         this.de = new SharedClasses.Details(this.re.getID());
         ComClasses.Request req = new ComClasses.Request(this.de, ComClasses.Constants.DETAILS, ComClasses.Constants.SELECT, this.de.select());
@@ -4073,30 +4167,21 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         this.closeConnection(out, in, s);
 
-        jTextArea8.setText(this.de.getDeclared());                              // defect declared
-        jTextArea9.setText(this.de.getFound());                                 // defect found
-        jTextArea10.setText(this.de.getDone());                                 // work done
+        jTextArea8.setText(this.de.getDeclared().toLowerCase());                // defect declared
+        
+        String found = this.de.getFound();
+        if(found != null)
+            jTextArea9.setText(found.toLowerCase());                            // defect found
+        
+        String done = this.de.getFound();
+        if(done != null)
+            jTextArea10.setText(done.toLowerCase());                            // work done
         
         jComboBox6.setSelectedIndex(this.re.getStatus());                       // repair status
         jTextField33.setText(this.re.getDateIn());                              // date in
         // TODO manage this fields
         jTextField34.setText(null);//data lav
         jTextField35.setText(null);//data out
-    }
-    
-    
-    private void setDataDbPracticeView(){//FIXME aggiornare i dati dal db
-        jTextField36.getText(); //modello
-        jTextField37.getText();//imei
-        if(jCheckBox3.isSelected())
-            jTextField38.getText();//accessori
-        jTextArea8.getText();//dif dich
-        jTextArea9.getText();//dif riscon
-        jTextArea10.getText();//lav eff
-        jComboBox6.getSelectedItem();//stato lavorazione
-        jTextField34.getText();//data lav
-        jTextField35.getText();//data out
-        
     }
     
     private void noEditablePracticeValue(){
@@ -4150,7 +4235,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // communication methods
         Socket s = Utils.open("localhost", "5000");
         ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inObjectStream(s);
+        ObjectInputStream in = Utils.inStream(s);
         
         Utils.sendRequest(out, r);
         int v = Utils.readValue(in).intValue();
@@ -4173,7 +4258,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // communication methods
         Socket s = Utils.open("localhost", "5000");
         ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inObjectStream(s);
+        ObjectInputStream in = Utils.inStream(s);
         
         Utils.sendRequest(out, r);
         int v = Utils.readValue(in).intValue();
