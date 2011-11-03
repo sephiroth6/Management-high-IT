@@ -60,7 +60,7 @@ public class ManagGuiView extends FrameView {
     //class just for number :D
     private JustNumber justNumbers = new JustNumber();
 
-        // objects needed to manage data
+    // objects needed to manage data
     private ArrayList<Object> ret;
     
     private SharedClasses.Customer c;
@@ -68,6 +68,10 @@ public class ManagGuiView extends FrameView {
     private SharedClasses.Repair re;
     private SharedClasses.Warehouse sp;
     private SharedClasses.Details de;
+    
+    private ArrayList<SharedClasses.Warehouse> usageAux;
+    private ArrayList<Object> repairRet;                        // used by Repair search
+    private ArrayList<Object> usageRet;                         // used by Usage search
     
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -408,10 +412,10 @@ public class ManagGuiView extends FrameView {
         jButton42 = new javax.swing.JButton();
         jButton43 = new javax.swing.JButton();
         jButton44 = new javax.swing.JButton();
-        jScrollPane17 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
         jPanel18 = new javax.swing.JPanel();
         jLabel81 = new javax.swing.JLabel();
         jTextField55 = new javax.swing.JTextField();
@@ -2554,16 +2558,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jScrollPane17.setName("jScrollPane17"); // NOI18N
-
-        jList4.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList4.setName("jList4"); // NOI18N
-        jScrollPane17.setViewportView(jList4);
-
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         jTable6.setAutoCreateRowSorter(true);
@@ -2585,6 +2579,28 @@ public class ManagGuiView extends FrameView {
         });
         jTable6.setName("jTable6"); // NOI18N
         jScrollPane1.setViewportView(jTable6);
+
+        jScrollPane6.setName("jScrollPane6"); // NOI18N
+
+        jTable7.setAutoCreateRowSorter(true);
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codice Articolo", "Nome Generico", "Quantità Utilizzata"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable7.setName("jTable7"); // NOI18N
+        jScrollPane6.setViewportView(jTable7);
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -2621,12 +2637,12 @@ public class ManagGuiView extends FrameView {
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel73)
                             .addGroup(jPanel17Layout.createSequentialGroup()
-                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel17Layout.createSequentialGroup()
                                         .addComponent(jLabel75)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel76))
-                                    .addComponent(jScrollPane17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton43, 0, 0, Short.MAX_VALUE)
@@ -2653,11 +2669,10 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton39, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jLabel73)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(jButton40)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2665,15 +2680,18 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton42)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton43)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel76)
-                    .addComponent(jLabel75))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton38)
-                    .addComponent(jButton37))
+                        .addComponent(jButton43))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton38)
+                            .addComponent(jButton37)))
+                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel75)
+                        .addComponent(jLabel76)))
                 .addContainerGap())
         );
 
@@ -3115,7 +3133,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField28.setText("");
         jTextField29.setText("");
         jTextField30.setText("");
-        
+        this.repairRet = null;
     }//GEN-LAST:event_jButton11MouseClicked
 
     // repair SELECT
@@ -3127,8 +3145,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         } else {
             this.repairSearchResult();
             
-            if(this.ret != null) {
-                setTableRepairData(jTable3, this.ret);
+            if(this.repairRet != null) {
+                setTableRepairData(jTable3, this.repairRet);
                 jTable3.setVisible(true);                                       
             } else {
                 showWinAlert(jPanel8, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -3149,7 +3167,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ObjectInputStream in = Utils.inStream(s);
             
         Utils.sendRequest(out, r);    
-        this.ret = Utils.readResponse(in);
+        this.repairRet = Utils.readResponse(in);
         
         this.closeConnection(out, in, s);
         
@@ -3486,7 +3504,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(evt.getClickCount() == 2){
             setCenterMonitorDim(935, 555);
             int i = jTable3.getSelectedRow();
-            SharedClasses.RepairResponse rr = (SharedClasses.RepairResponse)ret.get(i);
+            SharedClasses.RepairResponse rr = (SharedClasses.RepairResponse)repairRet.get(i);
             
             this.c = rr.getOwner();
             this.d = rr.getDevice();
@@ -3635,12 +3653,36 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         DatiClienteSimply.dispose();
     }//GEN-LAST:event_jButton34MouseClicked
 
+    // open usage edit window
     private void jButton35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton35MouseClicked
-        // apertura view pezzi di magazzino da selezionare
         setCenterMonitorDim(720, 444);
-        pezziUtilizzati= new FinestraSwing("Selezionare i pezzi utilizzati per la lavorazione!", p.getPX(), p.getPY(), 720, 444, jPanel17);
+        pezziUtilizzati = new FinestraSwing("Selezionare i pezzi utilizzati per la lavorazione!", p.getPX(), p.getPY(), 720, 444, jPanel17);
+        this.setUsageTable();
     }//GEN-LAST:event_jButton35MouseClicked
 
+    private void setUsageTable () {
+        
+        SharedClasses.Usage u = new SharedClasses.Usage(this.re);
+        DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
+        
+        Socket s = Utils.open("localhost", "5000");
+        ObjectOutputStream out = Utils.outStream(s);
+        ObjectInputStream in = Utils.inStream(s);
+        
+        ComClasses.Request r = new ComClasses.Request(u, ComClasses.Constants.USAGE, ComClasses.Constants.SELECT, SharedClasses.Usage.select());
+        
+        Utils.sendRequest(out, r);
+        this.usageRet = Utils.readResponse(in);
+        
+        for(Object o : this.usageRet) {
+            // TODO retrieve name if the spare part (use join)
+            u = (SharedClasses.Usage) o;
+            model.addRow(new Object[]{u.getSerial(), "blablabla", u.getUsed()});
+            
+        }
+        this.closeConnection(out, in, s);
+    }
+    
     // warehouse SELECT into usage editing
     private void jButton36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton36MouseClicked
         
@@ -3660,6 +3702,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             
             Utils.sendRequest(out, wr);
             this.ret = Utils.readResponse(in);
+            
+            this.closeConnection(out, in, s);
             
             setUsageWarehouseTable(jTable6, this.ret);
             
@@ -3690,24 +3734,43 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void jButton39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton39MouseClicked
         // importa pezzo di ricambio su scheda
-        if(jTable6.getSelectedRow() != -1){
-            if(jTextField51.getText().equals(""))
+        int sel = jTable6.getSelectedRow();
+        String req = jTextField51.getText();
+        
+        if(sel != -1){
+            
+            if(req.equals(""))                          // no quantity has been inserted
                 showWinAlert(jPanel17, "Inserire una quantità.", "Warning", JOptionPane.WARNING_MESSAGE);
             
-            if(Integer.parseInt(jTextField51.getText())>0){//FIXME ovviamente va fatto prima un controllo per vedere se è un numero!
-                //codice da eseguire se tutto corretto
-                importArticle();
-            } else 
-               showWinAlert(jPanel17, "Quantità pezzi inesatta.", "Warning", JOptionPane.WARNING_MESSAGE);
+            if(checkQuantity(req, jTable6, sel))                    // check if the quantity inserted it's ok
+                importArticle(sel, req);                            // do something to handle the situation
+            else
+                showWinAlert(jPanel17, "Quantità pezzi errata: modificare", "Error", JOptionPane.ERROR_MESSAGE);
                 
             
         } else
             showWinAlert(jPanel17, "Selezionare un pezzo prima di importalo.", "Warning Selection", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton39MouseClicked
 
+    // check the requested quantity for a specific spare part
+    private boolean checkQuantity (String s, JTable t, int r) {
+        
+        int req = Integer.parseInt(s);
+        int ava = (Integer)t.getValueAt(r, 2);
+        
+        if(req <= 0)             // requested quantity is negative or equal to 0
+            return false;
+        
+        if(req > ava)           // requested quantity is greater than availability
+            return false;
+        
+        return true;
+        
+    }
+    
     private void jButton40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton40MouseClicked
         // aggiungi quantità di un articolo già importato e selezionato
-        if(!jList4.isSelectionEmpty()){
+        if(jTable7.getSelectedRow() != -1){
             
         }else
             showWinAlert(jPanel17, "Selezionare prima un pezzo\nper aumentarne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
@@ -3717,7 +3780,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void jButton44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton44MouseClicked
         // sottrarre quantità articolo selezionato ed importato
-         if(!jList4.isSelectionEmpty()){
+         if(jTable7.getSelectedRow() != -1){
             
         }else
             showWinAlert(jPanel17, "Selezionare prima un pezzo\nper diminuirne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
@@ -3726,7 +3789,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void jButton42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton42MouseClicked
         // cancellare un pezzo e resettare la quantità
-         if(!jList4.isSelectionEmpty()){
+         if(jTable7.getSelectedRow() != -1){
   
             int n = JOptionPane.showConfirmDialog(jPanel17, "Cancellare il pezzo selezionato?", "Cancellazione info", JOptionPane.YES_NO_OPTION);
             if(n==JOptionPane.YES_OPTION){//FIXME
@@ -3752,7 +3815,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void jButton38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton38MouseClicked
         // salva i pezzi importati nella lista dei pezzi utilizzati durante la lavorazione
-        savePartsWHDB();
+        newUsage();
         pezziUtilizzati.dispose();
     }//GEN-LAST:event_jButton38MouseClicked
 
@@ -4006,7 +4069,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -4033,7 +4095,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
-    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
@@ -4041,6 +4102,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
@@ -4051,6 +4113,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea10;
     private javax.swing.JTextArea jTextArea11;
@@ -4346,12 +4409,42 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextArea1.setText(null);
     }
     
-    private void importArticle(){
+    // called in the usage edit window
+    private void importArticle (int i, String q) {
         
+        int av = (Integer)jTable6.getValueAt(i, 2);
+        int qt = Integer.parseInt(q);
+        
+        DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
+        model.addRow(new Object[]{jTable6.getValueAt(i, 0), jTable6.getValueAt(i, 1), qt});
+        jTable6.setValueAt(av - qt, i, 2);
         
     }
     
-    private void savePartsWHDB(){
+    private void newUsage () {
+        
+        int n = jTable7.getModel().getRowCount();
+        
+        if(n > 0) {
+            ArrayList<Object> o = new ArrayList<Object>();
+            SharedClasses.Usage u = null;
+
+            for(int i = 0; i < n; i++) {
+                u = new SharedClasses.Usage(this.re.getID(), (String)jTable7.getValueAt(i, 0), (Integer)jTable7.getValueAt(i, 2));
+                o.add(u);
+            }
+
+            ComClasses.MultiRequest mr = new ComClasses.MultiRequest(o, ComClasses.Constants.USAGE, ComClasses.Constants.MULTINSERT, SharedClasses.Usage.insert());
+
+            Socket s = Utils.open("localhost", "5000");
+            ObjectOutputStream out = Utils.outStream(s);
+            ObjectInputStream in = Utils.inStream(s);
+
+            Utils.sendRequest(out, mr);
+            Utils.readValue(in);
+
+            this.closeConnection(out, in, s);
+        }
         
     }
     
