@@ -3673,11 +3673,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         Utils.sendRequest(out, r);
         this.usageRet = Utils.readResponse(in);
+        int n = this.usageRet.size();
         
-        for(Object o : this.usageRet) {
+        for(int i = 0; i < n; i += 2) {
             // TODO retrieve name if the spare part (use join)
-            u = (SharedClasses.Usage) o;
-            model.addRow(new Object[]{u.getSerial(), "blablabla", u.getUsed()});
+            u = (SharedClasses.Usage) this.usageRet.get(i);
+            model.addRow(new Object[]{u.getSerial(), (String)this.usageRet.get(i+1), u.getUsed()});
             
         }
         this.closeConnection(out, in, s);
@@ -3815,6 +3816,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void jButton38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton38MouseClicked
         // salva i pezzi importati nella lista dei pezzi utilizzati durante la lavorazione
+        // TODO delete old usage
         newUsage();
         pezziUtilizzati.dispose();
     }//GEN-LAST:event_jButton38MouseClicked
