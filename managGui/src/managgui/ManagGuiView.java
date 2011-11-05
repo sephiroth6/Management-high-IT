@@ -59,9 +59,6 @@ public class ManagGuiView extends FrameView {
     
     //class just for number :D
     private JustNumber justNumbers = new JustNumber();
-
-    // objects needed to manage data
-    private ArrayList<Object> ret;
     
     private SharedClasses.Customer c;
     private SharedClasses.Device d;
@@ -69,10 +66,12 @@ public class ManagGuiView extends FrameView {
     private SharedClasses.Warehouse sp;
     private SharedClasses.Details de;
     
-    private ArrayList<SharedClasses.Warehouse> usageAux;
     private ArrayList<Object> repairRet;                        // used by Repair search
+    private ArrayList<Object> customerRet;
+    private ArrayList<Object> warehouseRet;
     private ArrayList<Object> usageRet;                         // used by Usage search
     private ArrayList<Client.UsageCache> cache;
+    private ArrayList<Client.UsageCache> old;                   // store the situation of usage before editing
     
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -2846,8 +2845,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     } else {                                                                // search can be executed
         this.customerSearchResult(name, surname);                           // execute the operation and 
             
-        if(this.ret != null) {
-            setTableCustomerData(jTable5, this.ret);
+        if(this.customerRet != null) {
+            setTableCustomerData(jTable5, this.customerRet);
             jTable5.setVisible(true);
         } else {
             showWinAlert(jPanel8, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -2884,8 +2883,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         else {
             this.warehouseSearchResult(serial);
             
-            if(this.ret != null) {
-                setTableWarehouseData(jTable1, this.ret);
+            if(this.warehouseRet != null) {
+                setTableWarehouseData(jTable1, this.warehouseRet);
                 jTable1.setVisible(true);                                       // this was out of the if/else
             } else {
                 showWinAlert(jPanel8, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -2908,15 +2907,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         SharedClasses.Warehouse w = new SharedClasses.Warehouse(a);
         ComClasses.Request r = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.SELECT, w.select());
-        // TODO take the parameters of this method from a file and check if the connection is open (s != null)
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
-            
-        Utils.sendRequest(out, r);    
-        this.ret = Utils.readResponse(in);
         
-        this.closeConnection(out, in, s);
+        try {
+            this.warehouseRet = Utils.arrayOperation(r);
+        } catch (Exception e) {
+            showWinAlert(jPanel8, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     
@@ -3005,34 +3001,31 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(flagError == 0){
             
             this.handleDevice();                                // do proper operations on device info
-            
-            Socket s = Utils.open("localhost", "5000");         // create Repair object
-            ObjectOutputStream out = Utils.outStream(s);
-            ObjectInputStream in = Utils.inStream(s);
+
             SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField26.getText());
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
-            Utils.sendRequest(out, req);
-            int id = Utils.readValue(in).intValue();
+
+            try {
+                int id = Utils.intOperation(req).intValue();
+                rep.setID(id);
+
+                SharedClasses.Details det = new SharedClasses.Details(rep, jTextArea5.getText());        // create Details object
+                req = new ComClasses.Request(det, ComClasses.Constants.DETAILS, ComClasses.Constants.INSERT, det.insert());
+                // TODO manage return value    
+                Utils.intOperation(req);                    // the INSERT for Repair and Details will become effective at the same time
             
-            rep.setID(id);
-                                                                // create Details object
-            SharedClasses.Details det = new SharedClasses.Details(rep, jTextArea5.getText());
-            req = new ComClasses.Request(det, ComClasses.Constants.DETAILS, ComClasses.Constants.INSERT, det.insert());
-            Utils.sendRequest(out, req);
-            Utils.readValue(in);                                // the INSERT for Repair and Details will become effective at the same time
+                flagCliente = false;
             
-            this.closeConnection(out, in, s);
+                int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + id + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
             
-            // TODO manage return value
-            
-            flagCliente = false;
-            // TODO print id for the new repair inserted
-            int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + id + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
-            
-            if(n == JOptionPane.YES_OPTION) {
-                // TODO print on paper
-            } else {
-                // do nothing
+                if(n == JOptionPane.YES_OPTION) {
+                    // TODO print on paper
+                } else {
+                    // do nothing
+                }
+                
+            } catch (Exception e) {
+                showWinAlert(jPanel9, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
             }
             
             this.resetObjects();
@@ -3049,28 +3042,24 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         this.d = new SharedClasses.Device(jTextField24.getText(), type, jTextField25.getText());
         ComClasses.Request r = new ComClasses.Request(this.d, ComClasses.Constants.DEVICE, ComClasses.Constants.INSERT, this.d.insert());
         
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
+        try {
+            int v = Utils.intOperation(r).intValue();
         
-        Utils.sendRequest(out, r);
-        int v = Utils.readValue(in).intValue();
-        
-        if(v == ComClasses.Constants.RET_EXI) {             // the device already exists: it's necessary to get the id
-            r = new ComClasses.Request(this.d, ComClasses.Constants.DEVICE, ComClasses.Constants.IDSELECT, this.d.selectSerial());
-            Utils.sendRequest(out, r);
-            v = Utils.readValue(in).intValue();
-            
-            if(v == ComClasses.Constants.RET_EXC)           // exception occourred
-                showWinAlert(jPanel8, "Eccezione occorsa durante l'operazione: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
-            else
-                this.d.setID(v);                            // v now contains the existing id
-            
-        } else {
-            this.d.setID(v);                                // v already contains the generated id
+            if(v == ComClasses.Constants.RET_EXI) {             // the device already exists: it's necessary to get the id
+                r = new ComClasses.Request(this.d, ComClasses.Constants.DEVICE, ComClasses.Constants.IDSELECT, this.d.selectSerial());
+                v = Utils.intOperation(r).intValue();
+
+                if(v == ComClasses.Constants.RET_EXC)           // exception occourred
+                    showWinAlert(jPanel8, "Eccezione occorsa durante l'operazione: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                else
+                    this.d.setID(v);                            // v now contains the existing id
+
+            } else {
+                this.d.setID(v);                                // v already contains the generated id
+            }
+        } catch (Exception e) {
+            showWinAlert(jPanel8, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        this.closeConnection(out, in, s);
         
     }
     
@@ -3078,7 +3067,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void resetObjects () {
         this.c = null;
         this.d = null;
-        this.ret = null;
     }
     
      // preimpostazioni crea pratica //
@@ -3162,16 +3150,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // parameters are: name, surname, repair id, imei (serial number)
         SharedClasses.RepairRequest rs = new SharedClasses.RepairRequest(jTextField29.getText(), jTextField28.getText(), jTextField27.getText(), jTextField30.getText());
         ComClasses.Request r = new ComClasses.Request(rs, ComClasses.Constants.REPSEL, ComClasses.Constants.SELECT, rs.select());
-        // TODO take the parameters of this method from a file and check if the connection is open
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
-            
-        Utils.sendRequest(out, r);    
-        this.repairRet = Utils.readResponse(in);
         
-        this.closeConnection(out, in, s);
-        
+        try {
+            this.repairRet = Utils.arrayOperation(r);
+        } catch (Exception e) {
+            showWinAlert(jPanel8, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
     }
     
     // insert repair details into jtable
@@ -3283,27 +3268,27 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(flagError == 0){          // it's ok
             
             this.c = new SharedClasses.Customer(jTextField8.getText(), jTextField7.getText(), jTextField9.getText(), jTextField10.getText(), jTextArea2.getText());
-            // TODO take the parameters of this method from a file
-            Socket s = Client.Utils.open("localhost", "5000");
-            ObjectOutputStream out = Utils.outStream(s);
-            ObjectInputStream in = Utils.inStream(s);
             ComClasses.Request r = new ComClasses.Request(this.c, ComClasses.Constants.CUSTOMER, ComClasses.Constants.INSERT, this.c.insert());
-            Client.Utils.sendRequest(out, r);
-            int v = Client.Utils.readValue(in).intValue();
             
-            if(v > 0)
-                this.c.setID(v);
-            else if(v == ComClasses.Constants.RET_EXI)
-                showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
-            else if(v == ComClasses.Constants.RET_EXC)
-                showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            try {
             
-            this.closeConnection(out, in, s);
+                int v = Client.Utils.intOperation(r).intValue();
             
-            if(v > 0){
-                DatiCliente.dispose();
-                jTextField19.setText(this.c.getSurname());
-                jTextField20.setText(this.c.getName());
+                if(v > 0) {
+                    this.c.setID(v);
+                    
+                    DatiCliente.dispose();
+                    jTextField19.setText(this.c.getSurname());
+                    jTextField20.setText(this.c.getName());
+                    
+                } else if(v == ComClasses.Constants.RET_EXI) {
+                    showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else if(v == ComClasses.Constants.RET_EXC) {
+                    showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                    
+            } catch (Exception e) {
+                showWinAlert(jPanel7, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton14MouseClicked
@@ -3336,8 +3321,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         } else {                                                                // search can be executed
             this.customerSearchResult(name, surname);                           // execute the operation and 
             
-            if(this.ret != null) {
-                setTableCustomerData(jTable2, this.ret);
+            if(this.customerRet != null) {
+                setTableCustomerData(jTable2, this.customerRet);
                 jTable2.setVisible(true);                                       // this was out of the if/else
             } else {
                 showWinAlert(jPanel8, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -3382,15 +3367,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         SharedClasses.Customer cus = new SharedClasses.Customer(a, b);
         ComClasses.Request r = new ComClasses.Request(cus, ComClasses.Constants.CUSTOMER, ComClasses.Constants.SELECT, cus.select());
-        // TODO take the parameters of this method from a file and check if the connection is open
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
-            
-        Utils.sendRequest(out, r);    
-        this.ret = Utils.readResponse(in);
         
-        this.closeConnection(out, in, s);
+        try {
+            this.customerRet = Utils.arrayOperation(r);
+        } catch (Exception e) {
+            showWinAlert(jPanel8, Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     
@@ -3399,7 +3381,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField11.setText("Cognome");
         jTextField12.setText("Nome");
         jTable2.setVisible(false);
-        this.ret = null;
+        this.customerRet = null;
         this.c = null;
     }//GEN-LAST:event_jButton21MouseClicked
 
@@ -3484,18 +3466,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     private void updateDevice (SharedClasses.Device dev) {
-        // TODO manage return value to show alert when exceptions occour
+       
         dev.setID(this.d.getID());
         ComClasses.Request req = new ComClasses.Request(dev, ComClasses.Constants.DEVICE, ComClasses.Constants.UPDATE, this.d.update(dev));
         
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
-        
-        Utils.sendRequest(out, req);
-        System.out.println("update: " + Utils.readValue(in));
-        
-        this.closeConnection(out, in, s);
+        try {
+            Utils.intOperation(req);
+        } catch (Exception e) {
+            showWinAlert(jPanel12, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     
@@ -3599,18 +3578,16 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         SharedClasses.Warehouse w = new SharedClasses.Warehouse(this.sp.getSerial(), jTextField17.getText(), jTextField18.getText(), Integer.parseInt(jTextField39.getText()), jTextArea4.getText());
         ComClasses.Request req = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.UPDATE, this.sp.update(w));
+   
+        try {
+            
+            if(Utils.intOperation(req).intValue() != 1)
+                showWinAlert(jPanel7, "Modifica non riuscita. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            this.sp = null;
         
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
-                
-        Utils.sendRequest(out, req);
-        if(Utils.readValue(in).intValue() != 1)
-            showWinAlert(jPanel7, "Modifica non riuscita. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
-
-        this.sp = null;
-        
-        this.closeConnection(out, in, s);
+        } catch (Exception e) {
+            showWinAlert(jPanel7, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     
@@ -3659,6 +3636,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         setCenterMonitorDim(720, 444);
         pezziUtilizzati = new FinestraSwing("Selezionare i pezzi utilizzati per la lavorazione!", p.getPX(), p.getPY(), 720, 444, jPanel17);
         this.cache = new ArrayList<Client.UsageCache>();
+        this.old = new ArrayList<Client.UsageCache>();
         this.setUsageTable();
     }//GEN-LAST:event_jButton35MouseClicked
 
@@ -3667,23 +3645,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         SharedClasses.Usage u = new SharedClasses.Usage(this.re);
         DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
         
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
-        
         ComClasses.Request r = new ComClasses.Request(u, ComClasses.Constants.USAGE, ComClasses.Constants.SELECT, SharedClasses.Usage.select());
         
-        Utils.sendRequest(out, r);
-        this.usageRet = Utils.readResponse(in);
-        int n = this.usageRet.size();
-        
-        for(int i = 0; i < n; i += 2) {
-            // TODO retrieve name if the spare part (use join)
-            u = (SharedClasses.Usage) this.usageRet.get(i);
-            model.addRow(new Object[]{u.getSerial(), (String)this.usageRet.get(i+1), u.getUsed()});
+        try {
             
+            this.usageRet = Utils.arrayOperation(r);
+            int n = this.usageRet.size();
+
+            for(int i = 0; i < n; i += 2) {                         // i + 1  contains the name of the spare part
+
+                u = (SharedClasses.Usage) this.usageRet.get(i);
+                this.old.add(new Client.UsageCache(u));
+                model.addRow(new Object[]{u.getSerial(), (String)this.usageRet.get(i+1), u.getUsed()});
+
+            }
+            
+        } catch (Exception e) {
+            showWinAlert(jPanel17, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        this.closeConnection(out, in, s);
+
     }
     
     // warehouse SELECT into usage editing
@@ -3694,22 +3674,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(ins.equals(""))
             showWinAlert(jPanel17, "Inserire un nome generico\noppure un codice articolo.", "Error Code", JOptionPane.ERROR_MESSAGE);
         else {
-            // TODO manage return value
-            Socket s = Utils.open("localhost", "5000");
-            ObjectOutputStream out = Utils.outStream(s);
-            ObjectInputStream in = Utils.inStream(s);
-            
             SharedClasses.Warehouse aux = new SharedClasses.Warehouse(ins);
-            
             ComClasses.Request wr = new ComClasses.Request(aux, ComClasses.Constants.WARE, ComClasses.Constants.SELECT, aux.selectSerialName());
             
-            Utils.sendRequest(out, wr);
-            this.ret = Utils.readResponse(in);
-            
-            this.closeConnection(out, in, s);
-            
-            setUsageWarehouseTable(jTable6, this.ret);
-            
+            try {
+                this.warehouseRet = Utils.arrayOperation(wr);
+                setUsageWarehouseTable(jTable6, this.warehouseRet);
+            } catch (Exception e) {
+                showWinAlert(jPanel17, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         
     }//GEN-LAST:event_jButton36MouseClicked
@@ -3872,7 +3845,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
             int n = JOptionPane.showConfirmDialog(jPanel17, "Cancellare tutti i pezzi\nimpostati per questa lavorazione?", "Cancellazione info", JOptionPane.YES_NO_OPTION);
             
-            if(n == JOptionPane.YES_OPTION){//FIXME
+            if(n == JOptionPane.YES_OPTION){
             
                 int r = jTable7.getRowCount();
                 
@@ -3986,13 +3959,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         
         if(evt.getClickCount() == 2){                                       //lol grosso trucco :D
-            int sel = jTable2.getSelectedRow();                             // take the index
+            int sel = jTable2.getSelectedRow();                                     // take the index
             cercaCliente.dispose();
-            this.c = (SharedClasses.Customer)this.ret.get(sel);             // obtain the Customer class object
-            this.ret = null;                                                // reset the array with the search results
+            this.c = (SharedClasses.Customer)this.customerRet.get(sel);             // obtain the Customer class object
+            this.customerRet = null;                                                // reset the array with the search results
             
-            jTextField19.setText(this.c.getSurname());                      // take customer's surname
-            jTextField20.setText(this.c.getName());                         // take customer's name
+            jTextField19.setText(this.c.getSurname());                              // take customer's surname
+            jTextField20.setText(this.c.getName());                                 // take customer's name
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -4001,8 +3974,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
         if(evt.getClickCount() == 2){
             int sel = jTable5.getSelectedRow();//importare dati e popolare con getDatuClienteDb
-            this.c = (SharedClasses.Customer)this.ret.get(sel);
-            this.ret = null;
+            this.c = (SharedClasses.Customer)this.customerRet.get(sel);
+            this.customerRet = null;
             
             setCenterMonitorDim(503, 300);
             DatiClienteView = new FinestraSwing("Scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel13);
@@ -4362,34 +4335,33 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             jTextField38.setText(optional.toLowerCase());
         }
         
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
-        
         this.de = new SharedClasses.Details(this.re.getID());
         ComClasses.Request req = new ComClasses.Request(this.de, ComClasses.Constants.DETAILS, ComClasses.Constants.SELECT, this.de.select());
         
-        Utils.sendRequest(out, req);
-        ArrayList<Object> aux = Utils.readResponse(in);
+        try {
+        
+            ArrayList<Object> aux = Utils.arrayOperation(req);
 
-        if(aux != null)
-            this.de = (SharedClasses.Details) aux.get(0);
-        
-        this.closeConnection(out, in, s);
+            if(aux != null)
+                this.de = (SharedClasses.Details) aux.get(0);
 
-        jTextArea8.setText(this.de.getDeclared().toLowerCase());                // defect declared
-        
-        String found = this.de.getFound();
-        if(found != null)
-            jTextArea9.setText(found.toLowerCase());                            // defect found
-        
-        String done = this.de.getFound();
-        if(done != null)
-            jTextArea10.setText(done.toLowerCase());                            // work done
-        
+            jTextArea8.setText(this.de.getDeclared().toLowerCase());                // defect declared
+
+            String found = this.de.getFound();
+            if(found != null)
+                jTextArea9.setText(found.toLowerCase());                            // defect found
+
+            String done = this.de.getFound();
+            if(done != null)
+                jTextArea10.setText(done.toLowerCase());                            // work done
+            jTextField34.setText(this.de.getDateStart());                           // date start work
+            
+        } catch (Exception e) {
+            showWinAlert(jPanel10, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+            
         jComboBox6.setSelectedIndex(this.re.getStatus());                       // repair status
         jTextField33.setText(this.re.getDateIn());                              // date in
-        jTextField34.setText(this.de.getDateStart());                           // date start work
         jTextField35.setText(this.re.getDateOut());                             // date out
     }
     
@@ -4441,20 +4413,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         SharedClasses.Customer cus = new SharedClasses.Customer(this.c.getID(), nome.getText(), cognome.getText(), indirizzo.getText(), rec.getText(), note.getText());
         // create the request object
         ComClasses.Request r = new ComClasses.Request(cus, ComClasses.Constants.CUSTOMER, ComClasses.Constants.UPDATE, this.c.update(cus));
-        // communication methods
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
+
+        try {
+            
+            int v = Utils.intOperation(r).intValue();
+
+            if(v == ComClasses.Constants.RET_EXI)
+                showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+            else if(v == ComClasses.Constants.RET_EXC)
+                showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
         
-        Utils.sendRequest(out, r);
-        int v = Utils.readValue(in).intValue();
-        
-        if(v == ComClasses.Constants.RET_EXI)
-            showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
-        else if(v == ComClasses.Constants.RET_EXC)
-            showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
-        
-        this.closeConnection(out, in, s);
+        } catch (Exception e) {
+            showWinAlert(jPanel7, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     
@@ -4464,22 +4435,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         SharedClasses.Warehouse w = new SharedClasses.Warehouse(code.getText(), name.getText(), Integer.parseInt(n.getText()), note.getText());
         // create the request object
         ComClasses.Request r = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.INSERT, w.insert());
-        // communication methods
-        Socket s = Utils.open("localhost", "5000");
-        ObjectOutputStream out = Utils.outStream(s);
-        ObjectInputStream in = Utils.inStream(s);
         
-        Utils.sendRequest(out, r);
-        int v = Utils.readValue(in).intValue();
-        
-        if(v == ComClasses.Constants.RET_EXI)
-            showWinAlert(jPanel7, "Pezzo di ricambio già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
-        else if(v == ComClasses.Constants.RET_EXC)
-            showWinAlert(jPanel7, "Eccezione durante l'inserimento del pezzo. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            
+            int v = Utils.intOperation(r).intValue();
 
-        // TODO feedback positivo?
-        
-        this.closeConnection(out, in, s);
+            if(v == ComClasses.Constants.RET_EXI)
+                showWinAlert(jPanel7, "Pezzo di ricambio già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+            else if(v == ComClasses.Constants.RET_EXC)
+                showWinAlert(jPanel7, "Eccezione durante l'inserimento del pezzo. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        } catch (Exception e) {
+            showWinAlert(jPanel7, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     
@@ -4531,6 +4499,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         int n = jTable7.getModel().getRowCount();
         
         if(n > 0) {
+            
             ArrayList<Object> o = new ArrayList<Object>();
             SharedClasses.Usage u = null;
 
@@ -4541,14 +4510,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
             ComClasses.MultiRequest mr = new ComClasses.MultiRequest(o, ComClasses.Constants.USAGE, ComClasses.Constants.MULTINSERT, SharedClasses.Usage.insert());
 
-            Socket s = Utils.open("localhost", "5000");
-            ObjectOutputStream out = Utils.outStream(s);
-            ObjectInputStream in = Utils.inStream(s);
+            try {
+                Utils.intOperation(mr);
+            } catch (Exception e) {
+                showWinAlert(jPanel17, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            }
 
-            Utils.sendRequest(out, mr);
-            Utils.readValue(in);
-
-            this.closeConnection(out, in, s);
         }
         
     }

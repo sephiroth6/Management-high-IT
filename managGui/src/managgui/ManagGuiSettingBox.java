@@ -6,6 +6,7 @@ package managgui;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import org.jdesktop.application.Action;
 /**
  *
@@ -180,15 +181,22 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
            if(!add.equals("") || !add.contains("x")) {          // check if ip is set
                
                if(!port.equals("")) {                           // check if the port is set
-                   Socket s = Client.Utils.open(add, port);     // try to open the connection
-                   if(s != null) {
-                       try {
-                           s.close();
-                       } catch (IOException ex) {
-                           System.out.println(ex.getMessage());
-                       }
-                   } else {
+                   
+                   try {
+                       Socket s = Client.Utils.open(add, port);     // try to open the connection
+                       if(s != null) {
+                           try {
+                               s.close();
+                           } catch (IOException ex) {
+                               System.err.println(ex.getMessage());
+                           }
+                        } else {
                         // TODO do something if is not possible to open the connection?
+                        }
+                   } catch (UnknownHostException e) {
+                       System.err.println(e.getMessage());
+                   } catch (IOException e) {
+                       System.err.println(e.getMessage());
                    }
                 }       // TODO do something if the port is not set?
            
