@@ -72,6 +72,7 @@ public class ManagGuiView extends FrameView {
     private ArrayList<SharedClasses.Warehouse> usageAux;
     private ArrayList<Object> repairRet;                        // used by Repair search
     private ArrayList<Object> usageRet;                         // used by Usage search
+    private ArrayList<Client.UsageCache> cache;
     
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -3657,6 +3658,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton35MouseClicked
         setCenterMonitorDim(720, 444);
         pezziUtilizzati = new FinestraSwing("Selezionare i pezzi utilizzati per la lavorazione!", p.getPX(), p.getPY(), 720, 444, jPanel17);
+        this.cache = new ArrayList<Client.UsageCache>();
         this.setUsageTable();
     }//GEN-LAST:event_jButton35MouseClicked
 
@@ -3715,14 +3717,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void setUsageWarehouseTable (JTable t, ArrayList<Object> a) {
         
         int n = a.size();
+        int delta = 0;
+        int x;
+        String serial;
         SharedClasses.Warehouse w = null;
         setJTableUsageWarehouse(t, n);
         
         for(int i = 0; i < n; i++) {                    // take the infos from every warehouse object
             w = (SharedClasses.Warehouse) a.get(i);
-            t.setValueAt(w.getSerial(), i, 0);
+            serial = w.getSerial();
+            t.setValueAt(serial, i, 0);
             t.setValueAt(w.getName(), i, 1);
-            t.setValueAt(w.getAvailability(), i, 2);
+            
+            x = this.cacheFindSparePart(serial);
+            if(x != -1)                                 // spare part usage modifed
+                delta = this.cache.get(x).getDelta();
+            else                                        // spare part usage not modified
+                delta = 0;
+            
+            t.setValueAt(w.getAvailability() - delta, i, 2);
         }
         
     }
@@ -3769,51 +3782,133 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
+    // increase usage of a specific spare part
     private void jButton40MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton40MouseClicked
-        // aggiungi quantità di un articolo già importato e selezionato
-        if(jTable7.getSelectedRow() != -1){
+        
+        int sel = jTable7.getSelectedRow();
+        
+        if(sel != -1){
             
-        }else
+            String serial = (String)jTable7.getValueAt(sel, 0);
+            int i = this.cacheFindSparePart(serial);
+            
+            if(i != -1)
+                this.cache.get(i).increaseDelta();
+            else
+                this.cache.add(new Client.UsageCache(serial, 1));
+            
+            int v = (Integer)jTable7.getValueAt(sel, 2);
+            
+            jTable7.setValueAt(v + 1, sel, 2);
+            
+        } else 
             showWinAlert(jPanel17, "Selezionare prima un pezzo\nper aumentarne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
         
         
     }//GEN-LAST:event_jButton40MouseClicked
 
+    // decrease usage of a specific spare part
     private void jButton44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton44MouseClicked
-        // sottrarre quantità articolo selezionato ed importato
-         if(jTable7.getSelectedRow() != -1){
+       
+        int sel = jTable7.getSelectedRow();
+        
+        if(sel != -1){
             
-        }else
+            int v = (Integer)jTable7.getValueAt(sel, 2);
+            
+            if(v - 1 > 0) {
+            
+                String serial = (String)jTable7.getValueAt(sel, 0);
+                int i = this.cacheFindSparePart(serial);
+
+                if(i != -1)
+                    this.cache.get(i).decreaseDelta();
+                else
+                    this.cache.add(new Client.UsageCache(serial, -1));
+
+                jTable7.setValueAt(v - 1, sel, 2);
+
+            }
+            
+        } else
             showWinAlert(jPanel17, "Selezionare prima un pezzo\nper diminuirne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
         
     }//GEN-LAST:event_jButton44MouseClicked
 
+    // delete a spare part from usage
     private void jButton42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton42MouseClicked
-        // cancellare un pezzo e resettare la quantità
-         if(jTable7.getSelectedRow() != -1){
+
+        int sel = jTable7.getSelectedRow();
+        
+         if(sel != -1){
   
             int n = JOptionPane.showConfirmDialog(jPanel17, "Cancellare il pezzo selezionato?", "Cancellazione info", JOptionPane.YES_NO_OPTION);
-            if(n==JOptionPane.YES_OPTION){//FIXME
             
-            }else{}
-                //(n==JOptionPane.NO_OPTION){}
-  
-        }else
+            if(n == JOptionPane.YES_OPTION) {
+                
+                String serial = (String)jTable7.getValueAt(sel, 0);
+                int i = this.cacheFindSparePart(serial);
+                int v = (Integer)jTable7.getValueAt(sel, 2);
+                
+                if(i != -1)
+                    this.cache.get(i).decreaseDelta(-v);
+                else
+                    this.cache.add(new Client.UsageCache(serial, -v));
+                
+                DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
+                model.removeRow(sel);
+            
+            } else {
+                // do nothing
+            }
+            
+        } else
             showWinAlert(jPanel17, "Selezionare prima un pezzo\nper cancellarlo dalla lista!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
         
     }//GEN-LAST:event_jButton42MouseClicked
 
+    // delete all spare part from usage
     private void jButton43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton43MouseClicked
-        // cancella e reimposta le quantità nel magazzino
-        
+
             int n = JOptionPane.showConfirmDialog(jPanel17, "Cancellare tutti i pezzi\nimpostati per questa lavorazione?", "Cancellazione info", JOptionPane.YES_NO_OPTION);
-            if(n==JOptionPane.YES_OPTION){//FIXME
             
-            }else{}
-                //(n==JOptionPane.NO_OPTION){}
+            if(n == JOptionPane.YES_OPTION){//FIXME
+            
+                int r = jTable7.getRowCount();
+                
+                if(r > 0) {
+                
+                    DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
+                    
+                    for(int i = 0; i < r; i++)
+                        model.removeRow(0);
+                    
+                }
+                
+            } else {
+                // do nothing
+            }
+                
   
     }//GEN-LAST:event_jButton43MouseClicked
 
+    // check if the usage of a spare part has been already modified
+    private int cacheFindSparePart (String serial) {
+            
+        int n = this.cache.size();
+
+        if(n > 0) {
+
+            for(int i = 0; i < n; i++)
+                if(this.cache.get(i).getSerial().equals(serial))
+                    return i;
+
+        }
+        
+        return -1;
+        
+    }
+    
     private void jButton38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton38MouseClicked
         // salva i pezzi importati nella lista dei pezzi utilizzati durante la lavorazione
         // TODO delete old usage
@@ -4416,10 +4511,18 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         int av = (Integer)jTable6.getValueAt(i, 2);
         int qt = Integer.parseInt(q);
+        int x;
+        String serial = (String)jTable6.getValueAt(i, 0);
         
         DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
-        model.addRow(new Object[]{jTable6.getValueAt(i, 0), jTable6.getValueAt(i, 1), qt});
+        model.addRow(new Object[]{serial, jTable6.getValueAt(i, 1), qt});
         jTable6.setValueAt(av - qt, i, 2);
+        
+        x = this.cacheFindSparePart(serial);
+        if(x != -1)
+            this.cache.get(x).increaseDelta(qt);
+        else
+            this.cache.add(new Client.UsageCache(serial, qt));
         
     }
     
