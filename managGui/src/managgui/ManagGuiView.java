@@ -41,7 +41,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManagGuiView extends FrameView {
     
-    private boolean flagCliente=false;
+    private boolean flagCliente = false;
     private MonitorCen p = new MonitorCen(0, 0);
     private FinestraSwing DatiCliente;
     private FinestraSwing cercaCliente;
@@ -54,8 +54,6 @@ public class ManagGuiView extends FrameView {
     private ImageIcon clienti = createImageIcon ("images/clienti2.png", "ico clienti scheda tab");
     private ImageIcon frontEnd = createImageIcon ("images/frontend2.png", "ico accettazione scheda tab");
     private ImageIcon warehouse = createImageIcon ("images/warehouse.png", "ico magazzino scheda tab");
-    private ImageIcon icon = createImageIcon("images/middle.gif", "cio");//prova
-    private FinestraSwing provaTesting;
     
     //class just for number :D
     private JustNumber justNumbers = new JustNumber();
@@ -240,7 +238,6 @@ public class ManagGuiView extends FrameView {
         jButton4 = new javax.swing.JButton();
         jScrollPane21 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
-        jButton15 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -1000,14 +997,6 @@ public class ManagGuiView extends FrameView {
         jScrollPane21.setViewportView(jTable5);
         setJTableClient(jTable5, 0);
 
-        jButton15.setText(resourceMap.getString("jButton15.text")); // NOI18N
-        jButton15.setName("jButton15"); // NOI18N
-        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton15MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1025,9 +1014,7 @@ public class ManagGuiView extends FrameView {
                         .addGap(39, 39, 39)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton15)))
+                        .addComponent(jButton4)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1039,8 +1026,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton15))
+                    .addComponent(jButton4))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
                 .addContainerGap())
@@ -3046,7 +3032,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             int v = Utils.intOperation(r).intValue();
         
             if(v == ComClasses.Constants.RET_EXI) {             // the device already exists: it's necessary to get the id
-                r = new ComClasses.Request(this.d, ComClasses.Constants.DEVICE, ComClasses.Constants.IDSELECT, this.d.selectSerial());
+                r = new ComClasses.Request(this.d, ComClasses.Constants.DEVICE, ComClasses.Constants.FIELDSELECT, this.d.selectSerial());
                 v = Utils.intOperation(r).intValue();
 
                 if(v == ComClasses.Constants.RET_EXC)           // exception occourred
@@ -3765,14 +3751,36 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             String serial = (String)jTable7.getValueAt(sel, 0);
             int i = this.cacheFindSparePart(serial);
             
-            if(i != -1)
-                this.cache.get(i).increaseDelta();
-            else
-                this.cache.add(new Client.UsageCache(serial, 1));
+            SharedClasses.Warehouse aux = new SharedClasses.Warehouse(serial);
+            ComClasses.Request r = new ComClasses.Request(aux, ComClasses.Constants.WARE, ComClasses.Constants.FIELDSELECT, SharedClasses.Warehouse.availabilitySelect());
             
-            int v = (Integer)jTable7.getValueAt(sel, 2);
+            try {
             
-            jTable7.setValueAt(v + 1, sel, 2);
+                int w = Utils.intOperation(r);
+
+                if(i != -1)
+                    w -= this.cache.get(i).getDelta();
+
+                if(w < 1) {
+
+                    showWinAlert(jPanel17, "Impossibile aggiungere pezzo: quantità non sufficiente.", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+
+                    if(i != -1)
+                        this.cache.get(i).increaseDelta();
+                    else
+                        this.cache.add(new Client.UsageCache(serial, 1));
+
+                    int v = (Integer)jTable7.getValueAt(sel, 2);
+
+                    jTable7.setValueAt(v + 1, sel, 2);
+
+                }
+                
+            } catch (Exception e) {
+                showWinAlert(jPanel17, Client.Utils.exceptionMessage(e), "Warning Selection", JOptionPane.WARNING_MESSAGE);
+            }
             
         } else 
             showWinAlert(jPanel17, "Selezionare prima un pezzo\nper aumentarne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
@@ -3824,7 +3832,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 int v = (Integer)jTable7.getValueAt(sel, 2);
                 
                 if(i != -1)
-                    this.cache.get(i).decreaseDelta(-v);
+                    this.cache.get(i).decreaseDelta(v);
                 else
                     this.cache.add(new Client.UsageCache(serial, -v));
                 
@@ -3973,7 +3981,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
 
         if(evt.getClickCount() == 2){
-            int sel = jTable5.getSelectedRow();//importare dati e popolare con getDatuClienteDb
+            int sel = jTable5.getSelectedRow();
             this.c = (SharedClasses.Customer)this.customerRet.get(sel);
             this.customerRet = null;
             
@@ -3996,19 +4004,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton48MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton48MouseClicked
         // aggiungi cliente
         setCenterMonitorDim(503, 300);
-        
-        
         DatiCliente = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel7);
         toppy(DatiCliente);
         //mainPanel.enableInputMethods(false);
         //jButton15.setEnabled(false);
        // jButton16.setEnabled(false);
     }//GEN-LAST:event_jButton48MouseClicked
-
-    private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
-        setCenterMonitorDim(503, 300);
-        provaTesting = new FinestraSwing("prova cazzate", p.getPX(), p.getPY(), 503, 300, jPanel4);
-    }//GEN-LAST:event_jButton15MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -4017,7 +4018,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
