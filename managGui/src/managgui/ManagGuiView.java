@@ -3626,6 +3626,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         pezziUtilizzati = new FinestraSwing("Selezionare i pezzi utilizzati per la lavorazione!", p.getPX(), p.getPY(), 720, 444, jPanel17);
         this.cache = new ArrayList<SharedClasses.UsageCache>();
         this.old = new ArrayList<SharedClasses.UsageCache>();
+        jTextField50.setText(null);
+        jTextField51.setText(null);
+        tableRowDelete((DefaultTableModel)jTable6.getModel());
         this.setUsageTable();
     }//GEN-LAST:event_jButton35MouseClicked
 
@@ -3637,11 +3640,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.Request r = new ComClasses.Request(u, ComClasses.Constants.USAGE, ComClasses.Constants.SELECT, SharedClasses.Usage.select());
         
         try {
-            
-            int o = model.getRowCount();
-            
-            for(int i = 0; i < o; i++)
-                model.removeRow(0);                                 // delete the previous content
+
+            tableRowDelete(model);
             
             this.usageRet = Utils.arrayOperation(r);
             int n = this.usageRet.size();
@@ -3658,6 +3658,16 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             showWinAlert(jPanel17, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+    
+    // delete rows from a table
+    private static void tableRowDelete (DefaultTableModel model) {
+        
+        int o = model.getRowCount();
+            
+            for(int i = 0; i < o; i++)
+                model.removeRow(0);                                 // delete the previous content
+        
     }
     
     // warehouse SELECT into usage editing
@@ -3903,8 +3913,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // TODO delete old usage
         try {
             usageDelete();
-            //warehouseAdd();
+            warehouseAdd();
             newUsage();
+            warehouseUpdate();
             pezziUtilizzati.dispose();
         } catch (Exception e) {
             showWinAlert(jPanel17, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
@@ -4529,12 +4540,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
+    // search for a spare part into the usage table
     private int tableFindSparePart (String serial) {
         
         DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
         int n = model.getRowCount();
         
-        for(int i = 0; i < n; i++)                          // 
+        for(int i = 0; i < n; i++) 
             if(serial.equals(jTable7.getValueAt(i, 0)))
                 return i;
         
@@ -4581,6 +4593,29 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.MultiRequest wr = new ComClasses.MultiRequest(aux, ComClasses.Constants.WARE, ComClasses.Constants.MULTIUPDATE, SharedClasses.Warehouse.availabilityUpdate());
         
         Utils.intOperation(wr);
+        
+    }
+    
+    // update the warehouse table after an usage edit
+    private void warehouseUpdate () throws Exception {
+        
+        int n = jTable7.getModel().getRowCount();
+        
+        if(n > 0) {
+            
+            ArrayList<Object> o = new ArrayList<Object>();
+            SharedClasses.UsageCache u = null;
+            
+            for(int i = 0; i < n; i++) {
+                u = new SharedClasses.UsageCache((String)jTable7.getValueAt(i, 0), -(Integer)jTable7.getValueAt(i, 2));
+                o.add(u);
+            }
+            
+            ComClasses.MultiRequest wr = new ComClasses.MultiRequest(o, ComClasses.Constants.WARE, ComClasses.Constants.MULTIUPDATE, SharedClasses.Warehouse.availabilityUpdate());
+            
+            Utils.intOperation(wr);
+            
+        }
         
     }
     
