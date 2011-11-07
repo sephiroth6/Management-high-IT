@@ -68,8 +68,8 @@ public class ManagGuiView extends FrameView {
     private ArrayList<Object> customerRet;
     private ArrayList<Object> warehouseRet;
     private ArrayList<Object> usageRet;                         // used by Usage search
-    private ArrayList<Client.UsageCache> cache;
-    private ArrayList<Client.UsageCache> old;                   // store the situation of usage before editing
+    private ArrayList<SharedClasses.UsageCache> cache;
+    private ArrayList<SharedClasses.UsageCache> old;                   // store the situation of usage before editing
     
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -2892,7 +2892,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void warehouseSearchResult (String a) {
         
         SharedClasses.Warehouse w = new SharedClasses.Warehouse(a);
-        ComClasses.Request r = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.SELECT, w.select());
+        ComClasses.Request r = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.SELECT, SharedClasses.Warehouse.select());
         
         try {
             this.warehouseRet = Utils.arrayOperation(r);
@@ -2992,6 +2992,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
 
             try {
+                // TODO exception if the value from the server is an exception
                 int id = Utils.intOperation(req).intValue();
                 rep.setID(id);
 
@@ -3029,6 +3030,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.Request r = new ComClasses.Request(this.d, ComClasses.Constants.DEVICE, ComClasses.Constants.INSERT, this.d.insert());
         
         try {
+            // TODO exception if the value from the server is an exception
             int v = Utils.intOperation(r).intValue();
         
             if(v == ComClasses.Constants.RET_EXI) {             // the device already exists: it's necessary to get the id
@@ -3257,7 +3259,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             ComClasses.Request r = new ComClasses.Request(this.c, ComClasses.Constants.CUSTOMER, ComClasses.Constants.INSERT, this.c.insert());
             
             try {
-            
+                // TODO exception if the value from the server is an exception
                 int v = Client.Utils.intOperation(r).intValue();
             
                 if(v > 0) {
@@ -3457,6 +3459,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.Request req = new ComClasses.Request(dev, ComClasses.Constants.DEVICE, ComClasses.Constants.UPDATE, this.d.update(dev));
         
         try {
+            // TODO exception if the value from the server is an exception
             Utils.intOperation(req);
         } catch (Exception e) {
             showWinAlert(jPanel12, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
@@ -3566,7 +3569,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.Request req = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.UPDATE, this.sp.update(w));
    
         try {
-            
+            // TODO exception if the value from the server is an exception
             if(Utils.intOperation(req).intValue() != 1)
                 showWinAlert(jPanel7, "Modifica non riuscita. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
             this.sp = null;
@@ -3621,8 +3624,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton35MouseClicked
         setCenterMonitorDim(720, 444);
         pezziUtilizzati = new FinestraSwing("Selezionare i pezzi utilizzati per la lavorazione!", p.getPX(), p.getPY(), 720, 444, jPanel17);
-        this.cache = new ArrayList<Client.UsageCache>();
-        this.old = new ArrayList<Client.UsageCache>();
+        this.cache = new ArrayList<SharedClasses.UsageCache>();
+        this.old = new ArrayList<SharedClasses.UsageCache>();
         this.setUsageTable();
     }//GEN-LAST:event_jButton35MouseClicked
 
@@ -3635,13 +3638,18 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         try {
             
+            int o = model.getRowCount();
+            
+            for(int i = 0; i < o; i++)
+                model.removeRow(0);                                 // delete the previous content
+            
             this.usageRet = Utils.arrayOperation(r);
             int n = this.usageRet.size();
 
             for(int i = 0; i < n; i += 2) {                         // i + 1  contains the name of the spare part
 
                 u = (SharedClasses.Usage) this.usageRet.get(i);
-                this.old.add(new Client.UsageCache(u));
+                this.old.add(new SharedClasses.UsageCache(u));
                 model.addRow(new Object[]{u.getSerial(), (String)this.usageRet.get(i+1), u.getUsed()});
 
             }
@@ -3705,6 +3713,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         resetValScheda();
     }//GEN-LAST:event_jButton41MouseClicked
 
+    // add spare part to Usage
     private void jButton39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton39MouseClicked
         // importa pezzo di ricambio su scheda
         int sel = jTable6.getSelectedRow();
@@ -3718,9 +3727,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             if(checkQuantity(req, jTable6, sel))                    // check if the quantity inserted it's ok
                 importArticle(sel, req);                            // do something to handle the situation
             else
-                showWinAlert(jPanel17, "Quantità pezzi errata: modificare", "Error", JOptionPane.ERROR_MESSAGE);
-                
-            
+                showWinAlert(jPanel17, "Quantità pezzo disponibile insufficiente o quantità richiesta non corretta.", "Error", JOptionPane.ERROR_MESSAGE);
+                   
         } else
             showWinAlert(jPanel17, "Selezionare un pezzo prima di importalo.", "Warning Selection", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton39MouseClicked
@@ -3755,7 +3763,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             ComClasses.Request r = new ComClasses.Request(aux, ComClasses.Constants.WARE, ComClasses.Constants.FIELDSELECT, SharedClasses.Warehouse.availabilitySelect());
             
             try {
-            
+                // TODO exception if the value from the server is an exception
                 int w = Utils.intOperation(r);
 
                 if(i != -1)
@@ -3770,7 +3778,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     if(i != -1)
                         this.cache.get(i).increaseDelta();
                     else
-                        this.cache.add(new Client.UsageCache(serial, 1));
+                        this.cache.add(new SharedClasses.UsageCache(serial, 1));
 
                     int v = (Integer)jTable7.getValueAt(sel, 2);
 
@@ -3805,7 +3813,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 if(i != -1)
                     this.cache.get(i).decreaseDelta();
                 else
-                    this.cache.add(new Client.UsageCache(serial, -1));
+                    this.cache.add(new SharedClasses.UsageCache(serial, -1));
 
                 jTable7.setValueAt(v - 1, sel, 2);
 
@@ -3834,7 +3842,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 if(i != -1)
                     this.cache.get(i).decreaseDelta(v);
                 else
-                    this.cache.add(new Client.UsageCache(serial, -v));
+                    this.cache.add(new SharedClasses.UsageCache(serial, -v));
                 
                 DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
                 model.removeRow(sel);
@@ -3893,8 +3901,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton38MouseClicked
         // salva i pezzi importati nella lista dei pezzi utilizzati durante la lavorazione
         // TODO delete old usage
-        newUsage();
-        pezziUtilizzati.dispose();
+        try {
+            usageDelete();
+            //warehouseAdd();
+            newUsage();
+            pezziUtilizzati.dispose();
+        } catch (Exception e) {
+            showWinAlert(jPanel17, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton38MouseClicked
 
     private void jButton37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton37MouseClicked
@@ -4415,7 +4430,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.Request r = new ComClasses.Request(cus, ComClasses.Constants.CUSTOMER, ComClasses.Constants.UPDATE, this.c.update(cus));
 
         try {
-            
+            // TODO exception if value from the server is an exception
             int v = Utils.intOperation(r).intValue();
 
             if(v == ComClasses.Constants.RET_EXI)
@@ -4437,7 +4452,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.Request r = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.INSERT, w.insert());
         
         try {
-            
+            // TODO exception if the value from the server is an exception
             int v = Utils.intOperation(r).intValue();
 
             if(v == ComClasses.Constants.RET_EXI)
@@ -4478,23 +4493,57 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void importArticle (int i, String q) {
         
         int av = (Integer)jTable6.getValueAt(i, 2);
-        int qt = Integer.parseInt(q);
-        int x;
-        String serial = (String)jTable6.getValueAt(i, 0);
         
-        DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
-        model.addRow(new Object[]{serial, jTable6.getValueAt(i, 1), qt});
-        jTable6.setValueAt(av - qt, i, 2);
+        if (av > 0) {
         
-        x = this.cacheFindSparePart(serial);
-        if(x != -1)
-            this.cache.get(x).increaseDelta(qt);
-        else
-            this.cache.add(new Client.UsageCache(serial, qt));
+            int qt = Integer.parseInt(q);
+            int x, y;
+            String serial = (String)jTable6.getValueAt(i, 0);
+
+            y = this.tableFindSparePart(serial);
+
+            if(y != -1) {                                                           // spare part already used in this repair
+
+                Integer aux = (Integer)jTable7.getValueAt(y, 2);
+                jTable7.setValueAt(aux.intValue() + qt, y, 2);
+
+            } else {                                                                // new spare part added
+
+                DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
+                model.addRow(new Object[]{serial, jTable6.getValueAt(i, 1), qt});
+                jTable6.setValueAt(av - qt, i, 2);
+
+            }
+
+            jTable6.setValueAt(av - qt, i, 2);
+
+            x = this.cacheFindSparePart(serial);
+            if(x != -1)
+                this.cache.get(x).increaseDelta(qt);
+            else
+                this.cache.add(new SharedClasses.UsageCache(serial, qt));
+            
+        } else {
+            showWinAlert(jPanel17, "Pezzo terminato", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
     }
     
-    private void newUsage () {
+    private int tableFindSparePart (String serial) {
+        
+        DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
+        int n = model.getRowCount();
+        
+        for(int i = 0; i < n; i++)                          // 
+            if(serial.equals(jTable7.getValueAt(i, 0)))
+                return i;
+        
+        return -1;
+        
+    }
+    
+    // add new usage to the database
+    private void newUsage () throws Exception {
         
         int n = jTable7.getModel().getRowCount();
         
@@ -4509,14 +4558,29 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
 
             ComClasses.MultiRequest mr = new ComClasses.MultiRequest(o, ComClasses.Constants.USAGE, ComClasses.Constants.MULTINSERT, SharedClasses.Usage.insert());
-
-            try {
-                Utils.intOperation(mr);
-            } catch (Exception e) {
-                showWinAlert(jPanel17, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
+            // TODO exception if the value from the server is an exception
+            Utils.intOperation(mr);
+    
         }
+        
+    }
+    
+    // delete usage for a selected Repair there were into the database
+    private void usageDelete () throws Exception {
+        
+        ComClasses.Request dr = new ComClasses.Request(null, ComClasses.Constants.USAGE, ComClasses.Constants.DELETE, SharedClasses.Usage.delete());
+        // TODO exception if the value from the server is an exception
+        Utils.intOperation(dr);
+        
+    }
+    
+    // add to the warehouse the spare parts of the old Usage objects
+    private void warehouseAdd () throws Exception {
+        
+        ArrayList<Object> aux = new ArrayList<Object>(old);
+        ComClasses.MultiRequest wr = new ComClasses.MultiRequest(aux, ComClasses.Constants.WARE, ComClasses.Constants.MULTIUPDATE, SharedClasses.Warehouse.availabilityUpdate());
+        
+        Utils.intOperation(wr);
         
     }
     
