@@ -54,6 +54,7 @@ public class ManagGuiView extends FrameView {
     private ImageIcon clienti = createImageIcon ("images/clienti2.png", "ico clienti scheda tab");
     private ImageIcon frontEnd = createImageIcon ("images/frontend2.png", "ico accettazione scheda tab");
     private ImageIcon warehouse = createImageIcon ("images/warehouse.png", "ico magazzino scheda tab");
+    private ImageIcon billing = createImageIcon ("images/fatt.png", "ico fatturazione scheda tab");
     
     //class just for number :D
     private JustNumber justNumbers = new JustNumber();
@@ -261,6 +262,7 @@ public class ManagGuiView extends FrameView {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel83 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -1297,6 +1299,22 @@ public class ManagGuiView extends FrameView {
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
         jTabbedPane1.addTab(resourceMap.getString("jPanel3.TabConstraints.tabTitle"), warehouse, jPanel3); // NOI18N
+
+        jPanel11.setName("jPanel11"); // NOI18N
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1050, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 805, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab(resourceMap.getString("jPanel11.TabConstraints.tabTitle"), jPanel11); // NOI18N
+        jTabbedPane1.addTab(resourceMap.getString("jPanel11.TabConstraints.tabTitle"), billing, jPanel11); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -4169,6 +4187,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
