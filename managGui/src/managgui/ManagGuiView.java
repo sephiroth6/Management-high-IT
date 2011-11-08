@@ -2988,7 +2988,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             
             this.handleDevice();                                // do proper operations on device info
 
-            SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField26.getText());
+            SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField21.getText(), jTextField26.getText());
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
 
             try {
@@ -3001,12 +3001,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 // TODO manage return value    
                 Utils.intOperation(req);                    // the INSERT for Repair and Details will become effective at the same time
             
-                flagCliente = false;
-            
                 int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + id + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
             
                 if(n == JOptionPane.YES_OPTION) {
                     // TODO print on paper
+                    Print.repairPrint(id, this.c, rep, this.d, det);
                 } else {
                     // do nothing
                 }
@@ -4311,8 +4310,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextArea5.setText(null);
         
     }
-    
-    
+        
     private String getDataOra(){
       
         Calendar calendar = new GregorianCalendar();
@@ -4322,7 +4320,16 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         int mese = calendar.get(Calendar.MONTH);
         int anno = calendar.get(Calendar.YEAR);
 
-        return giorno+"/"+(mese+1)+"/"+anno+" "+ore+":"+minuti;
+        return lessThanTen(giorno) + "/" + lessThanTen(mese + 1) + "/" + anno + " " + lessThanTen(ore) + ":" + lessThanTen(minuti);
+    }
+    
+    private static String lessThanTen (int i) {
+        
+        if(i < 10)
+            return "0".concat(Integer.toString(i));
+
+        return Integer.toString(i);
+        
     }
     
     
