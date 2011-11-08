@@ -275,8 +275,6 @@ public class ManagGuiView extends FrameView {
         jLabel80 = new javax.swing.JLabel();
         jLabel82 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jLabel16 = new javax.swing.JLabel();
@@ -288,6 +286,8 @@ public class ManagGuiView extends FrameView {
         jTextField7 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -333,8 +333,6 @@ public class ManagGuiView extends FrameView {
         jButton27 = new javax.swing.JButton();
         jButton35 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
-        jButton23 = new javax.swing.JButton();
-        jButton24 = new javax.swing.JButton();
         jScrollPane13 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         jLabel23 = new javax.swing.JLabel();
@@ -346,6 +344,8 @@ public class ManagGuiView extends FrameView {
         jTextField16 = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
@@ -381,7 +381,6 @@ public class ManagGuiView extends FrameView {
         jLabel66 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
-        jButton34 = new javax.swing.JButton();
         jScrollPane16 = new javax.swing.JScrollPane();
         jTextArea12 = new javax.swing.JTextArea();
         jLabel68 = new javax.swing.JLabel();
@@ -393,6 +392,7 @@ public class ManagGuiView extends FrameView {
         jTextField49 = new javax.swing.JTextField();
         jLabel71 = new javax.swing.JLabel();
         jLabel72 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel17 = new javax.swing.JPanel();
         jLabel73 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
@@ -1398,24 +1398,6 @@ public class ManagGuiView extends FrameView {
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel7.setName("jPanel7"); // NOI18N
 
-        jButton13.setBackground(resourceMap.getColor("jButton13.background")); // NOI18N
-        jButton13.setText(resourceMap.getString("jButton13.text")); // NOI18N
-        jButton13.setName("jButton13"); // NOI18N
-        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton13MouseClicked(evt);
-            }
-        });
-
-        jButton14.setBackground(resourceMap.getColor("jButton14.background")); // NOI18N
-        jButton14.setText(resourceMap.getString("jButton14.text")); // NOI18N
-        jButton14.setName("jButton14"); // NOI18N
-        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton14MouseClicked(evt);
-            }
-        });
-
         jScrollPane4.setName("jScrollPane4"); // NOI18N
 
         jTextArea2.setColumns(20);
@@ -1448,6 +1430,24 @@ public class ManagGuiView extends FrameView {
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
 
+        jButton15.setIcon(resourceMap.getIcon("jButton15.icon")); // NOI18N
+        jButton15.setText(resourceMap.getString("jButton15.text")); // NOI18N
+        jButton15.setName("jButton15"); // NOI18N
+        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton15MouseClicked(evt);
+            }
+        });
+
+        jButton16.setIcon(resourceMap.getIcon("jButton16.icon")); // NOI18N
+        jButton16.setText(resourceMap.getString("jButton16.text")); // NOI18N
+        jButton16.setName("jButton16"); // NOI18N
+        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton16MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -1462,23 +1462,23 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
+                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
+                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButton14)
+                        .addComponent(jButton16)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton13)))
+                        .addComponent(jButton15)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -1504,8 +1504,8 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton14)
-                    .addComponent(jButton13))
+                    .addComponent(jButton15)
+                    .addComponent(jButton16))
                 .addContainerGap())
         );
 
@@ -1762,7 +1762,7 @@ public class ManagGuiView extends FrameView {
                 .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(881, Short.MAX_VALUE))
+                .addContainerGap(1042, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
@@ -1796,7 +1796,7 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel46)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
                         .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1804,8 +1804,8 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jLabel48))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField35, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                            .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))))
+                            .addComponent(jTextField35, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                            .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))))
                 .addGap(141, 141, 141))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
@@ -1826,13 +1826,13 @@ public class ManagGuiView extends FrameView {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton35)
-                .addContainerGap(1026, Short.MAX_VALUE))
+                .addContainerGap(1139, Short.MAX_VALUE))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel52)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 545, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 629, Short.MAX_VALUE)
                 .addComponent(jButton26)
                 .addGap(18, 18, 18)
                 .addComponent(jButton25)
@@ -1929,24 +1929,6 @@ public class ManagGuiView extends FrameView {
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel13.setName("jPanel13"); // NOI18N
 
-        jButton23.setBackground(resourceMap.getColor("jButton23.background")); // NOI18N
-        jButton23.setText(resourceMap.getString("jButton23.text")); // NOI18N
-        jButton23.setName("jButton23"); // NOI18N
-        jButton23.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton23MouseClicked(evt);
-            }
-        });
-
-        jButton24.setBackground(resourceMap.getColor("jButton24.background")); // NOI18N
-        jButton24.setText(resourceMap.getString("jButton24.text")); // NOI18N
-        jButton24.setName("jButton24"); // NOI18N
-        jButton24.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton24MouseClicked(evt);
-            }
-        });
-
         jScrollPane13.setName("jScrollPane13"); // NOI18N
 
         jTextArea3.setColumns(20);
@@ -1977,26 +1959,36 @@ public class ManagGuiView extends FrameView {
         jLabel27.setText(resourceMap.getString("jLabel27.text")); // NOI18N
         jLabel27.setName("jLabel27"); // NOI18N
 
+        jButton13.setIcon(resourceMap.getIcon("jButton13.icon")); // NOI18N
+        jButton13.setText(resourceMap.getString("jButton13.text")); // NOI18N
+        jButton13.setName("jButton13"); // NOI18N
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
+
+        jButton14.setIcon(resourceMap.getIcon("jButton14.icon")); // NOI18N
+        jButton14.setText(resourceMap.getString("jButton14.text")); // NOI18N
+        jButton14.setName("jButton14"); // NOI18N
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton14MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel24)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                        .addComponent(jButton24)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton23))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel25)
                             .addComponent(jLabel27))
@@ -2007,8 +1999,17 @@ public class ManagGuiView extends FrameView {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel26)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField15, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
-                            .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))))
+                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                                .addComponent(jButton14)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton13))
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -2032,10 +2033,10 @@ public class ManagGuiView extends FrameView {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton24)
-                    .addComponent(jButton23))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton14)
+                    .addComponent(jButton13))
                 .addContainerGap())
         );
 
@@ -2344,15 +2345,6 @@ public class ManagGuiView extends FrameView {
         jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel16.setName("jPanel16"); // NOI18N
 
-        jButton34.setBackground(resourceMap.getColor("jButton34.background")); // NOI18N
-        jButton34.setText(resourceMap.getString("jButton34.text")); // NOI18N
-        jButton34.setName("jButton34"); // NOI18N
-        jButton34.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton34MouseClicked(evt);
-            }
-        });
-
         jScrollPane16.setName("jScrollPane16"); // NOI18N
 
         jTextArea12.setColumns(20);
@@ -2388,6 +2380,15 @@ public class ManagGuiView extends FrameView {
         jLabel72.setText(resourceMap.getString("jLabel72.text")); // NOI18N
         jLabel72.setName("jLabel72"); // NOI18N
 
+        jToggleButton1.setIcon(resourceMap.getIcon("jToggleButton1.icon")); // NOI18N
+        jToggleButton1.setText(resourceMap.getString("jToggleButton1.text")); // NOI18N
+        jToggleButton1.setName("jToggleButton1"); // NOI18N
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
@@ -2406,16 +2407,16 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel68)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE))
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel69)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField46, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                        .addComponent(jTextField46, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel70)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField47, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
-                    .addComponent(jButton34, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jTextField47, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
+                    .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
@@ -2439,9 +2440,9 @@ public class ManagGuiView extends FrameView {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel68)
                     .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton34)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jToggleButton1)
+                .addGap(18, 18, 18))
         );
 
         jPanel17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -3226,62 +3227,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
        //close the window e reset val
-    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
-     
-        resetDatiCliente();
-        DatiCliente.dispose();
-        //jButton15.setEnabled(false);
-       // jButton16.setEnabled(false);
-        
-    }//GEN-LAST:event_jButton13MouseClicked
-
     // customer INSERT
-    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
-
-        int flagError = 0;
-        
-        // check if all required fields are filled
-        if(jTextField7.getText().equals("")){
-            showWinAlert(jPanel7, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
-            flagError++;
-        }
-        if(jTextField8.getText().equals("")){
-            showWinAlert(jPanel7, "Manca il Nome.", "Error", JOptionPane.ERROR_MESSAGE);
-            flagError++;
-        }
-        if(jTextField10.getText().equals("")){
-            showWinAlert(jPanel7, "Manca un recapito telefonico.", "Error", JOptionPane.ERROR_MESSAGE);
-            flagError++;
-        }
-        
-        if(flagError == 0){          // it's ok
-            
-            this.c = new SharedClasses.Customer(jTextField8.getText(), jTextField7.getText(), jTextField9.getText(), jTextField10.getText(), jTextArea2.getText());
-            ComClasses.Request r = new ComClasses.Request(this.c, ComClasses.Constants.CUSTOMER, ComClasses.Constants.INSERT, this.c.insert());
-            
-            try {
-                // TODO exception if the value from the server is an exception
-                int v = Client.Utils.intOperation(r).intValue();
-            
-                if(v > 0) {
-                    this.c.setID(v);
-                    
-                    DatiCliente.dispose();
-                    jTextField19.setText(this.c.getSurname());
-                    jTextField20.setText(this.c.getName());
-                    
-                } else if(v == ComClasses.Constants.RET_EXI) {
-                    showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else if(v == ComClasses.Constants.RET_EXC) {
-                    showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                    
-            } catch (Exception e) {
-                showWinAlert(jPanel7, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButton14MouseClicked
-
     // customer SELECT surname field
     private void jTextField11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField11MouseClicked
         if(jTextField11.getText().equals("Cognome"))
@@ -3487,40 +3433,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jTable3MouseClicked
 
-    private void jButton23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton23MouseClicked
-        // esci dal cliente senza salvare nulla
-        DatiClienteView.dispose();
-    }//GEN-LAST:event_jButton23MouseClicked
-
     // customer UPDATE
-    private void jButton24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton24MouseClicked
-
-        int flagError = 0;
-        
-        if(jTextField16.getText().equals("")){
-            showWinAlert(jPanel13, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
-            flagError++;
-        }
-        if(jTextField15.getText().equals("")){
-            showWinAlert(jPanel13, "Manca il Nome.", "Error", JOptionPane.ERROR_MESSAGE);
-            flagError++;
-        }
-        if(jTextField13.getText().equals("")){
-            showWinAlert(jPanel13, "Manca un recapito telefonico.", "Error", JOptionPane.ERROR_MESSAGE);
-            flagError++;
-        }
-        
-        if(flagError == 0){
-            setDatiClienteDb(jTextField15, jTextField16, jTextField14, jTextField13, jTextArea3);
-            DatiClienteView.dispose();
-        }
-              
-        jTextField1.setText("Cognome");
-        jTextField2.setText("Nome");
-        jTable5.setVisible(false);
-        
-    }//GEN-LAST:event_jButton24MouseClicked
-
     // warehouse INSERT
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
       
@@ -3615,11 +3528,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         DatiClienteSimply = new FinestraSwing("Dati Cliente", p.getPX(), p.getPY(), 503, 300, jPanel16);
         getDatiClienteDb(jTextField48, jTextField49, jTextField47, jTextField46, jTextArea12);
     }//GEN-LAST:event_jButton27MouseClicked
-
-    private void jButton34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton34MouseClicked
-        // chiudi finestra visione semplice dati cliente
-        DatiClienteSimply.dispose();
-    }//GEN-LAST:event_jButton34MouseClicked
 
     // open usage edit window
     private void jButton35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton35MouseClicked
@@ -4037,6 +3945,99 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         //jButton15.setEnabled(false);
        // jButton16.setEnabled(false);
     }//GEN-LAST:event_jButton48MouseClicked
+    
+    //Costumer insert
+    private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
+      int flagError = 0;
+        
+        // check if all required fields are filled
+        if(jTextField7.getText().equals("")){
+            showWinAlert(jPanel7, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        if(jTextField8.getText().equals("")){
+            showWinAlert(jPanel7, "Manca il Nome.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        if(jTextField10.getText().equals("")){
+            showWinAlert(jPanel7, "Manca un recapito telefonico.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        
+        if(flagError == 0){          // it's ok
+            
+            this.c = new SharedClasses.Customer(jTextField8.getText(), jTextField7.getText(), jTextField9.getText(), jTextField10.getText(), jTextArea2.getText());
+            ComClasses.Request r = new ComClasses.Request(this.c, ComClasses.Constants.CUSTOMER, ComClasses.Constants.INSERT, this.c.insert());
+            
+            try {
+                // TODO exception if the value from the server is an exception
+                int v = Client.Utils.intOperation(r).intValue();
+            
+                if(v > 0) {
+                    this.c.setID(v);
+                    
+                    DatiCliente.dispose();
+                    jTextField19.setText(this.c.getSurname());
+                    jTextField20.setText(this.c.getName());
+                    
+                } else if(v == ComClasses.Constants.RET_EXI) {
+                    showWinAlert(jPanel7, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+                } else if(v == ComClasses.Constants.RET_EXC) {
+                    showWinAlert(jPanel7, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                    
+            } catch (Exception e) {
+                showWinAlert(jPanel7, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton16MouseClicked
+   
+    //reset Costumer insert
+    private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
+       resetDatiCliente();
+        DatiCliente.dispose();
+        //jButton15.setEnabled(false);
+       // jButton16.setEnabled(false);
+    }//GEN-LAST:event_jButton15MouseClicked
+        
+        
+    // esci dal cliente senza salvare nulla
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+        DatiClienteView.dispose();
+    }//GEN-LAST:event_jButton13MouseClicked
+
+    //costumer UPDATE
+    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
+       
+        int flagError = 0;
+        
+        if(jTextField16.getText().equals("")){
+            showWinAlert(jPanel13, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        if(jTextField15.getText().equals("")){
+            showWinAlert(jPanel13, "Manca il Nome.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        if(jTextField13.getText().equals("")){
+            showWinAlert(jPanel13, "Manca un recapito telefonico.", "Error", JOptionPane.ERROR_MESSAGE);
+            flagError++;
+        }
+        
+        if(flagError == 0){
+            setDatiClienteDb(jTextField15, jTextField16, jTextField14, jTextField13, jTextArea3);
+            DatiClienteView.dispose();
+        }
+              
+        jTextField1.setText("Cognome");
+        jTextField2.setText("Nome");
+        jTable5.setVisible(false);
+    }//GEN-LAST:event_jButton14MouseClicked
+
+    // chiudi finestra visione semplice dati cliente
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        DatiClienteSimply.dispose();
+    }//GEN-LAST:event_jToggleButton1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -4045,6 +4046,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
@@ -4052,8 +4055,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
@@ -4064,7 +4065,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
-    private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
@@ -4275,6 +4275,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
