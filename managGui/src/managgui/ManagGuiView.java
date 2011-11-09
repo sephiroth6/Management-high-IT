@@ -3958,7 +3958,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // aggiungi cliente
         setCenterMonitorDim(503, 300);
         DatiCliente = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel7);
-        toppy(DatiCliente);
+        //toppy(DatiCliente);
         //mainPanel.enableInputMethods(false);
         //jButton15.setEnabled(false);
        // jButton16.setEnabled(false);
@@ -3971,6 +3971,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // check if all required fields are filled
         if(jTextField7.getText().equals("")){
             showWinAlert(jPanel7, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
+           // JOptionPane.setRootFrame(DatiCliente);
             flagError++;
         }
         if(jTextField8.getText().equals("")){
@@ -4349,6 +4350,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     private void showWinAlert(Component cmp, Object o, String s, int i){
         JOptionPane.showMessageDialog(cmp, o, s, i);
+        
     }
    
         
