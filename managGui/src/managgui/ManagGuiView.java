@@ -263,6 +263,7 @@ public class ManagGuiView extends FrameView {
         jTable1 = new javax.swing.JTable();
         jLabel83 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -1302,18 +1303,37 @@ public class ManagGuiView extends FrameView {
 
         jPanel11.setName("jPanel11"); // NOI18N
 
+        jPanel19.setName("jPanel19"); // NOI18N
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 187, Short.MAX_VALUE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 165, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(851, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 805, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(628, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(resourceMap.getString("jPanel11.TabConstraints.tabTitle"), jPanel11); // NOI18N
+        jTabbedPane1.addTab("Fatturazione", jPanel11);
         jTabbedPane1.addTab(resourceMap.getString("jPanel11.TabConstraints.tabTitle"), billing, jPanel11); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -1448,7 +1468,6 @@ public class ManagGuiView extends FrameView {
         jLabel12.setText(resourceMap.getString("jLabel12.text")); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
 
-        jButton15.setIcon(resourceMap.getIcon("jButton15.icon")); // NOI18N
         jButton15.setText(resourceMap.getString("jButton15.text")); // NOI18N
         jButton15.setName("jButton15"); // NOI18N
         jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1457,8 +1476,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton16.setIcon(resourceMap.getIcon("jButton16.icon")); // NOI18N
-        jButton16.setText(resourceMap.getString("jButton16.text")); // NOI18N
         jButton16.setName("jButton16"); // NOI18N
         jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1977,7 +1994,6 @@ public class ManagGuiView extends FrameView {
         jLabel27.setText(resourceMap.getString("jLabel27.text")); // NOI18N
         jLabel27.setName("jLabel27"); // NOI18N
 
-        jButton13.setIcon(resourceMap.getIcon("jButton13.icon")); // NOI18N
         jButton13.setText(resourceMap.getString("jButton13.text")); // NOI18N
         jButton13.setName("jButton13"); // NOI18N
         jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1986,7 +2002,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton14.setIcon(resourceMap.getIcon("jButton14.icon")); // NOI18N
         jButton14.setText(resourceMap.getString("jButton14.text")); // NOI18N
         jButton14.setName("jButton14"); // NOI18N
         jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2398,8 +2413,6 @@ public class ManagGuiView extends FrameView {
         jLabel72.setText(resourceMap.getString("jLabel72.text")); // NOI18N
         jLabel72.setName("jLabel72"); // NOI18N
 
-        jToggleButton1.setIcon(resourceMap.getIcon("jToggleButton1.icon")); // NOI18N
-        jToggleButton1.setText(resourceMap.getString("jToggleButton1.text")); // NOI18N
         jToggleButton1.setName("jToggleButton1"); // NOI18N
         jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4195,6 +4208,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -1323,7 +1323,7 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Fatturazione">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="jPanel11.TabConstraints.tabTitle"/>
+                    <Property name="tabTitle" type="java.lang.String" value="Fatturazione"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -1331,15 +1331,43 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1050" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="851" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="805" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel19" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="628" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel19">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jPanel19" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="187" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="165" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>
@@ -1687,7 +1715,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton15">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton15.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jButton15.text"/>
             <Property name="name" type="java.lang.String" value="jButton15" noResource="true"/>
           </Properties>
@@ -1697,8 +1724,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton16">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton16.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="jButton16.text"/>
             <Property name="name" type="java.lang.String" value="jButton16" noResource="true"/>
           </Properties>
           <Events>
@@ -2496,7 +2521,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton13">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton13.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jButton13.text"/>
             <Property name="name" type="java.lang.String" value="jButton13" noResource="true"/>
           </Properties>
@@ -2506,7 +2530,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton14">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton14.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jButton14.text"/>
             <Property name="name" type="java.lang.String" value="jButton14" noResource="true"/>
           </Properties>
@@ -3139,8 +3162,6 @@
         </Component>
         <Component class="javax.swing.JToggleButton" name="jToggleButton1">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jToggleButton1.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="jToggleButton1.text"/>
             <Property name="name" type="java.lang.String" value="jToggleButton1" noResource="true"/>
           </Properties>
           <Events>
