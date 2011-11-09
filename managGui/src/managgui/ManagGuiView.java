@@ -3020,7 +3020,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             
             this.handleDevice();                                // do proper operations on device info
 
-            SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField26.getText());
+            SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField33.getText(), jTextField26.getText());
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
 
             try {
@@ -3039,7 +3039,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             
                 if(n == JOptionPane.YES_OPTION) {
                     // TODO print on paper
-                    Print.repairPrint(id, this.c);
+                    Print.repairPrint(id, this.c, rep, this.d, det);
                 } else {
                     // do nothing
                 }
@@ -3953,6 +3953,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             
             setCenterMonitorDim(503, 300);
             DatiClienteView = new FinestraSwing("Scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel13);
+            clearField(jTextField15, jTextField16, jTextField14, jTextField13);
+            jTextArea3.setText(null);
             getDatiClienteDb(jTextField15, jTextField16, jTextField14, jTextField13, jTextArea3);
         }
     }//GEN-LAST:event_jTable5MouseClicked
@@ -4334,7 +4336,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     }
     
-    
     private void resetValScheda(){
         jComboBox3.setSelectedIndex(0);
         jTextField19.setText("Cognome");
@@ -4347,7 +4348,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
-    
     private String getDataOra(){
       
         Calendar calendar = new GregorianCalendar();
@@ -4357,9 +4357,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         int mese = calendar.get(Calendar.MONTH);
         int anno = calendar.get(Calendar.YEAR);
 
-        return giorno+"/"+(mese+1)+"/"+anno+" "+ore+":"+minuti;
+        return lessThanTen(giorno) + "/" + lessThanTen(mese+1)  +"/" + anno + " " + lessThanTen(ore) + ":" + lessThanTen(minuti);
     }
     
+    private static String lessThanTen (int i) {
+        
+        if(i < 10)
+            return "0".concat(Integer.toString(i));
+
+        return Integer.toString(i);
+        
+    }
     
     private void showWinAlert(Component cmp, Object o, String s, int i){
         JOptionPane.showMessageDialog(cmp, o, s, i);
@@ -4748,18 +4756,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             fn.setAlwaysOnTop(true);
     }
     
-    // close OutputStream, InputStream and Socket
-    private void closeConnection (ObjectOutputStream out, ObjectInputStream in, Socket s) {
+    private static void clearField (JTextField ... f) {
         
-        try {
-            out.close();
-            in.close();
-            s.close();
-        } catch (IOException e) {
-            showWinAlert(jPanel7, "Errore connessione: controllare che il server sia in esecuzione e/o riavviare l'applicazione", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        for(int i = 0; i < f.length; i++)
+            f[i].setText(null);
         
     }
-    
     
 }
