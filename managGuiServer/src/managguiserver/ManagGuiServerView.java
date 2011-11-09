@@ -5,8 +5,6 @@
 package managguiserver;
 
 import Server.Utils;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.sql.SQLException;
 import org.jdesktop.application.Action;
@@ -23,10 +21,7 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-/**
- *
- * @author Angelo
- */
+
 /**
  * The application's main frame.
  */
@@ -202,8 +197,6 @@ public class ManagGuiServerView extends FrameView {
             }
         });
 
-        jLabel8.setIcon(resourceMap.getIcon("jLabel8.icon")); // NOI18N
-        jLabel8.setToolTipText(resourceMap.getString("jLabel8.toolTipText")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -231,7 +224,7 @@ public class ManagGuiServerView extends FrameView {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +267,7 @@ public class ManagGuiServerView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -294,13 +287,11 @@ public class ManagGuiServerView extends FrameView {
         helpMenu.setName("helpMenu"); // NOI18N
 
         jMenuItem1.setAction(actionMap.get("showLogsBox")); // NOI18N
-        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
         helpMenu.add(jMenuItem1);
         jMenuItem1.setText("Logs");
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox2")); // NOI18N
-        aboutMenuItem.setText(resourceMap.getString("aboutMenuItem.text")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
         helpMenu.add(aboutMenuItem);
         aboutMenuItem.setText("About..");
@@ -346,7 +337,6 @@ public class ManagGuiServerView extends FrameView {
 
         jPanel2.setName("jPanel2"); // NOI18N
 
-        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
 
         jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));

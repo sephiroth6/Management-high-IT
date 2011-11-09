@@ -6,10 +6,7 @@ package managguiserver;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
-/**
- *
- * @author Angelo
- */
+
 /**
  * The main class of the application.
  */
