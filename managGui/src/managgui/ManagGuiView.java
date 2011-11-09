@@ -3458,6 +3458,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             this.re = rr.getRepair();
             
             schedaProdotto = new FinestraSwing("Scheda riparazione n° " + this.re.getID(), p.getPX(), p.getPY(), 935, 555, jPanel12);
+            jLabel44.setText(Integer.toString(this.re.getID()));
             
             getDataDbPracticeView();
             noEditablePracticeValue();
