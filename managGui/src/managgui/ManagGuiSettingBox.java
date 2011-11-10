@@ -4,6 +4,8 @@
 
 package managgui;
 
+import Client.Utils;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -13,13 +15,18 @@ import org.jdesktop.application.Action;
  * @author Angelo
  */
 public class ManagGuiSettingBox extends javax.swing.JDialog {
-
-    private String ip;
     
-    public ManagGuiSettingBox(java.awt.Frame parent) {
+    public ManagGuiSettingBox(java.awt.Frame parent) throws FileNotFoundException, IOException {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(closeButton);
+        
+        Client.ServerInfo info = Client.Utils.getSettings();
+        
+        if(info != null) {
+            jTextField41.setText(info.getAddress());
+            jTextField42.setText(info.getPort());
+        }
         
     }
 
@@ -172,8 +179,9 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
         jTextField41.setText(null);
         // cancellazione testo ip         jTextField41.setText(null);     }//GEN-LAST:event_jTextField41MouseClicked
     }
+    
+    // save server's address and port
         private void jButton30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton30MouseClicked
-           // TODO create a file with the server ip and port inserted the first time
             
            String add = jTextField41.getText();
            String port = jTextField42.getText();
@@ -183,7 +191,10 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
                if(!port.equals("")) {                           // check if the port is set
                    
                    try {
-                       Socket s = Client.Utils.open(add, port);     // try to open the connection
+                       Client.Utils.setSettings(add, port);
+                       Client.ServerInfo settings = Utils.getSettings();
+                       
+                       Socket s = Client.Utils.open(settings.getAddress(), settings.getPort());     // try to open the connection
                        if(s != null) {
                            try {
                                s.close();
@@ -214,13 +225,13 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField42;
     // End of variables declaration//GEN-END:variables
+
+    public void setAddress (String add) {
+        this.jTextField41.setText(add);
+    }
     
-   private void setIP(){
-       ip = jTextField41.getText();
-   }
-   
-   private void getIP(){
-       jTextField41.setText(ip);
-   }
+    public void setPort (String port) {
+        this.jTextField42 .setText(port);
+    }
     
 }

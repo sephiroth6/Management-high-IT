@@ -8,6 +8,8 @@ import Client.Utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -15,6 +17,12 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -52,6 +60,8 @@ public class ManagGuiView extends FrameView {
     private ImageIcon warehouse = createImageIcon ("images/warehouse.png", "ico magazzino scheda tab");
     private ImageIcon billing = createImageIcon ("images/fatt.png", "ico fatturazione scheda tab");
     
+    private Client.ServerInfo serverInfo;                                    // the open port of the server (retrieved from file)
+    
     //class just for number :D
     private JustNumber justNumbers = new JustNumber();
     
@@ -61,12 +71,12 @@ public class ManagGuiView extends FrameView {
     private SharedClasses.Warehouse sp;
     private SharedClasses.Details de;
     
-    private ArrayList<Object> repairRet;                        // used by Repair search
+    private ArrayList<Object> repairRet;                                    // used by Repair search
     private ArrayList<Object> customerRet;
     private ArrayList<Object> warehouseRet;
-    private ArrayList<Object> usageRet;                         // used by Usage search
+    private ArrayList<Object> usageRet;                                     // used by Usage search
     private ArrayList<SharedClasses.UsageCache> cache;
-    private ArrayList<SharedClasses.UsageCache> old;                   // store the situation of usage before editing
+    private ArrayList<SharedClasses.UsageCache> old;                        // store the situation of usage before editing
     
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -79,9 +89,9 @@ public class ManagGuiView extends FrameView {
         
         
         //front-end accettazione
-       jPanel9.setVisible(false);
-       jPanel10.setVisible(false);
-       ifConnected();
+        jPanel9.setVisible(false);
+        jPanel10.setVisible(false);
+        getConnection();
        
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -105,7 +115,6 @@ public class ManagGuiView extends FrameView {
         idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
         statusAnimationLabel.setIcon(idleIcon);
         progressBar.setVisible(false);
-
         
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
@@ -154,14 +163,30 @@ public class ManagGuiView extends FrameView {
     public void showSettingBox() {
         if (settingBox == null) {
             JFrame mainFrame = ManagGuiApp.getApplication().getMainFrame();
-            settingBox = new ManagGuiSettingBox(mainFrame);
+            try {
+                settingBox = new ManagGuiSettingBox(mainFrame);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ManagGuiView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ManagGuiView.class.getName()).log(Level.SEVERE, null, ex);
+            }
             settingBox.setLocationRelativeTo(mainFrame);
         }
-        ManagGuiApp.getApplication().show(settingBox);
+        Client.ServerInfo info;
+        try {
+            info = Client.Utils.getSettings();
+            ManagGuiSettingBox aux = (ManagGuiSettingBox)settingBox;
+            aux.setAddress(info.getAddress());
+            aux.setPort(info.getPort());
+            ManagGuiApp.getApplication().show(aux);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ManagGuiView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ManagGuiView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
-    
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -357,14 +382,6 @@ public class ManagGuiView extends FrameView {
         jTextField39 = new javax.swing.JTextField();
         jButton28 = new javax.swing.JButton();
         jButton29 = new javax.swing.JButton();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel60 = new javax.swing.JLabel();
-        jLabel61 = new javax.swing.JLabel();
-        jLabel62 = new javax.swing.JLabel();
-        jTextField41 = new javax.swing.JTextField();
-        jTextField42 = new javax.swing.JTextField();
-        jButton30 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
         jDialog1 = new javax.swing.JDialog();
         jButton32 = new javax.swing.JButton();
         jButton33 = new javax.swing.JButton();
@@ -1473,8 +1490,6 @@ public class ManagGuiView extends FrameView {
         });
 
         jButton16.setText(resourceMap.getString("jButton16.text")); // NOI18N
-        jButton16.setMaximumSize(new java.awt.Dimension(115, 23));
-        jButton16.setMinimumSize(new java.awt.Dimension(115, 23));
         jButton16.setName("jButton16"); // NOI18N
         jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1510,7 +1525,7 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton16)
                         .addGap(18, 18, 18)
                         .addComponent(jButton15)))
                 .addContainerGap())
@@ -1539,7 +1554,7 @@ public class ManagGuiView extends FrameView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton15)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton16))
                 .addContainerGap())
         );
 
@@ -1830,7 +1845,7 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel46)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 495, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 524, Short.MAX_VALUE)
                         .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1838,8 +1853,8 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jLabel48))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField35, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
-                            .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE))))
+                            .addComponent(jTextField35, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)
+                            .addComponent(jTextField34, javax.swing.GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE))))
                 .addGap(141, 141, 141))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
@@ -1856,17 +1871,17 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(714, Short.MAX_VALUE))
+                .addContainerGap(875, Short.MAX_VALUE))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton35)
-                .addContainerGap(1300, Short.MAX_VALUE))
+                .addContainerGap(1348, Short.MAX_VALUE))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel52)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 790, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 867, Short.MAX_VALUE)
                 .addComponent(jButton26)
                 .addGap(18, 18, 18)
                 .addComponent(jButton25)
@@ -2184,92 +2199,6 @@ public class ManagGuiView extends FrameView {
 
         jTextField39.setDocument(justNumbers);
 
-        jPanel15.setBackground(resourceMap.getColor("jPanel15.background")); // NOI18N
-        jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel15.setName("jPanel15"); // NOI18N
-
-        jLabel60.setText(resourceMap.getString("jLabel60.text")); // NOI18N
-        jLabel60.setName("jLabel60"); // NOI18N
-
-        jLabel61.setText(resourceMap.getString("jLabel61.text")); // NOI18N
-        jLabel61.setName("jLabel61"); // NOI18N
-
-        jLabel62.setText(resourceMap.getString("jLabel62.text")); // NOI18N
-        jLabel62.setName("jLabel62"); // NOI18N
-
-        jTextField41.setText(resourceMap.getString("jTextField41.text")); // NOI18N
-        jTextField41.setName("jTextField41"); // NOI18N
-        jTextField41.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField41MouseClicked(evt);
-            }
-        });
-
-        jTextField42.setName("jTextField42"); // NOI18N
-
-        jButton30.setText(resourceMap.getString("jButton30.text")); // NOI18N
-        jButton30.setName("jButton30"); // NOI18N
-        jButton30.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton30MouseClicked(evt);
-            }
-        });
-
-        jButton31.setText(resourceMap.getString("jButton31.text")); // NOI18N
-        jButton31.setName("jButton31"); // NOI18N
-        jButton31.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton31MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel60)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel62)
-                                    .addComponent(jLabel61))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField41, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton30)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton31)))
-                .addContainerGap())
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel60)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel61)
-                    .addComponent(jTextField41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel62))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton30)
-                    .addComponent(jButton31))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTextField42.setDocument(justNumbers);
-
         jDialog1.setName("jDialog1"); // NOI18N
 
         jButton32.setBackground(resourceMap.getColor("jButton32.background")); // NOI18N
@@ -2325,11 +2254,11 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel66)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField44, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                        .addComponent(jTextField44, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
                     .addGroup(jDialog1Layout.createSequentialGroup()
                         .addComponent(jLabel63)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
                     .addGroup(jDialog1Layout.createSequentialGroup()
                         .addComponent(jLabel64)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2337,7 +2266,7 @@ public class ManagGuiView extends FrameView {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
                         .addComponent(jLabel65)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField43, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                        .addComponent(jTextField43, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
                         .addComponent(jButton33)
                         .addGap(18, 18, 18)
@@ -2433,7 +2362,7 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel71)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField48, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                        .addComponent(jTextField48, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel68)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2441,11 +2370,11 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel69)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField46, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE))
+                        .addComponent(jTextField46, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel70)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField47, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
+                        .addComponent(jTextField47, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -2633,7 +2562,7 @@ public class ManagGuiView extends FrameView {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField50, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton36, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
+                                .addComponent(jButton36, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addComponent(jButton38)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -3540,19 +3469,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jButton30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton30MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton30MouseClicked
-
-    private void jButton31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton31MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton31MouseClicked
-
-    private void jTextField41MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField41MouseClicked
-        // cancellazione testo ip
-        jTextField41.setText(null);
-    }//GEN-LAST:event_jTextField41MouseClicked
-
     private void jButton27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton27MouseClicked
         // creazione view dati cliente NON MODIFICABILI!
         setCenterMonitorDim(503, 300);
@@ -4093,8 +4009,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton30;
-    private javax.swing.JButton jButton31;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton35;
@@ -4172,9 +4086,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
@@ -4205,7 +4116,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
@@ -4292,8 +4202,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField40;
-    private javax.swing.JTextField jTextField41;
-    private javax.swing.JTextField jTextField42;
     private javax.swing.JTextField jTextField43;
     private javax.swing.JTextField jTextField44;
     private javax.swing.JTextField jTextField45;
@@ -4677,15 +4585,39 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }
     
-    private boolean ifConnected(){
-        if(true){//FIXME prendere valore ip per la connessione dal db
-            jLabel80.setVisible(false);
-            jLabel82.setVisible(true);
-            return true;
-        }
+    private void getConnection () {
+        
+        try {
+        
+            this.serverInfo = Client.Utils.getSettings();
+            
+            try {
+                
+                Client.Utils.open(this.serverInfo.getAddress(), this.serverInfo.getPort());
+                jLabel80.setVisible(false);
+                jLabel82.setVisible(true);
+                
+            } catch (IOException e) {
+              
+                showWinAlert(null, "Impossibile connettersi al server.\nVerificare che il server sia in esecuzione\ne controllare le impostazioni in File -> Settings.", "Warning", JOptionPane.WARNING_MESSAGE);
+                jLabel80.setVisible(true);
+                jLabel82.setVisible(false);
+                
+            } 
+            
+        } catch (FileNotFoundException e) {
+            
+            showWinAlert(null, "File impostazioni non trovato.\nPer utilizzare il programma inserire le info del server in\nFile -> Settings", "Warning", JOptionPane.WARNING_MESSAGE);
             jLabel80.setVisible(true);
             jLabel82.setVisible(false);
-            return false;
+            
+        } catch (IOException e) {
+            
+            showWinAlert(null, "Errore lettura dal file impostazioni.\nPer utilizzare il programma inserire nuovamente le info del server in\nFile -> Settings", "Warning", JOptionPane.WARNING_MESSAGE);
+            jLabel80.setVisible(true);
+            jLabel82.setVisible(false);
+            
+        }
         
     }
     
@@ -4760,6 +4692,16 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         for(int i = 0; i < f.length; i++)
             f[i].setText(null);
         
+    }
+    
+    public void connectedLabel () {
+        jLabel80.setVisible(false);
+        jLabel82.setVisible(true);
+    }
+    
+    public void disconnectedLabel () {
+        jLabel80.setVisible(true);
+        jLabel82.setVisible(false);
     }
     
 }
