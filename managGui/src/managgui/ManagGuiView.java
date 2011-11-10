@@ -15,10 +15,6 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -3027,7 +3023,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             
             this.handleDevice();                                // do proper operations on device info
 
-            SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField33.getText(), jTextField26.getText());
+            SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField21.getText(), jTextField26.getText());
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
 
             try {
@@ -4035,10 +4031,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
    
     //reset Costumer insert
     private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
-       resetDatiCliente();
+       
+        resetDatiCliente();
         DatiCliente.dispose();
-        //jButton15.setEnabled(false);
-       // jButton16.setEnabled(false);
     }//GEN-LAST:event_jButton15MouseClicked
         
         
