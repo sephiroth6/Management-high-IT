@@ -212,6 +212,7 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
                                try {
                                    JOptionPane.showMessageDialog(this, "Connessione col server ok.", "Connessione", JOptionPane.INFORMATION_MESSAGE);
                                    s.close();
+                                    closeSettingBox();      // close if it's all ok
                                } catch (IOException ex) {
                                    JOptionPane.showMessageDialog(this, "Errore in connessione. Riavviare l'applicazione.", "Error", JOptionPane.ERROR_MESSAGE);
                                }
@@ -227,8 +228,6 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
                        } catch (IOException e) {                // IOException
                            JOptionPane.showMessageDialog(this, "Errore " + e.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                        }
-                       // close if it's all ok
-                       closeSettingBox();
                        
                    } else
                        JOptionPane.showMessageDialog(this, "Errore durante la creazione del file di impostazioni. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
