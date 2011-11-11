@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 /**
  *
@@ -16,16 +17,22 @@ import org.jdesktop.application.Action;
  */
 public class ManagGuiSettingBox extends javax.swing.JDialog {
     
-    public ManagGuiSettingBox(java.awt.Frame parent) throws FileNotFoundException, IOException {
+    public ManagGuiSettingBox(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(closeButton);
         
-        Client.ServerInfo info = Client.Utils.getSettings();
-        
-        if(info != null) {
-            jTextField41.setText(info.getAddress());
-            jTextField42.setText(info.getPort());
+        try {
+            Client.ServerInfo info = Client.Utils.getSettings();
+
+            if(info != null) {
+                jTextField41.setText(info.getAddress());
+                jTextField42.setText(info.getPort());
+            }
+        } catch (FileNotFoundException e) {
+            // do nothing
+        } catch (IOException e) {
+            // do nothing
         }
         
     }
@@ -186,35 +193,55 @@ public class ManagGuiSettingBox extends javax.swing.JDialog {
            String add = jTextField41.getText();
            String port = jTextField42.getText();
            
-           if(!add.equals("") || !add.contains("x")) {          // check if ip is set
+           if(!add.equals("") && !add.contains("x")) {          // check if ip is set
                
                if(!port.equals("")) {                           // check if the port is set
-                   
-                   try {
-                       Client.Utils.setSettings(add, port);
-                       Client.ServerInfo settings = Utils.getSettings();
+         
+                   int i = Client.Utils.setSettings(add, port);
+
+                   if(i == 0) {             // settings have been successfully stored     
+
+                       try {
                        
-                       Socket s = Client.Utils.open(settings.getAddress(), settings.getPort());     // try to open the connection
-                       if(s != null) {
-                           try {
-                               s.close();
-                           } catch (IOException ex) {
-                               System.err.println(ex.getMessage());
-                           }
-                        } else {
-                        // TODO do something if is not possible to open the connection?
-                        }
-                   } catch (UnknownHostException e) {
-                       System.err.println(e.getMessage());
-                   } catch (IOException e) {
-                       System.err.println(e.getMessage());
-                   }
-                }       // TODO do something if the port is not set?
-           
-           }            // TODO do something if the ip is not set?
+                           Client.ServerInfo settings = Utils.getSettings();
+
+                           Socket s = Client.Utils.open(settings.getAddress(), settings.getPort());     // try to open the connection
+
+                           if(s != null) {          // socket successfully created
+                               
+                               try {
+                                   JOptionPane.showMessageDialog(this, "Connessione col server ok.", "Connessione", JOptionPane.INFORMATION_MESSAGE);
+                                   s.close();
+                               } catch (IOException ex) {
+                                   JOptionPane.showMessageDialog(this, "Errore in connessione. Riavviare l'applicazione.", "Error", JOptionPane.ERROR_MESSAGE);
+                               }
+                               
+                            } else {                // socket has not been created, so there's something wrong
+                               JOptionPane.showMessageDialog(this, "Connessione col server non riuscita.", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                       
+                       } catch (FileNotFoundException e) {
+                           // the file is just have been created
+                       } catch (UnknownHostException e) {       // unknown host
+                           JOptionPane.showMessageDialog(this, "Host sconosciuto: controllare l'indirizzo del server.", "Error", JOptionPane.ERROR_MESSAGE);
+                       } catch (IOException e) {                // IOException
+                           JOptionPane.showMessageDialog(this, "Errore " + e.getLocalizedMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                       }
+                       // close if it's all ok
+                       closeSettingBox();
+                       
+                   } else
+                       JOptionPane.showMessageDialog(this, "Errore durante la creazione del file di impostazioni. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                  
+                   
+                } else      // port has not been inserted
+                   JOptionPane.showMessageDialog(this, "Inserire il numero della porta del server.", "Error", JOptionPane.ERROR_MESSAGE);
+               
+           } else       // address has not been inserted
+               JOptionPane.showMessageDialog(this, "Inserire l'indirizzo del server.", "Error", JOptionPane.ERROR_MESSAGE);        
            
         // TODO add your handling code here:}//GEN-LAST:event_jButton30MouseClicked
-            closeSettingBox();
+
         }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;

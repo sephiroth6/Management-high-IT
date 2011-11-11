@@ -8,8 +8,6 @@ import Client.Utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -17,12 +15,8 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -161,30 +155,11 @@ public class ManagGuiView extends FrameView {
     
     @Action
     public void showSettingBox() {
-        if (settingBox == null) {
-            JFrame mainFrame = ManagGuiApp.getApplication().getMainFrame();
-            try {
-                settingBox = new ManagGuiSettingBox(mainFrame);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(ManagGuiView.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(ManagGuiView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            settingBox.setLocationRelativeTo(mainFrame);
-        }
-        Client.ServerInfo info;
-        try {
-            info = Client.Utils.getSettings();
-            ManagGuiSettingBox aux = (ManagGuiSettingBox)settingBox;
-            aux.setAddress(info.getAddress());
-            aux.setPort(info.getPort());
-            ManagGuiApp.getApplication().show(aux);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ManagGuiView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ManagGuiView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        // initialize the dialog every time that is opened to get the info from the settings file
+        JFrame mainFrame = ManagGuiApp.getApplication().getMainFrame();
+        settingBox = new ManagGuiSettingBox(mainFrame);   
+        settingBox.setLocationRelativeTo(mainFrame);
+        ManagGuiApp.getApplication().show(settingBox);
     }
     
     /** This method is called from within the constructor to
@@ -3875,7 +3850,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(evt.getClickCount() == 2){
             int sel = jTable5.getSelectedRow();
             this.c = (SharedClasses.Customer)this.customerRet.get(sel);
-            this.customerRet = null;
+            this.customerRet = null;                                                // reset the array with the search results
             
             setCenterMonitorDim(503, 300);
             DatiClienteView = new FinestraSwing("Scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel13);
@@ -3905,7 +3880,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
        // jButton16.setEnabled(false);
     }//GEN-LAST:event_jButton48MouseClicked
     
-    //Costumer insert
+    // customer INSERT
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
       int flagError = 0;
         
@@ -3951,20 +3926,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jButton16MouseClicked
    
-    //reset Costumer insert
+    // customer edit window exit without changes (jPanel13)
     private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
-       
-        resetDatiCliente();
         DatiCliente.dispose();
     }//GEN-LAST:event_jButton15MouseClicked
         
-        
-    // esci dal cliente senza salvare nulla
+    // customer edit window exit without changes (jPanel7)
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
         DatiClienteView.dispose();
     }//GEN-LAST:event_jButton13MouseClicked
 
-    // custumer UPDATE
+    // customer UPDATE
     private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
        
         int flagError = 0;
@@ -4385,11 +4357,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     // insert customer's info into edit window
     private void getDatiClienteDb(JTextField nome, JTextField cognome, JTextField indirizzo, JTextField rec, JTextArea note){//FIXME
         
-        nome.setText(this.c.getName());                 // name 
-        cognome.setText(this.c.getSurname());           // surname
-        indirizzo.setText(this.c.getAddress());         // address
-        rec.setText(this.c.getTelephone());             // telephone number
-        note.setText(this.c.getNote());                 // note
+        nome.setText(this.c.getName().toLowerCase());                   // name 
+        cognome.setText(this.c.getSurname().toLowerCase());             // surname
+        indirizzo.setText(this.c.getAddress().toLowerCase());           // address
+        rec.setText(this.c.getTelephone());                             // telephone number
+        note.setText(this.c.getNote().toLowerCase());                   // note
     }
     
     // customer UPDATE
