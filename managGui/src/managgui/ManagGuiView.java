@@ -3327,26 +3327,28 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     // TODO execute updates one by one and show alert if one doesn't succeed
     private void jButton26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton26MouseClicked
 
-        if(!neededInsertion(jTextField36, jTextField37)) {              // handle device operations
+        // UPDATE device of the selected repair
+        if(!neededInsertion(jTextField36, jTextField37)) { 
+            // compulsory fields leaved empty
             showWinAlert(jPanel12, "Controllare modello ed imei", "Errore", JOptionPane.ERROR_MESSAGE);
+        
         } else {
+            // handle device update
             SharedClasses.Device md = new SharedClasses.Device(jTextField36.getText(), jComboBox5.getSelectedIndex(), jTextField37.getText());
-            if(this.checkDeviceChange(md)) {
+            if(this.checkDeviceChange(md))
                 this.updateDevice(md);
-            }
+        
         }
         
+        // UPDATE details of the selected repair
         SharedClasses.Details mdev = new SharedClasses.Details(this.re.getID(), jTextField34.getText(), jTextArea8.getText(), jTextArea9.getText(), jTextArea10.getText());
-        if(this.checkDetailsChange(mdev)) {
+        if(this.checkDetailsChange(mdev))
             this.updateDetails(mdev);
-        }
         
-        /*
-         * Repair values
-        jTextField38.getText();             //accessori
-        jComboBox6.getSelectedItem();       //stato lavorazione
-        jTextField35.getText();             //data out
-        */
+        // UPDATE repair table of the database
+        SharedClasses.Repair mrep = new SharedClasses.Repair(this.re.getID(), jTextField38.getText(), jTextField35.getText(), (Integer)jComboBox6.getSelectedIndex());
+        if(this.checkRepairChange(mrep))
+            this.updateRepair(mrep);
         
         schedaProdotto.dispose();
         jTable3.setVisible(false);
@@ -3409,6 +3411,33 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
+    private boolean checkRepairChange (SharedClasses.Repair rep) {
+        
+        String optional = this.re.getOptional();
+        if(optional != null) {
+            if(!optional.equals(rep.getOptional()))
+                return true; 
+        } else {
+            if(!rep.getOptional().equals(""))
+                return true;
+        }
+        
+        String out = this.re.getDateOut();
+        if(out != null) {
+            if(!out.equals(rep.getDateOut()))
+                return true;
+        } else {
+            if(!rep.getDateOut().equals(""))
+                return true;
+        }
+        
+        if(this.re.getStatus() != rep.getStatus())
+            return true;
+        
+        return false;
+        
+    }
+    
     private void updateDevice (SharedClasses.Device dev) {
        
         dev.setID(this.d.getID());
@@ -3428,13 +3457,22 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.Request req = new ComClasses.Request(det, ComClasses.Constants.DETAILS, ComClasses.Constants.UPDATE, this.de.update(det));
         
         try {
-            
             Utils.intOperation(req);
-            
         } catch (Exception e) {
             showWinAlert(jPanel12, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+    
+    private void updateRepair (SharedClasses.Repair rep) {
+        
+        ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.UPDATE, this.re.update(rep));
+     
+        try {
+            Utils.intOperation(req);
+        } catch (Exception e) {
+            showWinAlert(jPanel12, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     // open repair with details to edit
