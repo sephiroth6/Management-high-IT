@@ -93,8 +93,8 @@
                               <Component id="jButton46" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jPanel9" min="-2" pref="526" max="-2" attributes="0"/>
-                          <EmptySpace pref="211" max="32767" attributes="0"/>
+                          <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="204" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -967,7 +967,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="575" max="32767" attributes="0"/>
+                              <EmptySpace pref="570" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1053,7 +1053,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jTextField5" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jTextField41" alignment="0" max="32767" attributes="1"/>
+                                              <Component id="jTextField52" alignment="0" max="32767" attributes="1"/>
                                               <Component id="jTextField6" alignment="0" pref="74" max="32767" attributes="1"/>
                                           </Group>
                                       </Group>
@@ -1097,8 +1097,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField41" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextField52" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1198,20 +1198,20 @@
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton10MouseClicked"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField41">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jTextField41.text"/>
-                        <Property name="name" type="java.lang.String" value="jTextField41" noResource="true"/>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField41.setDocument(justNumbers);"/>
-                      </AuxValues>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
                         <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTextField52">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jTextField52.text"/>
+                        <Property name="name" type="java.lang.String" value="jTextField52" noResource="true"/>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField52.setDocument(justNumbers2);"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2612,7 +2612,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton28" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="68" max="32767" attributes="0"/>
@@ -2657,12 +2657,12 @@
                       <Component id="jScrollPane14" min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton28" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton29" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jButton29" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton28" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2761,7 +2761,7 @@
             <Property name="name" type="java.lang.String" value="jTextField42" noResource="true"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField42.setDocument(justNumbers);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField42.setDocument(justNumbers2);"/>
           </AuxValues>
         </Component>
       </SubComponents>

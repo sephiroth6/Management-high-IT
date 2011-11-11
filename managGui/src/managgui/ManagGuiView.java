@@ -58,6 +58,8 @@ public class ManagGuiView extends FrameView {
     
     //class just for number :D
     private JustNumber justNumbers = new JustNumber();
+    private JustNumber justNumbers2 = new JustNumber();
+    
     
     private SharedClasses.Customer c;
     private SharedClasses.Device d;
@@ -250,8 +252,8 @@ public class ManagGuiView extends FrameView {
         jTextField6 = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jTextField41 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jTextField52 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -919,8 +921,8 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton47)
                     .addComponent(jButton46))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(204, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(50, 50, 50)
@@ -1097,11 +1099,11 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jTextField41.setText(resourceMap.getString("jTextField41.text")); // NOI18N
-        jTextField41.setName("jTextField41"); // NOI18N
-
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
+
+        jTextField52.setText(resourceMap.getString("jTextField52.text")); // NOI18N
+        jTextField52.setName("jTextField52"); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1123,7 +1125,7 @@ public class ManagGuiView extends FrameView {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField41, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField52, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)))))
                 .addGap(125, 125, 125))
             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -1156,8 +1158,8 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1170,7 +1172,7 @@ public class ManagGuiView extends FrameView {
         );
 
         jTextField6.setDocument(justNumbers);
-        jTextField41.setDocument(justNumbers);
+        jTextField52.setDocument(justNumbers2);
 
         jPanel5.setBackground(resourceMap.getColor("jPanel5.background")); // NOI18N
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1278,7 +1280,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(575, Short.MAX_VALUE)))
+                    .addContainerGap(570, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2166,7 +2168,7 @@ public class ManagGuiView extends FrameView {
                                         .addComponent(jTextField42, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTextField39, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)))))
                         .addGap(113, 113, 113))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
@@ -2201,15 +2203,15 @@ public class ManagGuiView extends FrameView {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel59))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton28)
-                    .addComponent(jButton29))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton29)
+                    .addComponent(jButton28))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTextField39.setDocument(justNumbers);
-        jTextField42.setDocument(justNumbers);
+        jTextField42.setDocument(justNumbers2);
 
         jDialog1.setName("jDialog1"); // NOI18N
 
@@ -3423,7 +3425,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             showWinAlert(jPanel6, "Inserire la quantita' dell'articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
-        if(jTextField41.getText().equals("")){
+        if(jTextField52.getText().equals("")){
             showWinAlert(jPanel6, "Inserire il prezzo unitario, iva esclusa.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
@@ -3449,7 +3451,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             flagError++;
         }
         if(jTextField42.getText().equals("")){
-            showWinAlert(jPanel14, "Inserire la quantita' dell'articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel14, "Inserire il prezzo unitario, senza iva.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         
@@ -3913,6 +3915,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // aggiungi cliente
         setCenterMonitorDim(503, 300);
         DatiCliente = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel7);
+        jTextField10.setText(null);
         //toppy(DatiCliente); //FIXME
         //mainPanel.enableInputMethods(false);
         //jButton15.setEnabled(false);
@@ -3967,6 +3970,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
    
     // customer edit window exit without changes (jPanel13)
     private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
+        resetDatiCliente();
         DatiCliente.dispose();
     }//GEN-LAST:event_jButton15MouseClicked
         
@@ -4225,7 +4229,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField40;
-    private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField42;
     private javax.swing.JTextField jTextField43;
     private javax.swing.JTextField jTextField44;
@@ -4237,6 +4240,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField50;
     private javax.swing.JTextField jTextField51;
+    private javax.swing.JTextField jTextField52;
     private javax.swing.JTextField jTextField55;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
