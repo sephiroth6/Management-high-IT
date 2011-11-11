@@ -3335,27 +3335,22 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 this.updateDevice(md);
             }
         }
+        
+        SharedClasses.Details mdev = new SharedClasses.Details(this.re.getID(), jTextField34.getText(), jTextArea8.getText(), jTextArea9.getText(), jTextArea10.getText());
+        if(this.checkDetailsChange(mdev)) {
+            this.updateDetails(mdev);
+        }
+        
         /*
-        SharedClasses.Details dd = this.de;
-        dd.setDeclared(jTextArea8.getText());
-        dd.setFound(jTextArea9.getText());
-        dd.setDone(jTextArea10.getText());
+         * Repair values
+        jTextField38.getText();             //accessori
+        jComboBox6.getSelectedItem();       //stato lavorazione
+        jTextField35.getText();             //data out
         */
-        /*
-        jTextField38.getText();//accessori
-        jTextArea8.getText();//dif dich
-        jTextArea9.getText();//dif riscon
-        jTextArea10.getText();//lav eff
-        jComboBox6.getSelectedItem();//stato lavorazione
-        jTextField34.getText();//data lav
-        jTextField35.getText();//data out
-        */
+        
         schedaProdotto.dispose();
         jTable3.setVisible(false);
-        jTextField27.setText("");
-        jTextField28.setText("");
-        jTextField29.setText("");
-        jTextField30.setText("");
+        clearFields(jTextField27, jTextField28, jTextField29, jTextField30);
         
     }//GEN-LAST:event_jButton26MouseClicked
 
@@ -3375,6 +3370,45 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
+    // check if an update is needed for the details of the selected repair
+    private boolean checkDetailsChange (SharedClasses.Details det) {
+        
+        String start = this.de.getDateStart();
+        if(start != null) {
+            if(!start.equals(det.getDateStart()))
+                return true;
+        } else {
+            if(!det.getDateStart().equals(""))
+                return true;
+        }
+        
+        String declared = this.de.getDeclared();
+        String newDeclared = det.getDeclared();
+        if(!newDeclared.equals("") && !newDeclared.equals(declared))
+            return true;
+        
+        String found = this.de.getFound();
+        if(found != null) {
+            if(!found.equals(det.getFound()))
+                return true;
+        } else {
+            if(!det.getFound().equals(""))
+                return true;
+        }
+        
+        String done = this.de.getDone();
+        if(done != null) {
+            if(!done.equals(det.getDone()))
+                return true;
+        } else {
+            if(!det.getDone().equals(""))
+                return true;
+        }    
+        
+        return false;
+        
+    }
+    
     private void updateDevice (SharedClasses.Device dev) {
        
         dev.setID(this.d.getID());
@@ -3383,6 +3417,20 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         try {
             // TODO exception if the value from the server is an exception
             Utils.intOperation(req);
+        } catch (Exception e) {
+            showWinAlert(jPanel12, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
+    private void updateDetails (SharedClasses.Details det) {
+        
+        ComClasses.Request req = new ComClasses.Request(det, ComClasses.Constants.DETAILS, ComClasses.Constants.UPDATE, this.de.update(det));
+        
+        try {
+            
+            Utils.intOperation(req);
+            
         } catch (Exception e) {
             showWinAlert(jPanel12, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
@@ -3893,7 +3941,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             
             setCenterMonitorDim(503, 300);
             DatiClienteView = new FinestraSwing("Scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel13);
-            clearField(jTextField15, jTextField16, jTextField14, jTextField13);
+            clearFields(jTextField15, jTextField16, jTextField14, jTextField13);
             jTextArea3.setText(null);
             getDatiClienteDb(jTextField15, jTextField16, jTextField14, jTextField13, jTextArea3);
         }
@@ -4712,7 +4760,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             fn.setAlwaysOnTop(true);
     }
     
-    private static void clearField (JTextField ... f) {
+    private static void clearFields (JTextField ... f) {
         
         for(int i = 0; i < f.length; i++)
             f[i].setText(null);
