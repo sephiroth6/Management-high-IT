@@ -3013,10 +3013,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + id + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
             
                 if(n == JOptionPane.YES_OPTION) {
-                    // TODO print on paper
-                    Print.repairPrint(id, this.c, rep, this.d, det);
-                } else {
-                    // do nothing
+            
+                    try {
+                        Print.repairPrint(id, this.c, rep, this.d, det);
+                    } catch (Exception e) {
+                        showWinAlert(jPanel9, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                
                 }
                 
             } catch (Exception e) {
