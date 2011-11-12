@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -2921,7 +2922,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             t.setValueAt(w.getSerial(), i, 0);
             t.setValueAt(w.getName(), i, 1);
             t.setValueAt(w.getAvailability(), i, 2);
-            t.setValueAt(w.getNote(), i, 3);
+            t.setValueAt(w.getUnitPrice(), i, 3);
+            t.setValueAt(w.getNote(), i, 4);
         }
         
     }
@@ -3531,7 +3533,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jTable3MouseClicked
 
-    // customer UPDATE
     // warehouse INSERT
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
       
@@ -3551,7 +3552,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
         
         if(flagError == 0){
-            setArticleWarehouseDB(jTextField4, jTextField5, jTextField6, jTextArea1);
+            setArticleWarehouseDB(jTextField4, jTextField5, jTextField6, jTextField52, jTextArea1);
             jPanel6.setVisible(false);
         }
         
@@ -3585,7 +3586,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void updateSparePart () {
         
-        SharedClasses.Warehouse w = new SharedClasses.Warehouse(this.sp.getSerial(), jTextField17.getText(), jTextField18.getText(), Integer.parseInt(jTextField39.getText()), jTextArea4.getText());
+        SharedClasses.Warehouse w = new SharedClasses.Warehouse(this.sp.getSerial(), jTextField17.getText(), jTextField18.getText(), Integer.parseInt(jTextField39.getText()), jTextField42.getText(), jTextArea4.getText());
         ComClasses.Request req = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.UPDATE, this.sp.update(w));
    
         try {
@@ -3611,7 +3612,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(evt.getClickCount() == 2){
             setCenterMonitorDim(465, 340);
             schedaArticoloMagazzino = new FinestraSwing("Scheda Articolo Magazzino", p.getPX(), p.getPY(), 465, 340, jPanel14);
-            getValArticleWarehouse(jTextField17, jTextField18, jTextField39, jTextArea4);
+            getValArticleWarehouse(jTextField17, jTextField18, jTextField39, jTextField42, jTextArea4);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -4562,10 +4563,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
-    private void setArticleWarehouseDB(JTextField code, JTextField name, JTextField n, JTextArea note){
+    private void setArticleWarehouseDB(JTextField code, JTextField name, JTextField n, JTextField up, JTextArea note){
         
         // create a new spare part
-        SharedClasses.Warehouse w = new SharedClasses.Warehouse(code.getText(), name.getText(), Integer.parseInt(n.getText()), note.getText());
+        SharedClasses.Warehouse w = new SharedClasses.Warehouse(code.getText(), name.getText(), Integer.parseInt(n.getText()), up.getText(), note.getText());
         // create the request object
         ComClasses.Request r = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.INSERT, w.insert());
         
@@ -4585,19 +4586,21 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     // set properly the Warehouse object needed to edit a spare part
-    private void getValArticleWarehouse(JTextField code, JTextField name, JTextField n, JTextArea note){
+    private void getValArticleWarehouse(JTextField code, JTextField name, JTextField n, JTextField up, JTextArea note){
         
         String se = (String)jTable1.getValueAt(0, 0);
         String na = (String)jTable1.getValueAt(0, 1);
         Integer av = (Integer)jTable1.getValueAt(0, 2);
-        String no = (String)jTable1.getValueAt(0, 3);
+        BigDecimal price = (BigDecimal)jTable1.getValueAt(0, 3);
+        String no = (String)jTable1.getValueAt(0, 4);
         
-        this.sp = new SharedClasses.Warehouse(se, na, av.intValue(), no);
+        this.sp = new SharedClasses.Warehouse(se, na, av.intValue(), price, no);
         
-        code.setText(se);
-        name.setText(na);
+        code.setText(se.toLowerCase());
+        name.setText(na.toLowerCase());
         n.setText(av.toString());
-        note.setText(no);
+        up.setText(price.toString());
+        note.setText(no.toLowerCase());
     }
     
     private void resetValArticleWarehouse(){//FIXME
@@ -4809,7 +4812,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     private static void setJTableWarehouse(JTable jt, int n){
-        String[] columnNames = new String[]{"Codice Articolo", "Nome Generico", "Quantità", "Note"};
+        String[] columnNames = new String[]{"Codice Articolo", "Nome Generico", "Quantità", "Prezzo unitario", "Note"};
         
         DefaultTableModel model = new DefaultTableModel(columnNames, n){
         
