@@ -7,10 +7,6 @@ package managgui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Panel;
-import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphVector;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
@@ -63,52 +59,56 @@ public class Print implements Printable {
         
         if(optional == null)
             optional = "NESSUNO";
-        
+
         grap.setColor(Color.BLACK);
         
         grap.setFont(font.deriveFont(Font.BOLD));
-        grap.drawString("SCHEDA RIPARAZIONE #".concat(Integer.toString(this.r.getID())), firstX, firstY);
-        grap.drawString("INFORMAZIONI CLIENTE", firstX, firstY + heightLines(3));
+        grap.drawString("MR. Cooper di Pette Davide", firstX, firstY);
+        grap.drawString("via Michele di Lando 22/24", firstX, firstY + heightLines(1));
+        grap.drawString("Roma, 00162", firstX, firstY + heightLines(2));
+        grap.drawString("P.IVA 11549761002", firstX, firstY + heightLines(3));
+        grap.drawString("CF PTTDVD85E20H501E", firstX, firstY + heightLines(4));
+        grap.drawString("SCHEDA RIPARAZIONE #".concat(Integer.toString(this.r.getID())), firstX, firstY + heightLines(6));
+        grap.drawString("INFORMAZIONI CLIENTE", firstX, firstY + heightLines(8));
         grap.setFont(font.deriveFont(Font.PLAIN));
         
-        grap.drawString("Cognome: ".concat(this.c.getSurname()), firstX + 20, firstY + heightLines(4));
-        grap.drawString("Nome: ".concat(this.c.getName()), firstX + 20, firstY + heightLines(5));
-        grap.drawString("Recapito telefonico: ".concat(this.c.getTelephone()), firstX + 20, firstY + heightLines(6));
+        grap.drawString("Cognome: ".concat(this.c.getSurname()), firstX + 20, firstY + heightLines(9));
+        grap.drawString("Nome: ".concat(this.c.getName()), firstX + 20, firstY + heightLines(10));
+        grap.drawString("Recapito telefonico: ".concat(this.c.getTelephone()), firstX + 20, firstY + heightLines(11));
         
-        grap.drawLine(x + 100, firstY + heightLines(8), width - 100 , firstY + heightLines(8));
+        grap.drawLine(x + 100, firstY + heightLines(12), width - 100 , firstY + heightLines(12));
         
         grap.setFont(font.deriveFont(Font.BOLD));
-        grap.drawString("INFORMAZIONI DISPOSITIVO", firstX, firstY + heightLines(10));
+        grap.drawString("INFORMAZIONI DISPOSITIVO", firstX, firstY + heightLines(13));
         grap.setFont(font.deriveFont(Font.PLAIN));
-        grap.drawString("Modello: ".concat(this.d.getModel()), firstX + 20, firstY + heightLines(11));
-        grap.drawString("Categoria: ".concat(deviceType(this.d.getType())), firstX + 20, firstY + heightLines(12));
-        grap.drawString("IMEI/Serial Number: ".concat(this.d.getIdentification()), firstX + 20, firstY + heightLines(13));
+        grap.drawString("Modello: ".concat(this.d.getModel()), firstX + 20, firstY + heightLines(14));
+        grap.drawString("Categoria: ".concat(deviceType(this.d.getType())), firstX + 20, firstY + heightLines(15));
+        grap.drawString("IMEI/Serial Number: ".concat(this.d.getIdentification()), firstX + 20, firstY + heightLines(16));
         
-        grap.drawLine(x + 100, firstY + heightLines(15), width - 100 , firstY + heightLines(15));
+        grap.drawLine(x + 100, firstY + heightLines(17), width - 100 , firstY + heightLines(17));
         
         grap.setFont(font.deriveFont(Font.BOLD));
-        grap.drawString("DETTAGLI SCHEDA", firstX, firstY + heightLines(17));
+        grap.drawString("DETTAGLI SCHEDA", firstX, firstY + heightLines(18));
         grap.setFont(font.deriveFont(Font.PLAIN));
-        grap.drawString("Data e ora ingresso: ".concat(this.r.getDateIn()), firstX + 20, firstY + heightLines(18));
-        grap.drawString("Difetto dichiarato: ".concat(this.de.getDeclared()), firstX + 20, firstY + heightLines(19));
-        grap.drawString("Accessori consegnati: ".concat(optional), firstX + 20, firstY + heightLines(20));
+        grap.drawString("Data e ora ingresso: ".concat(this.r.getDateIn()), firstX + 20, firstY + heightLines(19));
+        grap.drawString("Difetto dichiarato: ".concat(this.de.getDeclared()), firstX + 20, firstY + heightLines(20));
+        grap.drawString("Accessori consegnati: ".concat(optional), firstX + 20, firstY + heightLines(21));
         
         grap.drawLine(x + 100, firstY + heightLines(22), width - 100 , firstY + heightLines(22));
         
         firstY = firstY + heightLines(23);
-        Graphics2D grapdd = (Graphics2D)grap;
-        FontRenderContext frc = grapdd.getFontRenderContext();
-        font = font.deriveFont(8,0);
         
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’accettazione. Si avvisa il cliente di "), firstX, firstY);
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "realizzare delle copie di sicurezza dei dati presenti nella memoria del telefono, prima di consegnare il telefono medesimo al centro di "), firstX, firstY + halfHeightLines(1));
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "assistenza per la riparazione, onde evitare la perdita degli stessi. "), firstX, firstY + halfHeightLines(2));
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "Ai sensi dell’articolo 13 del D.lgs n. 196 del 30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto di "), firstX, firstY + halfHeightLines(3));
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "trattamento, nel rispetto della normativa sopra richiamata e degli obblighi di riservatezza. "), firstX, firstY + halfHeightLines(4));
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "Titolare del trattamento dei dati è MR. COOPER di Pette Davide con sede in Via Michele di Lando 22/24 00162 Roma (RM). "), firstX, firstY + halfHeightLines(5));
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "ACQUISIZIONE DEL CONSENSO dichiaro di aver acquisito le informazioni fornite dal titolare del trattamento ai sensi dell’art. 13 del "), firstX, firstY + halfHeightLines(6));
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "D.lgs n 196/2003 e di prestare il mio consenso al trattamento dei dati personali. Presto inoltre il consenso alla comunicazione dei dati "), firstX, firstY + halfHeightLines(7));
-        grapdd.drawGlyphVector(font.createGlyphVector(frc, "personali ai soggetti indicati nell’informativa. "), firstX, firstY + halfHeightLines(8));
+        grap.drawString("Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’", firstX, firstY);
+        grap.drawString("accettazione. Si avvisa il cliente di realizzare delle copie di sicurezza dei dati presenti nella memoria ", firstX, firstY + heightLines(1));
+        grap.drawString("del telefono, prima di consegnare il telefono medesimo al centro di assistenza per la riparazione, ", firstX, firstY + heightLines(2));
+        grap.drawString("onde evitare la perdita degli stessi. Ai sensi dell’articolo 13 del D.lgs n. 196 del 30 giugno 2003, si ", firstX, firstY + heightLines(3));
+        grap.drawString("rende noto che i dati personali rilasciati dal cliente saranno oggetto di trattamento, nel rispetto della ", firstX, firstY + heightLines(4));
+        grap.drawString("normativa sopra richiamata e degli obblighi di riservatezza. Titolare del trattamento dei dati è ", firstX, firstY + heightLines(5));
+        grap.drawString("MR. COOPER di Pette Davide con sede in Via Michele di Lando 22/24 00162 Roma (RM).", firstX, firstY + heightLines(6));
+        grap.drawString("ACQUISIZIONE DEL CONSENSO", firstX, firstY + heightLines(8));
+        grap.drawString("Dichiaro di aver acquisito le informazioni fornite dal titolare del trattamento ai sensi dell’art. 13 del ", firstX, firstY + heightLines(9));
+        grap.drawString("D.lgs n 196/2003 e di prestare il mio consenso al trattamento dei dati personali. Presto inoltre il ", firstX, firstY + heightLines(10));
+        grap.drawString("consenso alla comunicazione dei dati personali ai soggetti indicati nell’informativa. ", firstX, firstY + heightLines(11));
         
         return PAGE_EXISTS;
     }
