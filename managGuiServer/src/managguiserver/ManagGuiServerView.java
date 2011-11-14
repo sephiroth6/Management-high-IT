@@ -415,11 +415,11 @@ public class ManagGuiServerView extends FrameView {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
 
         if(jButton1.isEnabled()) {
-            
+            this.jButton3MouseClicked(evt);
             try {
                 this.startOp();
             } catch (Exception e) {
-                jLabel3.setText(e.toString());
+                jLabel3.setText("Impossibile avviare server: riprova");
             }
             
         }
@@ -513,8 +513,6 @@ public class ManagGuiServerView extends FrameView {
         jButton1.setEnabled(false);
         jButton3.setEnabled(true);
         jButton2.setEnabled(true);
-        
-    
     }
     
     private static Image getImage() throws HeadlessException {
