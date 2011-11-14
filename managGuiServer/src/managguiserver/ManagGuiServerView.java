@@ -5,8 +5,13 @@
 package managguiserver;
 
 import Server.Utils;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.AWTException;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.Panel;
+import java.awt.PopupMenu;
+import java.awt.TrayIcon;
 import java.io.IOException;
 import java.sql.SQLException;
 import org.jdesktop.application.Action;
@@ -16,6 +21,7 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.sql.Connection;
@@ -23,6 +29,11 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.plaf.metal.MetalIconFactory;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 /**
  *
  * @author Angelo
@@ -36,12 +47,14 @@ public class ManagGuiServerView extends FrameView {
     private ServerSocket s = null;
     private Server.ServerSingleton ss = null;
     private Thread t = null;
-
+    private SingleFrameApplication app;
 
 
     public ManagGuiServerView(SingleFrameApplication app) {
         super(app);
-
+        if (SystemTray.isSupported())
+            getSystemTray();
+            
         initComponents();
         
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -483,6 +496,118 @@ public class ManagGuiServerView extends FrameView {
         jButton2.setEnabled(true);
         
     
+    }
+    
+    private static Image getImage() throws HeadlessException {
+ 
+        Icon defaultIcon = MetalIconFactory.getTreeComputerIcon();
+ 
+        Image img = new BufferedImage(defaultIcon.getIconWidth(),
+ 
+        defaultIcon.getIconHeight(),
+ 
+        BufferedImage.TYPE_4BYTE_ABGR);
+ 
+        defaultIcon.paintIcon(new Panel(), img.getGraphics(), 0, 0);
+ 
+        return img;
+ 
+    }
+    
+    private void getSystemTray() {
+       final TrayIcon trayIcon;
+
+        if (SystemTray.isSupported()) {
+            
+            
+
+            SystemTray tray = SystemTray.getSystemTray();
+            
+            Image image = Toolkit.getDefaultToolkit().getImage(ManagGuiServerView.class.getResource("images/logo_prova2_mini1.png"));//getImage();
+
+            ActionListener exitListener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                }
+            };
+            
+            PopupMenu popup = new PopupMenu();
+            MenuItem defaultItem = new MenuItem("Exit");
+            defaultItem.addActionListener(exitListener);
+            popup.add(defaultItem);
+            
+            trayIcon = new TrayIcon(image, "manIT_Server", popup);
+            
+            MouseListener mouseListener = new MouseListener() {
+
+                public void mouseClicked(MouseEvent e) {
+                    if(e.getClickCount() == 2){ 
+                        
+                        //far aprire la visuale
+                       
+
+                        
+                    }
+                    else{//(e.getClickCount() == 1){
+                        System.out.println("Tray Icon - Mouse clicked!");
+                        //farla chiudere la visuale
+                        
+                    }
+                    
+                              
+                }
+
+                public void mouseEntered(MouseEvent e) {
+                    //icon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
+                    ActionListener actionListener = new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                             trayIcon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
+                        }
+                    };
+
+                }
+
+                public void mouseExited(MouseEvent e) {
+                    System.out.println("Tray Icon - Mouse exited!");                 
+                }
+
+                public void mousePressed(MouseEvent e) {
+                    System.out.println("Tray Icon - Mouse pressed!");                 
+                }
+
+                public void mouseReleased(MouseEvent e) {
+                    System.out.println("Tray Icon - Mouse released!");                 
+                }
+            };
+
+            
+
+            
+
+            ActionListener actionListener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    trayIcon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
+                }
+            };
+
+            trayIcon.setImageAutoSize(true);
+            trayIcon.addActionListener(actionListener);
+            trayIcon.addMouseListener(mouseListener);
+
+            try {
+                tray.add(trayIcon);
+            } catch (AWTException e) {
+                System.err.println("TrayIcon could not be added.");
+            }
+
+        } else {
+
+            //  System Tray is not supported
+
+        }
+        
+        
     }
     
     

@@ -18,9 +18,12 @@ public class ManagGuiServerApp extends SingleFrameApplication {
     /**
      * At startup create and show the main frame of the application.
      */
+    
     @Override protected void startup() {
         show(new ManagGuiServerView(this));   
+        //show(new srv(this));
     }
+    
 
     /**
      * This method is to initialize the specified window by injecting resources.
@@ -41,8 +44,13 @@ public class ManagGuiServerApp extends SingleFrameApplication {
     /**
      * Main method launching the application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         launch(ManagGuiServerApp.class, args);
+        
+        
     }
+
+    
+    
     
 }
