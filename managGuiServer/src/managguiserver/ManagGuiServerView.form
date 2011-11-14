@@ -6,6 +6,9 @@
       <Properties>
         <Property name="name" type="java.lang.String" value="mainPanel" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="ManagGuiServerView_mainPanel"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

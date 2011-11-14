@@ -4737,11 +4737,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         try {
         
             this.serverInfo = Client.Utils.getSettings();
-            
+                        
             try {
                 
-                Client.Utils.open(this.serverInfo.getAddress(), this.serverInfo.getPort());
-                
+                //Client.Utils.open(this.serverInfo.getAddress(), this.serverInfo.getPort());
+                  Client.Utils.open(this.serverInfo.getAddress(), this.serverInfo.getPort()).close();
             } catch (IOException e) {
               
                 showWinAlert(null, "Impossibile connettersi al server.\nVerificare che il server sia in esecuzione\ne controllare le impostazioni in File -> Settings.", "Warning", JOptionPane.WARNING_MESSAGE);

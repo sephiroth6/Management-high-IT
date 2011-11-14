@@ -34,6 +34,8 @@ import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.EventObject;
+import org.jdesktop.application.Application.ExitListener;
 /**
  *
  * @author Angelo
@@ -52,9 +54,26 @@ public class ManagGuiServerView extends FrameView {
 
     public ManagGuiServerView(SingleFrameApplication app) {
         super(app);
-        if (SystemTray.isSupported())
+        this.app = app;
+        if (SystemTray.isSupported()){
             getSystemTray();
+            this.app.getMainFrame().setDefaultCloseOperation(1);
             
+        }
+        
+        this.getApplication().addExitListener(new ExitListener() {
+
+            public boolean canExit(EventObject event) {
+                return true;
+            }
+
+            public void willExit(EventObject event) {
+                System.out.println("Exit on close");
+                
+                
+            }
+        });
+        
         initComponents();
         
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -545,6 +564,7 @@ public class ManagGuiServerView extends FrameView {
                     if(e.getClickCount() == 2){ 
                         
                         //far aprire la visuale
+                        showApp();
                        
 
                         
@@ -552,6 +572,7 @@ public class ManagGuiServerView extends FrameView {
                     else{//(e.getClickCount() == 1){
                         System.out.println("Tray Icon - Mouse clicked!");
                         //farla chiudere la visuale
+                        trayIcon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
                         
                     }
                     
@@ -560,11 +581,11 @@ public class ManagGuiServerView extends FrameView {
 
                 public void mouseEntered(MouseEvent e) {
                     //icon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
-                    ActionListener actionListener = new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                             trayIcon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
-                        }
-                    };
+//                    ActionListener actionListener = new ActionListener() {
+//                        public void actionPerformed(ActionEvent e) {
+//                             trayIcon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
+//                        }
+//                    };
 
                 }
 
@@ -587,7 +608,7 @@ public class ManagGuiServerView extends FrameView {
 
             ActionListener actionListener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    trayIcon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
+                    //trayIcon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
                 }
             };
 
@@ -607,11 +628,40 @@ public class ManagGuiServerView extends FrameView {
 
         }
         
+        //app.getMainView().getFrame().HIDE_ON_CLOSE;
+        
+        //getMainView().getFrame().setVisible(false);
+        //app.getMainView().getFrame().setVisible(false);
         
     }
     
     
-    
+    private void showApp(){
+        app.show(app.getMainView().getFrame());
+        
+        app.getMainView().getFrame().setVisible(true);
+        app.getMainView().getFrame().setEnabled(true);
+        
+        app.getMainFrame().setVisible(true);
+        app.getMainFrame().setEnabled(true);
+
+//        app.show(app.getMainFrame());
+//        app.getMainFrame().setVisible(true);
+//        app.getMainView().getFrame().setVisible(true);
+        
+        menuBar.setVisible(true);
+        menuBar.setEnabled(true);
+        
+        mainPanel.setVisible(true);
+        mainPanel.setEnabled(true);
+        
+        statusPanel.setVisible(true);
+        statusPanel.setEnabled(true);
+        app.getMainFrame().setDefaultCloseOperation(1);
+        //app.get
+        
+               
+    }
 
     
 }
