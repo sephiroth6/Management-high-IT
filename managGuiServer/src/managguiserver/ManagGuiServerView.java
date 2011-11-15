@@ -14,6 +14,8 @@ import java.awt.PopupMenu;
 import java.awt.TrayIcon;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -542,6 +544,7 @@ public class ManagGuiServerView extends FrameView {
             
             Image image = Toolkit.getDefaultToolkit().getImage(ManagGuiServerView.class.getResource("images/logo_prova2_mini1.png"));//getImage();
 
+            //Close app
             ActionListener exitListener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("Exiting...");
@@ -549,13 +552,74 @@ public class ManagGuiServerView extends FrameView {
                 }
             };
             
+            
+            
+            //Start app
+            ActionListener startListener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                 //   
+                }
+            };
+            
+            
+            //Stop app
+            ActionListener stopListener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                     if(jButton3.isEnabled()) {
+                        try {
+                            Utils.closeConnection(c);
+                            s.close();
+                            jLabel3.setText("xxx.xxx.xxx.xxx");
+                            jLabel5.setText("xxxx");
+
+                            Server.ServerSingleton.destroySingleton();
+                            t.interrupt();
+                            jButton1.setEnabled(true); 
+                            jButton2.setEnabled(false);
+                            jButton3.setEnabled(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                     }
+                }
+            };
+            
+            
+            //Restart app
+            ActionListener restartListener = new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    //
+                }
+            };
+            
+            
+            
             PopupMenu popup = new PopupMenu();
+            
             MenuItem defaultItem = new MenuItem("Exit");
             defaultItem.addActionListener(exitListener);
+            
+            MenuItem defaultItem2 = new MenuItem("Start");
+            defaultItem2.addActionListener(startListener);
+            
+            MenuItem defaultItem3 = new MenuItem("Stop");
+            defaultItem3.addActionListener(stopListener);
+            
+            MenuItem defaultItem4 = new MenuItem("Restart");
+            defaultItem4.addActionListener(restartListener);
+            
+            
             popup.add(defaultItem);
+            popup.add(defaultItem2);
+            popup.add(defaultItem3);
+            popup.add(defaultItem4);
             
             trayIcon = new TrayIcon(image, "manIT_Server", popup);
             
+            
+            //click on ico
             MouseListener mouseListener = new MouseListener() {
 
                 public void mouseClicked(MouseEvent e) {
