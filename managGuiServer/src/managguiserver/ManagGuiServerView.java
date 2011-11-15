@@ -36,8 +36,6 @@ import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.EventObject;
-import org.jdesktop.application.Application.ExitListener;
 /**
  *
  * @author Angelo
@@ -62,19 +60,6 @@ public class ManagGuiServerView extends FrameView {
             this.app.getMainFrame().setDefaultCloseOperation(1);
             
         }
-        
-        this.getApplication().addExitListener(new ExitListener() {
-
-            public boolean canExit(EventObject event) {
-                return true;
-            }
-
-            public void willExit(EventObject event) {
-                System.out.println("Exit on close");
-                
-                
-            }
-        });
         
         initComponents();
         
