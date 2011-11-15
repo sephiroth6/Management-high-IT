@@ -19,9 +19,11 @@ public class ManagGuiServerApp extends SingleFrameApplication {
      * At startup create and show the main frame of the application.
      */
     
+       
     @Override protected void startup() {
         show(new ManagGuiServerView(this));   
         //show(new srv(this));
+        
     }
     
 
@@ -46,6 +48,7 @@ public class ManagGuiServerApp extends SingleFrameApplication {
      */
     public static void main(String[] args) throws Exception {
         launch(ManagGuiServerApp.class, args);
+        //TrayTest.main(args);
         
         
     }
