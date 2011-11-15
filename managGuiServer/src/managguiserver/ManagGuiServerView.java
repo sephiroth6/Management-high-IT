@@ -557,7 +557,7 @@ public class ManagGuiServerView extends FrameView {
             //Start app
             ActionListener startListener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                 //   
+                    start();
                 }
             };
             
@@ -565,24 +565,7 @@ public class ManagGuiServerView extends FrameView {
             //Stop app
             ActionListener stopListener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                     if(jButton3.isEnabled()) {
-                        try {
-                            Utils.closeConnection(c);
-                            s.close();
-                            jLabel3.setText("xxx.xxx.xxx.xxx");
-                            jLabel5.setText("xxxx");
-
-                            Server.ServerSingleton.destroySingleton();
-                            t.interrupt();
-                            jButton1.setEnabled(true); 
-                            jButton2.setEnabled(false);
-                            jButton3.setEnabled(false);
-                        } catch (IOException ex) {
-                            Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                     }
+                    stop();
                 }
             };
             
@@ -590,9 +573,10 @@ public class ManagGuiServerView extends FrameView {
             //Restart app
             ActionListener restartListener = new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    //
+                    restart();
                 }
             };
+            
             
             
             
@@ -698,6 +682,57 @@ public class ManagGuiServerView extends FrameView {
     }
     
     
+    private void stop(){
+        if(jButton3.isEnabled()) {
+            try {
+                Utils.closeConnection(c);
+                s.close();
+                jLabel3.setText("xxx.xxx.xxx.xxx");
+                jLabel5.setText("xxxx");
+                Server.ServerSingleton.destroySingleton();
+                t.interrupt();
+                jButton1.setEnabled(true); 
+                jButton2.setEnabled(false);
+                jButton3.setEnabled(false);
+            } catch (IOException ex) {
+                Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         }
+
+    }
+            
+    private void start(){
+        if(jButton1.isEnabled()) {
+            stop();
+            try {
+                this.startOp();
+            } catch (Exception e) {
+                jLabel3.setText("Impossibile avviare server: riprova");
+            }
+            
+        }
+        
+    }
+    
+    private void restart(){
+        if(jButton2.isEnabled()) {
+            stop();
+            try {
+                startOp();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ManagGuiServerView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+    
+        
     private void showApp(){
         app.show(app.getMainView().getFrame());
         
@@ -721,7 +756,7 @@ public class ManagGuiServerView extends FrameView {
         statusPanel.setEnabled(true);
         app.getMainFrame().setDefaultCloseOperation(1);
         //app.get
-        
+        getApplication().show(app.getMainView());
                
     }
 
