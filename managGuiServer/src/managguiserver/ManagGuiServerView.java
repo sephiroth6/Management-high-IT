@@ -618,7 +618,7 @@ public class ManagGuiServerView extends FrameView {
                     else{//(e.getClickCount() == 1){
                         System.out.println("Tray Icon - Mouse clicked!");
                         //farla chiudere la visuale
-                        trayIcon.displayMessage("manIT", "Server job", TrayIcon.MessageType.INFO);
+                        trayIcon.displayMessage("manIT - Server job", jLabel3.getText(), TrayIcon.MessageType.INFO);
                         
                     }
                     
