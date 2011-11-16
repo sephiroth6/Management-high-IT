@@ -21,16 +21,20 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.DefaultCellEditor;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 /**
 *
 * @author Angelo
@@ -50,6 +54,7 @@ public class ManagGuiView extends FrameView {
     private FinestraSwing DatiClienteSimply;
     private FinestraSwing pezziUtilizzati;
     private FinestraSwing gestioneRientri;
+    private Object[][] jtVal;
    
     //ico
     private ImageIcon clienti = createImageIcon ("images/clienti2.png", "ico clienti scheda tab");
@@ -6364,7 +6369,18 @@ flagError++;
     }
     
     private static void setJTableBilling(JTable jt, int n){
+        
+       
+       //        private Object [][] data = {
+//                                    {"Mary", "Campione", "Snowboarding", new Integer(5), new Boolean(false)}};
         String[] columnNames = new String[]{"Codice Articolo", "Descrizione", "Quantità", "Prezzo unitario", "Esentasse", "Totale"};
+        
+//        jt.setModel(new javax.swing.table.DefaultTableModel(
+//            new Object [][] {
+//                    {null, null, null, null, new Boolean(false), null},
+//            }, new String [] {
+//                 "Codice Articolo", "Descrizione", "Quantità", "Prezzo unitario", "Esentasse", "Totale"
+//            }));
         
         DefaultTableModel model = new DefaultTableModel(columnNames, n){
         
@@ -6374,8 +6390,37 @@ flagError++;
 //                return false;
 //            }
         };
-        
         jt.setModel(model);
+        
+              
+        
+        TableColumn esentasse = jt.getColumnModel().getColumn(4);
+
+        JCheckBox checkbox = new JCheckBox();
+        checkbox.setSelected(false);
+        checkbox.setVisible(true);
+        checkbox.setEnabled(true);
+        
+        esentasse.setCellEditor(new DefaultCellEditor(checkbox));
+        
+        jt.getDefaultRenderer(model.getColumnClass(n));
+        
+       MyTableCellRenderer renderer = new MyTableCellRenderer();
+       jt.setDefaultRenderer(Object.class, renderer);
+       
+       javax.swing.table.TableColumn var_col;
+       var_col = jt.getColumnModel().getColumn(4);
+         final JCheckBox check = new JCheckBox();
+         
+         
+//         var_col.setCellRenderer(new DefaultTableCellRenderer() {
+//            @Override
+//            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+//                check.setSelected(((Boolean)value).booleanValue()) ;
+//                return check;
+//            }
+//        });
+        var_col.setCellEditor(new DefaultCellEditor(check));
     }
     
     private void setUPBill(){
@@ -6390,6 +6435,15 @@ flagError++;
         jLabel19.setText("progressivo");
     }
     
+    
+    
+    public Class getColumnClass(int c) {
+            return getValueAt(0, c).getClass();
+        }
+    
+    public Object getValueAt(int row, int col) {
+        return jtVal[row][col];
+    }
     
  
 }
