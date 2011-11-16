@@ -6350,7 +6350,7 @@ flagError++;
             public boolean isCellEditable(int row, int column){
                 return false;
             }
-        };
+       };
         
         jt.setModel(model);
     }
