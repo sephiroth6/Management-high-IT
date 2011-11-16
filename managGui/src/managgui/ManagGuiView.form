@@ -4008,7 +4008,7 @@
             <Property name="name" type="java.lang.String" value="jTextField41" noResource="true"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField41.setDocument(new Prize());"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField41.setDocument(new managgui.Price());"/>
           </AuxValues>
         </Component>
       </SubComponents>

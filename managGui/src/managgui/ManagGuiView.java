@@ -32,7 +32,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 /**
@@ -66,7 +65,7 @@ public class ManagGuiView extends FrameView {
     
     //class just for number :D
     private JustNumber justNumbers = new JustNumber();
-    private Prize prize = new Prize();
+    private Price prize = new Price();
     
     
     private SharedClasses.Customer c;
@@ -3181,7 +3180,7 @@ public class ManagGuiView extends FrameView {
         );
 
         jTextField39.setDocument(justNumbers);
-        jTextField41.setDocument(new Prize());
+        jTextField41.setDocument(new Price());
 
         jDialog1.setName("jDialog1"); // NOI18N
 
