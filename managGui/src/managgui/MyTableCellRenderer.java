@@ -3,7 +3,10 @@ package managgui;
 import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-
+/**
+*
+* @author Angelo
+*/
 
 public class MyTableCellRenderer extends DefaultTableCellRenderer{
       
