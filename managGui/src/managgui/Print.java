@@ -66,12 +66,13 @@ public class Print implements Printable {
         Font f = new Font("Sans Serif", Font.PLAIN, 10);
         Font b = new Font("Sans Serif", Font.BOLD, 10);
         Font p = new Font("Serif", Font.PLAIN, 10);
+        Font footer = new Font("Sans Serif", Font.PLAIN, 8);
         FontRenderContext frc = grapdd.getFontRenderContext();
-        Image logo = ManagGuiView.createImageIcon("images/Livello_x0020_1.png", "logo MR. Cooper").getImage();
-        //grapdd.drawImage(logo, firstX, firstY, null);
-        //grapdd.
-        grapdd.drawGlyphVector(b.createGlyphVector(frc, "MR. Cooper di Pette Davide - via Michele di Lando 22/24 Roma, 00162 - P.IVA 11549761002 - CF PTTDVD85E20H501E"), firstX, height - 10);
-        grapdd.drawGlyphVector(b.createGlyphVector(frc, "Tel.: 06/98933294 - Mail: telefonia.mrcooper@gmail.com"), firstX, height - 5);
+        Image logo = ManagGuiView.createImageIcon("images/logo100.png", "logo MR. Cooper").getImage();
+        grapdd.drawImage(logo, firstX, firstY, null);
+
+        grapdd.drawGlyphVector(footer.createGlyphVector(frc, "MR. Cooper di Pette Davide - via Michele di Lando 22/24 Roma, 00162 - P.IVA 11549761002 - CF PTTDVD85E20H501E"), firstX, height - 20);
+        grapdd.drawGlyphVector(footer.createGlyphVector(frc, "Tel.: 06/98933294 - Mail: telefonia.mrcooper@gmail.com"), firstX, height - 5);
         // Customer info
         firstY = firstY + heightLines(6);
         grapdd.drawGlyphVector(b.createGlyphVector(frc, "SCHEDA RIPARAZIONE #".concat(Integer.toString(this.r.getID()))), firstX, firstY);
@@ -99,13 +100,13 @@ public class Print implements Printable {
         // responsability
         firstY = firstY + heightLines(7);
         grap.drawLine(x + 100, firstY, width - 100 , firstY);
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’accettazione. Si avvisa il cliente "), firstX, firstY);
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "di realizzare delle copie di sicurezza dei dati presenti nella memoria del telefono, prima di consegnare il telefono medesimo al "), firstX, firstY + heightLines(1));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "centro di assistenza per la riparazione, onde evitare la perdita degli stessi. Ai sensi dell’articolo 13 del D.lgs n. 196 del "), firstX, firstY + heightLines(2));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto di trattamento, nel rispetto della normativa"), firstX, firstY + heightLines(3));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "sopra richiamata e degli obblighi di riservatezza. Titolare del trattamento dei dati è MR. COOPER di Pette Davide con sede in "), firstX, firstY + heightLines(4));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "via Michele di Lando 22/24 00162 Roma (RM)."), firstX, firstY + heightLines(5));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(6));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’accettazione. Si avvisa il cliente "), firstX, firstY + heightLines(1));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "di realizzare delle copie di sicurezza dei dati presenti nella memoria del telefono, prima di consegnare il telefono medesimo al "), firstX, firstY + heightLines(2));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "centro di assistenza per la riparazione, onde evitare la perdita degli stessi. Ai sensi dell’articolo 13 del D.lgs n. 196 del "), firstX, firstY + heightLines(3));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto di trattamento, nel rispetto della normativa"), firstX, firstY + heightLines(4));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "sopra richiamata e degli obblighi di riservatezza. Titolare del trattamento dei dati è MR. COOPER di Pette Davide con sede in "), firstX, firstY + heightLines(5));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "via Michele di Lando 22/24 00162 Roma (RM)."), firstX, firstY + heightLines(6));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(7));
         grap.setColor(Color.LIGHT_GRAY);
         grap.drawLine(width - 200, firstY + heightLines(8), width - 67, firstY + heightLines(8));
         grap.setColor(Color.BLACK);
@@ -118,7 +119,7 @@ public class Print implements Printable {
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "indicati nell’informativa. "), firstX, firstY + heightLines(3));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(4));
         grap.setColor(Color.LIGHT_GRAY);
-        grap.drawLine(width - 200, firstY + heightLines(6), width - 67, firstY + heightLines(6));
+        grap.drawLine(width - 200, firstY + heightLines(5), width - 67, firstY + heightLines(5));
         grap.setColor(Color.BLACK);
         
         return PAGE_EXISTS;
@@ -146,6 +147,6 @@ public class Print implements Printable {
                  return "ALTRO";
          
          }
-     }
+     }         
      
 }
