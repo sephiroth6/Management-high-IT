@@ -61,7 +61,7 @@ public class ManagGuiView extends FrameView {
     private ImageIcon warehouse = createImageIcon ("images/warehouse.png", "ico magazzino scheda tab");
     private ImageIcon billing = createImageIcon ("images/fatt.png", "ico fatturazione scheda tab");
     
-    private Client.ServerInfo serverInfo; // the open port of the server (retrieved from file)
+    private Client.ServerInfo serverInfo;               // the open port of the server and its address (retrieved from file)
     
     //class just for number :D
     private JustNumber justNumbers = new JustNumber();
@@ -5379,7 +5379,6 @@ flagError++;
         if(evt.getClickCount() == 2){
             int sel = jTable5.getSelectedRow();
             this.c = (SharedClasses.Customer)this.customerRet.get(sel);
-            this.customerRet = null; // reset the array with the search results
             
             setCenterMonitorDim(503, 300);
             DatiClienteView = new FinestraSwing("Scheda dati cliente", p.getPX(), p.getPY(), 503, 300, jPanel13);
@@ -5455,7 +5454,6 @@ flagError++;
    
     // customer edit window exit without changes (jPanel13)
     private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
-        resetDatiCliente();
         DatiCliente.dispose();
     }//GEN-LAST:event_jButton15MouseClicked
         
