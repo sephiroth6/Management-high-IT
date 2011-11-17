@@ -58,7 +58,6 @@ public class ManagGuiServerView extends FrameView {
         if (SystemTray.isSupported()){
             getSystemTray();
             this.app.getMainFrame().setDefaultCloseOperation(1);
-            
         }
         
         initComponents();
@@ -719,13 +718,16 @@ public class ManagGuiServerView extends FrameView {
     
         
     private void showApp(){
+        app.getMainFrame().setDefaultCloseOperation(1);
         app.show(app.getMainView().getFrame());
         
         app.getMainView().getFrame().setVisible(true);
         app.getMainView().getFrame().setEnabled(true);
+        app.getMainFrame().setState(JFrame.NORMAL);
         
         app.getMainFrame().setVisible(true);
         app.getMainFrame().setEnabled(true);
+        app.show(this);
 
 //        app.show(app.getMainFrame());
 //        app.getMainFrame().setVisible(true);
@@ -742,6 +744,8 @@ public class ManagGuiServerView extends FrameView {
         app.getMainFrame().setDefaultCloseOperation(1);
         //app.get
         getApplication().show(app.getMainView());
+        
+
                
     }
 
