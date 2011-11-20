@@ -4,6 +4,7 @@
 
 package managgui;
 
+import javax.swing.JOptionPane;
 import org.jdesktop.application.Action;
 /**
  *
@@ -16,6 +17,7 @@ public class ManagGuiWarehouse2 extends javax.swing.JDialog {
     public ManagGuiWarehouse2(java.awt.Frame parent) {
         super(parent);
         initComponents();
+        jTextField42.setText(Client.Utils.getWarehouse().toString());
         getRootPane().setDefaultButton(closeButton);
     }
 
@@ -47,28 +49,26 @@ public class ManagGuiWarehouse2 extends javax.swing.JDialog {
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(managgui.ManagGuiApp.class).getContext().getActionMap(ManagGuiWarehouse2.class, this);
         closeButton.setAction(actionMap.get("closeWarehouseBox")); // NOI18N
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(managgui.ManagGuiApp.class).getContext().getResourceMap(ManagGuiWarehouse2.class);
-        closeButton.setIcon(resourceMap.getIcon("closeButton.icon")); // NOI18N
         closeButton.setText(resourceMap.getString("closeButton.text")); // NOI18N
         closeButton.setName("closeButton"); // NOI18N
 
-        jLabel60.setFont(resourceMap.getFont("jLabel60.font")); // NOI18N
-        jLabel60.setText(resourceMap.getString("jLabel60.text")); // NOI18N
         jLabel60.setName("jLabel60"); // NOI18N
 
-        jLabel61.setText(resourceMap.getString("jLabel61.text")); // NOI18N
         jLabel61.setName("jLabel61"); // NOI18N
 
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
         jTextField42.setName("jTextField42"); // NOI18N
 
-        jButton30.setIcon(resourceMap.getIcon("jButton30.icon")); // NOI18N
         jButton30.setText(resourceMap.getString("jButton30.text")); // NOI18N
         jButton30.setName("jButton30"); // NOI18N
+        jButton30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton30MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,15 +85,16 @@ public class ManagGuiWarehouse2 extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(closeButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(107, 107, 107)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -107,20 +108,34 @@ public class ManagGuiWarehouse2 extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton30)
-                    .addComponent(closeButton))
-                .addGap(22, 22, 22))
+                    .addComponent(closeButton)
+                    .addComponent(jButton30))
+                .addContainerGap())
         );
 
         jTextField42.setDocument(justNumbers);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton30MouseClicked
+        
+        String av = jTextField42.getText();
+        
+        if(!av.equals("")) {
+            Client.Utils.setWarehouse(av);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Inserisci la quantità!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_jButton30MouseClicked
 
        
     // Variables declaration - do not modify//GEN-BEGIN:variables

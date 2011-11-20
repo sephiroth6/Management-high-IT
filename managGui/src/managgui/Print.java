@@ -93,7 +93,7 @@ public class Print implements Printable {
         grap.drawLine(x + 100, firstY, width - 100 , firstY);
         grapdd.drawGlyphVector(b.createGlyphVector(frc, "DETTAGLI SCHEDA"), firstX, firstY + heightLines(1));
         grapdd.drawGlyphVector(f.createGlyphVector(frc, "Data e ora ingresso: ".concat(this.r.getDateIn())), firstX + 20, firstY + heightLines(2));
-        grapdd.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(this.de.getDeclared())), firstX + 20, firstY + heightLines(3));
+        printDeclared(firstX, firstY + heightLines(3), grapdd, f, frc);
         grapdd.drawGlyphVector(f.createGlyphVector(frc, "Accessori consegnati: ".concat(optional)), firstX + 20, firstY + heightLines(6));
         
         // responsability
@@ -132,6 +132,28 @@ public class Print implements Printable {
          return i * 10;
      }
   
+     private void printDeclared (int x, int y, Graphics2D g, Font f, FontRenderContext frc) {
+         
+         String s = this.de.getDeclared();
+         
+         if(s.length() < 108) {
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s)), x + 20, y);
+         } else if (s.length() < 216) {
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 107))), x + 20, y);
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(108, s.length())), x + 20, y + heightLines(1));
+         } else if (s.length() < 324) {
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 107))), x + 20, y);
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(108, s.length())), x + 20, y + heightLines(1));
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(215, s.length())), x + 20, y + heightLines(2));
+         } else {
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 107))), x + 20, y);
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(108, s.length())), x + 20, y + heightLines(1));
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(215, s.length())), x + 20, y + heightLines(2));
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(323, 428).concat("...")), x + 20, y + heightLines(3));
+         }
+         
+     }
+     
      private static String deviceType (int i) {
          
          switch(i) {

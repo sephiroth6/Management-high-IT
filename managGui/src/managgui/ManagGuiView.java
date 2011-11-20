@@ -5830,7 +5830,7 @@ flagError++;
 
     // warehouse SELECT all by availability
     private void jButton76MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton76MouseClicked
-       ComClasses.Request wr = new ComClasses.Request(new Integer(12), ComClasses.Constants.WARE, ComClasses.Constants.SELECT, SharedClasses.Warehouse.byAvailabilitySelect());
+        ComClasses.Request wr = new ComClasses.Request(Client.Utils.getWarehouse(), ComClasses.Constants.WARE, ComClasses.Constants.SELECT, SharedClasses.Warehouse.byAvailabilitySelect());
        
         this.warehouseRet = null;
         
