@@ -129,6 +129,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField42">
       <Properties>
+        <Property name="text" type="java.lang.String" resourceKey="jTextField42.text"/>
         <Property name="name" type="java.lang.String" value="jTextField42" noResource="true"/>
       </Properties>
       <AuxValues>

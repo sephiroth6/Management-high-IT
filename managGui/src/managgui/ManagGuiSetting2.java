@@ -67,6 +67,7 @@ public class ManagGuiSetting2 extends javax.swing.JDialog {
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
 
+        jTextField42.setText(resourceMap.getString("jTextField42.text")); // NOI18N
         jTextField42.setName("jTextField42"); // NOI18N
 
         jLabel65.setText(resourceMap.getString("jLabel65.text")); // NOI18N
