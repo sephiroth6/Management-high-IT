@@ -136,20 +136,19 @@ public class Print implements Printable {
          
          String s = this.de.getDeclared();
          
-         if(s.length() < 108) {
+         if(s.length() < 64) {
              g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s)), x + 20, y);
-         } else if (s.length() < 216) {
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 107))), x + 20, y);
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(108, s.length())), x + 20, y + heightLines(1));
-         } else if (s.length() < 324) {
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 107))), x + 20, y);
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(108, s.length())), x + 20, y + heightLines(1));
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(215, s.length())), x + 20, y + heightLines(2));
+         } else if (s.length() < 140) {
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 63))), x + 20, y);
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(64, s.length())), x + 20, y + heightLines(1));
+         } else if (s.length() < 218) {
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 63))), x + 20, y);
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(64, 139)), x + 20, y + heightLines(1));
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(140, s.length())), x + 20, y + heightLines(2));
          } else {
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 107))), x + 20, y);
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(108, s.length())), x + 20, y + heightLines(1));
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(215, s.length())), x + 20, y + heightLines(2));
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(323, 428).concat("...")), x + 20, y + heightLines(3));
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 63))), x + 20, y);
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(64, 139)), x + 20, y + heightLines(1));
+             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(140, 213).concat("...")), x + 20, y + heightLines(2));
          }
          
      }
