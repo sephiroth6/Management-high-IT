@@ -383,6 +383,8 @@ public class ManagGuiView extends FrameView {
         jTextField81 = new javax.swing.JTextField();
         jLabel123 = new javax.swing.JLabel();
         jTextField82 = new javax.swing.JTextField();
+        jTextField87 = new javax.swing.JTextField();
+        jLabel98 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -2335,7 +2337,7 @@ public class ManagGuiView extends FrameView {
             }
         });
         jScrollPane26.setViewportView(jTable13);
-        setJTableRetailer(jTable13, 0);
+        setJTableSearchBill(jTable13, 0);
 
         jLabel122.setText(resourceMap.getString("jLabel122.text")); // NOI18N
         jLabel122.setName("jLabel122"); // NOI18N
@@ -2349,6 +2351,12 @@ public class ManagGuiView extends FrameView {
         jTextField82.setText(resourceMap.getString("jTextField82.text")); // NOI18N
         jTextField82.setName("jTextField82"); // NOI18N
 
+        jTextField87.setText(resourceMap.getString("jTextField87.text")); // NOI18N
+        jTextField87.setName("jTextField87"); // NOI18N
+
+        jLabel98.setText(resourceMap.getString("jLabel98.text")); // NOI18N
+        jLabel98.setName("jLabel98"); // NOI18N
+
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
@@ -2357,7 +2365,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel25Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane26, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE))
+                        .addComponent(jScrollPane26, javax.swing.GroupLayout.DEFAULT_SIZE, 1311, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel25Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2367,15 +2375,23 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField82)
+                            .addComponent(jTextField81, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                            .addComponent(jTextField87, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel25Layout.createSequentialGroup()
-                                .addComponent(jTextField79, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField80, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField81))
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton74)
-                            .addComponent(jButton73))))
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel98)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField79, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                    .addComponent(jTextField80, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton73)
+                                .addGap(26, 26, 26)))
+                        .addComponent(jButton74)
+                        .addGap(163, 163, 163)))
                 .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
@@ -2384,23 +2400,30 @@ public class ManagGuiView extends FrameView {
                 .addContainerGap()
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel25Layout.createSequentialGroup()
-                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel121)
-                            .addComponent(jTextField79, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField80, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField81, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel122)))
-                    .addComponent(jButton73))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel123)
-                    .addComponent(jTextField82, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton74))
+                            .addComponent(jButton74)
+                            .addComponent(jButton73)))
+                    .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField79, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel98))
+                        .addGroup(jPanel25Layout.createSequentialGroup()
+                            .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel121)
+                                .addComponent(jTextField87, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextField81, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel122))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel123)
+                                .addComponent(jTextField82, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -6059,6 +6082,7 @@ flagError++;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
@@ -6224,6 +6248,7 @@ flagError++;
     private javax.swing.JTextField jTextField84;
     private javax.swing.JTextField jTextField85;
     private javax.swing.JTextField jTextField86;
+    private javax.swing.JTextField jTextField87;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel mainPanel;
@@ -6769,7 +6794,20 @@ flagError++;
         jLabel19.setText("progressivo");
     }
     
-    
+    private static void setJTableSearchBill(JTable jt, int n){
+        String[] columnNames = new String[]{"Numero Prarica", "Cognome", "Nome","Indirizzo", "P.Iva", "C.F.", "Totale Finale"};
+        
+        DefaultTableModel model = new DefaultTableModel(columnNames, n){
+        
+            private static final long serialVersionUID = 1L;
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+       };
+        
+        jt.setModel(model);
+    }
     
     public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
