@@ -4410,8 +4410,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             t.setValueAt(w.getSerial(), i, 0);
             t.setValueAt(w.getName(), i, 1);
             t.setValueAt(w.getAvailability(), i, 2);
-            t.setValueAt(w.getUnitPrice(), i, 3);
-            t.setValueAt(w.getNote(), i, 4);
+            // TODO set the price without IVA
+            t.setValueAt(w.getUnitPrice(), i, 4);
+            t.setValueAt(w.getNote(), i, 5);
         }
         
     }
@@ -6674,7 +6675,7 @@ flagError++;
     }
     
     private static void setJTableWarehouse(JTable jt, int n){
-        String[] columnNames = new String[]{"Codice Articolo", "Nome Generico", "Quantità", "Prezzo unitario", "Note"};
+        String[] columnNames = new String[]{"Codice Articolo", "Nome Generico", "Quantità", "Prezzo unitario", "Prezzo unitario ivato", "Note"};
         
         DefaultTableModel model = new DefaultTableModel(columnNames, n){
         
