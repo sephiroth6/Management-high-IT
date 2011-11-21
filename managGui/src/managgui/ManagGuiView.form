@@ -4027,7 +4027,7 @@
                           <Component id="jButton29" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -4059,7 +4059,7 @@
                       <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane14" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton28" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton29" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -4785,11 +4785,12 @@
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
+                  <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="Codice Articolo" type="java.lang.Object"/>
                     <Column editable="false" title="Nome Generico" type="java.lang.Object"/>
                     <Column editable="false" title="Quantit&#xe0; Disponibile" type="java.lang.Object"/>
-                    <Column editable="false" title="Prezzo Unitario" type="java.lang.Object"/>
+                    <Column editable="false" title="Prezzo Un." type="java.lang.Object"/>
+                    <Column editable="false" title="Prezzo Un. Ivato" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jTable6" noResource="true"/>
@@ -4811,11 +4812,12 @@
               <Properties>
                 <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="0">
+                  <Table columnCount="5" rowCount="0">
                     <Column editable="false" title="Codice Articolo" type="java.lang.Object"/>
                     <Column editable="false" title="Nome Generico" type="java.lang.Object"/>
                     <Column editable="false" title="Quantit&#xe0; Utilizzata" type="java.lang.Object"/>
-                    <Column editable="false" title="Prezzo Unitario" type="java.lang.Object"/>
+                    <Column editable="false" title="Prezzo Un." type="java.lang.Object"/>
+                    <Column editable="false" title="Prezzo Un. Ivato" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="name" type="java.lang.String" value="jTable7" noResource="true"/>
