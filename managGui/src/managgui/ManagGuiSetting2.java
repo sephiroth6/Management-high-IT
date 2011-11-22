@@ -20,6 +20,7 @@ public class ManagGuiSetting2 extends javax.swing.JDialog {
     public ManagGuiSetting2(java.awt.Frame parent) {
         super(parent);
         initComponents();
+        jTextField42.setText(Client.Utils.getWarehouse().toString());
         getRootPane().setDefaultButton(closeButton);
     }
 
