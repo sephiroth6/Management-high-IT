@@ -5712,10 +5712,26 @@ flagError++;
         DatiCliente.dispose();
     }//GEN-LAST:event_jButton56MouseClicked
 
+    // save billing customer
     private void jButton57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton57MouseClicked
-        DatiCliente.dispose();
+        
+        if(!checkTaxCode(jTextField63.getText())) {
+            showWinAlert(jPanel20, "Struttura codice fiscale errata!", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            DatiCliente.dispose();
+        }
+        
     }//GEN-LAST:event_jButton57MouseClicked
 
+    private static boolean checkTaxCode (String c) {
+        
+        if(c.matches("[a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][0-9][0-9][abcdehlmprstABCDEHLMPRST][0-9][0-9][a-zA-Z][0-9][0-9][0-9][a-zA-Z]"))
+            return true;
+        
+        return false;
+        
+    }
+    
     //new Client bill
     private void jButton54MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton54MouseClicked
         setCenterMonitorDim(520, 360);
