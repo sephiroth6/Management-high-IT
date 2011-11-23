@@ -5026,8 +5026,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane18" pref="353" max="32767" attributes="1"/>
-                              <Component id="jTextField59" alignment="0" pref="353" max="32767" attributes="1"/>
+                              <Component id="jScrollPane18" pref="359" max="32767" attributes="1"/>
+                              <Component id="jTextField59" alignment="0" pref="359" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">

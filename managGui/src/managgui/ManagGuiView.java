@@ -4008,8 +4008,8 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jLabel82))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
-                            .addComponent(jTextField59, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                            .addComponent(jTextField59, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)))
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel85)
@@ -5715,12 +5715,17 @@ flagError++;
     // save billing customer
     private void jButton57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton57MouseClicked
         
-        if(!checkTaxCode(jTextField63.getText())) {
-            showWinAlert(jPanel20, "Struttura codice fiscale errata!", "Error", JOptionPane.ERROR_MESSAGE);
+        if(ManagGuiView.neededInsertion(jTextField61, jTextField62, jTextField63)) {
+            
+            if(!checkTaxCode(jTextField63.getText())) {
+                showWinAlert(jPanel20, "Struttura codice fiscale errata!", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                DatiCliente.dispose();
+            }
+            
         } else {
-            DatiCliente.dispose();
+            showWinAlert(jPanel20, "Inserire tutti i dati obbligatori (cognome, nome, codice fiscale)!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        
     }//GEN-LAST:event_jButton57MouseClicked
 
     private static boolean checkTaxCode (String c) {
