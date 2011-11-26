@@ -4323,7 +4323,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_jButton3MouseClicked
 
     private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
-        jTextField3.setText("");
+        if(jTextField3.getText().equals("Codice o Nome Articolo"))
+            jTextField3.setText(null);
     }//GEN-LAST:event_jTextField3MouseClicked
 
     // warehouse search reset
