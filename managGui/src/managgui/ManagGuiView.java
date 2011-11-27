@@ -17,6 +17,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -61,6 +64,7 @@ public class ManagGuiView extends FrameView {
     private ImageIcon billing = createImageIcon ("images/fatt.png", "ico fatturazione scheda tab");
     
     private Client.ServerInfo serverInfo;               // the open port of the server and its address (retrieved from file)
+    private Client.WarehouseInfo warehouseInfo;         // warehouse treshold and iva percentage value
     
     private int bill = 0; /* legenda:
      *                       1 = nuova fattura
@@ -100,6 +104,7 @@ public class ManagGuiView extends FrameView {
         jPanel9.setVisible(false);
         jPanel10.setVisible(false);
         getConnection();
+        getWarehouse();
        
         jButton45.setVisible(false);
         
@@ -182,7 +187,7 @@ public class ManagGuiView extends FrameView {
     public void showSetting2() {
         // initialize the dialog every time that is opened to get the info from the settings file
         JFrame mainFrame = ManagGuiApp.getApplication().getMainFrame();
-        warehouseBox = new ManagGuiSetting2(mainFrame);
+        warehouseBox = new ManagGuiSetting2(mainFrame, this);
         warehouseBox.setLocationRelativeTo(mainFrame);
         ManagGuiApp.getApplication().show(warehouseBox);
     }
@@ -1295,6 +1300,11 @@ public class ManagGuiView extends FrameView {
 
         jTextField52.setText(resourceMap.getString("jTextField52.text")); // NOI18N
         jTextField52.setName("jTextField52"); // NOI18N
+        jTextField52.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField52KeyReleased(evt);
+            }
+        });
 
         jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
         jLabel19.setName("jLabel19"); // NOI18N
@@ -1525,7 +1535,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(135, 135, 135)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(345, Short.MAX_VALUE)))
+                    .addContainerGap(308, Short.MAX_VALUE)))
         );
 
         //jLabel83.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -4395,7 +4405,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     // set warehouse data into jTable
-    public void setTableWarehouseData (JTable t, ArrayList<Object> a) {
+    private static void setTableWarehouseData (JTable t, ArrayList<Object> a) {
         
         int n = a.size();
         SharedClasses.Warehouse w = null;
@@ -5902,6 +5912,28 @@ flagError++;
         jTextField35.setText(getDataOra());
     }//GEN-LAST:event_jButton78MouseClicked
 
+    // number inserted in price with IVA JTextField
+    private void jTextField52KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField52KeyReleased
+        jTextField88.setText(noIVA(jTextField52.getText()));
+    }//GEN-LAST:event_jTextField52KeyReleased
+
+    // obtain the price without iva
+    private String noIVA (String s) {
+        // if the price has been inserted
+        if(!s.equals("")) {
+            BigDecimal pui = new BigDecimal(s);
+            BigDecimal tot = new BigDecimal(100 + this.warehouseInfo.getIVA().intValue());
+            BigDecimal a = pui.multiply(new BigDecimal(100));
+
+            return a.divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
+        // if the price has not been inserted
+        } else {
+        
+            return "0";
+        
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -6675,6 +6707,10 @@ flagError++;
         
     }
     
+     private void getWarehouse () {
+         this.warehouseInfo = Client.Utils.getWarehouseInfo(); 
+    }
+    
     private static void setJTableClient(JTable jt, int n){
         String[] columnNames = new String[]{"Cognome", "Nome", "Indirizzo", "Recapito", "Note"};
         
@@ -6878,6 +6914,9 @@ flagError++;
         jButton55.setVisible(false);
     }
     
+    public void setWarehouseInfo (Client.WarehouseInfo wi) {
+        this.warehouseInfo = wi;
+    }
 
  
 }

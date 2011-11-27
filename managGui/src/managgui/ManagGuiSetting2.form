@@ -50,7 +50,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="205" max="32767" attributes="0"/>
+              <EmptySpace pref="183" max="32767" attributes="0"/>
               <Component id="closeButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -149,6 +149,9 @@
         <Property name="text" type="java.lang.String" resourceKey="jTextField1.text"/>
         <Property name="name" type="java.lang.String" value="jTextField1" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField1.setDocument(justNumbers2);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

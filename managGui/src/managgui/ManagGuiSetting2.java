@@ -16,11 +16,14 @@ public class ManagGuiSetting2 extends javax.swing.JDialog {
 
     private JustNumber justNumbers = new JustNumber();
     private JustNumber justNumbers2 = new JustNumber();
+    private ManagGuiView mgv;
     
-    public ManagGuiSetting2(java.awt.Frame parent) {
+    public ManagGuiSetting2(java.awt.Frame parent, ManagGuiView m) {
         super(parent);
         initComponents();
-        jTextField42.setText(Client.Utils.getWarehouse().toString());
+        jTextField42.setText(Client.Utils.getWarehouseInfo().getTreshold().toString());
+        jTextField1.setText(Client.Utils.getWarehouseInfo().getIVA().toString());
+        this.mgv = m;
         getRootPane().setDefaultButton(closeButton);
     }
 
@@ -113,7 +116,7 @@ public class ManagGuiSetting2 extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                 .addComponent(closeButton)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -146,13 +149,24 @@ public class ManagGuiSetting2 extends javax.swing.JDialog {
         );
 
         jTextField42.setDocument(justNumbers);
+        jTextField1.setDocument(justNumbers2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-
-        String av = jTextField42.getText();          if (!av.equals("")) {             Client.Utils.setWarehouse(av);             this.dispose();         } else {             JOptionPane.showMessageDialog(null, "Inserisci la quantità!", "Error", JOptionPane.ERROR_MESSAGE);         }     }//GEN-LAST:event_jButton1MouseClicked
+        String av = jTextField42.getText();          
+        String iva = jTextField1.getText();
+        
+        if (!av.equals("")) {
+            Client.Utils.setWarehouse(av, iva);
+            this.mgv.setWarehouseInfo(new Client.WarehouseInfo(av, iva));
+            this.dispose();         
+        } else {             
+            JOptionPane.showMessageDialog(null, "Inserisci la quantità!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButton1MouseClicked
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;

@@ -1043,7 +1043,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="345" max="32767" attributes="0"/>
+                              <EmptySpace pref="308" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1255,6 +1255,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jTextField52.text"/>
                         <Property name="name" type="java.lang.String" value="jTextField52" noResource="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField52KeyReleased"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField52.setDocument(price);"/>
                       </AuxValues>
