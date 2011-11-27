@@ -1311,6 +1311,11 @@ public class ManagGuiView extends FrameView {
 
         jTextField88.setText(resourceMap.getString("jTextField88.text")); // NOI18N
         jTextField88.setName("jTextField88"); // NOI18N
+        jTextField88.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField88KeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -5914,23 +5919,30 @@ flagError++;
 
     // number inserted in price with IVA JTextField
     private void jTextField52KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField52KeyReleased
-        jTextField88.setText(noIVA(jTextField52.getText()));
+        jTextField88.setText(handleIVA(jTextField52.getText(), false));
     }//GEN-LAST:event_jTextField52KeyReleased
 
+    // number inserted in price without IVA JTextField
+    private void jTextField88KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField88KeyReleased
+        jTextField52.setText(handleIVA(jTextField88.getText(), true));
+    }//GEN-LAST:event_jTextField88KeyReleased
+
     // obtain the price without iva
-    private String noIVA (String s) {
-        // if the price has been inserted
+    private String handleIVA (String s, boolean iva) {
+        
         if(!s.equals("")) {
+            // if the price has been inserted
             BigDecimal pui = new BigDecimal(s);
             BigDecimal tot = new BigDecimal(100 + this.warehouseInfo.getIVA().intValue());
-            BigDecimal a = pui.multiply(new BigDecimal(100));
 
-            return a.divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
-        // if the price has not been inserted
+            if(iva)
+                return pui.multiply(tot).divide(new BigDecimal(100), new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
+            else
+                return pui.multiply(new BigDecimal(100)).divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
+        
         } else {
-        
+            // if the price has not been inserted    
             return "0";
-        
         }
     }
     
