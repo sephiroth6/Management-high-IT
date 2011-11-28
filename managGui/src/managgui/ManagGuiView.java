@@ -493,6 +493,8 @@ public class ManagGuiView extends FrameView {
         jButton29 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField41 = new javax.swing.JTextField();
+        jTextField89 = new javax.swing.JTextField();
+        jLabel99 = new javax.swing.JLabel();
         jDialog1 = new javax.swing.JDialog();
         jButton32 = new javax.swing.JButton();
         jButton33 = new javax.swing.JButton();
@@ -2633,7 +2635,7 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2641,11 +2643,11 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE))
+                        .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE))
+                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(jButton16)
                         .addGap(18, 18, 18)
@@ -3255,7 +3257,7 @@ public class ManagGuiView extends FrameView {
         jPanel14.setBackground(resourceMap.getColor("jPanel14.background")); // NOI18N
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel14.setName("jPanel14"); // NOI18N
-        jPanel14.setPreferredSize(new java.awt.Dimension(380, 380));
+        jPanel14.setPreferredSize(new java.awt.Dimension(380, 420));
 
         jLabel56.setText(resourceMap.getString("jLabel56.text")); // NOI18N
         jLabel56.setName("jLabel56"); // NOI18N
@@ -3308,6 +3310,22 @@ public class ManagGuiView extends FrameView {
 
         jTextField41.setText(resourceMap.getString("jTextField41.text")); // NOI18N
         jTextField41.setName("jTextField41"); // NOI18N
+        jTextField41.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField41KeyReleased(evt);
+            }
+        });
+
+        jTextField89.setText(resourceMap.getString("jTextField89.text")); // NOI18N
+        jTextField89.setName("jTextField89"); // NOI18N
+        jTextField89.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField89KeyReleased(evt);
+            }
+        });
+
+        jLabel99.setText(resourceMap.getString("jLabel99.text")); // NOI18N
+        jLabel99.setName("jLabel99"); // NOI18N
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -3317,41 +3335,35 @@ public class ManagGuiView extends FrameView {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
-                                .addComponent(jLabel56)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField17))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel58)
-                                    .addComponent(jLabel57)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextField41, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextField39, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))))))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addComponent(jLabel59)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel99)
+                            .addComponent(jLabel59)
+                            .addComponent(jLabel58)
+                            .addComponent(jLabel57)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel56))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(jTextField89, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(jTextField41, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(jTextField18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(jTextField39, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                            .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton28)
                         .addGap(18, 18, 18)
                         .addComponent(jButton29)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel56)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel56))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel57)
@@ -3364,11 +3376,15 @@ public class ManagGuiView extends FrameView {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel99)
+                    .addComponent(jTextField89, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel59)
                     .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton28)
                     .addComponent(jButton29))
@@ -4421,7 +4437,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             t.setValueAt(w.getSerial(), i, 0);
             t.setValueAt(w.getName(), i, 1);
             t.setValueAt(w.getAvailability(), i, 2);
-            // TODO set the price without IVA
+            t.setValueAt(w.getNoIvaPrice(), i, 3);
             t.setValueAt(w.getUnitPrice(), i, 4);
             t.setValueAt(w.getNote(), i, 5);
         }
@@ -5047,13 +5063,19 @@ flagError++;
             flagError++;
         }
         if(jTextField52.getText().equals("")){
+            showWinAlert(jPanel6, "Inserire il prezzo unitario ivato.", "Warning", JOptionPane.WARNING_MESSAGE);
+            flagError++;
+        }
+        if(jTextField88.getText().equals("")){
             showWinAlert(jPanel6, "Inserire il prezzo unitario, iva esclusa.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         
         if(flagError == 0){
-            setArticleWarehouseDB(jTextField4, jTextField5, jTextField6, jTextField52, jTextArea1);
-            jPanel6.setVisible(false);
+            int ret = setArticleWarehouseDB(jTextField4, jTextField5, jTextField6, jTextField52, jTextArea1, jTextField88);
+            // if the operation succeedes, hide the JPanel
+            if(ret != ComClasses.Constants.RET_EXC && ret != ComClasses.Constants.RET_EXI)
+                jPanel6.setVisible(false);
         }
         
     }//GEN-LAST:event_jButton9MouseClicked
@@ -5072,7 +5094,11 @@ flagError++;
             flagError++;
         }
         if(jTextField41.getText().equals("")){
-            showWinAlert(jPanel14, "Inserire il prezzo unitario, senza iva.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel14, "Inserire il prezzo unitario ivato.", "Warning", JOptionPane.WARNING_MESSAGE);
+            flagError++;
+        }
+        if(jTextField89.getText().equals("")){
+            showWinAlert(jPanel14, "Inserire il prezzo unitario senza iva.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         
@@ -5086,17 +5112,18 @@ flagError++;
 
     private void updateSparePart () {
         
-        SharedClasses.Warehouse w = new SharedClasses.Warehouse(this.sp.getSerial(), jTextField17.getText(), jTextField18.getText(), Integer.parseInt(jTextField39.getText()), jTextField41.getText(), jTextArea4.getText());
+        SharedClasses.Warehouse w = new SharedClasses.Warehouse(this.sp.getSerial(), jTextField17.getText(), jTextField18.getText(), Integer.parseInt(jTextField39.getText()), jTextField41.getText(), jTextArea4.getText(), jTextField89.getText());
         ComClasses.Request req = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.UPDATE, this.sp.update(w));
    
         try {
             // TODO exception if the value from the server is an exception
             if(Utils.intOperation(req).intValue() != 1)
-                showWinAlert(jPanel7, "Modifica non riuscita. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(jPanel14, "Modifica non riuscita. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            
             this.sp = null;
         
         } catch (Exception e) {
-            showWinAlert(jPanel7, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel14, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -5113,7 +5140,7 @@ flagError++;
             setCenterMonitorDim(465, 340);
             this.sp = (SharedClasses.Warehouse)this.warehouseRet.get(jTable1.getSelectedRow());
             schedaArticoloMagazzino = new FinestraSwing("Scheda Articolo Magazzino", p.getPX(), p.getPY(), jPanel14.getPreferredSize().width, jPanel14.getPreferredSize().height, jPanel14);
-            getValArticleWarehouse(jTextField17, jTextField18, jTextField39, jTextField41, jTextArea4);
+            getValArticleWarehouse(jTextField17, jTextField18, jTextField39, jTextField41, jTextArea4, jTextField89);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -5154,8 +5181,9 @@ flagError++;
 
                 u = (SharedClasses.Usage) this.usageRet.get(i);
                 this.old.add(new SharedClasses.UsageCache(u));
-                model.addRow(new Object[]{u.getSerial(), (String)this.usageRet.get(i+1), u.getUsed()});
-
+                String aux = (String) this.usageRet.get(i+1);
+                String [] arrayString = aux.split("/");
+                model.addRow(new Object[]{u.getSerial(), arrayString[0], u.getUsed(), arrayString[1], arrayString[2]});
             }
             
         } catch (Exception e) {
@@ -5217,7 +5245,7 @@ flagError++;
                 delta = 0;
             
             t.setValueAt(w.getAvailability() - delta, i, 2);
-            // TODO set price without IVA
+            t.setValueAt(w.getNoIvaPrice(), i, 3);
             t.setValueAt(w.getUnitPrice(), i, 4);
         }
         
@@ -5917,28 +5945,38 @@ flagError++;
         jTextField35.setText(getDataOra());
     }//GEN-LAST:event_jButton78MouseClicked
 
-    // number inserted in price with IVA JTextField
+    // number inserted in price with IVA JTextField (warehouse INSERT)
     private void jTextField52KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField52KeyReleased
         jTextField88.setText(handleIVA(jTextField52.getText(), false));
     }//GEN-LAST:event_jTextField52KeyReleased
 
-    // number inserted in price without IVA JTextField
+    // number inserted in price without IVA JTextField (warehouse INSERT)
     private void jTextField88KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField88KeyReleased
         jTextField52.setText(handleIVA(jTextField88.getText(), true));
     }//GEN-LAST:event_jTextField88KeyReleased
+
+    // number inserted in price with IVA JTextField (warehouse UPDATE)
+    private void jTextField41KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField41KeyReleased
+        jTextField89.setText(handleIVA(jTextField41.getText(), false));
+    }//GEN-LAST:event_jTextField41KeyReleased
+
+    // number inserted in price without IVA JTextField (warehouse UPDATE)
+    private void jTextField89KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField89KeyReleased
+        jTextField41.setText(handleIVA(jTextField89.getText(), true));
+    }//GEN-LAST:event_jTextField89KeyReleased
 
     // obtain the price without iva
     private String handleIVA (String s, boolean iva) {
         
         if(!s.equals("")) {
             // if the price has been inserted
-            BigDecimal pui = new BigDecimal(s);
+            BigDecimal pr = new BigDecimal(s);
             BigDecimal tot = new BigDecimal(100 + this.warehouseInfo.getIVA().intValue());
 
             if(iva)
-                return pui.multiply(tot).divide(new BigDecimal(100), new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
+                return pr.multiply(tot).divide(new BigDecimal(100), new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
             else
-                return pui.multiply(new BigDecimal(100)).divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
+                return pr.multiply(new BigDecimal(100)).divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
         
         } else {
             // if the price has not been inserted    
@@ -6158,6 +6196,7 @@ flagError++;
     private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
@@ -6324,6 +6363,7 @@ flagError++;
     private javax.swing.JTextField jTextField86;
     private javax.swing.JTextField jTextField87;
     private javax.swing.JTextField jTextField88;
+    private javax.swing.JTextField jTextField89;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel mainPanel;
@@ -6509,45 +6549,41 @@ flagError++;
         
     }
     
-    private void setArticleWarehouseDB(JTextField code, JTextField name, JTextField n, JTextField up, JTextArea note){
+    private int setArticleWarehouseDB(JTextField code, JTextField name, JTextField n, JTextField up, JTextArea note, JTextField nip){
         
         // create a new spare part
-        SharedClasses.Warehouse w = new SharedClasses.Warehouse(code.getText(), name.getText(), Integer.parseInt(n.getText()), up.getText(), note.getText());
+        SharedClasses.Warehouse w = new SharedClasses.Warehouse(code.getText(), name.getText(), Integer.parseInt(n.getText()), up.getText(), note.getText(), nip.getText());
         // create the request object
         ComClasses.Request r = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.INSERT, SharedClasses.Warehouse.insert());
         
         try {
-            // TODO exception if the value from the server is an exception
+
             int v = Utils.intOperation(r).intValue();
 
             if(v == ComClasses.Constants.RET_EXI)
-                showWinAlert(jPanel7, "Pezzo di ricambio già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(jPanel6, "Pezzo di ricambio già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
             else if(v == ComClasses.Constants.RET_EXC)
-                showWinAlert(jPanel7, "Eccezione durante l'inserimento del pezzo. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(jPanel6, "Eccezione durante l'inserimento del pezzo. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            
+            return v;
             
         } catch (Exception e) {
-            showWinAlert(jPanel7, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel6, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            return ComClasses.Constants.RET_EXC;
         }
         
     }
     
     // set properly the Warehouse object needed to edit a spare part
-    private void getValArticleWarehouse(JTextField code, JTextField name, JTextField n, JTextField up, JTextArea note){
-        /*
-        String se = (String)jTable1.getValueAt(0, 0);
-        String na = (String)jTable1.getValueAt(0, 1);
-        Integer av = (Integer)jTable1.getValueAt(0, 2);
-        BigDecimal prc = (BigDecimal)jTable1.getValueAt(0, 3);
-        String no = (String)jTable1.getValueAt(0, 4);
-        
-        this.sp = new SharedClasses.Warehouse(se, na, av.intValue(), prc, no);
-         * */
+    private void getValArticleWarehouse(JTextField code, JTextField name, JTextField n, JTextField up, JTextArea note, JTextField nip){        
         
         code.setText(this.sp.getSerial().toLowerCase());
         name.setText(this.sp.getName().toLowerCase());
         n.setText(Integer.toString(this.sp.getAvailability()));
         up.setText(this.sp.getUnitPrice().toString());
         note.setText(this.sp.getNote().toLowerCase());
+        nip.setText(this.sp.getNoIvaPrice().toString());
+        
     }
     
     private void resetValArticleWarehouse(){
@@ -6573,11 +6609,10 @@ flagError++;
                 Integer aux = (Integer)jTable7.getValueAt(y, 2);
                 jTable7.setValueAt(aux.intValue() + qt, y, 2);
 
-            } else { // new spare part added
+            } else {    // new spare part added
 
                 DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
-                // TODO add price without IVA
-                model.addRow(new Object[]{serial, jTable6.getValueAt(i, 1), qt, (Integer)0, jTable6.getValueAt(i, 4)});
+                model.addRow(new Object[]{serial, jTable6.getValueAt(i, 1), qt, jTable6.getValueAt(i, 3), jTable6.getValueAt(i, 4)});
                 jTable6.setValueAt(av - qt, i, 2);
 
             }
