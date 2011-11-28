@@ -5380,6 +5380,11 @@ flagError++;
                     int v = (Integer)jTable7.getValueAt(sel, 2);
 
                     jTable7.setValueAt(v + 1, sel, 2);
+                    
+                    int f = this.sparePartSearchResultFind(serial);
+                    if(f != -1)
+                        jTable6.setValueAt((Integer)jTable6.getValueAt(f, 2) - 1, f, 2);
+                    
                     this.updateTotal(jTable7);
 
                 }
@@ -5414,6 +5419,11 @@ flagError++;
                     this.cache.add(new SharedClasses.UsageCache(serial, -1));
 
                 jTable7.setValueAt(v - 1, sel, 2);
+                
+                int f = this.sparePartSearchResultFind(serial);
+                if(f != -1)
+                    jTable6.setValueAt((Integer)jTable6.getValueAt(f, 2) + 1, f, 2);
+                
                 this.updateTotal(jTable7);
 
             }
@@ -5422,7 +5432,7 @@ flagError++;
             showWinAlert(jPanel17, "Selezionare prima un pezzo\nper diminuirne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
         
     }//GEN-LAST:event_jButton44MouseClicked
-
+    
     // delete a spare part from usage
     private void jButton42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton42MouseClicked
 
@@ -5443,10 +5453,14 @@ flagError++;
                 else
                     this.cache.add(new SharedClasses.UsageCache(serial, -v));
                 
+                int f = this.sparePartSearchResultFind(serial);
+                if(f != -1)
+                    jTable6.setValueAt((Integer)jTable6.getValueAt(f, 2) + (Integer)jTable7.getValueAt(sel, 2), f, 2);
+                
                 DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
                 model.removeRow(sel);
                 this.updateTotal(jTable7);
-            
+                
             } else {
                 // do nothing
             }
@@ -5483,6 +5497,20 @@ flagError++;
   
     }//GEN-LAST:event_jButton43MouseClicked
 
+    // if a there is a spare part in the search result table return index of the row
+    private int sparePartSearchResultFind (String s) {
+        
+        DefaultTableModel model = (DefaultTableModel)jTable6.getModel();
+        int n = model.getRowCount();
+        
+        for(int i = 0; i < n; i++)
+            if(s.equals((String)(jTable6.getValueAt(i, 0))))
+                return i;
+        
+        return -1;
+        
+    }
+    
     // check if the usage of a spare part has been already modified
     private int cacheFindSparePart (String serial) {
             
