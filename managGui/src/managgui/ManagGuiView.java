@@ -6560,13 +6560,19 @@ flagError++;
 
             jTextArea8.setText(this.de.getDeclared().toLowerCase()); // defect declared
 
+            
             String found = this.de.getFound();
             if(found != null)
                 jTextArea9.setText(found.toLowerCase()); // defect found
+            else
+                jTextArea9.setText(null);
 
             String done = this.de.getDone();
             if(done != null)
                 jTextArea10.setText(done.toLowerCase()); // work done
+            else
+                jTextArea10.setText(null);
+            
             jTextField34.setText(this.de.getDateStart()); // date start work
             
             jComboBox2.setSelectedIndex(this.de.getCondition()); // device condition
