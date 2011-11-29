@@ -6024,11 +6024,13 @@ flagError++;
     // set start working date for a repair with current datetime
     private void jButton77MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton77MouseClicked
         jTextField34.setText(getDataOra());
+        jComboBox6.setSelectedIndex(1);
     }//GEN-LAST:event_jButton77MouseClicked
 
     // set date out for a repair with current datetime
     private void jButton78MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton78MouseClicked
         jTextField35.setText(getDataOra());
+        jComboBox6.setSelectedIndex(5);
     }//GEN-LAST:event_jButton78MouseClicked
 
     // number inserted in price with IVA JTextField (warehouse INSERT)
