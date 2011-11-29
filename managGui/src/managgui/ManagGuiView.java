@@ -5209,9 +5209,9 @@ flagError++;
                 this.old.add(new SharedClasses.UsageCache(u));
                 String aux = (String) this.usageRet.get(i+1);
                 String [] arrayString = aux.split("/");
-                model.addRow(new Object[]{u.getSerial(), arrayString[0], u.getUsed(), arrayString[1], arrayString[2]});
                 BigDecimal a = new BigDecimal(u.getUsed());
                 BigDecimal b = new BigDecimal(arrayString[1]);
+                model.addRow(new Object[]{u.getSerial(), arrayString[0], u.getUsed(), b, arrayString[2]});
                 tot = tot.add(a.multiply(b));
             }
             
@@ -5320,8 +5320,7 @@ flagError++;
         for(int i = 0; i < n; i++) {
             
             BigDecimal a = new BigDecimal((Integer)t.getValueAt(i, 2));
-            BigDecimal b = new BigDecimal((String)t.getValueAt(i, 3));
-            tot = tot.add(a.multiply(b));
+            tot = tot.add(a.multiply((BigDecimal)t.getValueAt(i, 3)));
             
         }
         
