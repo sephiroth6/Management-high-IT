@@ -99,24 +99,26 @@ public class Print implements Printable {
         // responsability
         firstY = firstY + heightLines(7);
         grap.drawLine(x + 100, firstY, width - 100 , firstY);
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’accettazione. Si avvisa il cliente di realizzare delle copie "), firstX, firstY + heightLines(1));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "di sicurezza dei dati presenti nella memoria del telefono, prima di consegnare il telefono medesimo al centro di assistenza per la riparazione, onde evitare "), firstX, firstY + heightLines(2));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "la perdita degli stessi. Ai sensi dell’articolo 13 del D.lgs n. 196 del 30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto "), firstX, firstY + heightLines(3));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "di trattamento, nel rispetto della normativa sopra richiamata e degli obblighi di riservatezza. Titolare del trattamento dei dati è MR. COOPER di Pette Davide "), firstX, firstY + heightLines(4));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "con sede in via Michele di Lando 22/24 00162 Roma (RM)."), firstX, firstY + heightLines(5));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(6));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’accettazione. Si avvisa il cliente"), firstX, firstY + heightLines(1));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "di realizzare delle copie di sicurezza dei dati presenti nella memoria del telefono, prima di consegnare il telefono medesimo"), firstX, firstY + heightLines(2));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "al centro di assistenza per la riparazione, onde evitare la perdita degli stessi. Ai sensi dell’articolo 13 del D.lgs n. 196"), firstX, firstY + heightLines(3));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "del 30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto di trattamento, nel rispetto della"), firstX, firstY + heightLines(4));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "normativa sopra richiamata e degli obblighi di riservatezza."), firstX, firstY + heightLines(5));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Titolare del trattamento dei dati è MR. COOPER di Pette Davide con sede in via Michele di Lando 22/24 00162 Roma (RM)."), firstX, firstY + heightLines(6));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(7));
         grap.setColor(Color.LIGHT_GRAY);
-        grap.drawLine(width - 200, firstY + heightLines(7), width - 67, firstY + heightLines(7));
+        grap.drawLine(width - 200, firstY + heightLines(8), width - 67, firstY + heightLines(8));
         grap.setColor(Color.BLACK);
         
         // privacy
-        firstY = firstY + heightLines(8);
+        firstY = firstY + heightLines(9);
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "ACQUISIZIONE DEL CONSENSO"), firstX, firstY);
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Dichiaro di aver acquisito le informazioni fornite dal titolare del trattamento ai sensi dell’art. 13 del D.lgs n 196/2003 e di prestare il mio consenso al "), firstX, firstY + heightLines(1));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "trattamento dei dati personali. Presto inoltre il consenso alla comunicazione dei dati personali ai soggetti indicati nell’informativa."), firstX, firstY + heightLines(2));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(3));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Dichiaro di aver acquisito le informazioni fornite dal titolare del trattamento ai sensi dell’art. 13 del D.lgs n 196/2003"), firstX, firstY + heightLines(1));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "e di prestare il mio consenso al trattamento dei dati personali. Presto inoltre il consenso alla comunicazione dei dati"), firstX, firstY + heightLines(2));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "personali ai soggetti indicati nell’informativa."), firstX, firstY + heightLines(3));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(4));
         grap.setColor(Color.LIGHT_GRAY);
-        grap.drawLine(width - 200, firstY + heightLines(4), width - 67, firstY + heightLines(4));
+        grap.drawLine(width - 200, firstY + heightLines(5), width - 67, firstY + heightLines(5));
         grap.setColor(Color.BLACK);
         
         return PAGE_EXISTS;
