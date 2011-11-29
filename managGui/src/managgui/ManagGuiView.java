@@ -6564,7 +6564,7 @@ flagError++;
             if(found != null)
                 jTextArea9.setText(found.toLowerCase()); // defect found
 
-            String done = this.de.getFound();
+            String done = this.de.getDone();
             if(done != null)
                 jTextArea10.setText(done.toLowerCase()); // work done
             jTextField34.setText(this.de.getDateStart()); // date start work
