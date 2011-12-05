@@ -465,6 +465,7 @@ public class ManagGuiView extends FrameView {
         jCheckBox4 = new javax.swing.JCheckBox();
         jButton77 = new javax.swing.JButton();
         jButton78 = new javax.swing.JButton();
+        jButton79 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
@@ -2960,6 +2961,15 @@ public class ManagGuiView extends FrameView {
             }
         });
 
+        jButton79.setIcon(new javax.swing.ImageIcon(getClass().getResource("/managgui/images/printer.png"))); // NOI18N
+        jButton79.setText(resourceMap.getString("jButton79.text")); // NOI18N
+        jButton79.setName("jButton79"); // NOI18N
+        jButton79.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton79MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -3041,13 +3051,15 @@ public class ManagGuiView extends FrameView {
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton35))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel52)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 397, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                         .addComponent(jButton26)
+                        .addGap(22, 22, 22)
+                        .addComponent(jButton79)
                         .addGap(18, 18, 18)
                         .addComponent(jButton25)))
                 .addContainerGap())
@@ -3135,8 +3147,9 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jLabel52)
                             .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton25)
                         .addComponent(jButton26)
-                        .addComponent(jButton25)))
+                        .addComponent(jButton79)))
                 .addContainerGap())
         );
 
@@ -3800,11 +3813,11 @@ public class ManagGuiView extends FrameView {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel103)
-                                    .addComponent(jLabel100, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(jTextField90, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                    .addComponent(jTextField91, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                                    .addComponent(jLabel100, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                                    .addComponent(jTextField90, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                                    .addComponent(jTextField91, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
                             .addComponent(jButton37, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton39, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                            .addComponent(jButton39, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel17Layout.createSequentialGroup()
                                 .addComponent(jLabel77)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -4504,11 +4517,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton18MouseClicked
         
         int flagError = 0;
-        /*
-if(flagCliente == false){
-showWinAlert(jPanel9, "Dati cliente errati.", "Errore dati incompleti", JOptionPane.ERROR_MESSAGE);
-flagError++;
-}*/
+
         if(jComboBox3.getSelectedIndex() == 0){
             showWinAlert(jPanel9, "Selezionare una tipologia.", "Warning", JOptionPane.WARNING_MESSAGE);
             flagError++;
@@ -6053,6 +6062,25 @@ flagError++;
         jTextField41.setText(handleIVA(jTextField89.getText(), true));
     }//GEN-LAST:event_jTextField89KeyReleased
 
+    // print button in repaird edit window
+    private void jButton79MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton79MouseClicked
+        // the three choices
+        Object arr[] = {"Copia ricevuta", "Riepilogo riparazione", "Annulla"};
+        // show dialog
+        int n = JOptionPane.showOptionDialog(jPanel12, "Vuoi stampare una copia della ricevuta o un riepilogo riparazione?", "Stampa", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, arr, arr[0]);
+        
+        try {
+            
+            if(n == JOptionPane.YES_OPTION)
+                Print.repairPrint(this.re.getID(), this.c, this.re, this.d, this.de);
+            
+        } catch (Exception e) {
+            // something wrong happened
+            showWinAlert(jPanel9, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButton79MouseClicked
+
     // obtain the price without iva
     private String handleIVA (String s, boolean iva) {
         
@@ -6149,6 +6177,7 @@ flagError++;
     private javax.swing.JButton jButton76;
     private javax.swing.JButton jButton77;
     private javax.swing.JButton jButton78;
+    private javax.swing.JButton jButton79;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
