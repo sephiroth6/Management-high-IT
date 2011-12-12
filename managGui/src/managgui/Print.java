@@ -56,6 +56,8 @@ public class Print implements Printable {
         int height = (int)pageFormat.getImageableHeight();
         int firstX = x + (width/20);
         int firstY = y + (height/20);
+        int imageX = width - (width/20) - 100;
+        int imageY = firstY - heightLines(1);
         String optional = this.r.getOptional();
         
         if(optional == null)
@@ -64,16 +66,15 @@ public class Print implements Printable {
         Graphics2D grapdd = (Graphics2D) grap;
         Font f = new Font("Sans Serif", Font.PLAIN, 10);
         Font b = new Font("Sans Serif", Font.BOLD, 10);
-        Font p = new Font("Serif", Font.PLAIN, 8);
+        Font p = new Font("Serif", Font.PLAIN, 10);
         Font footer = new Font("Sans Serif", Font.PLAIN, 8);
         FontRenderContext frc = grapdd.getFontRenderContext();
         Image logo = ManagGuiView.createImageIcon("images/logo100.png", "logo MR. Cooper").getImage();
-        grapdd.drawImage(logo, firstX, firstY - 40, null);
+        grapdd.drawImage(logo, imageX, imageY, null);
 
         grapdd.drawGlyphVector(footer.createGlyphVector(frc, "MR. Cooper di Pette Davide - via Michele di Lando 22/24 Roma, 00162 - P.IVA 11549761002 - CF PTTDVD85E20H501E"), firstX, height - 20);
         grapdd.drawGlyphVector(footer.createGlyphVector(frc, "Tel.: 06/98933294 - Mail: telefonia.mrcooper@gmail.com"), firstX, height - 5);
         // Customer info
-        firstY = firstY + heightLines(4);
         grapdd.drawGlyphVector(b.createGlyphVector(frc, "SCHEDA RIPARAZIONE #".concat(Integer.toString(this.r.getID()))), firstX, firstY);
         grapdd.drawGlyphVector(b.createGlyphVector(frc, "INFORMAZIONI CLIENTE"), firstX, firstY + heightLines(1));
         grapdd.drawGlyphVector(f.createGlyphVector(frc, "Cognome: ".concat(this.c.getSurname())), firstX + 20, firstY + heightLines(2));
@@ -105,20 +106,20 @@ public class Print implements Printable {
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "del 30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto di trattamento, nel rispetto della"), firstX, firstY + heightLines(4));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "normativa sopra richiamata e degli obblighi di riservatezza."), firstX, firstY + heightLines(5));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "Titolare del trattamento dei dati è MR. COOPER di Pette Davide con sede in via Michele di Lando 22/24 00162 Roma (RM)."), firstX, firstY + heightLines(6));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(7));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(8));
         grap.setColor(Color.LIGHT_GRAY);
-        grap.drawLine(width - 200, firstY + heightLines(8), width - 67, firstY + heightLines(8));
+        grap.drawLine(width - 200, firstY + heightLines(10), width - 67, firstY + heightLines(10));
         grap.setColor(Color.BLACK);
         
         // privacy
-        firstY = firstY + heightLines(9);
+        firstY = firstY + heightLines(11);
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "ACQUISIZIONE DEL CONSENSO"), firstX, firstY);
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "Dichiaro di aver acquisito le informazioni fornite dal titolare del trattamento ai sensi dell’art. 13 del D.lgs n 196/2003"), firstX, firstY + heightLines(1));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "e di prestare il mio consenso al trattamento dei dati personali. Presto inoltre il consenso alla comunicazione dei dati"), firstX, firstY + heightLines(2));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "personali ai soggetti indicati nell’informativa."), firstX, firstY + heightLines(3));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(4));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(5));
         grap.setColor(Color.LIGHT_GRAY);
-        grap.drawLine(width - 200, firstY + heightLines(5), width - 67, firstY + heightLines(5));
+        grap.drawLine(width - 200, firstY + heightLines(7), width - 67, firstY + heightLines(7));
         grap.setColor(Color.BLACK);
         
         return PAGE_EXISTS;
@@ -136,21 +137,27 @@ public class Print implements Printable {
          
          String s = this.de.getDeclared();
          
-         if(s.length() < 64) {
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s)), x + 20, y);
-         } else if (s.length() < 140) {
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 63))), x + 20, y);
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(64, s.length())), x + 20, y + heightLines(1));
-         } else if (s.length() < 218) {
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 63))), x + 20, y);
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(64, 139)), x + 20, y + heightLines(1));
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(140, s.length())), x + 20, y + heightLines(2));
-         } else {
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 63))), x + 20, y);
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(64, 139)), x + 20, y + heightLines(1));
-             g.drawGlyphVector(f.createGlyphVector(frc, s.substring(140, 213).concat("...")), x + 20, y + heightLines(2));
-         }
+         if(s.length() < 53) {              // only one line needed
          
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s)), x + 20, y);
+         
+         } else {                           // more lines
+         
+             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 52))), x + 20, y);
+             
+             if (s.length() < 121) {        // two lines needed 
+                  g.drawGlyphVector(f.createGlyphVector(frc, s.substring(53, s.length())), x + 20, y + heightLines(1));
+              } else {                      // three lines needed
+                                            
+                  g.drawGlyphVector(f.createGlyphVector(frc, s.substring(53, 120)), x + 20, y + heightLines(1));
+             
+                  if (s.length() < 188)     // three lines needed, without appending "..."
+                      g.drawGlyphVector(f.createGlyphVector(frc, s.substring(116, s.length())), x + 20, y + heightLines(2));
+                  else                      // three lines needed, appending "..."
+                     g.drawGlyphVector(f.createGlyphVector(frc, s.substring(116, 185).concat("...")), x + 20, y + heightLines(2)); 
+                
+             }
+        }
      }
      
      private static String deviceType (int i) {
