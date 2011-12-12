@@ -21,19 +21,29 @@ import java.awt.print.PrinterJob;
  */
 public class Print implements Printable {
     
+    // printing constants
+    private static final int DECLARED = 0;
+    private static final int FOUND = 1;
+    private static final int DONE = 2;
+    
+    // is it a copy of a receipt?
+    private boolean receipt;
+    
+    // object containing the info to print
     private SharedClasses.Customer c;
     private SharedClasses.Repair r;
     private SharedClasses.Device d;
     private SharedClasses.Details de;
-   
-    public Print (SharedClasses.Customer c, SharedClasses.Repair r, SharedClasses.Device d, SharedClasses.Details de) {
+    
+    public Print (SharedClasses.Customer c, SharedClasses.Repair r, SharedClasses.Device d, SharedClasses.Details de, boolean re) {
         this.c = c;
         this.r = r;
         this.d = d;
         this.de = de;
+        this.receipt = re;
     }
     
-    public static void repairPrint (int i, SharedClasses.Customer c, SharedClasses.Repair r, SharedClasses.Device d, SharedClasses.Details de) throws PrinterException {
+    public static void repairPrint (int i, SharedClasses.Customer c, SharedClasses.Repair r, SharedClasses.Device d, SharedClasses.Details de, boolean re) throws PrinterException {
         
         String name = "Scheda ";
         
@@ -41,7 +51,7 @@ public class Print implements Printable {
         pj.setJobName(name.concat(Integer.toString(i)));
         pj.setCopies(2);
         pj.printDialog();
-        pj.setPrintable(new Print(c, r, d, de));
+        pj.setPrintable(new Print(c, r, d, de, re));
         pj.print();
     }
     
@@ -60,7 +70,7 @@ public class Print implements Printable {
         int imageY = firstY - heightLines(1);
         String optional = this.r.getOptional();
         
-        if(optional == null)
+        if(optional == null || optional.equals(""))
             optional = "NESSUNO";
 
         Graphics2D grapdd = (Graphics2D) grap;
@@ -71,11 +81,23 @@ public class Print implements Printable {
         FontRenderContext frc = grapdd.getFontRenderContext();
         Image logo = ManagGuiView.createImageIcon("images/logo100.png", "logo MR. Cooper").getImage();
         grapdd.drawImage(logo, imageX, imageY, null);
+        String header;
+        
+        if(this.receipt)
+            header = "SCHEDA RIPARAZIONE #";
+        else
+            header = "RIEPILOGO RIPARAZIONE #";
+        
+        String dateOut = this.r.getDateOut();
+        if(dateOut == null)
+            dateOut = "";
 
         grapdd.drawGlyphVector(footer.createGlyphVector(frc, "MR. Cooper di Pette Davide - via Michele di Lando 22/24 Roma, 00162 - P.IVA 11549761002 - CF PTTDVD85E20H501E"), firstX, height - 20);
         grapdd.drawGlyphVector(footer.createGlyphVector(frc, "Tel.: 06/98933294 - Mail: telefonia.mrcooper@gmail.com"), firstX, height - 5);
+        
+        
         // Customer info
-        grapdd.drawGlyphVector(b.createGlyphVector(frc, "SCHEDA RIPARAZIONE #".concat(Integer.toString(this.r.getID()))), firstX, firstY);
+        grapdd.drawGlyphVector(b.createGlyphVector(frc, header.concat(Integer.toString(this.r.getID()))), firstX, firstY);
         grapdd.drawGlyphVector(b.createGlyphVector(frc, "INFORMAZIONI CLIENTE"), firstX, firstY + heightLines(1));
         grapdd.drawGlyphVector(f.createGlyphVector(frc, "Cognome: ".concat(this.c.getSurname())), firstX + 20, firstY + heightLines(2));
         grapdd.drawGlyphVector(f.createGlyphVector(frc, "Nome: ".concat(this.c.getName())), firstX + 20, firstY + heightLines(3));
@@ -96,31 +118,17 @@ public class Print implements Printable {
         grapdd.drawGlyphVector(f.createGlyphVector(frc, "Data e ora ingresso: ".concat(this.r.getDateIn())), firstX + 20, firstY + heightLines(2));
         printDeclared(firstX, firstY + heightLines(3), grapdd, f, frc);
         grapdd.drawGlyphVector(f.createGlyphVector(frc, "Accessori consegnati: ".concat(optional)), firstX + 20, firstY + heightLines(6));
-        
-        // responsability
         firstY = firstY + heightLines(7);
         grap.drawLine(x + 100, firstY, width - 100 , firstY);
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’accettazione. Si avvisa il cliente"), firstX, firstY + heightLines(1));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "di realizzare delle copie di sicurezza dei dati presenti nella memoria del telefono, prima di consegnare il telefono medesimo"), firstX, firstY + heightLines(2));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "al centro di assistenza per la riparazione, onde evitare la perdita degli stessi. Ai sensi dell’articolo 13 del D.lgs n. 196"), firstX, firstY + heightLines(3));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "del 30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto di trattamento, nel rispetto della"), firstX, firstY + heightLines(4));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "normativa sopra richiamata e degli obblighi di riservatezza."), firstX, firstY + heightLines(5));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Titolare del trattamento dei dati è MR. COOPER di Pette Davide con sede in via Michele di Lando 22/24 00162 Roma (RM)."), firstX, firstY + heightLines(6));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(8));
-        grap.setColor(Color.LIGHT_GRAY);
-        grap.drawLine(width - 200, firstY + heightLines(10), width - 67, firstY + heightLines(10));
-        grap.setColor(Color.BLACK);
         
-        // privacy
-        firstY = firstY + heightLines(11);
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "ACQUISIZIONE DEL CONSENSO"), firstX, firstY);
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Dichiaro di aver acquisito le informazioni fornite dal titolare del trattamento ai sensi dell’art. 13 del D.lgs n 196/2003"), firstX, firstY + heightLines(1));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "e di prestare il mio consenso al trattamento dei dati personali. Presto inoltre il consenso alla comunicazione dei dati"), firstX, firstY + heightLines(2));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "personali ai soggetti indicati nell’informativa."), firstX, firstY + heightLines(3));
-        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(5));
-        grap.setColor(Color.LIGHT_GRAY);
-        grap.drawLine(width - 200, firstY + heightLines(7), width - 67, firstY + heightLines(7));
-        grap.setColor(Color.BLACK);
+        if(this.receipt) {              // print the privacy info...
+            Print.privacy(x, firstX, firstY + 1, width, grap, grapdd, p, frc);
+        } else {                        // ...or the repair details
+            grapdd.drawGlyphVector(b.createGlyphVector(frc, "DETTAGLI RIPARAZIONE"), firstX, firstY + heightLines(1));
+            printFound(firstX, firstY + heightLines(2), grapdd, f, frc);
+            printDone(firstX, firstY + heightLines(5), grapdd, f, frc);
+            grapdd.drawGlyphVector(f.createGlyphVector(frc, "Data ritiro: ".concat(dateOut)), firstX + 20, firstY + heightLines(8));
+        }
         
         return PAGE_EXISTS;
     }
@@ -134,16 +142,48 @@ public class Print implements Printable {
      }
   
      private void printDeclared (int x, int y, Graphics2D g, Font f, FontRenderContext frc) {
+         this.printDefect (x, y, g, f, frc, Print.DECLARED);
+     }
+     
+     private void printFound (int x, int y, Graphics2D g, Font f, FontRenderContext frc) {
+         this.printDefect (x, y, g, f, frc, Print.FOUND);
+     }
+     
+     private void printDone (int x, int y, Graphics2D g, Font f, FontRenderContext frc) {
+         this.printDefect (x, y, g, f, frc, Print.DONE);
+     }
+     
+     private void printDefect(int x, int y, Graphics2D g, Font f, FontRenderContext frc, int type) {
          
-         String s = this.de.getDeclared();
+         String start;
+         String s = null;
+         
+         switch (type) {
+             case Print.DECLARED:
+                 start = "Difetto dichiarato:";
+                 s = this.de.getDeclared();
+                 break;
+                 
+             case Print.FOUND:
+                 start = "Difetto riscontrato: ";
+                 s = this.de.getFound();
+                 break;
+                 
+             default:
+                 start = "Lavorazione effettuata: ";
+                 s = this.de.getDone();
+         }
+         
+         if(s == null)
+             s = "NULLA";
          
          if(s.length() < 53) {              // only one line needed
          
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s)), x + 20, y);
+             g.drawGlyphVector(f.createGlyphVector(frc, start.concat(s)), x + 20, y);
          
          } else {                           // more lines
          
-             g.drawGlyphVector(f.createGlyphVector(frc, "Difetto dichiarato: ".concat(s.substring(0, 52))), x + 20, y);
+             g.drawGlyphVector(f.createGlyphVector(frc, start.concat(s.substring(0, 52))), x + 20, y);
              
              if (s.length() < 121) {        // two lines needed 
                   g.drawGlyphVector(f.createGlyphVector(frc, s.substring(53, s.length())), x + 20, y + heightLines(1));
@@ -174,6 +214,31 @@ public class Print implements Printable {
                  return "ALTRO";
          
          }
-     }         
+     }  
+     
+     // print privacy declaration
+     private static void privacy (int x, int firstX, int firstY, int width, Graphics grap, Graphics2D grapdd, Font p, FontRenderContext frc) {
+         // responsability
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’accettazione. Si avvisa il cliente"), firstX, firstY + heightLines(1));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "di realizzare delle copie di sicurezza dei dati presenti nella memoria del telefono, prima di consegnare il telefono medesimo"), firstX, firstY + heightLines(2));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "al centro di assistenza per la riparazione, onde evitare la perdita degli stessi. Ai sensi dell’articolo 13 del D.lgs n. 196"), firstX, firstY + heightLines(3));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "del 30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto di trattamento, nel rispetto della"), firstX, firstY + heightLines(4));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "normativa sopra richiamata e degli obblighi di riservatezza."), firstX, firstY + heightLines(5));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Titolare del trattamento dei dati è MR. COOPER di Pette Davide con sede in via Michele di Lando 22/24 00162 Roma (RM)."), firstX, firstY + heightLines(6));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(8));
+        grap.setColor(Color.LIGHT_GRAY);
+        grap.drawLine(width - 200, firstY + heightLines(10), width - 67, firstY + heightLines(10));
+        grap.setColor(Color.BLACK);
+        // privacy
+        firstY = firstY + heightLines(11);
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "ACQUISIZIONE DEL CONSENSO"), firstX, firstY);
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "Dichiaro di aver acquisito le informazioni fornite dal titolare del trattamento ai sensi dell’art. 13 del D.lgs n 196/2003"), firstX, firstY + heightLines(1));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "e di prestare il mio consenso al trattamento dei dati personali. Presto inoltre il consenso alla comunicazione dei dati"), firstX, firstY + heightLines(2));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "personali ai soggetti indicati nell’informativa."), firstX, firstY + heightLines(3));
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(5));
+        grap.setColor(Color.LIGHT_GRAY);
+        grap.drawLine(width - 200, firstY + heightLines(7), width - 67, firstY + heightLines(7));
+        grap.setColor(Color.BLACK);
+     }
      
 }

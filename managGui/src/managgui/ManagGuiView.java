@@ -56,6 +56,7 @@ public class ManagGuiView extends FrameView {
     private FinestraSwing pezziUtilizzati;
     private FinestraSwing gestioneRientri;
     private Object[][] jtVal;
+    private static final Object arr[] = {"Copia ricevuta", "Riepilogo riparazione", "Annulla stampa ed esci"};
    
     //ico
     private ImageIcon clienti = createImageIcon ("images/clienti2.png", "ico clienti scheda tab");
@@ -3056,7 +3057,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jLabel52)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                         .addComponent(jButton26)
                         .addGap(22, 22, 22)
                         .addComponent(jButton79)
@@ -4566,7 +4567,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 if(n == JOptionPane.YES_OPTION) {
             
                     try {
-                        Print.repairPrint(id, this.c, rep, this.d, det);
+                        Print.repairPrint(id, this.c, rep, this.d, det, true);
                     } catch (Exception e) {
                         showWinAlert(jPanel9, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
                     }
@@ -4921,22 +4922,21 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             SharedClasses.Device md = new SharedClasses.Device(jTextField36.getText(), jComboBox5.getSelectedIndex(), jTextField37.getText());
             if(this.checkDeviceChange(md))
                 this.updateDevice(md);
-        
+            
+            // UPDATE details of the selected repair
+            SharedClasses.Details mdev = new SharedClasses.Details(this.re.getID(), jComboBox2.getSelectedIndex(), jTextField34.getText(), jTextArea8.getText(), jTextArea9.getText(), jTextArea10.getText());
+            if(this.checkDetailsChange(mdev))
+                this.updateDetails(mdev);
+
+            // UPDATE repair table of the database
+            SharedClasses.Repair mrep = new SharedClasses.Repair(this.re.getID(), jTextField38.getText(), jTextField35.getText(), (Integer)jComboBox6.getSelectedIndex());
+            if(this.checkRepairChange(mrep))
+                this.updateRepair(mrep);
+
+            schedaProdotto.dispose();
+            jTable3.setVisible(false);
+            clearFields(jTextField27, jTextField28, jTextField29, jTextField30);
         }
-        
-        // UPDATE details of the selected repair
-        SharedClasses.Details mdev = new SharedClasses.Details(this.re.getID(), jComboBox2.getSelectedIndex(), jTextField34.getText(), jTextArea8.getText(), jTextArea9.getText(), jTextArea10.getText());
-        if(this.checkDetailsChange(mdev))
-            this.updateDetails(mdev);
-        
-        // UPDATE repair table of the database
-        SharedClasses.Repair mrep = new SharedClasses.Repair(this.re.getID(), jTextField38.getText(), jTextField35.getText(), (Integer)jComboBox6.getSelectedIndex());
-        if(this.checkRepairChange(mrep))
-            this.updateRepair(mrep);
-        
-        schedaProdotto.dispose();
-        jTable3.setVisible(false);
-        clearFields(jTextField27, jTextField28, jTextField29, jTextField30);
         
     }//GEN-LAST:event_jButton26MouseClicked
 
@@ -6062,21 +6062,46 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField41.setText(handleIVA(jTextField89.getText(), true));
     }//GEN-LAST:event_jTextField89KeyReleased
 
-    // print button in repaird edit window
+    // print button in repair edit window
     private void jButton79MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton79MouseClicked
-        // the three choices
-        Object arr[] = {"Copia ricevuta", "Riepilogo riparazione", "Annulla"};
-        // show dialog
-        int n = JOptionPane.showOptionDialog(jPanel12, "Vuoi stampare una copia della ricevuta o un riepilogo riparazione?", "Stampa", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, arr, arr[0]);
+        // UPDATE the repair info first...
+        if(!neededInsertion(jTextField36, jTextField37)) {
+            // compulsory fields leaved empty
+            showWinAlert(jPanel12, "Controllare modello ed imei", "Errore", JOptionPane.ERROR_MESSAGE);
+        } else {
+            // handle device update
+            SharedClasses.Device md = new SharedClasses.Device(jTextField36.getText(), jComboBox5.getSelectedIndex(), jTextField37.getText());
+            if(this.checkDeviceChange(md))
+                this.updateDevice(md);
+            // UPDATE details of the selected repair
+            SharedClasses.Details mdet = new SharedClasses.Details(this.re.getID(), jComboBox2.getSelectedIndex(), jTextField34.getText(), jTextArea8.getText(), jTextArea9.getText(), jTextArea10.getText());
+            if(this.checkDetailsChange(mdet))
+                this.updateDetails(mdet);
+            // UPDATE repair table of the database
+            SharedClasses.Repair mrep = new SharedClasses.Repair(this.re.getID(), jTextField38.getText(), jTextField35.getText(), (Integer)jComboBox6.getSelectedIndex());
+            if(this.checkRepairChange(mrep))
+                this.updateRepair(mrep);
+            
+            // ...then print. Show printing dialog
+            int n = JOptionPane.showOptionDialog(jPanel12, "Vuoi stampare una copia della ricevuta o un riepilogo riparazione?", "Stampa", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, ManagGuiView.arr, ManagGuiView.arr[0]);
         
-        try {
-            
-            if(n == JOptionPane.YES_OPTION)
-                Print.repairPrint(this.re.getID(), this.c, this.re, this.d, this.de);
-            
-        } catch (Exception e) {
-            // something wrong happened
-            showWinAlert(jPanel9, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+            try {
+
+                mrep.setDateIn(jTextField33.getText());
+                
+                if(n == JOptionPane.YES_OPTION)
+                    Print.repairPrint(this.re.getID(), this.c, mrep, md, mdet, true);
+                else if(n == JOptionPane.NO_OPTION)
+                    Print.repairPrint(this.re.getID(), this.c, mrep, md, mdet, false);
+
+                schedaProdotto.dispose();
+                jTable3.setVisible(false);
+                clearFields(jTextField27, jTextField28, jTextField29, jTextField30);
+                
+            } catch (Exception e) {
+                // something wrong happened
+                showWinAlert(jPanel9, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+            }
         }
         
     }//GEN-LAST:event_jButton79MouseClicked
