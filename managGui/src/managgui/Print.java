@@ -122,7 +122,11 @@ public class Print implements Printable {
         grap.drawLine(x + 100, firstY, width - 100 , firstY);
         
         if(this.receipt) {              // print the privacy info...
-            Print.privacy(x, firstX, firstY + 1, width, grap, grapdd, p, frc);
+            try {
+                Print.privacy(x, firstX, firstY + 1, width, grap, grapdd, p, frc);
+            } catch (InterruptedException e) {
+                
+            }
         } else {                        // ...or the repair details
             grapdd.drawGlyphVector(b.createGlyphVector(frc, "DETTAGLI RIPARAZIONE"), firstX, firstY + heightLines(1));
             printFound(firstX, firstY + heightLines(2), grapdd, f, frc);
@@ -160,7 +164,7 @@ public class Print implements Printable {
          
          switch (type) {
              case Print.DECLARED:
-                 start = "Difetto dichiarato:";
+                 start = "Difetto dichiarato: ";
                  s = this.de.getDeclared();
                  break;
                  
@@ -217,10 +221,14 @@ public class Print implements Printable {
      }  
      
      // print privacy declaration
-     private static void privacy (int x, int firstX, int firstY, int width, Graphics grap, Graphics2D grapdd, Font p, FontRenderContext frc) {
+     private static void privacy (int x, int firstX, int firstY, int width, Graphics grap, Graphics2D grapdd, Font p, FontRenderContext frc) throws InterruptedException {
          // responsability
+        //Thread.sleep(500);
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, " "), 0, 0);
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "Il centro non è responsabile per eventuali accessori consegnati e non dichiarati al momento dell’accettazione. Si avvisa il cliente"), firstX, firstY + heightLines(1));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "di realizzare delle copie di sicurezza dei dati presenti nella memoria del telefono, prima di consegnare il telefono medesimo"), firstX, firstY + heightLines(2));
+        //Thread.sleep(500);
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, " "), 0, 0);
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "al centro di assistenza per la riparazione, onde evitare la perdita degli stessi. Ai sensi dell’articolo 13 del D.lgs n. 196"), firstX, firstY + heightLines(3));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "del 30 giugno 2003, si rende noto che i dati personali rilasciati dal cliente saranno oggetto di trattamento, nel rispetto della"), firstX, firstY + heightLines(4));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "normativa sopra richiamata e degli obblighi di riservatezza."), firstX, firstY + heightLines(5));
@@ -232,8 +240,12 @@ public class Print implements Printable {
         // privacy
         firstY = firstY + heightLines(11);
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "ACQUISIZIONE DEL CONSENSO"), firstX, firstY);
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, " "), 0, 0);
+        //Thread.sleep(500);
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "Dichiaro di aver acquisito le informazioni fornite dal titolare del trattamento ai sensi dell’art. 13 del D.lgs n 196/2003"), firstX, firstY + heightLines(1));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "e di prestare il mio consenso al trattamento dei dati personali. Presto inoltre il consenso alla comunicazione dei dati"), firstX, firstY + heightLines(2));
+        //Thread.sleep(500);
+        grapdd.drawGlyphVector(p.createGlyphVector(frc, " "), 0, 0);
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "personali ai soggetti indicati nell’informativa."), firstX, firstY + heightLines(3));
         grapdd.drawGlyphVector(p.createGlyphVector(frc, "FIRMA"), width - 150, firstY + heightLines(5));
         grap.setColor(Color.LIGHT_GRAY);
