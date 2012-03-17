@@ -1,0 +1,8 @@
+In the last part of the development, I will use this file as a history of the changes made in every commit.
+Claudio
+
+17-03-2012
+management of customer's informations when creating a new bill;
+creation of a new class of exceptions, specifically for the database operations executed in manIT;
+fixed a bug in customer's telephone number updating.
+
