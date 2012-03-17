@@ -844,18 +844,18 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="mainCustomerSearch">
               <Properties>
-                <Property name="background" type="java.awt.Color" resourceKey="jPanel2.background"/>
-                <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
+                <Property name="background" type="java.awt.Color" resourceKey="mainCustomerSearch.background"/>
+                <Property name="name" type="java.lang.String" value="mainCustomerSearch" noResource="true"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane1.addTab(resourceMap.getString(&quot;jPanel2.TabConstraints.tabTitle&quot;), clienti, jPanel2); // NOI18N"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane1.addTab(resourceMap.getString(&quot;mainCustomerSearch.TabConstraints.tabTitle&quot;), clienti, mainCustomerSearch); // NOI18N"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Clienti">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="jPanel2.TabConstraints.tabTitle"/>
+                    <Property name="tabTitle" type="java.lang.String" resourceKey="mainCustomerSearch.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -972,18 +972,18 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel3">
+            <Container class="javax.swing.JPanel" name="mainWarehouseEdit">
               <Properties>
-                <Property name="background" type="java.awt.Color" resourceKey="jPanel3.background"/>
-                <Property name="name" type="java.lang.String" value="jPanel3" noResource="true"/>
+                <Property name="background" type="java.awt.Color" resourceKey="mainWarehouseEdit.background"/>
+                <Property name="name" type="java.lang.String" value="mainWarehouseEdit" noResource="true"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane1.addTab(resourceMap.getString(&quot;jPanel3.TabConstraints.tabTitle&quot;), warehouse, jPanel3); // NOI18N"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane1.addTab(resourceMap.getString(&quot;mainWarehouseEdit.TabConstraints.tabTitle&quot;), warehouse, mainWarehouseEdit); // NOI18N"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Magazzino">
-                    <Property name="tabTitle" type="java.lang.String" resourceKey="jPanel3.TabConstraints.tabTitle"/>
+                    <Property name="tabTitle" type="java.lang.String" resourceKey="mainWarehouseEdit.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -1435,12 +1435,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel11">
+            <Container class="javax.swing.JPanel" name="mainBillingEdit">
               <Properties>
-                <Property name="name" type="java.lang.String" value="jPanel11" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="mainBillingEdit" noResource="true"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane1.addTab(resourceMap.getString(&quot;jPanel11.TabConstraints.tabTitle&quot;), billing, jPanel11); // NOI18N"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTabbedPane1.addTab(resourceMap.getString(&quot;mainBillingEdit.TabConstraints.tabTitle&quot;), billing, mainBillingEdit); // NOI18N"/>
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1456,7 +1456,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel15" alignment="0" max="32767" attributes="0"/>
+                              <Component id="billingCreation" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButton23" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1468,7 +1468,7 @@
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="jPanel25" max="32767" attributes="0"/>
+                              <Component id="billingSearch" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1483,13 +1483,13 @@
                               <Component id="jButton24" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel15" min="-2" max="-2" attributes="0"/>
+                          <Component id="billingCreation" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="178" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                              <Component id="jPanel25" min="-2" max="-2" attributes="0"/>
+                              <Component id="billingSearch" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="353" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1515,17 +1515,17 @@
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton24MouseClicked"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JPanel" name="jPanel15">
+                <Container class="javax.swing.JPanel" name="billingCreation">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="jPanel15" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="billingCreation" noResource="true"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jPanel15.setVisible(false);"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="billingCreation.setVisible(false);"/>
                   </AuxValues>
 
                   <Layout>
@@ -2570,17 +2570,17 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jPanel25">
+                <Container class="javax.swing.JPanel" name="billingSearch">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
                       </Border>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="jPanel25" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="billingSearch" noResource="true"/>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jPanel25.setVisible(false);"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="billingSearch.setVisible(false);"/>
                   </AuxValues>
 
                   <Layout>
@@ -2946,15 +2946,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel7">
+    <Container class="javax.swing.JPanel" name="customerEdit">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="jPanel7.background"/>
+        <Property name="background" type="java.awt.Color" resourceKey="customerEdit.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="3"/>
           </Border>
         </Property>
-        <Property name="name" type="java.lang.String" value="jPanel7" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="customerEdit" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -3136,15 +3136,15 @@
         <Property name="name" type="java.lang.String" value="jButton19" noResource="true"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel8">
+    <Container class="javax.swing.JPanel" name="customerSearch">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="jPanel8.background"/>
+        <Property name="background" type="java.awt.Color" resourceKey="customerSearch.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="2"/>
           </Border>
         </Property>
-        <Property name="name" type="java.lang.String" value="jPanel8" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="customerSearch" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -3277,15 +3277,15 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel12">
+    <Container class="javax.swing.JPanel" name="repairDetail">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="jPanel12.background"/>
+        <Property name="background" type="java.awt.Color" resourceKey="repairDetail.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="2"/>
           </Border>
         </Property>
-        <Property name="name" type="java.lang.String" value="jPanel12" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="repairDetail" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[948, 575]"/>
         </Property>
@@ -4018,15 +4018,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel14">
+    <Container class="javax.swing.JPanel" name="warehouseEdit">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="jPanel14.background"/>
+        <Property name="background" type="java.awt.Color" resourceKey="warehouseEdit.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="2"/>
           </Border>
         </Property>
-        <Property name="name" type="java.lang.String" value="jPanel14" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="warehouseEdit" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[380, 420]"/>
         </Property>
@@ -4101,7 +4101,7 @@
                       <Component id="jLabel59" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane14" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <EmptySpace pref="67" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton28" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton29" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -4399,15 +4399,15 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel16">
+    <Container class="javax.swing.JPanel" name="customerInfoView">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="jPanel16.background"/>
+        <Property name="background" type="java.awt.Color" resourceKey="customerInfoView.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="3"/>
           </Border>
         </Property>
-        <Property name="name" type="java.lang.String" value="jPanel16" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="customerInfoView" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -4566,14 +4566,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel17">
+    <Container class="javax.swing.JPanel" name="warehouseManagement">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="2"/>
           </Border>
         </Property>
-        <Property name="name" type="java.lang.String" value="jPanel17" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="warehouseManagement" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[860, 429]"/>
         </Property>
@@ -5018,16 +5018,19 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel20">
+    <Container class="javax.swing.JPanel" name="billingCustomerEdit">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="jPanel20.background"/>
+        <Property name="background" type="java.awt.Color" resourceKey="billingCustomerEdit.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="3"/>
           </Border>
         </Property>
-        <Property name="name" type="java.lang.String" value="jPanel20" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="billingCustomerEdit" noResource="true"/>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" resourceKey="billingCustomer.AccessibleContext.accessibleName"/>
+      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -5061,7 +5064,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jTextField60" alignment="0" pref="378" max="32767" attributes="1"/>
-                              <Component id="jTextField63" alignment="0" max="32767" attributes="1"/>
+                              <Component id="jTextFieldCF" alignment="0" max="32767" attributes="1"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jTextField62" min="-2" pref="158" max="-2" attributes="1"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -5069,7 +5072,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jTextField61" min="-2" pref="145" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jTextField64" alignment="0" max="32767" attributes="1"/>
+                              <Component id="jTextFieldIVA" alignment="0" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                   </Group>
@@ -5090,12 +5093,12 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel88" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField63" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldCF" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel89" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField64" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldIVA" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -5222,10 +5225,10 @@
             <Property name="name" type="java.lang.String" value="jLabel88" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField63">
+        <Component class="javax.swing.JTextField" name="jTextFieldCF">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jTextField63.text"/>
-            <Property name="name" type="java.lang.String" value="jTextField63" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="jTextFieldCF.text"/>
+            <Property name="name" type="java.lang.String" value="jTextFieldCF" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel89">
@@ -5234,23 +5237,23 @@
             <Property name="name" type="java.lang.String" value="jLabel89" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField64">
+        <Component class="javax.swing.JTextField" name="jTextFieldIVA">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jTextField64.text"/>
-            <Property name="name" type="java.lang.String" value="jTextField64" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="jTextFieldIVA.text"/>
+            <Property name="name" type="java.lang.String" value="jTextFieldIVA" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel21">
+    <Container class="javax.swing.JPanel" name="billingCustomerSearch">
       <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="jPanel21.background"/>
+        <Property name="background" type="java.awt.Color" resourceKey="billingCustomerSearch.background"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder thickness="2"/>
           </Border>
         </Property>
-        <Property name="name" type="java.lang.String" value="jPanel21" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="billingCustomerSearch" noResource="true"/>
       </Properties>
 
       <Layout>
@@ -5381,228 +5384,6 @@
             </Component>
           </SubComponents>
         </Container>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="jPanel22">
-      <Properties>
-        <Property name="background" type="java.awt.Color" resourceKey="jPanel22.background"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder thickness="3"/>
-          </Border>
-        </Property>
-        <Property name="name" type="java.lang.String" value="jPanel22" noResource="true"/>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton62" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton61" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel92" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel91" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane23" alignment="0" pref="353" max="32767" attributes="1"/>
-                              <Component id="jTextField67" alignment="0" pref="353" max="32767" attributes="1"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel93" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel97" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel96" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel95" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTextField68" alignment="0" pref="378" max="32767" attributes="1"/>
-                              <Component id="jTextField83" alignment="0" max="32767" attributes="1"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextField70" min="-2" pref="158" max="-2" attributes="1"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel94" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField69" min="-2" pref="145" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTextField84" alignment="0" max="32767" attributes="1"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel95" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField70" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField69" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel94" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel96" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField83" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel97" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField84" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel93" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField68" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel92" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField67" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel91" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane23" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton61" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton62" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane23">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jScrollPane23" noResource="true"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextArea14">
-              <Properties>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="lineWrap" type="boolean" value="true"/>
-                <Property name="rows" type="int" value="5"/>
-                <Property name="name" type="java.lang.String" value="jTextArea14" noResource="true"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Component class="javax.swing.JLabel" name="jLabel91">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel91.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel91" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel92">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel92.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel92" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField67">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jTextField67" noResource="true"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextField13.setDocument(justNumbers);"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField68">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jTextField68" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel93">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel93.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel93" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField69">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jTextField69" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField70">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jTextField70" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel94">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel94.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel94" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel95">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel95.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel95" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton61">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton61.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="jButton61.text"/>
-            <Property name="name" type="java.lang.String" value="jButton61" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton61MouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton62">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jButton62.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="jButton62.text"/>
-            <Property name="name" type="java.lang.String" value="jButton62" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton62MouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel96">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel96.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel96" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField83">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jTextField83" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel97">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel97.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel97" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextField84">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jTextField84" noResource="true"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
   </NonVisualComponents>
