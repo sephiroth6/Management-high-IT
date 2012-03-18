@@ -87,6 +87,7 @@ public class ManagGuiView extends FrameView {
     
     private SharedClasses.Customer billingCustomer;
     private SharedClasses.BillingCustomer billingCustomerInfo;
+    private boolean newBillingInfo;
     
     private ArrayList<Object> repairRet;                // used by Repair search
     private ArrayList<Object> customerRet;
@@ -331,8 +332,8 @@ public class ManagGuiView extends FrameView {
         jTextField56 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
-        jTextField57 = new javax.swing.JTextField();
-        jTextField58 = new javax.swing.JTextField();
+        billingCustomerSurname = new javax.swing.JTextField();
+        billingCustomerName = new javax.swing.JTextField();
         jButton54 = new javax.swing.JButton();
         jButton55 = new javax.swing.JButton();
         jPanel23 = new javax.swing.JPanel();
@@ -1772,11 +1773,11 @@ public class ManagGuiView extends FrameView {
         jLabel60.setText(resourceMap.getString("jLabel60.text")); // NOI18N
         jLabel60.setName("jLabel60"); // NOI18N
 
-        jTextField57.setText(resourceMap.getString("jTextField57.text")); // NOI18N
-        jTextField57.setName("jTextField57"); // NOI18N
+        billingCustomerSurname.setText(resourceMap.getString("billingCustomerSurname.text")); // NOI18N
+        billingCustomerSurname.setName("billingCustomerSurname"); // NOI18N
 
-        jTextField58.setText(resourceMap.getString("jTextField58.text")); // NOI18N
-        jTextField58.setName("jTextField58"); // NOI18N
+        billingCustomerName.setText(resourceMap.getString("billingCustomerName.text")); // NOI18N
+        billingCustomerName.setName("billingCustomerName"); // NOI18N
 
         jButton54.setText(resourceMap.getString("jButton54.text")); // NOI18N
         jButton54.setName("jButton54"); // NOI18N
@@ -2221,9 +2222,9 @@ public class ManagGuiView extends FrameView {
                             .addGroup(billingCreationLayout.createSequentialGroup()
                                 .addComponent(jLabel60)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField57, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(billingCustomerSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField58, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(billingCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton54)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2259,8 +2260,8 @@ public class ManagGuiView extends FrameView {
                 .addGap(18, 18, 18)
                 .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel60)
-                    .addComponent(jTextField57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField58, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(billingCustomerSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(billingCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton54)
                     .addComponent(jButton55))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -2284,8 +2285,8 @@ public class ManagGuiView extends FrameView {
         );
 
         jPanel19.setVisible(false);
-        jTextField57.setEditable(false);
-        jTextField58.setEditable(false);
+        billingCustomerSurname.setEditable(false);
+        billingCustomerName.setEditable(false);
         jPanel23.setVisible(false);
         jPanel24.setVisible(false);
 
@@ -5738,12 +5739,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 SharedClasses.BillingCustomer auxB = new SharedClasses.BillingCustomer(jTextFieldIVA.getText(), jTextFieldCF.getText());
 
                 // manage billing info
-                if (this.billingCustomerEditing) {
+                if (this.billingCustomerEditing && !(this.newBillingInfo)) {
                     auxB.setID(this.billingCustomer.getID());
                     r = new ComClasses.Request(auxB, ComClasses.Constants.BILLCUS, ComClasses.Constants.UPDATE, this.billingCustomerInfo.update(auxB));
                 } else {
-                    this.billingCustomer.setID(v);
-                    auxB.setID(v);
+                    if(this.billingCustomer.getID() == 0)
+                        this.billingCustomer.setID(v);
+                    
+                    auxB.setID(this.billingCustomer.getID());
                     r = new ComClasses.Request(auxB, ComClasses.Constants.BILLCUS, ComClasses.Constants.INSERT, SharedClasses.BillingCustomer.insert());
                 }
                 
@@ -5761,8 +5764,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 
                 this.billingCustomerInfo = auxB;
                 
-                jTextField57.setText(this.billingCustomer.getSurname());
-                jTextField58.setText(this.billingCustomer.getName());
+                billingCustomerSurname.setText(this.billingCustomer.getSurname());
+                billingCustomerName.setText(this.billingCustomer.getName());
                  
                  if(DatiClienteView != null)
                      DatiClienteView.dispose();
@@ -5793,6 +5796,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton54MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton54MouseClicked
         setCenterMonitorDim(520, 360);
         this.billingCustomerEditing = false;
+        this.newBillingInfo = true;
         DatiClienteView = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 520, 360, billingCustomerEdit);
         clearFields(jTextField62, jTextField61, jTextFieldCF, jTextFieldIVA, jTextField60, jTextField59);
         jTextArea13.setText(null);
@@ -5868,6 +5872,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             if(this.billingCustomerInfo != null) {
                 jTextFieldCF.setText(this.billingCustomerInfo.getCF().toLowerCase());
                 jTextFieldIVA.setText(this.billingCustomerInfo.getIVA().toLowerCase());
+                this.newBillingInfo = false;
+            } else {
+                this.newBillingInfo = true;
             }
         }
         
@@ -5980,8 +5987,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         billingSearch.setVisible(true);
     }//GEN-LAST:event_jButton24MouseClicked
 
+    // reset billing view and data
     private void jButton63MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton63MouseClicked
-        // TODO add your handling code here:
+        this.billingCustomer = null;
+        this.billingCustomerInfo = null;
+        this.billingCustomerRet = null;
+        billingCustomerSurname.setText("Cognome");
+        billingCustomerName.setText("Nome");
     }//GEN-LAST:event_jButton63MouseClicked
 
     private void jButton64MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton64MouseClicked
@@ -6111,7 +6123,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel billingCreation;
     private javax.swing.JPanel billingCustomerEdit;
+    private javax.swing.JTextField billingCustomerName;
     private javax.swing.JPanel billingCustomerSearch;
+    private javax.swing.JTextField billingCustomerSurname;
     private javax.swing.JPanel billingSearch;
     private javax.swing.JPanel customerEdit;
     private javax.swing.JPanel customerInfoView;
@@ -6437,8 +6451,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField54;
     private javax.swing.JTextField jTextField55;
     private javax.swing.JTextField jTextField56;
-    private javax.swing.JTextField jTextField57;
-    private javax.swing.JTextField jTextField58;
     private javax.swing.JTextField jTextField59;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField60;
@@ -7070,8 +7082,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     private void activeClientBill(){
         jLabel60.setVisible(true);
-        jTextField57.setVisible(true);
-        jTextField58.setVisible(true);
+        billingCustomerSurname.setVisible(true);
+        billingCustomerName.setVisible(true);
         jButton54.setVisible(true);
         jButton55.setVisible(true);
         
@@ -7079,8 +7091,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     private void deactiveClienteBill(){
         jLabel60.setVisible(false);
-        jTextField57.setVisible(false);
-        jTextField58.setVisible(false);
+        billingCustomerSurname.setVisible(false);
+        billingCustomerName.setVisible(false);
         jButton54.setVisible(false);
         jButton55.setVisible(false);
     }

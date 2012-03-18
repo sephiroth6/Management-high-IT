@@ -1,6 +1,10 @@
 In the last part of the development, I will use this file as a history of the changes made in every commit.
 Claudio
 
+18-03-2012
+fixed a bug in billing info management;
+reset button in billing view.
+
 17-03-2012
 management of customer's informations when creating a new bill;
 creation of a new class of exceptions, specifically for the database operations executed in manIT;
