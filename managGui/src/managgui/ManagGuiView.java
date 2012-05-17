@@ -1738,7 +1738,7 @@ public class ManagGuiView extends FrameView {
                 .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 590, Short.MAX_VALUE)
                 .addComponent(jLabel18)
-                .addGap(247, 247, 247))
+                .addGap(260, 260, 260))
         );
         fatturaViewLayout.setVerticalGroup(
             fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1917,7 +1917,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jLabel109)
                         .addGap(4, 4, 4)
                         .addComponent(jTextField73, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
                         .addComponent(jLabel110)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1941,7 +1941,7 @@ public class ManagGuiView extends FrameView {
                 .addComponent(jLabel101)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField71, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 524, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 545, Short.MAX_VALUE)
                 .addComponent(jLabel102)
                 .addGap(239, 239, 239))
         );
@@ -2246,7 +2246,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(ndcView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(119, Short.MAX_VALUE)))
+                    .addContainerGap(111, Short.MAX_VALUE)))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
@@ -4249,10 +4249,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             setTableCustomerData(jTable5, this.customerRet);
             jTable5.setVisible(true);
         } else {
-            showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
             jTable5.setVisible(false);
         }
-        
     }
 }//GEN-LAST:event_jButton3MouseClicked
 
@@ -4731,6 +4729,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             else
                 this.customerRet = Utils.arrayOperation(r);
         
+        } catch (SharedClasses.MyDBException e) {
+            showWinAlert(customerSearch, "Nessun cliente soddisfa le condizioni di ricerca.", "Cliente inesistente", JOptionPane.WARNING_MESSAGE);    
         } catch (Exception e) {
             showWinAlert(customerSearch, Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -5666,7 +5666,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // FATTURA sync
     private void jButton52MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton52MouseClicked
-        this.billingSync(this.jTable8);
+        this.billingSync(jTable8);
     }//GEN-LAST:event_jButton52MouseClicked
 
     // FATTURA delete all rows
@@ -5825,7 +5825,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 setTableCustomerData(jTable9, this.billingCustomerRet);
                 jTable9.setVisible(true); // this was out of the if/else
             } else {
-                showWinAlert(billingCustomerSearch, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
                 jTable9.setVisible(false);
             }
             
@@ -5995,7 +5994,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         try {
             // TODO select last billing id to increase it (consider billing year)
             this.checkBillingInfo();
-            this.jButton52MouseClicked(evt);
+            this.billingSync(jTable8);
             Print.repairPrint(0, this.billingCustomer, this.billingCustomerInfo, jTable8, jTextField53.getText(), jTextField54.getText(), jTextField56.getText());
             this.jButton63MouseClicked(evt);
         } catch (Exception e) {
