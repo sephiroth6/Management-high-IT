@@ -1,6 +1,11 @@
 In the last part of the development, I will use this file as a history of the changes made in every commit.
 Claudio
 
+18-05-2012
+billing (fattura only) print done when creating a new one;
+info checking for billing creation (with new exception);
+it prints but not saves in the db!
+
 18-03-2012
 fixed a bug in billing info management;
 reset button in billing view.

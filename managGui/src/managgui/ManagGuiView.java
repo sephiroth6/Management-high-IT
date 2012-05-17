@@ -29,6 +29,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -311,7 +312,7 @@ public class ManagGuiView extends FrameView {
         jButton30 = new javax.swing.JButton();
         jButton31 = new javax.swing.JButton();
         jButton34 = new javax.swing.JButton();
-        jPanel19 = new javax.swing.JPanel();
+        fatturaView = new javax.swing.JPanel();
         jTextField42 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -331,12 +332,14 @@ public class ManagGuiView extends FrameView {
         jLabel21 = new javax.swing.JLabel();
         jTextField56 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
+        jLabel91 = new javax.swing.JLabel();
+        jTextField63 = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
-        billingCustomerSurname = new javax.swing.JTextField();
-        billingCustomerName = new javax.swing.JTextField();
+        jTextField57 = new javax.swing.JTextField();
+        jTextField58 = new javax.swing.JTextField();
         jButton54 = new javax.swing.JButton();
         jButton55 = new javax.swing.JButton();
-        jPanel23 = new javax.swing.JPanel();
+        ndcView = new javax.swing.JPanel();
         jTextField71 = new javax.swing.JTextField();
         jLabel101 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();
@@ -356,7 +359,7 @@ public class ManagGuiView extends FrameView {
         jLabel109 = new javax.swing.JLabel();
         jTextField74 = new javax.swing.JTextField();
         jLabel110 = new javax.swing.JLabel();
-        jPanel24 = new javax.swing.JPanel();
+        rdaView = new javax.swing.JPanel();
         jTextField75 = new javax.swing.JTextField();
         jLabel111 = new javax.swing.JLabel();
         jLabel112 = new javax.swing.JLabel();
@@ -382,7 +385,6 @@ public class ManagGuiView extends FrameView {
         jTextField86 = new javax.swing.JTextField();
         jButton63 = new javax.swing.JButton();
         jButton64 = new javax.swing.JButton();
-        jButton75 = new javax.swing.JButton();
         billingSearch = new javax.swing.JPanel();
         jTextField79 = new javax.swing.JTextField();
         jLabel121 = new javax.swing.JLabel();
@@ -1590,7 +1592,7 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jPanel19.setName("jPanel19"); // NOI18N
+        fatturaView.setName("fatturaView"); // NOI18N
 
         jTextField42.setText(resourceMap.getString("jTextField42.text")); // NOI18N
         jTextField42.setName("jTextField42"); // NOI18N
@@ -1672,9 +1674,11 @@ public class ManagGuiView extends FrameView {
         jLabel20.setText(resourceMap.getString("jLabel20.text")); // NOI18N
         jLabel20.setName("jLabel20"); // NOI18N
 
+        jTextField53.setEditable(false);
         jTextField53.setText(resourceMap.getString("jTextField53.text")); // NOI18N
         jTextField53.setName("jTextField53"); // NOI18N
 
+        jTextField54.setText(resourceMap.getString("jTextField54.text")); // NOI18N
         jTextField54.setName("jTextField54"); // NOI18N
 
         jLabel21.setText(resourceMap.getString("jLabel21.text")); // NOI18N
@@ -1685,99 +1689,109 @@ public class ManagGuiView extends FrameView {
         jLabel22.setText(resourceMap.getString("jLabel22.text")); // NOI18N
         jLabel22.setName("jLabel22"); // NOI18N
 
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel19Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+        jLabel91.setText(resourceMap.getString("jLabel91.text")); // NOI18N
+        jLabel91.setName("jLabel91"); // NOI18N
+
+        jTextField63.setEditable(false);
+        jTextField63.setName("jTextField63"); // NOI18N
+
+        javax.swing.GroupLayout fatturaViewLayout = new javax.swing.GroupLayout(fatturaView);
+        fatturaView.setLayout(fatturaViewLayout);
+        fatturaViewLayout.setHorizontalGroup(
+            fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fatturaViewLayout.createSequentialGroup()
+                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fatturaViewLayout.createSequentialGroup()
                         .addComponent(jLabel20)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel21)
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField54, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
-                        .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField54, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel91)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField63, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel22)
+                        .addGap(18, 18, 18)
                         .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton53, 0, 0, Short.MAX_VALUE)
                     .addComponent(jButton52, 0, 0, Short.MAX_VALUE)
                     .addComponent(jButton51, 0, 0, Short.MAX_VALUE)
                     .addComponent(jButton50, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel80)
                     .addComponent(jLabel79)
                     .addComponent(jLabel62)
                     .addComponent(jLabel61))
                 .addGap(24, 24, 24))
-            .addGroup(jPanel19Layout.createSequentialGroup()
+            .addGroup(fatturaViewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 590, Short.MAX_VALUE)
                 .addComponent(jLabel18)
-                .addGap(246, 246, 246))
+                .addGap(247, 247, 247))
         );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        fatturaViewLayout.setVerticalGroup(
+            fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fatturaViewLayout.createSequentialGroup()
+                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fatturaViewLayout.createSequentialGroup()
+                        .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton50)
                             .addComponent(jLabel61))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton51, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel62))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton52)
                             .addComponent(jLabel79))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton53)
                             .addComponent(jLabel80)))
-                    .addGroup(jPanel19Layout.createSequentialGroup()
+                    .addGroup(fatturaViewLayout.createSequentialGroup()
                         .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel20))
-                            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel21)
-                                .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel22))))))
+                        .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21)
+                            .addComponent(jTextField54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel91)
+                            .addComponent(jTextField63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22)))))
         );
 
         jTextField42.setText(getDataOra());
         jTextField42.setEditable(false);
         jTextField53.setEditable(false);
         jTextField56.setEditable(false);
+        jTextField56.setEditable(false);
 
         jLabel60.setText(resourceMap.getString("jLabel60.text")); // NOI18N
         jLabel60.setName("jLabel60"); // NOI18N
 
-        billingCustomerSurname.setText(resourceMap.getString("billingCustomerSurname.text")); // NOI18N
-        billingCustomerSurname.setName("billingCustomerSurname"); // NOI18N
+        jTextField57.setText(resourceMap.getString("jTextField57.text")); // NOI18N
+        jTextField57.setName("jTextField57"); // NOI18N
 
-        billingCustomerName.setText(resourceMap.getString("billingCustomerName.text")); // NOI18N
-        billingCustomerName.setName("billingCustomerName"); // NOI18N
+        jTextField58.setText(resourceMap.getString("jTextField58.text")); // NOI18N
+        jTextField58.setName("jTextField58"); // NOI18N
 
         jButton54.setText(resourceMap.getString("jButton54.text")); // NOI18N
         jButton54.setName("jButton54"); // NOI18N
@@ -1795,7 +1809,7 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jPanel23.setName("jPanel23"); // NOI18N
+        ndcView.setName("ndcView"); // NOI18N
 
         jTextField71.setName("jTextField71"); // NOI18N
 
@@ -1877,6 +1891,7 @@ public class ManagGuiView extends FrameView {
 
         jTextField72.setName("jTextField72"); // NOI18N
 
+        jTextField73.setText(resourceMap.getString("jTextField73.text")); // NOI18N
         jTextField73.setName("jTextField73"); // NOI18N
 
         jLabel109.setText(resourceMap.getString("jLabel109.text")); // NOI18N
@@ -1887,13 +1902,13 @@ public class ManagGuiView extends FrameView {
         jLabel110.setText(resourceMap.getString("jLabel110.text")); // NOI18N
         jLabel110.setName("jLabel110"); // NOI18N
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel23Layout.createSequentialGroup()
+        javax.swing.GroupLayout ndcViewLayout = new javax.swing.GroupLayout(ndcView);
+        ndcView.setLayout(ndcViewLayout);
+        ndcViewLayout.setHorizontalGroup(
+            ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ndcViewLayout.createSequentialGroup()
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ndcViewLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel108)
                         .addGap(4, 4, 4)
@@ -1902,25 +1917,26 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jLabel109)
                         .addGap(4, 4, 4)
                         .addComponent(jTextField73, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
                         .addComponent(jLabel110)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
                     .addComponent(jScrollPane24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 897, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton68, 0, 0, Short.MAX_VALUE)
                     .addComponent(jButton67, 0, 0, Short.MAX_VALUE)
                     .addComponent(jButton66, 0, 0, Short.MAX_VALUE)
                     .addComponent(jButton65, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel107)
                     .addComponent(jLabel106)
                     .addComponent(jLabel105)
                     .addComponent(jLabel104))
                 .addContainerGap())
-            .addGroup(jPanel23Layout.createSequentialGroup()
+            .addGroup(ndcViewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel101)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1929,41 +1945,41 @@ public class ManagGuiView extends FrameView {
                 .addComponent(jLabel102)
                 .addGap(239, 239, 239))
         );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        ndcViewLayout.setVerticalGroup(
+            ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ndcViewLayout.createSequentialGroup()
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel101)
                     .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel108))
-                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField73, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel109))
-                    .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel110))))
-            .addGroup(jPanel23Layout.createSequentialGroup()
+                    .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel110)
+                        .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(ndcViewLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton65)
                     .addComponent(jLabel104))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton66, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel105))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton67)
                     .addComponent(jLabel106))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton68)
                     .addComponent(jLabel107)))
         );
@@ -1973,7 +1989,7 @@ public class ManagGuiView extends FrameView {
         jTextField72.setEditable(false);
         jTextField74.setEditable(false);
 
-        jPanel24.setName("jPanel24"); // NOI18N
+        rdaView.setName("rdaView"); // NOI18N
 
         jTextField75.setName("jTextField75"); // NOI18N
 
@@ -2078,16 +2094,16 @@ public class ManagGuiView extends FrameView {
         jTextField86.setText(resourceMap.getString("jTextField86.text")); // NOI18N
         jTextField86.setName("jTextField86"); // NOI18N
 
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
+        javax.swing.GroupLayout rdaViewLayout = new javax.swing.GroupLayout(rdaView);
+        rdaView.setLayout(rdaViewLayout);
+        rdaViewLayout.setHorizontalGroup(
+            rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rdaViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rdaViewLayout.createSequentialGroup()
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(rdaViewLayout.createSequentialGroup()
                                 .addComponent(jLabel118)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField76, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2103,27 +2119,26 @@ public class ManagGuiView extends FrameView {
                                 .addComponent(jLabel126)
                                 .addGap(4, 4, 4)
                                 .addComponent(jTextField86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel120)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField78, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel24Layout.createSequentialGroup()
-                                .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButton71, 0, 0, Short.MAX_VALUE)
-                                        .addComponent(jButton70, javax.swing.GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE)
-                                        .addComponent(jButton72, 0, 0, Short.MAX_VALUE))
-                                    .addComponent(jButton69, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel114)
-                                    .addComponent(jLabel115)
-                                    .addComponent(jLabel116)
-                                    .addComponent(jLabel117))))
+                            .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton71, 0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton70, javax.swing.GroupLayout.PREFERRED_SIZE, 26, Short.MAX_VALUE)
+                                .addComponent(jButton72, 0, 0, Short.MAX_VALUE))
+                            .addComponent(jButton69, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel114)
+                            .addComponent(jLabel115)
+                            .addComponent(jLabel116)
+                            .addComponent(jLabel117))
                         .addContainerGap())
-                    .addGroup(jPanel24Layout.createSequentialGroup()
+                    .addGroup(rdaViewLayout.createSequentialGroup()
                         .addComponent(jLabel111)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField75, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2131,37 +2146,37 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jLabel112)
                         .addGap(354, 354, 354))))
         );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        rdaViewLayout.setVerticalGroup(
+            rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rdaViewLayout.createSequentialGroup()
+                .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField75, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel111)
                     .addComponent(jLabel112, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(rdaViewLayout.createSequentialGroup()
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel114)
                             .addComponent(jButton69))
                         .addGap(9, 9, 9)
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton70, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel115))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton71)
                             .addComponent(jLabel116))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel117)
                             .addComponent(jButton72))
                         .addGap(208, 208, 208)
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel118)
                                 .addComponent(jTextField76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel119)
                                 .addComponent(jTextField77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField85, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2195,15 +2210,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton75.setIcon(resourceMap.getIcon("jButton75.icon")); // NOI18N
-        jButton75.setText(resourceMap.getString("jButton75.text")); // NOI18N
-        jButton75.setName("jButton75"); // NOI18N
-        jButton75.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton75MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout billingCreationLayout = new javax.swing.GroupLayout(billingCreation);
         billingCreation.setLayout(billingCreationLayout);
         billingCreationLayout.setHorizontalGroup(
@@ -2222,31 +2228,29 @@ public class ManagGuiView extends FrameView {
                             .addGroup(billingCreationLayout.createSequentialGroup()
                                 .addComponent(jLabel60)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(billingCustomerSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField57, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(billingCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField58, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton54)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton55))
-                            .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(78, Short.MAX_VALUE))
+                            .addComponent(fatturaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(77, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingCreationLayout.createSequentialGroup()
                         .addComponent(jButton63)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton64)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton75)
-                        .addGap(222, 222, 222))))
+                        .addGap(375, 375, 375))))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ndcView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(119, Short.MAX_VALUE)))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         billingCreationLayout.setVerticalGroup(
@@ -2260,35 +2264,34 @@ public class ManagGuiView extends FrameView {
                 .addGap(18, 18, 18)
                 .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel60)
-                    .addComponent(billingCustomerSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(billingCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField58, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton54)
                     .addComponent(jButton55))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fatturaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton64)
                     .addComponent(jButton63)
-                    .addComponent(jButton75))
+                    .addComponent(jButton64))
                 .addContainerGap())
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addGap(98, 98, 98)
-                    .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ndcView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(92, Short.MAX_VALUE)))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addGap(97, 97, 97)
-                    .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(102, Short.MAX_VALUE)))
         );
 
-        jPanel19.setVisible(false);
-        billingCustomerSurname.setEditable(false);
-        billingCustomerName.setEditable(false);
-        jPanel23.setVisible(false);
-        jPanel24.setVisible(false);
+        fatturaView.setVisible(false);
+        jTextField57.setEditable(false);
+        jTextField58.setEditable(false);
+        ndcView.setVisible(false);
+        rdaView.setVisible(false);
 
         billingSearch.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         billingSearch.setName("billingSearch"); // NOI18N
@@ -5107,7 +5110,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
             
             jTextField90.setText(tot.toString());
-            jTextField91.setText(handleIVA(jTextField90.getText(), true));
+            jTextField91.setText(handleIVA(jTextField90.getText(), this.warehouseInfo.getIVA(), true));
             
         } catch (Exception e) {
             showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
@@ -5209,14 +5212,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         BigDecimal tot = new BigDecimal(0);
         
         for(int i = 0; i < n; i++) {
-            
             BigDecimal a = new BigDecimal((Integer)t.getValueAt(i, 2));
             tot = tot.add(a.multiply((BigDecimal)t.getValueAt(i, 3)));
-            
         }
         
         jTextField90.setText(tot.setScale(2, RoundingMode.HALF_DOWN).toString());
-        jTextField91.setText(handleIVA(jTextField90.getText(), true));
+        jTextField91.setText(handleIVA(jTextField90.getText(), this.warehouseInfo.getIVA(), true));
         
     }
     
@@ -5362,29 +5363,24 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // delete all spare part from usage
     private void jButton43MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton43MouseClicked
-
             int n = JOptionPane.showConfirmDialog(warehouseManagement, "Cancellare tutti i pezzi\nimpostati per questa lavorazione?", "Cancellazione info", JOptionPane.YES_NO_OPTION);
             
             if(n == JOptionPane.YES_OPTION){
-            
                 int r = jTable7.getRowCount();
                 
                 if(r > 0) {
-                
                     DefaultTableModel model = (DefaultTableModel)jTable7.getModel();
                     
                     for(int i = 0; i < r; i++)
                         model.removeRow(0);
                     
                     clearFields(jTextField90, jTextField91);
-                    
                 }
                 
             } else {
                 // do nothing
             }
                 
-  
     }//GEN-LAST:event_jButton43MouseClicked
 
     // if a there is a spare part in the search result table return index of the row
@@ -5642,27 +5638,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton23MouseClicked
         billingCreation.setVisible(true);
         billingSearch.setVisible(false);
-        jPanel19.setVisible(false);
-        jPanel23.setVisible(false);
-        jPanel24.setVisible(false);
-        deactiveButt();
-        deactiveClienteBill();
-        
+        fatturaView.setVisible(false);
+        ndcView.setVisible(false);
+        rdaView.setVisible(false);
+        deactivateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);
     }//GEN-LAST:event_jButton23MouseClicked
 
     
-    //addrow billing
+    // add a row in billing tables
+    private static void addBillingRow(JTable table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(new Object[]{"", "", "", 1, "", false, ""});  
+    }
+    
+    // FATTURA add row
     private void jButton50MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton50MouseClicked
-       System.out.println(jTable8.getRowCount());
-        
-        DefaultTableModel model= (DefaultTableModel) jTable8.getModel();
-        model.addRow(new Object[]{""});
-        
-        //jTable8.addRowSelectionInterval(jTable8.getRowCount(), jTable8.getRowCount()+1);
-        
+        addBillingRow(jTable8);
     }//GEN-LAST:event_jButton50MouseClicked
 
-    //del selected row
+    // FATTURA delete single row
     private void jButton51MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton51MouseClicked
         if(jTable8.getSelectedRow() != -1){
             DefaultTableModel model = (DefaultTableModel)jTable8.getModel();
@@ -5670,28 +5664,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jButton51MouseClicked
 
+    // FATTURA sync
     private void jButton52MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton52MouseClicked
-        // TODO add your handling code here:
+        this.billingSync(this.jTable8);
     }//GEN-LAST:event_jButton52MouseClicked
 
-    //del all row
+    // FATTURA delete all rows
     private void jButton53MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton53MouseClicked
-//        DefaultTableModel model = new DefaultTableModel(0, 0);
-//        
-//        jTable8.setModel(null);
-        setJTableBilling(jTable8, 1);
+        setJTableBilling(jTable8, 0);
+        clearFields(jTextField53, jTextField56, jTextField63);
     }//GEN-LAST:event_jButton53MouseClicked
 
-    //new bill
+    // FATTURA new
     private void jButton30MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton30MouseClicked
-        jPanel19.setVisible(true);
+        fatturaView.setVisible(true);
         setJTableBilling(jTable8, 1);
-        jPanel23.setVisible(false);
-        jPanel24.setVisible(false);
-        bill=1;
-        activeButt();
-        activeClientBill();
-        
+        ndcView.setVisible(false);
+        rdaView.setVisible(false);
+        this.bill = Client.Constants.FATTURA;
+        activateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);  // make visible buttons, textfield and label
     }//GEN-LAST:event_jButton30MouseClicked
 
     private void jButton56MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton56MouseClicked
@@ -5764,11 +5755,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 
                 this.billingCustomerInfo = auxB;
                 
-                billingCustomerSurname.setText(this.billingCustomer.getSurname());
-                billingCustomerName.setText(this.billingCustomer.getName());
+                jTextField57.setText(this.billingCustomer.getSurname());
+                jTextField58.setText(this.billingCustomer.getName());
                  
-                 if(DatiClienteView != null)
+                 if(DatiClienteView != null) {
                      DatiClienteView.dispose();
+                     DatiClienteView = null;
+                 }
                  if(cercaCliente != null) {
                      cercaCliente.dispose();
                      cercaCliente = null;
@@ -5890,10 +5883,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTable9.setVisible(false);
     }//GEN-LAST:event_jButton55MouseClicked
 
-    //addrow ndc
+    // NDC add row
     private void jButton65MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton65MouseClicked
-        DefaultTableModel model= (DefaultTableModel) jTable11.getModel();
-        model.addRow(new Object[]{""});
+        addBillingRow(jTable11);
     }//GEN-LAST:event_jButton65MouseClicked
 
     //delrow ndc
@@ -5911,27 +5903,26 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     //del everything ndc
     private void jButton68MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton68MouseClicked
-        setJTableBilling(jTable11, 1);
+        setJTableBilling(jTable11, 0);
+        clearFields(jTextField72, jTextField73, jTextField74);
     }//GEN-LAST:event_jButton68MouseClicked
 
-    //active noda di credito
+    // create new noda di credito
     private void jButton31MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton31MouseClicked
-        jPanel19.setVisible(false);
-        jPanel23.setVisible(true);
-        setJTableBilling(jTable11, 1);
-        jPanel24.setVisible(false);
-        bill=2;
-        activeButt();
-        activeClientBill();
+        fatturaView.setVisible(false);
+        ndcView.setVisible(true);
+        setJTableBilling(jTable11, 0);
+        rdaView.setVisible(false);
+        this.bill = Client.Constants.NDC;
+        activateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);  // make visible buttons, textfield and label
     }//GEN-LAST:event_jButton31MouseClicked
 
-    //addrow rda
+    // RDA add row
     private void jButton69MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton69MouseClicked
-        DefaultTableModel model= (DefaultTableModel) jTable12.getModel();
-        model.addRow(new Object[]{""});
+        addBillingRow(jTable12);
     }//GEN-LAST:event_jButton69MouseClicked
 
-    //del row rda
+    // RDA delete single row
     private void jButton70MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton70MouseClicked
         if(jTable12.getSelectedRow() != -1){
             DefaultTableModel model = (DefaultTableModel)jTable12.getModel();
@@ -5939,25 +5930,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jButton70MouseClicked
 
-    //sync rda
+    // RDA sync
     private void jButton71MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton71MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton71MouseClicked
 
-    //del everything rda
+    // RDA delete all row
     private void jButton72MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton72MouseClicked
-        setJTableBilling(jTable12, 1);
+        setJTableBilling(jTable12, 0);
+        clearFields(jTextField76, jTextField78);
     }//GEN-LAST:event_jButton72MouseClicked
 
-    //add ritenuta d'acconto
+    // RDA new
     private void jButton34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton34MouseClicked
-        jPanel19.setVisible(false);
-        setJTableBilling(jTable12, 1);
-        jPanel23.setVisible(false);
-        jPanel24.setVisible(true);
-        bill=3;
-        activeButt();
-        activeClientBill();
+        fatturaView.setVisible(false);
+        setJTableBilling(jTable12, 0);
+        ndcView.setVisible(false);
+        rdaView.setVisible(true);
+        this.bill = Client.Constants.RDA;
+        activateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);  // make visible buttons, textfield and label
     }//GEN-LAST:event_jButton34MouseClicked
 
     private void jTextField79MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField79MouseClicked
@@ -5981,7 +5972,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable13MouseClicked
 
-    //active serch billing
+    // active billing search
     private void jButton24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton24MouseClicked
         billingCreation.setVisible(false);
         billingSearch.setVisible(true);
@@ -5992,18 +5983,38 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         this.billingCustomer = null;
         this.billingCustomerInfo = null;
         this.billingCustomerRet = null;
-        billingCustomerSurname.setText("Cognome");
-        billingCustomerName.setText("Nome");
+        this.resetBillingTables();
+        jTextField57.setText("Cognome");
+        jTextField58.setText("Nome");
+        clearFields(jTextField53, jTextField56, jTextField63, jTextField72, jTextField73, jTextField74, jTextField76, jTextField78);
     }//GEN-LAST:event_jButton63MouseClicked
 
+    // save and print billing
     private void jButton64MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton64MouseClicked
-        // TODO add your handling code here:
+        
+        try {
+            // TODO select last billing id to increase it (consider billing year)
+            this.checkBillingInfo();
+            this.jButton52MouseClicked(evt);
+            Print.repairPrint(0, this.billingCustomer, this.billingCustomerInfo, jTable8, jTextField53.getText(), jTextField54.getText(), jTextField56.getText());
+            this.jButton63MouseClicked(evt);
+        } catch (Exception e) {
+            showWinAlert(billingCreation, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //new Billing(this.bill, getDataOra());
     }//GEN-LAST:event_jButton64MouseClicked
 
-    private void jButton75MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton75MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton75MouseClicked
+    private void checkBillingInfo () throws SharedClasses.InfoNeededException {
+        
+        if(this.billingCustomer == null)
+            throw new SharedClasses.InfoNeededException(ComClasses.Constants.CUSTOMER);
+        else if (this.billingCustomerInfo == null)
+            throw new SharedClasses.InfoNeededException(ComClasses.Constants.BILLCUS);
 
+    }
+    
+    
     // warehouse SELECT all by availability
     private void jButton76MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton76MouseClicked
         ComClasses.Request wr = new ComClasses.Request(Client.Utils.getWarehouse(), ComClasses.Constants.WARE, ComClasses.Constants.SELECT, SharedClasses.Warehouse.byAvailabilitySelect());
@@ -6039,22 +6050,22 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // number inserted in price with IVA JTextField (warehouse INSERT)
     private void jTextField52KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField52KeyReleased
-        jTextField88.setText(handleIVA(jTextField52.getText(), false));
+        jTextField88.setText(handleIVA(jTextField52.getText(), this.warehouseInfo.getIVA(), false));
     }//GEN-LAST:event_jTextField52KeyReleased
 
     // number inserted in price without IVA JTextField (warehouse INSERT)
     private void jTextField88KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField88KeyReleased
-        jTextField52.setText(handleIVA(jTextField88.getText(), true));
+        jTextField52.setText(handleIVA(jTextField88.getText(), this.warehouseInfo.getIVA(), true));
     }//GEN-LAST:event_jTextField88KeyReleased
 
     // number inserted in price with IVA JTextField (warehouse UPDATE)
     private void jTextField41KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField41KeyReleased
-        jTextField89.setText(handleIVA(jTextField41.getText(), false));
+        jTextField89.setText(handleIVA(jTextField41.getText(), this.warehouseInfo.getIVA(), false));
     }//GEN-LAST:event_jTextField41KeyReleased
 
     // number inserted in price without IVA JTextField (warehouse UPDATE)
     private void jTextField89KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField89KeyReleased
-        jTextField41.setText(handleIVA(jTextField89.getText(), true));
+        jTextField41.setText(handleIVA(jTextField89.getText(), this.warehouseInfo.getIVA(), true));
     }//GEN-LAST:event_jTextField89KeyReleased
 
     // print button in repair edit window
@@ -6102,34 +6113,43 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }//GEN-LAST:event_jButton79MouseClicked
 
     // obtain the price without iva
-    private String handleIVA (String s, boolean iva) {
+    private static String handleIVA (String s, Integer percentage, boolean iva) {
         
-        if(!s.equals("")) {
+        if(!s.equals(""))
             // if the price has been inserted
-            BigDecimal pr = new BigDecimal(s);
-            BigDecimal tot = new BigDecimal(100 + this.warehouseInfo.getIVA().intValue());
-
-            if(iva)
-                return pr.multiply(tot).divide(new BigDecimal(100), new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
-            else
-                return pr.multiply(new BigDecimal(100)).divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN).toString();
-        
-        } else {
+            return handleIVA(new BigDecimal(s), percentage, iva).toString();
+        else
             // if the price has not been inserted    
             return "0";
+    }
+    
+    private static BigDecimal handleIVA (BigDecimal s, Integer percentage, boolean iva) {
+        
+        if(s != null) {
+            
+            BigDecimal tot = new BigDecimal(100 + percentage.intValue());
+            
+            if(iva)
+                return s.multiply(tot).divide(new BigDecimal(100), new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN);
+            else
+                return s.multiply(new BigDecimal(100)).divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN);
+            
+        } else {
+            return new BigDecimal(0);
         }
+        
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel billingCreation;
     private javax.swing.JPanel billingCustomerEdit;
-    private javax.swing.JTextField billingCustomerName;
     private javax.swing.JPanel billingCustomerSearch;
-    private javax.swing.JTextField billingCustomerSurname;
     private javax.swing.JPanel billingSearch;
     private javax.swing.JPanel customerEdit;
     private javax.swing.JPanel customerInfoView;
     private javax.swing.JPanel customerSearch;
+    private javax.swing.JPanel fatturaView;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -6200,7 +6220,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton72;
     private javax.swing.JButton jButton73;
     private javax.swing.JButton jButton74;
-    private javax.swing.JButton jButton75;
     private javax.swing.JButton jButton76;
     private javax.swing.JButton jButton77;
     private javax.swing.JButton jButton78;
@@ -6334,6 +6353,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JMenuItem jMenuItem1;
@@ -6342,9 +6362,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
@@ -6451,11 +6468,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField54;
     private javax.swing.JTextField jTextField55;
     private javax.swing.JTextField jTextField56;
+    private javax.swing.JTextField jTextField57;
+    private javax.swing.JTextField jTextField58;
     private javax.swing.JTextField jTextField59;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField60;
     private javax.swing.JTextField jTextField61;
     private javax.swing.JTextField jTextField62;
+    private javax.swing.JTextField jTextField63;
     private javax.swing.JTextField jTextField65;
     private javax.swing.JTextField jTextField66;
     private javax.swing.JTextField jTextField7;
@@ -6488,7 +6508,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mainWarehouseEdit;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JPanel ndcView;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JPanel rdaView;
     private javax.swing.JPanel repairDetail;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
@@ -6526,6 +6548,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private static String getDataOra(){
       
         Calendar calendar = new GregorianCalendar();
+        
         int ore = calendar.get(Calendar.HOUR_OF_DAY);
         int minuti = calendar.get(Calendar.MINUTE);
         int giorno = calendar.get(Calendar.DAY_OF_MONTH);
@@ -6712,14 +6735,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     // set properly the Warehouse object needed to edit a spare part
     private void getValArticleWarehouse(JTextField code, JTextField name, JTextField n, JTextField up, JTextArea note, JTextField nip){        
-        
         code.setText(this.sp.getSerial().toLowerCase());
         name.setText(this.sp.getName().toLowerCase());
         n.setText(Integer.toString(this.sp.getAvailability()));
         up.setText(this.sp.getUnitPrice().toString());
         note.setText(this.sp.getNote().toLowerCase());
         nip.setText(this.sp.getNoIvaPrice().toString());
-        
     }
     
     private void resetValArticleWarehouse(){
@@ -6994,7 +7015,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 //                 "Codice Articolo", "Descrizione", "Quantità", "Prezzo unitario", "Esentasse", "Totale"
 //            }));
         
-        DefaultTableModel model = new DefaultTableModel(columnNames, n){
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0){
         
 //            private static final long serialVersionUID =f 1L;
 //            @Override
@@ -7004,10 +7025,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         };
         jt.setModel(model);
         
-              
+        TableColumn esentasse = jt.getColumnModel().getColumn(5); 
         
-        TableColumn esentasse = jt.getColumnModel().getColumn(5);
-
         JCheckBox checkbox = new JCheckBox();
         checkbox.setSelected(false);
         checkbox.setVisible(true);
@@ -7017,10 +7036,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         jt.getDefaultRenderer(model.getColumnClass(n));
         
-       MyTableCellRenderer renderer = new MyTableCellRenderer();
-       jt.setDefaultRenderer(Object.class, renderer);
+        MyTableCellRenderer renderer = new MyTableCellRenderer();
+        jt.setDefaultRenderer(Object.class, renderer);
        
-      TableColumn type = jt.getColumnModel().getColumn(0);
+        TableColumn type = jt.getColumnModel().getColumn(0);
 
         JComboBox comboBox = new JComboBox();
         comboBox.addItem("---");
@@ -7031,7 +7050,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         comboBox.setEnabled(true);
         comboBox.setVisible(true);
         type.setCellEditor(new DefaultCellEditor(comboBox));
+        esentasse.setCellRenderer(new CheckBoxRenderer());
+        for(int i = 0; i < n; i++)
+            model.addRow(new Object[]{"", "", "", 1, "", false, ""});       
     }
+    
+    private void resetBillingTables () {
+        setJTableBilling(jTable8, 1);
+        setJTableBilling(jTable11, 1);
+        setJTableBilling(jTable12, 1);
+    }
+    
     
     private void setUPBill(){
         jButton23.setText("Crea Scheda");
@@ -7067,39 +7096,103 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     public Object getValueAt(int row, int col) {
         return jtVal[row][col];
     }
-    
-    private void deactiveButt(){
-        jButton63.setVisible(false);
-        jButton64.setVisible(false);
-        jButton75.setVisible(false);
+  
+    private static void activateComponent (JComponent ... n) {
+        for(JComponent f : n)
+            f.setVisible(true);
     }
     
-    private void activeButt(){
-        jButton63.setVisible(true);
-        jButton64.setVisible(true);
-        jButton75.setVisible(true);
+    private static void deactivateComponent (JComponent ... n ) {
+        for(JComponent f : n)
+            f.setVisible(false);
     }
-    
-    private void activeClientBill(){
-        jLabel60.setVisible(true);
-        billingCustomerSurname.setVisible(true);
-        billingCustomerName.setVisible(true);
-        jButton54.setVisible(true);
-        jButton55.setVisible(true);
-        
-    }
-    
-    private void deactiveClienteBill(){
-        jLabel60.setVisible(false);
-        billingCustomerSurname.setVisible(false);
-        billingCustomerName.setVisible(false);
-        jButton54.setVisible(false);
-        jButton55.setVisible(false);
-    }
-    
+
     public void setWarehouseInfo (Client.WarehouseInfo wi) {
         this.warehouseInfo = wi;
     }
+    
+    private void billingSync (JTable JT) {
+        
+        int rc = JT.getRowCount();
+        // check if the table is empty
+        if(rc > 0) {
+        
+            int i = 0;
+            BigDecimal tot = new BigDecimal(0);
+            BigDecimal noTaxTot = new BigDecimal(0);
+        
+            while(i < rc) {
+                String type = (String)JT.getValueAt(i,0);
+                // check the kind of the element to add
+                if(type.contains("Codice")) {                       // add an article from warehouse
+                    String serial = (String)JT.getValueAt(i, 1);    // get serial number
+                    // retrieve article informations from database
+                    SharedClasses.Warehouse w = new SharedClasses.Warehouse(serial);
+                    ComClasses.Request r = new ComClasses.Request(w, ComClasses.Constants.WARE, ComClasses.Constants.SELECT, SharedClasses.Warehouse.select());    
+                    // execute the query
+                    try {
+                         w = (SharedClasses.Warehouse)Utils.arrayOperation(r).get(0);
+                    } catch (SharedClasses.MyDBException e) {
+                        // first catch, custom exception
+                        if(e.getCode() == ComClasses.Constants.DBNULL) {
+                            showWinAlert(fatturaView, "Articolo ".concat(serial).concat(Client.Utils.exceptionMessage(e)).concat(", seriale inesistente."), "Error", JOptionPane.ERROR_MESSAGE);
+                            i++;
+                            continue;
+                        }
+                    } catch (Exception e) {
+                        // second catch, generic exception
+                        showWinAlert(fatturaView, "Errore imprevisto: ".concat(Client.Utils.exceptionMessage(e)), "Error", JOptionPane.ERROR_MESSAGE);
+                        i++;
+                        continue;
+                    }
+                    JT.setValueAt(w.getName(), i, 2);           // write article name in the table
+                    JT.setValueAt(w.getNoIvaPrice(), i, 4);     // set price without iva
+                } 
+    
+                if(JT.getValueAt(i, 3) == null)             // set quantity
+                    JT.setValueAt(1, i, 3);
+                                    
+                if((Boolean)JT.getValueAt(i, 5))        // no taxes
+                    noTaxTot = noTaxTot.add(updateTotal(JT, i, JT.getValueAt(i, 4)));
+                else                                    // taxes
+                    tot = tot.add(updateTotal(JT, i, JT.getValueAt(i, 4)));
+                
+                i++;
+            }
+            
+            jTextField53.setText(tot.toString());
+            jTextField63.setText(noTaxTot.toString());
+            jTextField56.setText((handleIVA(tot, new Integer(jTextField54.getText()), true).add(noTaxTot)).toString()); 
+        }
+    }
+    
+    private static BigDecimal updateTotal (JTable JT, int row, Object price) {
+        // returns item quantity * item price
+        BigDecimal aux = null;
+        if(price instanceof BigDecimal)
+            aux = (BigDecimal)price;
+        else if(price instanceof String)
+            aux = new BigDecimal((String)price);
+        
+        if(aux != null) {
+            try {
+                // when inserting a new element, quantity value is an Integer
+                Integer val = (Integer)JT.getValueAt(row, 3);
+                JT.setValueAt(aux.multiply(new BigDecimal(val.toString())), row, 6);
+            } catch (java.lang.ClassCastException e) {
+                // when the element has been updated, quantity value is a String
+                JT.setValueAt(aux.multiply(new BigDecimal((String)JT.getValueAt(row, 3))), row, 6);
+            }
+            return (BigDecimal)JT.getValueAt(row, 6);
+        } else {
+            return new BigDecimal(0);
+        }
+    }
+    
+    private void printTextField (JTextField ... fs) {
+        for(JTextField f : fs)
+            System.out.println(f.getText());
+        
+    }
 
- 
 }
