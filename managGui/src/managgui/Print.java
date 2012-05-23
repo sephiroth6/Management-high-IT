@@ -31,11 +31,13 @@ public class Print implements Printable {
     // is it a copy of a receipt?
     private final boolean receipt;
     // is it a billing?
-    private final boolean billing;
+    private final int billing;
     
     private final String totalImp;
     private final String percentage;
     private final String total;
+    private final String date;
+    private final String number;
     
     // object containing the info to print
     private final SharedClasses.Customer c;
@@ -46,35 +48,41 @@ public class Print implements Printable {
     private final javax.swing.JTable t;
      
     public Print (SharedClasses.Customer c, SharedClasses.Repair r, SharedClasses.Device d, SharedClasses.Details de, boolean re) {
+        // repair
         this.c = c;
-        this.bc = null;
         this.r = r;
         this.d = d;
         this.de = de;
         this.receipt = re;
-        this.billing = false;
+        this.billing = -1;
+        this.bc = null;
         this.t = null;
         this.totalImp = null;
         this.percentage = null;
         this.total = null;
+        this.date = null;
+        this.number = null;
     }
     
-    public Print (SharedClasses.Customer c, SharedClasses.BillingCustomer bc, JTable table, String imp, String iva, String tot) {
+    public Print (int n, SharedClasses.Customer c, SharedClasses.BillingCustomer bc, int ty, JTable table, String imp, String iva, String tot, String dt) {
+        // billing
+        this.number = new Integer(n).toString();
         this.c = c;
         this.bc = bc;
-        this.r = null;
-        this.d = null;
-        this.de = null;
         this.receipt = false;
-        this.billing = true;
+        this.billing = ty;
         this.t = table;
         this.totalImp = imp;
         this.percentage = iva;
         this.total = tot;
+        this.date = dt;
+        this.r = null;
+        this.d = null;
+        this.de = null;
     }
     
     private static PrinterJob initPrinting (int i) {
-        String name = "Scheda ";
+        String name = "Stampa ";
         
         PrinterJob ret = PrinterJob.getPrinterJob();
         ret.setJobName(name.concat(Integer.toString(i)));
@@ -93,11 +101,11 @@ public class Print implements Printable {
         pj.print();
     }
     
-    public static void repairPrint (int i, SharedClasses.Customer c, SharedClasses.BillingCustomer bc, JTable t, String imp, String iva, String tot) throws PrinterException {
+    public static void repairPrint (int i, SharedClasses.Customer c, SharedClasses.BillingCustomer bc, int ty, JTable t, String imp, String iva, String tot, String dt) throws PrinterException {
         // used when printing billing info
         PrinterJob pj = initPrinting(i);
         
-        pj.setPrintable(new Print(c, bc, t, imp, iva, tot));
+        pj.setPrintable(new Print(i, c, bc, ty, t, imp, iva, tot, dt));
         
         pj.print();
     }
@@ -126,7 +134,7 @@ public class Print implements Printable {
         drawLogo(imageX, imageY, grapdd);
         this.writeHeader(grapdd, frc, b, firstX, firstY);
         
-        if(!this.billing) {                                         // don't print billing informations
+        if(this.billing < 0) {                                         // don't print billing informations
             // Customer info
             this.writeCustomer(grapdd, frc, b, f, firstX, firstY);
             // add space and line
@@ -163,9 +171,9 @@ public class Print implements Printable {
             
         } else {                                                    // billing informations
             writeBillingInfo(grapdd, frc, f, firstX, firstY);
-            firstY += heightLines(6);
+            firstY += shortHeightLines(6);
             this.writeBillingCustomer(grapdd, frc, b, f, firstX, firstY);
-            firstY += heightLines(8);
+            firstY += shortHeightLines(8);
             firstY = this.writeTable(grapdd, frc, b, f, firstX, firstY, width);
             firstY += heightLines(3);
             this.writeBillingFooter(grapdd, frc, b, f, firstX, firstY);
@@ -178,8 +186,8 @@ public class Print implements Printable {
          return i * 20;
      }
      
-     private static int halfHeightLines (int i) {
-         return i * 10;
+     private static int shortHeightLines (int i) {
+         return i * 15;
      }
   
      private void printDeclared (int x, int y, Graphics2D g, Font f, FontRenderContext frc) {
@@ -299,10 +307,10 @@ public class Print implements Printable {
      private void writeHeader (Graphics2D g, FontRenderContext fRend, Font b, int x, int y) {
          String header;
         
-         if(this.billing) {
+         if(this.billing >= 0) {
              // TODO add billing number and manage different cases (fattura, ritenuta d'acconto, nota di credito)
-             header = "FATTURA #";
-             g.drawGlyphVector(b.createGlyphVector(fRend, header), x, y);
+             header = this.billingName();
+             g.drawGlyphVector(b.createGlyphVector(fRend, header.concat(this.number.concat(" - DATA EMISSIONE: ".concat(this.date)))), x, y);
          } else {
              
              if(this.receipt)
@@ -311,6 +319,22 @@ public class Print implements Printable {
                 header = "RIEPILOGO RIPARAZIONE #";
              
              g.drawGlyphVector(b.createGlyphVector(fRend, header.concat(Integer.toString(this.r.getID()))), x, y);
+         }
+     }
+     
+     private String billingName () {
+         switch (this.billing) {
+             case ComClasses.Constants.BILL:
+                 return "FATTURA #";
+                 
+             case ComClasses.Constants.NDC:
+                 return "NOTA DI CREDITO #";
+                 
+             case ComClasses.Constants.RDA:
+                 return "RITENUTA D'ACCONTO #";
+                 
+             default:
+                 return null;
          }
      }
      
@@ -348,19 +372,19 @@ public class Print implements Printable {
      }
  
      private static void writeBillingInfo (Graphics2D g, FontRenderContext fRend, Font f, int x, int y) {
-         g.drawGlyphVector(f.createGlyphVector(fRend, "MR. Cooper di Pette Davide"), x + 20, y + heightLines(1));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "via Michele di Lando 22/24"), x + 20, y + heightLines(2));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "Roma, 00162"), x + 20, y + heightLines(3));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "P.IVA 11549761002"), x + 20, y + heightLines(4));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "CF PTTDVD85E20H501E"), x + 20, y + heightLines(5));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "MR. Cooper di Pette Davide"), x + 20, y + shortHeightLines(1));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "via Michele di Lando 22/24"), x + 20, y + shortHeightLines(2));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "Roma, 00162"), x + 20, y + shortHeightLines(3));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "P.IVA 11549761002"), x + 20, y + shortHeightLines(4));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "CF PTTDVD85E20H501E"), x + 20, y + shortHeightLines(5));
      }
      
      private void writeBillingCustomer (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y) {
-         g.drawGlyphVector(b.createGlyphVector(fRend, "DESTINATARIO"), x, y + heightLines(1));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "Cognome: ".concat(this.c.getSurname())), x + 20, y + heightLines(2));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "Nome: ".concat(this.c.getName())), x + 20, y + heightLines(3));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "Codice Fiscale: ".concat(this.bc.getCF())), x + 20, y + heightLines(4));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "Partita IVA: ".concat(this.bc.getIVA())), x + 20, y + heightLines(5));
+         g.drawGlyphVector(b.createGlyphVector(fRend, "DATI CLIENTE"), x, y + shortHeightLines(1));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "Cognome: ".concat(this.c.getSurname())), x + 20, y + shortHeightLines(2));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "Nome: ".concat(this.c.getName())), x + 20, y + shortHeightLines(3));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "Codice Fiscale: ".concat(this.bc.getCF())), x + 20, y + shortHeightLines(4));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "Partita IVA: ".concat(this.bc.getIVA())), x + 20, y + shortHeightLines(5));
      }
  
      private int writeTable (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y, int w) {

@@ -1,6 +1,9 @@
 In the last part of the development, I will use this file as a history of the changes made in every commit.
 Claudio
 
+23-05-2012
+"fattura" and "nota di credito" insertion into database.
+
 19-05-2012
 better exception catching for customer search.
 
