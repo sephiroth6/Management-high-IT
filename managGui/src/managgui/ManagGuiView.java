@@ -9,12 +9,12 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import org.jdesktop.application.Action;
-import org.jdesktop.application.ResourceMap;
+//import org.jdesktop.application.ResourceMap;              NOT USED
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
-import org.jdesktop.application.TaskMonitor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import org.jdesktop.application.TaskMonitor;              NOT USED
+//import java.awt.event.ActionEvent;                        NOT USED
+//import java.awt.event.ActionListener;                     NOT USED
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.DefaultCellEditor;
-import javax.swing.Timer;
-import javax.swing.Icon;
+//import javax.swing.Timer;                                 NOT USED
+//import javax.swing.Icon;                                  NOT USED
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -55,7 +55,7 @@ public class ManagGuiView extends FrameView {
     private FinestraSwing schedaArticoloMagazzino;
     private FinestraSwing DatiClienteSimply;
     private FinestraSwing pezziUtilizzati;
-    private FinestraSwing gestioneRientri;
+    //private FinestraSwing gestioneRientri;            NOT USED
     private static final Object arr[] = {"Copia ricevuta", "Riepilogo riparazione", "Annulla stampa ed esci"};
    
     //ico
@@ -67,11 +67,8 @@ public class ManagGuiView extends FrameView {
     private Client.ServerInfo serverInfo;               // the open port of the server and its address (retrieved from file)
     private Client.WarehouseInfo warehouseInfo;         // warehouse treshold and iva percentage value
     
-    private int bill = 0; /* legenda:
-     *                       1 = nuova fattura
-     *                       2 = nuova n.d.c.
-     *                       3 = nuova r.d.a.
-     */
+    // billing type
+    private int bill = 0;
     private boolean billingCustomerEditing = false;
     
     //class just for number :D
@@ -102,24 +99,23 @@ public class ManagGuiView extends FrameView {
 
         initComponents();
                 
-        //magazzino
+        // magazzino
         jPanel5.setVisible(false);//lista risultato tabella articoli magazzino
         jPanel6.setVisible(false);//aggiungi pezzo
 
-        //front-end accettazione
+        // front-end accettazione
         jPanel9.setVisible(false);
         jPanel10.setVisible(false);
         getConnection();
         getWarehouse();
-       
         jButton45.setVisible(false);
         
+        /* NOT USED
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                statusMessageLabel.setText("");
             }
         });
         messageTimer.setRepeats(false);
@@ -130,12 +126,9 @@ public class ManagGuiView extends FrameView {
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
-                statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
             }
         });
         idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
-        statusAnimationLabel.setIcon(idleIcon);
-        progressBar.setVisible(false);
         
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
@@ -144,29 +137,21 @@ public class ManagGuiView extends FrameView {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
                     if (!busyIconTimer.isRunning()) {
-                        statusAnimationLabel.setIcon(busyIcons[0]);
                         busyIconIndex = 0;
                         busyIconTimer.start();
                     }
-                    progressBar.setVisible(true);
-                    progressBar.setIndeterminate(true);
                 } else if ("done".equals(propertyName)) {
                     busyIconTimer.stop();
-                    statusAnimationLabel.setIcon(idleIcon);
-                    progressBar.setVisible(false);
-                    progressBar.setValue(0);
                 } else if ("message".equals(propertyName)) {
                     String text = (String)(evt.getNewValue());
-                    statusMessageLabel.setText((text == null) ? "" : text);
                     messageTimer.restart();
                 } else if ("progress".equals(propertyName)) {
                     int value = (Integer)(evt.getNewValue());
-                    progressBar.setVisible(true);
-                    progressBar.setIndeterminate(false);
-                    progressBar.setValue(value);
                 }
             }
         });
+         * 
+         */
     }
     
 
@@ -212,32 +197,21 @@ public class ManagGuiView extends FrameView {
         jPanel1 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
         jTextField19 = new javax.swing.JTextField();
         jTextField20 = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
         jTextField21 = new javax.swing.JTextField();
         jTextField22 = new javax.swing.JTextField();
         jTextField23 = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
         jTextField24 = new javax.swing.JTextField();
-        jLabel35 = new javax.swing.JLabel();
         jTextField25 = new javax.swing.JTextField();
         jCheckBox2 = new javax.swing.JCheckBox();
         jTextField26 = new javax.swing.JTextField();
-        jLabel36 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox();
-        jLabel37 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextArea5 = new javax.swing.JTextArea();
-        jLabel38 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextArea6 = new javax.swing.JTextArea();
-        jLabel39 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTextArea7 = new javax.swing.JTextArea();
         jButton17 = new javax.swing.JButton();
@@ -246,9 +220,7 @@ public class ManagGuiView extends FrameView {
         jButton45 = new javax.swing.JButton();
         jButton48 = new javax.swing.JButton();
         jButton49 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
@@ -267,7 +239,6 @@ public class ManagGuiView extends FrameView {
         jButton46 = new javax.swing.JButton();
         jButton47 = new javax.swing.JButton();
         mainCustomerSearch = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -278,10 +249,6 @@ public class ManagGuiView extends FrameView {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -289,9 +256,7 @@ public class ManagGuiView extends FrameView {
         jTextField6 = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jTextField52 = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
         jTextField88 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -312,8 +277,6 @@ public class ManagGuiView extends FrameView {
         jButton34 = new javax.swing.JButton();
         fatturaView = new javax.swing.JPanel();
         jTextField42 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jScrollPane17 = new javax.swing.JScrollPane();
         jTable8 = new javax.swing.JTable();
         jButton50 = new javax.swing.JButton();
@@ -324,16 +287,11 @@ public class ManagGuiView extends FrameView {
         jLabel62 = new javax.swing.JLabel();
         jLabel79 = new javax.swing.JLabel();
         jLabel80 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jTextField53 = new javax.swing.JTextField();
         jTextField54 = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
         jTextField56 = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel91 = new javax.swing.JLabel();
         jTextField63 = new javax.swing.JTextField();
         jTextField64 = new javax.swing.JTextField();
-        jLabel92 = new javax.swing.JLabel();
         jTextField67 = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
         jTextField57 = new javax.swing.JTextField();
@@ -342,7 +300,6 @@ public class ManagGuiView extends FrameView {
         jButton55 = new javax.swing.JButton();
         ndcView = new javax.swing.JPanel();
         jTextField71 = new javax.swing.JTextField();
-        jLabel101 = new javax.swing.JLabel();
         jScrollPane24 = new javax.swing.JScrollPane();
         jTable11 = new javax.swing.JTable();
         jButton65 = new javax.swing.JButton();
@@ -353,21 +310,14 @@ public class ManagGuiView extends FrameView {
         jLabel105 = new javax.swing.JLabel();
         jLabel106 = new javax.swing.JLabel();
         jLabel107 = new javax.swing.JLabel();
-        jLabel108 = new javax.swing.JLabel();
         jTextField72 = new javax.swing.JTextField();
         jTextField73 = new javax.swing.JTextField();
-        jLabel109 = new javax.swing.JLabel();
         jTextField74 = new javax.swing.JTextField();
-        jLabel110 = new javax.swing.JLabel();
         jTextField68 = new javax.swing.JTextField();
-        jLabel93 = new javax.swing.JLabel();
         jTextField69 = new javax.swing.JTextField();
-        jLabel94 = new javax.swing.JLabel();
-        jLabel97 = new javax.swing.JLabel();
         jTextField84 = new javax.swing.JTextField();
         rdaView = new javax.swing.JPanel();
         jTextField75 = new javax.swing.JTextField();
-        jLabel111 = new javax.swing.JLabel();
         jScrollPane25 = new javax.swing.JScrollPane();
         jTable12 = new javax.swing.JTable();
         jButton69 = new javax.swing.JButton();
@@ -378,36 +328,25 @@ public class ManagGuiView extends FrameView {
         jLabel115 = new javax.swing.JLabel();
         jLabel116 = new javax.swing.JLabel();
         jLabel117 = new javax.swing.JLabel();
-        jLabel118 = new javax.swing.JLabel();
         jTextField76 = new javax.swing.JTextField();
         jTextField77 = new javax.swing.JTextField();
-        jLabel119 = new javax.swing.JLabel();
         jTextField78 = new javax.swing.JTextField();
-        jLabel120 = new javax.swing.JLabel();
-        jLabel125 = new javax.swing.JLabel();
         jTextField85 = new javax.swing.JTextField();
-        jLabel126 = new javax.swing.JLabel();
         jTextField86 = new javax.swing.JTextField();
-        jLabel95 = new javax.swing.JLabel();
         jTextField70 = new javax.swing.JTextField();
-        jLabel96 = new javax.swing.JLabel();
         jTextField83 = new javax.swing.JTextField();
         jButton63 = new javax.swing.JButton();
         jButton64 = new javax.swing.JButton();
         billingSearch = new javax.swing.JPanel();
         jTextField79 = new javax.swing.JTextField();
-        jLabel121 = new javax.swing.JLabel();
         jTextField80 = new javax.swing.JTextField();
         jButton73 = new javax.swing.JButton();
         jButton74 = new javax.swing.JButton();
         jScrollPane26 = new javax.swing.JScrollPane();
         jTable13 = new javax.swing.JTable();
-        jLabel122 = new javax.swing.JLabel();
         jTextField81 = new javax.swing.JTextField();
-        jLabel123 = new javax.swing.JLabel();
         jTextField82 = new javax.swing.JTextField();
         jTextField87 = new javax.swing.JTextField();
-        jLabel98 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -417,26 +356,17 @@ public class ManagGuiView extends FrameView {
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
-        statusMessageLabel = new javax.swing.JLabel();
-        statusAnimationLabel = new javax.swing.JLabel();
-        progressBar = new javax.swing.JProgressBar();
         customerEdit = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
         customerSearch = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
         jButton20 = new javax.swing.JButton();
@@ -446,63 +376,42 @@ public class ManagGuiView extends FrameView {
         jTable2 = new javax.swing.JTable();
         repairDetail = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
         jTextField31 = new javax.swing.JTextField();
         jTextField32 = new javax.swing.JTextField();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
         jTextField33 = new javax.swing.JTextField();
         jTextField34 = new javax.swing.JTextField();
         jTextField35 = new javax.swing.JTextField();
         jComboBox5 = new javax.swing.JComboBox();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
         jTextField36 = new javax.swing.JTextField();
-        jLabel51 = new javax.swing.JLabel();
         jTextField37 = new javax.swing.JTextField();
         jCheckBox3 = new javax.swing.JCheckBox();
         jTextField38 = new javax.swing.JTextField();
         jLabel52 = new javax.swing.JLabel();
         jComboBox6 = new javax.swing.JComboBox();
-        jLabel53 = new javax.swing.JLabel();
         jScrollPane10 = new javax.swing.JScrollPane();
         jTextArea8 = new javax.swing.JTextArea();
-        jLabel54 = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTextArea9 = new javax.swing.JTextArea();
-        jLabel55 = new javax.swing.JLabel();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTextArea10 = new javax.swing.JTextArea();
         jButton25 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
         jButton27 = new javax.swing.JButton();
         jButton35 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
         jButton77 = new javax.swing.JButton();
         jButton78 = new javax.swing.JButton();
         jButton79 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
         jTextField15 = new javax.swing.JTextField();
         jTextField16 = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         warehouseEdit = new javax.swing.JPanel();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
         jTextField17 = new javax.swing.JTextField();
         jScrollPane14 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
@@ -510,48 +419,31 @@ public class ManagGuiView extends FrameView {
         jTextField39 = new javax.swing.JTextField();
         jButton28 = new javax.swing.JButton();
         jButton29 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jTextField41 = new javax.swing.JTextField();
         jTextField89 = new javax.swing.JTextField();
-        jLabel99 = new javax.swing.JLabel();
         jDialog1 = new javax.swing.JDialog();
         jButton32 = new javax.swing.JButton();
         jButton33 = new javax.swing.JButton();
         jScrollPane15 = new javax.swing.JScrollPane();
         jTextArea11 = new javax.swing.JTextArea();
-        jLabel63 = new javax.swing.JLabel();
-        jLabel64 = new javax.swing.JLabel();
         jTextField40 = new javax.swing.JTextField();
         jTextField43 = new javax.swing.JTextField();
-        jLabel65 = new javax.swing.JLabel();
         jTextField44 = new javax.swing.JTextField();
         jTextField45 = new javax.swing.JTextField();
-        jLabel66 = new javax.swing.JLabel();
-        jLabel67 = new javax.swing.JLabel();
         customerInfoView = new javax.swing.JPanel();
         jScrollPane16 = new javax.swing.JScrollPane();
         jTextArea12 = new javax.swing.JTextArea();
-        jLabel68 = new javax.swing.JLabel();
-        jLabel69 = new javax.swing.JLabel();
         jTextField46 = new javax.swing.JTextField();
         jTextField47 = new javax.swing.JTextField();
-        jLabel70 = new javax.swing.JLabel();
         jTextField48 = new javax.swing.JTextField();
         jTextField49 = new javax.swing.JTextField();
-        jLabel71 = new javax.swing.JLabel();
-        jLabel72 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         warehouseManagement = new javax.swing.JPanel();
-        jLabel73 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
-        jLabel75 = new javax.swing.JLabel();
         jButton37 = new javax.swing.JButton();
         jButton38 = new javax.swing.JButton();
-        jLabel76 = new javax.swing.JLabel();
         jTextField50 = new javax.swing.JTextField();
         jButton36 = new javax.swing.JButton();
         jTextField51 = new javax.swing.JTextField();
-        jLabel77 = new javax.swing.JLabel();
         jButton39 = new javax.swing.JButton();
         jButton40 = new javax.swing.JButton();
         jButton42 = new javax.swing.JButton();
@@ -574,20 +466,13 @@ public class ManagGuiView extends FrameView {
         billingCustomerEdit = new javax.swing.JPanel();
         jScrollPane18 = new javax.swing.JScrollPane();
         jTextArea13 = new javax.swing.JTextArea();
-        jLabel82 = new javax.swing.JLabel();
-        jLabel84 = new javax.swing.JLabel();
         jTextField59 = new javax.swing.JTextField();
         jTextField60 = new javax.swing.JTextField();
-        jLabel85 = new javax.swing.JLabel();
         jTextField61 = new javax.swing.JTextField();
         jTextField62 = new javax.swing.JTextField();
-        jLabel86 = new javax.swing.JLabel();
-        jLabel87 = new javax.swing.JLabel();
         jButton56 = new javax.swing.JButton();
         jButton57 = new javax.swing.JButton();
-        jLabel88 = new javax.swing.JLabel();
         jTextFieldCF = new javax.swing.JTextField();
-        jLabel89 = new javax.swing.JLabel();
         jTextFieldIVA = new javax.swing.JTextField();
         billingCustomerSearch = new javax.swing.JPanel();
         jLabel90 = new javax.swing.JLabel();
@@ -2609,39 +2494,20 @@ public class ManagGuiView extends FrameView {
 
         statusPanelSeparator.setName("statusPanelSeparator"); // NOI18N
 
-        statusMessageLabel.setName("statusMessageLabel"); // NOI18N
-
-        statusAnimationLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        statusAnimationLabel.setName("statusAnimationLabel"); // NOI18N
-
-        progressBar.setName("progressBar"); // NOI18N
-
         javax.swing.GroupLayout statusPanelLayout = new javax.swing.GroupLayout(statusPanel);
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(statusMessageLabel)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statusPanelLayout.createSequentialGroup()
-                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)))
-                .addGap(12, 12, 12)
-                .addComponent(statusAnimationLabel)
-                .addContainerGap())
+                .addGap(162, 162, 162)
+                .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
         );
         statusPanelLayout.setVerticalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(statusPanelLayout.createSequentialGroup()
-                .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(statusMessageLabel)
-                        .addComponent(statusAnimationLabel))
-                    .addComponent(statusPanelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addComponent(statusPanelSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         statusPanel.setSize(1030, 20);
@@ -5518,6 +5384,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }//GEN-LAST:event_jButton37MouseClicked
 
     private void jButton45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton45MouseClicked
+        /*
+        NOT USED
         // controllo rientri imei
         setCenterMonitorDim(667, 355);
         gestioneRientri = new FinestraSwing("Lavorazioni già effettuate", p.getPX(), p.getPY(), 667, 355, jPanel18);
@@ -5529,6 +5397,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             jLabel78.setVisible(true);
         }
         //toppy(gestioneRientri); //FIXME        
+         * 
+         */
     }//GEN-LAST:event_jButton45MouseClicked
 
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
@@ -5747,7 +5617,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // FATTURA sync
     private void jButton52MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton52MouseClicked
-        this.billingSync(jTable8, fatturaView, jTextField53, jTextField63, jTextField54, jTextField56);
+        if(!this.billingSync(jTable8, fatturaView, jTextField53, jTextField63, jTextField54, jTextField56))
+            showWinAlert(fatturaView, "Controllare i dati inseriti nella tabella!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton52MouseClicked
 
     // FATTURA delete all rows
@@ -5764,6 +5635,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         setJTableBilling(jTable8, 1);
         this.setUpBillingNumbers(fatturaView, jTextField64, jTextField67);
         this.bill = Client.Constants.FATTURA;
+        clearFields(jTextField53, jTextField63);
         activateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);  // make visible buttons, textfield and label
     }//GEN-LAST:event_jButton30MouseClicked
 
@@ -5852,7 +5724,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 }
        
                 this.billingCustomer = auxC;
-                SharedClasses.BillingCustomer auxB = new SharedClasses.BillingCustomer(jTextFieldIVA.getText(), jTextFieldCF.getText());
+                SharedClasses.BillingCustomer auxB = new SharedClasses.BillingCustomer(jTextFieldIVA.getText(), jTextFieldCF.getText(), null, null, null, null);
 
                 // manage billing info
                 if (this.billingCustomerEditing && !(this.newBillingInfo)) {
@@ -6019,7 +5891,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // sync win warehouse
     private void jButton67MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton67MouseClicked
-        this.billingSync(jTable11, ndcView, jTextField72, jTextField84, jTextField73, jTextField74);
+        if(!this.billingSync(jTable11, ndcView, jTextField72, jTextField84, jTextField73, jTextField74))
+            showWinAlert(ndcView, "Controllare i dati inseriti nella tabella!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton67MouseClicked
 
     //del everything ndc
@@ -6036,6 +5909,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         setJTableBilling(jTable11, 1);
         this.setUpBillingNumbers(ndcView, jTextField68, jTextField69);
         this.bill = Client.Constants.NDC;
+        clearFields(jTextField72, jTextField84);
         activateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);  // make visible buttons, textfield and label
     }//GEN-LAST:event_jButton31MouseClicked
 
@@ -6071,6 +5945,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         setJTableBilling(jTable12, 1);
         this.setUpBillingNumbers(rdaView, jTextField83, jTextField70);
         this.bill = Client.Constants.RDA;
+        clearFields(jTextField76, jTextField78);
         activateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);  // make visible buttons, textfield and label
     }//GEN-LAST:event_jButton34MouseClicked
 
@@ -6117,9 +5992,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         try {
             this.checkBillingInfo();
+            // TODO call directly billingSync to check that every info is correct... or throw exception!
             this.syncTable(evt);
             String iva = this.getIVAField();
-            String pr = this.getImponibileField();
+            String pr = this.getTotalPriceField();
             Integer num = new Integer(this.getBillingNumberField());
             ComClasses.Request r;
             // INSERT billing
@@ -6171,7 +6047,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 return jTextField73.getText();
                 
             default:
-                return null;
+                return jTextField86.getText();
         }
     }
     
@@ -6184,7 +6060,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 return jTextField72.getText();
                 
             default:
-                return null;
+                return jTextField76.getText();
         }
     }
     
@@ -6210,7 +6086,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 return jTextField71.getText();
                 
             default:
-                return null;
+                return jTextField75.getText();
         }
     }
     
@@ -6223,8 +6099,23 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 return jTextField68.getText();
                 
             default:
-                return null;
+                return jTextField83.getText();
         }
+    }
+    
+    private String getTotalPriceField () {
+        
+        switch (this.bill) {
+            case ComClasses.Constants.BILL:
+                return jTextField56.getText();
+                
+            case ComClasses.Constants.NDC:
+                return jTextField74.getText();
+                
+            default:
+                return jTextField78.getText();
+        }
+        
     }
     
     private void billingNumberSetText (String text) {
@@ -6242,6 +6133,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }
     
+    
     private static ArrayList<Object> billingElements (JTable t, int billId) {
         // create an array of BillingElements object that have to be written into db
         int n = t.getModel().getRowCount();
@@ -6250,7 +6142,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(n > 0) {
             SharedClasses.BillingElements el;
             for(int i = 0; i < n; i++) {
-                el = new SharedClasses.BillingElements(billId, elementType((String)t.getValueAt(i, 0)), (String)t.getValueAt(i, 1), (String)t.getValueAt(i, 2), (Integer)t.getValueAt(i, 3), t.getValueAt(i, 4), (Boolean)t.getValueAt(i, 5));
+                el = new SharedClasses.BillingElements(billId, elementType((String)t.getValueAt(i, 0)), (String)t.getValueAt(i, 1), (String)t.getValueAt(i, 2), t.getValueAt(i, 3), t.getValueAt(i, 4), (Boolean)t.getValueAt(i, 5));
                 ret.add(el);
             }
         }
@@ -6485,10 +6377,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton79;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JCheckBox jCheckBox1;
+    private final javax.swing.JCheckBox jCheckBox1 = new javax.swing.JCheckBox();
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
+    private final javax.swing.JCheckBox jCheckBox4 = new javax.swing.JCheckBox();
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JComboBox jComboBox3;
@@ -6496,129 +6388,129 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBox6;
     private javax.swing.JDialog jDialog1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private final javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel100;
-    private javax.swing.JLabel jLabel101;
+    private final javax.swing.JLabel jLabel101 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
     private javax.swing.JLabel jLabel107;
-    private javax.swing.JLabel jLabel108;
-    private javax.swing.JLabel jLabel109;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel110;
-    private javax.swing.JLabel jLabel111;
+    private final javax.swing.JLabel jLabel108 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel109 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel11 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel110 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel111 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel116;
     private javax.swing.JLabel jLabel117;
-    private javax.swing.JLabel jLabel118;
-    private javax.swing.JLabel jLabel119;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel120;
-    private javax.swing.JLabel jLabel121;
-    private javax.swing.JLabel jLabel122;
-    private javax.swing.JLabel jLabel123;
+    private final javax.swing.JLabel jLabel118 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel119 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel12 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel120 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel121 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel122 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel123 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel124;
-    private javax.swing.JLabel jLabel125;
-    private javax.swing.JLabel jLabel126;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
+    private final javax.swing.JLabel jLabel125 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel126 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel13 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel14 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel16 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel17 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel18 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel19 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel20 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel21 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel22 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel23 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel24 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel25 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel26 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel27 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
+    private final javax.swing.JLabel jLabel29 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel30 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel31 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel32 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel33 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel34 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel35 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel36 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel37 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel38 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel39 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
+    private final javax.swing.JLabel jLabel45 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel46 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel47 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel48 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel49 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel50 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel51 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
+    private final javax.swing.JLabel jLabel53 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel54 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel55 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel56 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel57 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel58 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel59 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
-    private javax.swing.JLabel jLabel67;
-    private javax.swing.JLabel jLabel68;
-    private javax.swing.JLabel jLabel69;
+    private final javax.swing.JLabel jLabel63 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel64 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel65 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel66 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel67 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel68 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel69 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
-    private javax.swing.JLabel jLabel72;
-    private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
-    private javax.swing.JLabel jLabel75;
-    private javax.swing.JLabel jLabel76;
-    private javax.swing.JLabel jLabel77;
+    private final javax.swing.JLabel jLabel70 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel71 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel72 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel73 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel74 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel75 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel76 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel77 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
-    private javax.swing.JLabel jLabel8;
+    private final javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
-    private javax.swing.JLabel jLabel82;
+    private final javax.swing.JLabel jLabel82 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel83;
-    private javax.swing.JLabel jLabel84;
-    private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel86;
-    private javax.swing.JLabel jLabel87;
-    private javax.swing.JLabel jLabel88;
-    private javax.swing.JLabel jLabel89;
-    private javax.swing.JLabel jLabel9;
+    private final javax.swing.JLabel jLabel84 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel85 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel86 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel87 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel88 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel89 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel90;
-    private javax.swing.JLabel jLabel91;
-    private javax.swing.JLabel jLabel92;
-    private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
-    private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
-    private javax.swing.JLabel jLabel97;
-    private javax.swing.JLabel jLabel98;
-    private javax.swing.JLabel jLabel99;
+    private final javax.swing.JLabel jLabel91 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel92 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel93 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel94 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel95 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel96 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel97 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel98 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel99 = new javax.swing.JLabel();
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
@@ -6779,22 +6671,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JPanel mainWarehouseEdit;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JPanel ndcView;
-    private javax.swing.JProgressBar progressBar;
     private javax.swing.JPanel rdaView;
     private javax.swing.JPanel repairDetail;
-    private javax.swing.JLabel statusAnimationLabel;
-    private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JPanel warehouseEdit;
     private javax.swing.JPanel warehouseManagement;
     // End of variables declaration//GEN-END:variables
-
+/*  // NOT USED
     private final Timer messageTimer;
     private final Timer busyIconTimer;
     private final Icon idleIcon;
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
-
+*/
     private JDialog aboutBox;
     private JDialog settingBox;
     private JDialog warehouseBox;
@@ -7351,12 +7240,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         this.warehouseInfo = wi;
     }
     
-    private void billingSync (JTable JT, javax.swing.JPanel parent, JTextField imp, JTextField ese, JTextField iva, JTextField total) {
+    private boolean billingSync (JTable JT, javax.swing.JPanel parent, JTextField imp, JTextField ese, JTextField iva, JTextField total) {
         
+        boolean ret = false;
         int rc = JT.getRowCount();
         // check if the table is empty
         if(rc > 0) {
-        
+            
+            ret = true;
             int i = 0;
             BigDecimal tot = new BigDecimal(0);
             BigDecimal noTaxTot = new BigDecimal(0);
@@ -7375,14 +7266,16 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     } catch (SharedClasses.MyDBException e) {
                         // first catch, custom exception
                         if(e.getCode() == ComClasses.Constants.DBNULL) {
-                            showWinAlert(parent, "Articolo ".concat(serial).concat(Client.Utils.exceptionMessage(e)).concat(", seriale inesistente."), "Error", JOptionPane.ERROR_MESSAGE);
+                            showWinAlert(parent, "Articolo ".concat(serial).concat(Client.Utils.exceptionMessage(e)).concat(", seriale inesistente."), "Attenzione!", JOptionPane.WARNING_MESSAGE);
                             i++;
+                            ret = false;
                             continue;
                         }
                     } catch (Exception e) {
                         // second catch, generic exception
-                        showWinAlert(parent, "Errore imprevisto: ".concat(Client.Utils.exceptionMessage(e)), "Error", JOptionPane.ERROR_MESSAGE);
+                        showWinAlert(parent, "Errore imprevisto: ".concat(Client.Utils.exceptionMessage(e)), "Attenzione!", JOptionPane.WARNING_MESSAGE);
                         i++;
+                        ret = false;
                         continue;
                     }
                     JT.setValueAt(w.getName(), i, 2);           // write article name in the table
@@ -7402,8 +7295,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             
             imp.setText(tot.toString());
             ese.setText(noTaxTot.toString());
-            total.setText((handleIVA(tot, new Integer(iva.getText()), true).add(noTaxTot)).toString()); 
+            total.setText((handleIVA(tot, new Integer(iva.getText()), true).add(noTaxTot)).toString());
         }
+        return ret;
     }
     
     private static BigDecimal updateTotal (JTable JT, int row, Object price) {
@@ -7413,6 +7307,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             aux = (BigDecimal)price;
         else if(price instanceof String)
             aux = new BigDecimal((String)price);
+        else if(price instanceof Integer)
+            aux = new BigDecimal ((Integer)price);
         
         if(aux != null) {
             try {

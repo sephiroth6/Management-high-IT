@@ -71,7 +71,7 @@
                                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="223" max="32767" attributes="0"/>
+                          <EmptySpace pref="188" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -94,13 +94,13 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="223" max="32767" attributes="0"/>
+                          <EmptySpace pref="176" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="256" max="32767" attributes="0"/>
+                              <EmptySpace pref="209" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -334,6 +334,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel29.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel29" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField19">
                       <Properties>
@@ -355,18 +358,27 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel30.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel30" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel31">
                       <Properties>
                         <Property name="text" type="java.lang.String" resourceKey="jLabel31.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel31" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel32">
                       <Properties>
                         <Property name="text" type="java.lang.String" resourceKey="jLabel32.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel32" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField21">
                       <Properties>
@@ -396,12 +408,18 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel33.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel33" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel34">
                       <Properties>
                         <Property name="text" type="java.lang.String" resourceKey="jLabel34.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel34" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField24">
                       <Properties>
@@ -413,6 +431,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel35.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel35" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField25">
                       <Properties>
@@ -439,6 +460,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel36.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel36" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="jComboBox4">
                       <Properties>
@@ -453,6 +477,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel37.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel37" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane7">
                       <Properties>
@@ -479,6 +506,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel38.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel38" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane8">
                       <Properties>
@@ -504,6 +534,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel39.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel39" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane9">
                       <Properties>
@@ -589,6 +622,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel4.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="jComboBox1">
                       <Properties>
@@ -611,6 +647,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jCheckBox1.text"/>
                         <Property name="name" type="java.lang.String" value="jCheckBox1" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -684,7 +723,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jButton11" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane5" alignment="0" pref="1008" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane5" alignment="0" pref="973" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -866,7 +905,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane21" alignment="0" pref="1030" max="32767" attributes="0"/>
+                              <Component id="jScrollPane21" alignment="0" pref="995" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -895,7 +934,7 @@
                               <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane21" pref="738" max="32767" attributes="0"/>
+                          <Component id="jScrollPane21" pref="691" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -907,6 +946,9 @@
                     <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
                     <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField1">
                   <Properties>
@@ -1005,13 +1047,13 @@
                                   <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="312" max="32767" attributes="0"/>
+                          <EmptySpace pref="277" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="469" max="32767" attributes="0"/>
+                              <EmptySpace pref="434" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1037,13 +1079,13 @@
                               <Component id="jLabel124" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="304" max="32767" attributes="0"/>
+                          <EmptySpace pref="257" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="308" max="32767" attributes="0"/>
+                              <EmptySpace pref="261" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1166,24 +1208,36 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel8.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel8" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel9">
                       <Properties>
                         <Property name="text" type="java.lang.String" resourceKey="jLabel9.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel9" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel10">
                       <Properties>
                         <Property name="text" type="java.lang.String" resourceKey="jLabel10.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel10" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel11">
                       <Properties>
                         <Property name="text" type="java.lang.String" resourceKey="jLabel11.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel11" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField4">
                       <Properties>
@@ -1249,6 +1303,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel3.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField52">
                       <Properties>
@@ -1267,6 +1324,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel19.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel19" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField88">
                       <Properties>
@@ -1484,13 +1544,13 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="billingCreation" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="178" max="32767" attributes="0"/>
+                          <EmptySpace pref="131" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               <Component id="billingSearch" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="353" max="32767" attributes="0"/>
+                              <EmptySpace pref="306" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1785,6 +1845,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel6.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel18">
                           <Properties>
@@ -1792,6 +1855,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel18.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel18" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="jScrollPane17">
                           <Properties>
@@ -1894,6 +1960,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel20.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel20" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField53">
                           <Properties>
@@ -1916,6 +1985,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel21.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel21" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField56">
                           <Properties>
@@ -1930,12 +2002,18 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel22.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel22" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel91">
                           <Properties>
                             <Property name="text" type="java.lang.String" resourceKey="jLabel91.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel91" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField63">
                           <Properties>
@@ -1961,6 +2039,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel92.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel92" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField67">
                           <Properties>
@@ -2157,6 +2238,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel101.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel101" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="jScrollPane24">
                           <Properties>
@@ -2259,6 +2343,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel108.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel108" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField72">
                           <Properties>
@@ -2279,6 +2366,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel109.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel109" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField74">
                           <Properties>
@@ -2293,6 +2383,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel110.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel110" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField68">
                           <Properties>
@@ -2309,6 +2402,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel93.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel93" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField69">
                           <Properties>
@@ -2322,12 +2418,18 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel94.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel94" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel97">
                           <Properties>
                             <Property name="text" type="java.lang.String" resourceKey="jLabel97.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel97" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField84">
                           <Properties>
@@ -2482,6 +2584,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel111.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel111" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="jScrollPane25">
                           <Properties>
@@ -2584,6 +2689,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel118.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel118" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField76">
                           <Properties>
@@ -2604,6 +2712,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel119.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel119" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField78">
                           <Properties>
@@ -2618,12 +2729,18 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel120.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel120" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel125">
                           <Properties>
                             <Property name="text" type="java.lang.String" resourceKey="jLabel125.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel125" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField85">
                           <Properties>
@@ -2636,6 +2753,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel126.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel126" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField86">
                           <Properties>
@@ -2649,6 +2769,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel95.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel95" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField70">
                           <Properties>
@@ -2662,6 +2785,9 @@
                             <Property name="text" type="java.lang.String" resourceKey="jLabel96.text"/>
                             <Property name="name" type="java.lang.String" value="jLabel96" noResource="true"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField83">
                           <Properties>
@@ -2814,6 +2940,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel121.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel121" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField80">
                       <Properties>
@@ -2873,6 +3002,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel122.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel122" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField81">
                       <Properties>
@@ -2885,6 +3017,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel123.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel123" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="jTextField82">
                       <Properties>
@@ -2903,6 +3038,9 @@
                         <Property name="text" type="java.lang.String" resourceKey="jLabel98.text"/>
                         <Property name="name" type="java.lang.String" value="jLabel98" noResource="true"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -3001,33 +3139,17 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="statusMessageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="progressBar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="statusPanelSeparator" pref="875" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="statusAnimationLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                  <Component id="statusPanelSeparator" pref="875" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="progressBar" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="statusMessageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="statusAnimationLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="statusPanelSeparator" alignment="0" min="-2" pref="13" max="-2" attributes="1"/>
-                  </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <Component id="statusPanelSeparator" min="-2" pref="13" max="-2" attributes="1"/>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -3040,34 +3162,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="statusMessageLabel">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="statusMessageLabel" noResource="true"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="2"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="statusAnimationLabel">
-          <Properties>
-            <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="name" type="java.lang.String" value="statusAnimationLabel" noResource="true"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="2"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JProgressBar" name="progressBar">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="progressBar" noResource="true"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="false"/>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="2"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -3184,12 +3278,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel16.text"/>
             <Property name="name" type="java.lang.String" value="jLabel16" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel15.text"/>
             <Property name="name" type="java.lang.String" value="jLabel15" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField10">
           <Properties>
@@ -3209,6 +3309,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel14.text"/>
             <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField8">
           <Properties>
@@ -3227,12 +3330,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel13.text"/>
             <Property name="name" type="java.lang.String" value="jLabel13" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel12.text"/>
             <Property name="name" type="java.lang.String" value="jLabel12" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButton15">
           <Properties>
@@ -3328,6 +3437,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel17.text"/>
             <Property name="name" type="java.lang.String" value="jLabel17" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField11">
           <Properties>
@@ -3665,6 +3777,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel45.text"/>
             <Property name="name" type="java.lang.String" value="jLabel45" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField31">
           <Properties>
@@ -3686,18 +3801,27 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel46.text"/>
             <Property name="name" type="java.lang.String" value="jLabel46" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel47">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel47.text"/>
             <Property name="name" type="java.lang.String" value="jLabel47" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel48">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel48.text"/>
             <Property name="name" type="java.lang.String" value="jLabel48" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField33">
           <Properties>
@@ -3727,12 +3851,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel49.text"/>
             <Property name="name" type="java.lang.String" value="jLabel49" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel50">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel50.text"/>
             <Property name="name" type="java.lang.String" value="jLabel50" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField36">
           <Properties>
@@ -3744,6 +3874,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel51.text"/>
             <Property name="name" type="java.lang.String" value="jLabel51" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField37">
           <Properties>
@@ -3785,6 +3918,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel53.text"/>
             <Property name="name" type="java.lang.String" value="jLabel53" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane10">
           <Properties>
@@ -3811,6 +3947,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel54.text"/>
             <Property name="name" type="java.lang.String" value="jLabel54" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane11">
           <Properties>
@@ -3837,6 +3976,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel55.text"/>
             <Property name="name" type="java.lang.String" value="jLabel55" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane12">
           <Properties>
@@ -3902,6 +4044,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel5.text"/>
             <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBox2">
           <Properties>
@@ -3924,6 +4069,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jCheckBox4.text"/>
             <Property name="name" type="java.lang.String" value="jCheckBox4" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButton77">
           <Properties>
@@ -4074,12 +4222,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel23.text"/>
             <Property name="name" type="java.lang.String" value="jLabel23" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel24.text"/>
             <Property name="name" type="java.lang.String" value="jLabel24" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField13">
           <Properties>
@@ -4099,6 +4253,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel25.text"/>
             <Property name="name" type="java.lang.String" value="jLabel25" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField15">
           <Properties>
@@ -4115,12 +4272,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel26.text"/>
             <Property name="name" type="java.lang.String" value="jLabel26" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel27">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel27.text"/>
             <Property name="name" type="java.lang.String" value="jLabel27" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButton13">
           <Properties>
@@ -4243,24 +4406,36 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel56.text"/>
             <Property name="name" type="java.lang.String" value="jLabel56" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel57">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel57.text"/>
             <Property name="name" type="java.lang.String" value="jLabel57" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel58">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel58.text"/>
             <Property name="name" type="java.lang.String" value="jLabel58" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel59">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel59.text"/>
             <Property name="name" type="java.lang.String" value="jLabel59" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField17">
           <Properties>
@@ -4327,6 +4502,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel2.text"/>
             <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField41">
           <Properties>
@@ -4354,6 +4532,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel99.text"/>
             <Property name="name" type="java.lang.String" value="jLabel99" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -4478,12 +4659,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel63.text"/>
             <Property name="name" type="java.lang.String" value="jLabel63" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel64">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel64.text"/>
             <Property name="name" type="java.lang.String" value="jLabel64" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField40">
           <Properties>
@@ -4500,6 +4687,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel65.text"/>
             <Property name="name" type="java.lang.String" value="jLabel65" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField44">
           <Properties>
@@ -4516,12 +4706,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel66.text"/>
             <Property name="name" type="java.lang.String" value="jLabel66" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel67">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel67.text"/>
             <Property name="name" type="java.lang.String" value="jLabel67" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -4631,12 +4827,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel68.text"/>
             <Property name="name" type="java.lang.String" value="jLabel68" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel69">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel69.text"/>
             <Property name="name" type="java.lang.String" value="jLabel69" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField46">
           <Properties>
@@ -4655,6 +4857,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel70.text"/>
             <Property name="name" type="java.lang.String" value="jLabel70" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField48">
           <Properties>
@@ -4673,12 +4878,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel71.text"/>
             <Property name="name" type="java.lang.String" value="jLabel71" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel72">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel72.text"/>
             <Property name="name" type="java.lang.String" value="jLabel72" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jToggleButton1">
           <Properties>
@@ -4839,12 +5050,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel73.text"/>
             <Property name="name" type="java.lang.String" value="jLabel73" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel74">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel74.text"/>
             <Property name="name" type="java.lang.String" value="jLabel74" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel75">
           <Properties>
@@ -4852,6 +5069,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel75.text"/>
             <Property name="name" type="java.lang.String" value="jLabel75" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButton37">
           <Properties>
@@ -4879,6 +5099,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel76.text"/>
             <Property name="name" type="java.lang.String" value="jLabel76" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField50">
           <Properties>
@@ -4909,6 +5132,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel77.text"/>
             <Property name="name" type="java.lang.String" value="jLabel77" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButton39">
           <Properties>
@@ -5277,12 +5503,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel82.text"/>
             <Property name="name" type="java.lang.String" value="jLabel82" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel84">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel84.text"/>
             <Property name="name" type="java.lang.String" value="jLabel84" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField59">
           <Properties>
@@ -5302,6 +5534,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel85.text"/>
             <Property name="name" type="java.lang.String" value="jLabel85" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField61">
           <Properties>
@@ -5318,12 +5553,18 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel86.text"/>
             <Property name="name" type="java.lang.String" value="jLabel86" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel87">
           <Properties>
             <Property name="text" type="java.lang.String" resourceKey="jLabel87.text"/>
             <Property name="name" type="java.lang.String" value="jLabel87" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButton56">
           <Properties>
@@ -5350,6 +5591,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel88.text"/>
             <Property name="name" type="java.lang.String" value="jLabel88" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCF">
           <Properties>
@@ -5362,6 +5606,9 @@
             <Property name="text" type="java.lang.String" resourceKey="jLabel89.text"/>
             <Property name="name" type="java.lang.String" value="jLabel89" noResource="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldIVA">
           <Properties>

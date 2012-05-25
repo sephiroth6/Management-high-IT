@@ -174,8 +174,8 @@ public class Print implements Printable {
             firstY += shortHeightLines(6);
             this.writeBillingCustomer(grapdd, frc, b, f, firstX, firstY);
             firstY += shortHeightLines(8);
-            firstY = this.writeTable(grapdd, frc, b, f, firstX, firstY, width);
-            firstY += heightLines(3);
+            firstY = this.writeTable(grapdd, frc, b, footer, firstX, firstY, width);
+            firstY += heightLines(1);
             this.writeBillingFooter(grapdd, frc, b, f, firstX, firstY);
         }
         
@@ -394,13 +394,36 @@ public class Print implements Printable {
          int m = model.getColumnCount();
          
          writeColumnsNames(g, fRend, b, x, y);
-         y += heightLines(1);
+         // horizontal lines
+         g.drawLine(x - 5, y - 10, w - 15, y - 10);     // up
+         g.drawLine(x - 5, y + 5, w - 15, y + 5);       // down
+         // vertical lines
+         g.drawLine(x - 5, y - 10, x - 5, y + 5);       // left margin
+         g.drawLine(w - 15, y - 10, w - 15, y + 5);     // right margin
+         g.drawLine(x + 49, y - 10, x + 49, y + 5);     // between "TIPOLOGIA" and "CODICE"
+         g.drawLine(x + 148, y - 10, x + 148, y + 5);   // between "CODICE" and "DESCRIZIONE"
+         g.drawLine(x + 380, y - 10, x + 380, y + 5);   // between "DESCRIZIONE" and "Q.TA'"
+         g.drawLine(x + 416, y - 10, x + 416, y + 5);   // between "Q.TA'" and "PREZZO"
+         g.drawLine(x + 481, y - 10, x + 481, y + 5);   // between "PREZZO" and "TOT"
+         g.drawLine(x + 526, y - 10, x + 526, y + 5);   // between "TOT" and "IVA"
+         y += shortHeightLines(1);
          
          for(int i = 0; i < n; i++) {
+             int auxYA = y + 5 - shortHeightLines(1);
+             int auxYB = y + 5;
+             // vertical lines
+             g.drawLine(x - 5, auxYA, x - 5, auxYB);          // left
+             g.drawLine(w - 15, auxYA, w - 15, auxYB);        // right
+             g.drawLine(x + 49, auxYA, x + 49, auxYB);
+             g.drawLine(x + 148, auxYA, x + 148, auxYB);
+             g.drawLine(x + 380, auxYA, x + 380, auxYB);
+             g.drawLine(x + 416, auxYA, x + 416, auxYB);
+             g.drawLine(x + 481, auxYA, x + 481, auxYB);
+             g.drawLine(x + 526, auxYA, x + 526, auxYB);
              printRow(g, fRend, f, x, y, i, m, model);
-             y += 10;
-             g.drawLine(x, y, w - 30, y);
-             y += heightLines(1);
+             // horizontal line
+             g.drawLine(x - 5, y + 5, w - 15, y + 5);
+             y += shortHeightLines(1);
          }         
          return y;
      }
@@ -419,31 +442,36 @@ public class Print implements Printable {
                  break;
                  
              case 1:    // code
-                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 75, y);
+                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 51, y);
                  break;
                  
              case 2:    // description
-                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 135, y);
+                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 151, y);
                  break;
                  
              case 3:   // quantity
-                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 300, y);
+                 try {
+                    Integer val = (Integer)m.getValueAt(row, col);
+                    g.drawGlyphVector(f.createGlyphVector(fRend, val.toString()), x + 384, y);
+                 } catch (java.lang.ClassCastException e) {
+                     g.drawGlyphVector(f.createGlyphVector(fRend, (String)m.getValueAt(row, col)), x + 384, y);
+                 }
                  break;
                  
              case 4:    // price
-                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 375, y);
+                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 420, y);
                  break;
                  
              case 5:    // tax?
                  Boolean aux = (Boolean)m.getValueAt(row, col);
-                 if(aux)
-                     g.drawGlyphVector(f.createGlyphVector(fRend, "sì"), x + 425, y);
+                 if(!aux)
+                     g.drawGlyphVector(f.createGlyphVector(fRend, "sì"), x + 530, y);
                  else
-                     g.drawGlyphVector(f.createGlyphVector(fRend, "no"), x + 425, y);
+                     g.drawGlyphVector(f.createGlyphVector(fRend, "no"), x + 530, y);
                  break;
                  
              case 6:    // total price (price * quantity)
-                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 500, y);
+                 g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 485, y);
          }
      }
      
@@ -459,13 +487,13 @@ public class Print implements Printable {
      
      private static void writeColumnsNames (Graphics2D g, FontRenderContext fRend, Font f, int x, int y) {
          // print names of the billing table columns
-         g.drawGlyphVector(f.createGlyphVector(fRend, "TIPOLOGIA"), x, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, "CODICE"), x + 75, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, "DESCRIZIONE"), x + 135, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, "QUANTITA'"), x + 300, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, "PREZZO"), x + 375, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, "ESENTASSE"), x + 425, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, "TOTALE"), x + 500, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, "CAT."), x, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, "CODICE"), x + 51, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, "DESCRIZIONE"), x + 151, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, "Q.TA'"), x + 384, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, "PREZZO (€)"), x + 420, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, "TOT (€)"), x + 485, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, "IVA"), x + 530, y);
      }
      
      private void writeBillingFooter (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y) {

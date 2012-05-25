@@ -1,6 +1,10 @@
 In the last part of the development, I will use this file as a history of the changes made in every commit.
 Claudio
 
+25-05-2012
+billing elements inserted into a grid;
+minor bug fixing and optimization.
+
 23-05-2012
 "fattura" and "nota di credito" insertion into database.
 
