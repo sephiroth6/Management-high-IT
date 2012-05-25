@@ -385,8 +385,21 @@ public class Print implements Printable {
          g.drawGlyphVector(f.createGlyphVector(fRend, "Nome: ".concat(this.c.getName())), x + 20, y + shortHeightLines(3));
          g.drawGlyphVector(f.createGlyphVector(fRend, "Codice Fiscale: ".concat(this.bc.getCF())), x + 20, y + shortHeightLines(4));
          g.drawGlyphVector(f.createGlyphVector(fRend, "Partita IVA: ".concat(this.bc.getIVA())), x + 20, y + shortHeightLines(5));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "Indirizzo: ".concat(customerAddress(this.bc))), x + 20, y + shortHeightLines(6));
      }
  
+     private static String customerAddress (SharedClasses.BillingCustomer info) {
+         // return a formatted String with customer address
+         StringBuilder ret = new StringBuilder();
+         ret.append(info.getAddress().concat(", "));
+         ret.append(info.getCAP().concat(" "));
+         ret.append(info.getCity().concat(" "));
+         ret.append("(");
+         ret.append(info.getProv().concat(")"));
+         
+         return ret.toString();
+     }
+     
      private int writeTable (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y, int w) {
          // print the billing table
          DefaultTableModel model = (DefaultTableModel)this.t.getModel();

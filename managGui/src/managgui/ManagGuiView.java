@@ -474,6 +474,9 @@ public class ManagGuiView extends FrameView {
         jButton57 = new javax.swing.JButton();
         jTextFieldCF = new javax.swing.JTextField();
         jTextFieldIVA = new javax.swing.JTextField();
+        jTextField92 = new javax.swing.JTextField();
+        jTextField93 = new javax.swing.JTextField();
+        jTextField94 = new javax.swing.JTextField();
         billingCustomerSearch = new javax.swing.JPanel();
         jLabel90 = new javax.swing.JLabel();
         jTextField65 = new javax.swing.JTextField();
@@ -1010,12 +1013,12 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton46))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(256, Short.MAX_VALUE)))
+                    .addContainerGap(250, Short.MAX_VALUE)))
         );
 
         jButton1.setVisible(false);
@@ -1112,7 +1115,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1427,12 +1430,12 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addComponent(jLabel124))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
             .addGroup(mainWarehouseEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainWarehouseEditLayout.createSequentialGroup()
                     .addGap(135, 135, 135)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(308, Short.MAX_VALUE)))
+                    .addContainerGap(302, Short.MAX_VALUE)))
         );
 
         //jLabel83.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -2434,12 +2437,12 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(billingCreation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(172, Short.MAX_VALUE))
             .addGroup(mainBillingEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainBillingEditLayout.createSequentialGroup()
                     .addGap(53, 53, 53)
                     .addComponent(billingSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(353, Short.MAX_VALUE)))
+                    .addContainerGap(347, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Fatturazione", mainBillingEdit);
@@ -2453,7 +2456,7 @@ public class ManagGuiView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
         );
 
         jTabbedPane1.setTitleAt(3, "Fatturazione");
@@ -3967,42 +3970,78 @@ public class ManagGuiView extends FrameView {
         jTextFieldIVA.setText(resourceMap.getString("jTextFieldIVA.text")); // NOI18N
         jTextFieldIVA.setName("jTextFieldIVA"); // NOI18N
 
+        jTextField92.setName("jTextField92"); // NOI18N
+
+        jTextField93.setName("jTextField93"); // NOI18N
+
+        jLabel102.setText(resourceMap.getString("jLabel102.text")); // NOI18N
+        jLabel102.setName("jLabel102"); // NOI18N
+
+        jLabel112.setText(resourceMap.getString("jLabel112.text")); // NOI18N
+        jLabel112.setName("jLabel112"); // NOI18N
+
+        jLabel113.setText(resourceMap.getString("jLabel113.text")); // NOI18N
+        jLabel113.setName("jLabel113"); // NOI18N
+
+        jTextField94.setName("jTextField94"); // NOI18N
+
+        jLabel127.setText(resourceMap.getString("jLabel127.text")); // NOI18N
+        jLabel127.setName("jLabel127"); // NOI18N
+
         javax.swing.GroupLayout billingCustomerEditLayout = new javax.swing.GroupLayout(billingCustomerEdit);
         billingCustomerEdit.setLayout(billingCustomerEditLayout);
         billingCustomerEditLayout.setHorizontalGroup(
             billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(billingCustomerEditLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingCustomerEditLayout.createSequentialGroup()
-                        .addComponent(jButton57)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton56))
                     .addGroup(billingCustomerEditLayout.createSequentialGroup()
-                        .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel84)
-                            .addComponent(jLabel82))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
                         .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-                            .addComponent(jTextField59, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)))
-                    .addGroup(billingCustomerEditLayout.createSequentialGroup()
-                        .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel85)
-                            .addComponent(jLabel89)
-                            .addComponent(jLabel88)
-                            .addComponent(jLabel87))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField60, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                            .addComponent(jTextFieldCF)
-                            .addGroup(billingCustomerEditLayout.createSequentialGroup()
-                                .addComponent(jTextField62, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingCustomerEditLayout.createSequentialGroup()
+                                .addComponent(jButton57)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel86)
+                                .addComponent(jButton56))
+                            .addGroup(billingCustomerEditLayout.createSequentialGroup()
+                                .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel85)
+                                    .addComponent(jLabel89)
+                                    .addComponent(jLabel88)
+                                    .addComponent(jLabel87))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField61, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextFieldIVA))))
+                                .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField60, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldCF, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                                    .addGroup(billingCustomerEditLayout.createSequentialGroup()
+                                        .addComponent(jTextField62, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel86)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField61, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                                    .addComponent(jTextFieldIVA, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)))))
+                    .addGroup(billingCustomerEditLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel102)
+                            .addComponent(jLabel112)
+                            .addComponent(jLabel82)
+                            .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(billingCustomerEditLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                                    .addComponent(jTextField59, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                                    .addComponent(jLabel127, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)))
+                            .addGroup(billingCustomerEditLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField92, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingCustomerEditLayout.createSequentialGroup()
+                                        .addComponent(jTextField93, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                                        .addComponent(jLabel113)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField94, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap())
         );
         billingCustomerEditLayout.setVerticalGroup(
@@ -4026,15 +4065,27 @@ public class ManagGuiView extends FrameView {
                 .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel85)
                     .addComponent(jTextField60, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(13, 13, 13)
                 .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel84)
-                    .addComponent(jTextField59, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField92, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel102))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel112)
+                    .addComponent(jTextField93, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField94, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel113))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField59, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel84))
                 .addGap(18, 18, 18)
                 .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel82)
                     .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel127)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(billingCustomerEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton56)
                     .addComponent(jButton57))
@@ -4689,7 +4740,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     // send the search request for BillingCustomer class and read the response
     private void billingCustomerSearchResult (int id) {
         
-        SharedClasses.BillingCustomer cus = new SharedClasses.BillingCustomer(id, null, null);
+        SharedClasses.BillingCustomer cus = new SharedClasses.BillingCustomer(id);
         ComClasses.Request r = new ComClasses.Request(cus, ComClasses.Constants.BILLCUS, ComClasses.Constants.SELECT, SharedClasses.BillingCustomer.select());
         
         try {
@@ -5689,7 +5740,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     // save billing customer - used when creating a new billing customer and when editing an existing one
     private void jButton57MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton57MouseClicked
         
-        if(ManagGuiView.neededInsertion(jTextField61, jTextField62) && (ManagGuiView.neededInsertion(jTextFieldCF) || ManagGuiView.neededInsertion(jTextFieldIVA))) {
+        if(ManagGuiView.neededInsertion(jTextField60, jTextField61, jTextField62, jTextField92, jTextField93, jTextField94) && (ManagGuiView.neededInsertion(jTextFieldCF) || ManagGuiView.neededInsertion(jTextFieldIVA))) {
                             
             if(!checkTaxCode(jTextFieldCF.getText())) {
                 showWinAlert(billingCustomerEdit, "Struttura codice fiscale errata!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -5724,7 +5775,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 }
        
                 this.billingCustomer = auxC;
-                SharedClasses.BillingCustomer auxB = new SharedClasses.BillingCustomer(jTextFieldIVA.getText(), jTextFieldCF.getText(), null, null, null, null);
+                SharedClasses.BillingCustomer auxB = new SharedClasses.BillingCustomer(jTextFieldIVA.getText(), jTextFieldCF.getText(), jTextField60.getText(), jTextField93.getText(), jTextField92.getText(), jTextField94.getText());
 
                 // manage billing info
                 if (this.billingCustomerEditing && !(this.newBillingInfo)) {
@@ -5784,7 +5835,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         setCenterMonitorDim(520, 360);
         this.billingCustomerEditing = false;
         this.newBillingInfo = true;
-        DatiClienteView = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 520, 360, billingCustomerEdit);
+        DatiClienteView = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 600, 500, billingCustomerEdit);
         clearFields(jTextField62, jTextField61, jTextFieldCF, jTextFieldIVA, jTextField60, jTextField59);
         jTextArea13.setText(null);
     }//GEN-LAST:event_jButton54MouseClicked
@@ -5849,15 +5900,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             this.billingCustomerEditing = true;
             
             setCenterMonitorDim(503, 300);
-            DatiClienteView = new FinestraSwing("Scheda dati cliente", p.getPX(), p.getPY(), 520, 360, billingCustomerEdit);
+            DatiClienteView = new FinestraSwing("Scheda dati cliente", p.getPX(), p.getPY(), 600, 500, billingCustomerEdit);
             
             clearFields(jTextField59, jTextField60, jTextField61, jTextField62, jTextFieldCF);
             jTextArea13.setText(null);
             getDatiClienteDb(jTextField61, jTextField62, jTextField60, jTextField59, jTextArea13, true);
 
             if(this.billingCustomerInfo != null) {
-                jTextFieldCF.setText(this.billingCustomerInfo.getCF().toLowerCase());
-                jTextFieldIVA.setText(this.billingCustomerInfo.getIVA().toLowerCase());
+                jTextFieldCF.setText(this.billingCustomerInfo.getCF().toLowerCase());       // CODICE FISCALE
+                jTextFieldIVA.setText(this.billingCustomerInfo.getIVA().toLowerCase());     // PARTITA IVA
+                jTextField60.setText(this.billingCustomerInfo.getAddress().toLowerCase());  // STREET NAME (billing_customer table, NOT customer table)
+                jTextField92.setText(this.billingCustomerInfo.getCity().toLowerCase());     // CITY
+                jTextField93.setText(this.billingCustomerInfo.getCAP().toLowerCase());      // CAP
+                jTextField94.setText(this.billingCustomerInfo.getProv().toLowerCase());     // PROVINCE
                 this.newBillingInfo = false;
             } else {
                 this.newBillingInfo = true;
@@ -6392,6 +6447,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private final javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel100;
     private final javax.swing.JLabel jLabel101 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel102 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
@@ -6402,6 +6458,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private final javax.swing.JLabel jLabel11 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel110 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel111 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel112 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel113 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel116;
@@ -6416,6 +6474,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JLabel jLabel124;
     private final javax.swing.JLabel jLabel125 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel126 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel127 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel13 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel14 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
@@ -6662,6 +6721,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextField90;
     private javax.swing.JTextField jTextField91;
+    private javax.swing.JTextField jTextField92;
+    private javax.swing.JTextField jTextField93;
+    private javax.swing.JTextField jTextField94;
     private javax.swing.JTextField jTextFieldCF;
     private javax.swing.JTextField jTextFieldIVA;
     private javax.swing.JToggleButton jToggleButton1;
