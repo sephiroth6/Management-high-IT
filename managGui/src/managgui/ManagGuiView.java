@@ -7682,10 +7682,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         DefaultTableModel model = new DefaultTableModel(columnNames, n){
         
             private static final long serialVersionUID = 1L;
-//            @Override
-//            public boolean isCellEditable(int row, int column){
-//                return false; //LOL nn lo trovavo
-//            }
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false; //LOL nn lo trovavo
+            }
        };
         
         jt.setModel(model);
