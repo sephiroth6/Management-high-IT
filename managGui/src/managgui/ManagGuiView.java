@@ -6347,7 +6347,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         this.resetBillingTables();
         jTextField57.setText("Cognome");
         jTextField58.setText("Nome");
-        clearFields(jTextField53, jTextField56, jTextField63, jTextField72, jTextField73, jTextField74, jTextField76, jTextField78);
+        clearFields(jTextField53, jTextField56, jTextField63, jTextField72, jTextField73, jTextField74, jTextField76, jTextField78, jTextField102);
     }//GEN-LAST:event_jButton63MouseClicked
 
     // save and print billing
@@ -6361,13 +6361,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             String pr = this.getTotalPriceField();
             Integer num = new Integer(this.getBillingNumberField());
             ComClasses.Request r;
+            SharedClasses.Ritenuta rit = null;
             // INSERT billing
             r = new ComClasses.Request(new SharedClasses.Billing(this.bill, this.getDataField(), num, pr, new Integer(iva), this.billingCustomer.getID()), ComClasses.Constants.BILLCLASS, ComClasses.Constants.INSERT, SharedClasses.Billing.insert());        
             int billId = Utils.intOperation(r).intValue();            
             // INSERT billing elements
             r = new ComClasses.MultiRequest(billingElements(this.getBillingTable(), billId), ComClasses.Constants.BILLEL, ComClasses.Constants.MULTINSERT, SharedClasses.BillingElements.insert());
             Utils.intOperation(r);
-            Print.repairPrint(num, this.billingCustomer, this.billingCustomerInfo, this.bill, this.getBillingTable(), this.getImponibileField(), iva, pr, this.getDataField());
+            if(this.bill == ComClasses.Constants.RDA) {
+                rit = new SharedClasses.Ritenuta(billId, new Integer(jTextField85.getText()), new Integer(jTextField77.getText()));
+                r = new ComClasses.Request(rit, ComClasses.Constants.RIT, ComClasses.Constants.INSERT, SharedClasses.Ritenuta.insert());
+                Utils.intOperation(r);
+            }
+            Print.repairPrint(num, this.billingCustomer, this.billingCustomerInfo, this.bill, this.getBillingTable(), this.getImponibileField(), iva, pr, this.getDataField(), rit);
             // update billing number field            
             r = new ComClasses.Request(null, ComClasses.Constants.BILLCLASS, ComClasses.Constants.NUMBERSELECT, SharedClasses.Billing.singleSelect());
             // SELECT last billing number   

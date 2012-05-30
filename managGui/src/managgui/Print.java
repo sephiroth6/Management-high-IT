@@ -45,6 +45,7 @@ public class Print implements Printable {
     private final SharedClasses.Repair r;
     private final SharedClasses.Device d;
     private final SharedClasses.Details de;
+    private final SharedClasses.Ritenuta rit;
     private final javax.swing.JTable t;
      
     public Print (SharedClasses.Customer c, SharedClasses.Repair r, SharedClasses.Device d, SharedClasses.Details de, boolean re) {
@@ -62,9 +63,10 @@ public class Print implements Printable {
         this.total = null;
         this.date = null;
         this.number = null;
+        this.rit = null;
     }
     
-    public Print (int n, SharedClasses.Customer c, SharedClasses.BillingCustomer bc, int ty, JTable table, String imp, String iva, String tot, String dt) {
+    public Print (int n, SharedClasses.Customer c, SharedClasses.BillingCustomer bc, int ty, JTable table, String imp, String iva, String tot, String dt, SharedClasses.Ritenuta ri) {
         // billing
         this.number = new Integer(n).toString();
         this.c = c;
@@ -76,6 +78,7 @@ public class Print implements Printable {
         this.percentage = iva;
         this.total = tot;
         this.date = dt;
+        this.rit = ri;
         this.r = null;
         this.d = null;
         this.de = null;
@@ -101,11 +104,11 @@ public class Print implements Printable {
         pj.print();
     }
     
-    public static void repairPrint (int i, SharedClasses.Customer c, SharedClasses.BillingCustomer bc, int ty, JTable t, String imp, String iva, String tot, String dt) throws PrinterException {
+    public static void repairPrint (int i, SharedClasses.Customer c, SharedClasses.BillingCustomer bc, int ty, JTable t, String imp, String iva, String tot, String dt, SharedClasses.Ritenuta ri) throws PrinterException {
         // used when printing billing info
         PrinterJob pj = initPrinting(i);
         
-        pj.setPrintable(new Print(i, c, bc, ty, t, imp, iva, tot, dt));
+        pj.setPrintable(new Print(i, c, bc, ty, t, imp, iva, tot, dt, ri));
         
         pj.print();
     }
@@ -513,6 +516,14 @@ public class Print implements Printable {
          // write final billing values
          g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Imponibile"), x, y);
          g.drawGlyphVector(f.createGlyphVector(fRend, this.totalImp.concat("€")), x + 100, y);
+         
+         if(this.rit != null) {
+             g.drawGlyphVector(b.createGlyphVector(fRend, "Ritenuta"), x, y + heightLines(1));
+             g.drawGlyphVector(f.createGlyphVector(fRend, this.rit.getRitenuta().toString().concat("%")), x + 100, y + heightLines(1));
+             g.drawGlyphVector(f.createGlyphVector(fRend, this.rit.getPercentage().toString().concat("% dell'imponibile")), x + 100, y + heightLines(2));
+             y += heightLines(2);
+         }
+         
          g.drawGlyphVector(b.createGlyphVector(fRend, "Aliquota"), x, y + heightLines(1));
          g.drawGlyphVector(f.createGlyphVector(fRend, this.percentage.concat("%")), x + 100, y + heightLines(1));
          g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Fattura"), x, y + heightLines(2));
