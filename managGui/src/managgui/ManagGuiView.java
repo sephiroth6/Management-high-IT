@@ -6330,7 +6330,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }//GEN-LAST:event_jTextField80MouseClicked
 
     private void jButton73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton73MouseClicked
-        // TODO add your handling code here:
+        setDisableSync();
+            setCenterMonitorDim(1155, 500);
+            ricercaFattura = new FinestraSwing("Dettagli Pagamento", p.getPX(), p.getPY(), 1155, 500, risultatoFattView);
+            jToggleButton2.setSelected(false);
         
     }//GEN-LAST:event_jButton73MouseClicked
 
