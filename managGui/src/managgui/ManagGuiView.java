@@ -338,6 +338,7 @@ public class ManagGuiView extends FrameView {
         jTextField70 = new javax.swing.JTextField();
         jTextField83 = new javax.swing.JTextField();
         jButton81 = new javax.swing.JButton();
+        jTextField102 = new javax.swing.JTextField();
         jButton63 = new javax.swing.JButton();
         jButton64 = new javax.swing.JButton();
         billingSearch = new javax.swing.JPanel();
@@ -954,7 +955,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton12)
                         .addGap(18, 18, 18)
                         .addComponent(jButton11))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -1020,7 +1021,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -1038,12 +1039,12 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton46))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(249, Short.MAX_VALUE)))
+                    .addContainerGap(250, Short.MAX_VALUE)))
         );
 
         jButton1.setVisible(false);
@@ -1116,7 +1117,7 @@ public class ManagGuiView extends FrameView {
             .addGroup(mainCustomerSearchLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCustomerSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
+                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
                     .addGroup(mainCustomerSearchLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1140,7 +1141,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1266,7 +1267,7 @@ public class ManagGuiView extends FrameView {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton9)
-                .addContainerGap(394, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1432,12 +1433,12 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton5)
                         .addGap(49, 49, 49)
                         .addComponent(jButton6)))
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(312, Short.MAX_VALUE))
             .addGroup(mainWarehouseEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainWarehouseEditLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(417, Short.MAX_VALUE)))
+                    .addContainerGap(448, Short.MAX_VALUE)))
         );
         mainWarehouseEditLayout.setVerticalGroup(
             mainWarehouseEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1455,12 +1456,12 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addComponent(jLabel124))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
             .addGroup(mainWarehouseEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainWarehouseEditLayout.createSequentialGroup()
                     .addGap(135, 135, 135)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(305, Short.MAX_VALUE)))
+                    .addContainerGap(302, Short.MAX_VALUE)))
         );
 
         //jLabel83.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1633,25 +1634,35 @@ public class ManagGuiView extends FrameView {
         fatturaViewLayout.setHorizontalGroup(
             fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fatturaViewLayout.createSequentialGroup()
-                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fatturaViewLayout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField54, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel91)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField63, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fatturaViewLayout.createSequentialGroup()
-                        .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fatturaViewLayout.createSequentialGroup()
+                        .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fatturaViewLayout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField54, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel91)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField63, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(fatturaViewLayout.createSequentialGroup()
+                                    .addComponent(jLabel18)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel92)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton53, 0, 0, Short.MAX_VALUE)
@@ -1663,21 +1674,12 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jLabel80)
                             .addComponent(jLabel79)
                             .addComponent(jLabel62)
-                            .addComponent(jLabel61))))
-                .addContainerGap())
-            .addGroup(fatturaViewLayout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel92)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField67, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(375, 375, 375))
+                            .addComponent(jLabel61)))
+                    .addGroup(fatturaViewLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField42, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fatturaViewLayout.setVerticalGroup(
             fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1709,15 +1711,18 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jButton53)
                             .addComponent(jLabel80))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21)
-                    .addComponent(jTextField54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel91)
-                    .addComponent(jLabel22)
-                    .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel20)
+                        .addComponent(jTextField53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel21)
+                        .addComponent(jTextField54, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(fatturaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel22)
+                        .addComponent(jTextField56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel91)))
+                .addContainerGap())
         );
 
         jTextField42.setText(getDataOra(false));
@@ -1867,23 +1872,40 @@ public class ManagGuiView extends FrameView {
         ndcViewLayout.setHorizontalGroup(
             ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ndcViewLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(jLabel101)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField71, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 343, Short.MAX_VALUE)
-                .addComponent(jLabel94)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel93)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(272, 272, 272))
-            .addGroup(ndcViewLayout.createSequentialGroup()
                 .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ndcViewLayout.createSequentialGroup()
-                        .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 897, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel101)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField71, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ndcViewLayout.createSequentialGroup()
+                        .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(ndcViewLayout.createSequentialGroup()
+                                .addComponent(jLabel108)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField72, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel109)
+                                .addGap(4, 4, 4)
+                                .addComponent(jTextField73, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel97)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField84, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel110)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(ndcViewLayout.createSequentialGroup()
+                                    .addComponent(jLabel94)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel93)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 897, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton68, 0, 0, Short.MAX_VALUE)
@@ -1895,27 +1917,8 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jLabel107)
                             .addComponent(jLabel106)
                             .addComponent(jLabel105)
-                            .addComponent(jLabel104)))
-                    .addGroup(ndcViewLayout.createSequentialGroup()
-                        .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ndcViewLayout.createSequentialGroup()
-                                .addGap(257, 257, 257)
-                                .addComponent(jLabel109)
-                                .addGap(4, 4, 4)
-                                .addComponent(jTextField73, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(ndcViewLayout.createSequentialGroup()
-                                .addComponent(jLabel108)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField72, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel97)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField84, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel110)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(jLabel104))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ndcViewLayout.setVerticalGroup(
             ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1923,17 +1926,13 @@ public class ManagGuiView extends FrameView {
                 .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ndcViewLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel101)
-                                .addComponent(jTextField71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(ndcViewLayout.createSequentialGroup()
-                                .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel101)
+                            .addComponent(jTextField71, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField69, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel94, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane24, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ndcViewLayout.createSequentialGroup()
@@ -1957,14 +1956,15 @@ public class ManagGuiView extends FrameView {
                 .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel108)
-                        .addComponent(jTextField72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField72, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField73, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel109)
-                        .addComponent(jLabel97)
-                        .addComponent(jTextField84, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel109))
+                    .addGroup(ndcViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel110)
-                        .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextField74, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel97)
+                        .addComponent(jTextField84, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jTextField71.setText(getDataOra(false));
@@ -2091,8 +2091,16 @@ public class ManagGuiView extends FrameView {
         jTextField83.setPreferredSize(new java.awt.Dimension(50, 20));
 
         jButton81.setIcon(resourceMap.getIcon("jButton81.icon")); // NOI18N
-        jButton81.setToolTipText(resourceMap.getString("jButton81.toolTipText")); // NOI18N
+        jButton81.setMaximumSize(new java.awt.Dimension(53, 29));
+        jButton81.setMinimumSize(new java.awt.Dimension(53, 29));
         jButton81.setName("jButton81"); // NOI18N
+        jButton81.setPreferredSize(new java.awt.Dimension(53, 29));
+
+        jLabel139.setText(resourceMap.getString("jLabel139.text")); // NOI18N
+        jLabel139.setName("jLabel139"); // NOI18N
+
+        jTextField102.setEditable(false);
+        jTextField102.setName("jTextField102"); // NOI18N
 
         javax.swing.GroupLayout rdaViewLayout = new javax.swing.GroupLayout(rdaView);
         rdaView.setLayout(rdaViewLayout);
@@ -2102,64 +2110,65 @@ public class ManagGuiView extends FrameView {
                 .addContainerGap()
                 .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rdaViewLayout.createSequentialGroup()
-                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(rdaViewLayout.createSequentialGroup()
-                                .addComponent(jLabel118)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField76, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabel119)
-                                .addGap(2, 2, 2)
-                                .addComponent(jTextField77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel125)
-                                .addGap(4, 4, 4)
-                                .addComponent(jTextField85, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
-                                .addComponent(jLabel126)
-                                .addGap(4, 4, 4)
-                                .addComponent(jTextField86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                                .addComponent(jLabel120)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField78, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(rdaViewLayout.createSequentialGroup()
-                                .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton71, 0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton70, 0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton69, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton81, 0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel118)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel115)
-                            .addComponent(jLabel114)
-                            .addComponent(jLabel116)
-                            .addComponent(jLabel117))
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton72, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(357, 357, 357))
-                    .addGroup(rdaViewLayout.createSequentialGroup()
-                        .addComponent(jLabel111)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField75, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(307, 307, 307)
-                        .addComponent(jLabel95)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField83, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField76, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel96)
+                        .addComponent(jLabel119)
+                        .addGap(2, 2, 2)
+                        .addComponent(jTextField77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel125)
+                        .addGap(4, 4, 4)
+                        .addComponent(jTextField85, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel139)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(jTextField102, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addComponent(jLabel126)
+                        .addGap(4, 4, 4)
+                        .addComponent(jTextField86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel120)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField78, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(rdaViewLayout.createSequentialGroup()
+                        .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, rdaViewLayout.createSequentialGroup()
+                                .addComponent(jLabel111)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField75, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel95)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField83, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel96)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane25, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton81, 0, 0, Short.MAX_VALUE)
+                    .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton71, 0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton70, 0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton69, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel115)
+                    .addComponent(jLabel114)
+                    .addComponent(jLabel116)
+                    .addComponent(jLabel117))
+                .addGap(33, 33, 33)
+                .addComponent(jButton72, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         rdaViewLayout.setVerticalGroup(
             rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rdaViewLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField75, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel111)
@@ -2167,28 +2176,29 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jTextField83, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel95, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rdaViewLayout.createSequentialGroup()
                         .addGap(140, 140, 140)
-                        .addComponent(jButton72)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE))
+                        .addComponent(jButton72))
                     .addGroup(rdaViewLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel118)
-                        .addComponent(jTextField76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel119)
                         .addComponent(jTextField77, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField85, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel125)
-                        .addComponent(jTextField86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel126)
+                        .addComponent(jLabel139)
+                        .addComponent(jTextField102, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel120)
-                        .addComponent(jTextField78, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jTextField78, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel126))))
             .addGroup(rdaViewLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2204,15 +2214,16 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jLabel116))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel117)
-                    .addComponent(jButton81))
-                .addContainerGap(215, Short.MAX_VALUE))
+                    .addComponent(jButton81, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel117))
+                .addGap(219, 219, 219))
         );
 
         jTextField75.setText(getDataOra(false));
         jTextField75.setEditable(false);
         jTextField76.setEditable(false);
         jTextField78.setEditable(false);
+        jTextField76.setEditable(false);
 
         jButton63.setIcon(resourceMap.getIcon("jButton63.icon")); // NOI18N
         jButton63.setText(resourceMap.getString("jButton63.text")); // NOI18N
@@ -2240,40 +2251,39 @@ public class ManagGuiView extends FrameView {
                 .addContainerGap()
                 .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(billingCreationLayout.createSequentialGroup()
-                        .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(billingCreationLayout.createSequentialGroup()
-                                .addComponent(jButton30)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton31)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton34))
-                            .addGroup(billingCreationLayout.createSequentialGroup()
-                                .addComponent(jLabel60)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField57, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField58, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton54)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton55))
-                            .addComponent(fatturaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(416, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingCreationLayout.createSequentialGroup()
-                        .addComponent(jButton63)
+                        .addComponent(jButton30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton64)
-                        .addGap(375, 375, 375))))
+                        .addComponent(jButton31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton34))
+                    .addGroup(billingCreationLayout.createSequentialGroup()
+                        .addComponent(jLabel60)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField57, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField58, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton54)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton55))
+                    .addComponent(fatturaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(1144, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingCreationLayout.createSequentialGroup()
+                .addContainerGap(1972, Short.MAX_VALUE)
+                .addComponent(jButton63)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton64)
+                .addContainerGap())
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(ndcView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(420, Short.MAX_VALUE)))
+                    .addContainerGap(1146, Short.MAX_VALUE)))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(rdaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(1118, Short.MAX_VALUE)))
         );
         billingCreationLayout.setVerticalGroup(
             billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2292,8 +2302,8 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton55))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(fatturaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton63)
                     .addComponent(jButton64))
                 .addContainerGap())
@@ -2301,12 +2311,12 @@ public class ManagGuiView extends FrameView {
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addGap(98, 98, 98)
                     .addComponent(ndcView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(100, Short.MAX_VALUE)))
+                    .addContainerGap(48, Short.MAX_VALUE)))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addGap(97, 97, 97)
                     .addComponent(rdaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(113, Short.MAX_VALUE)))
+                    .addContainerGap(60, Short.MAX_VALUE)))
         );
 
         fatturaView.setVisible(false);
@@ -2399,7 +2409,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(billingSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, billingSearchLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane26, javax.swing.GroupLayout.DEFAULT_SIZE, 1545, Short.MAX_VALUE))
+                        .addComponent(jScrollPane26, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, billingSearchLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(billingSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2488,12 +2498,12 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(billingCreation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
             .addGroup(mainBillingEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainBillingEditLayout.createSequentialGroup()
                     .addGap(53, 53, 53)
                     .addComponent(billingSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(350, Short.MAX_VALUE)))
+                    .addContainerGap(347, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Fatturazione", mainBillingEdit);
@@ -4259,10 +4269,8 @@ public class ManagGuiView extends FrameView {
 
         jTextField95.setName("jTextField95"); // NOI18N
 
-        jLabel128.setText(resourceMap.getString("jLabel128.text")); // NOI18N
         jLabel128.setName("jLabel128"); // NOI18N
 
-        jLabel129.setText(resourceMap.getString("jLabel129.text")); // NOI18N
         jLabel129.setName("jLabel129"); // NOI18N
 
         jScrollPane23.setName("jScrollPane23"); // NOI18N
@@ -4282,8 +4290,6 @@ public class ManagGuiView extends FrameView {
         jScrollPane23.setViewportView(jTable10);
         setJTableBilling(jTable8, 1);
 
-        jButton61.setIcon(resourceMap.getIcon("jButton61.icon")); // NOI18N
-        jButton61.setToolTipText(resourceMap.getString("jButton61.toolTipText")); // NOI18N
         jButton61.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton61.setName("jButton61"); // NOI18N
         jButton61.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4292,8 +4298,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton62.setIcon(resourceMap.getIcon("jButton62.icon")); // NOI18N
-        jButton62.setToolTipText(resourceMap.getString("jButton62.toolTipText")); // NOI18N
         jButton62.setAlignmentY(0.0F);
         jButton62.setName("jButton62"); // NOI18N
         jButton62.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4302,8 +4306,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton75.setIcon(resourceMap.getIcon("jButton75.icon")); // NOI18N
-        jButton75.setToolTipText(resourceMap.getString("jButton75.toolTipText")); // NOI18N
         jButton75.setName("jButton75"); // NOI18N
         jButton75.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4311,8 +4313,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton80.setIcon(resourceMap.getIcon("jButton80.icon")); // NOI18N
-        jButton80.setToolTipText(resourceMap.getString("jButton80.toolTipText")); // NOI18N
         jButton80.setName("jButton80"); // NOI18N
         jButton80.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4320,53 +4320,39 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jLabel130.setText(resourceMap.getString("jLabel130.text")); // NOI18N
         jLabel130.setName("jLabel130"); // NOI18N
 
-        jLabel131.setText(resourceMap.getString("jLabel131.text")); // NOI18N
         jLabel131.setName("jLabel131"); // NOI18N
 
-        jLabel132.setText(resourceMap.getString("jLabel132.text")); // NOI18N
         jLabel132.setName("jLabel132"); // NOI18N
 
-        jLabel133.setText(resourceMap.getString("jLabel133.text")); // NOI18N
         jLabel133.setName("jLabel133"); // NOI18N
 
-        jLabel134.setText(resourceMap.getString("jLabel134.text")); // NOI18N
         jLabel134.setName("jLabel134"); // NOI18N
 
         jTextField96.setEditable(false);
         jTextField96.setName("jTextField96"); // NOI18N
 
-        jTextField97.setText(resourceMap.getString("jTextField97.text")); // NOI18N
         jTextField97.setName("jTextField97"); // NOI18N
 
-        jLabel135.setText(resourceMap.getString("jLabel135.text")); // NOI18N
         jLabel135.setName("jLabel135"); // NOI18N
 
         jTextField98.setName("jTextField98"); // NOI18N
 
-        jLabel136.setText(resourceMap.getString("jLabel136.text")); // NOI18N
         jLabel136.setName("jLabel136"); // NOI18N
 
-        jLabel137.setText(resourceMap.getString("jLabel137.text")); // NOI18N
         jLabel137.setName("jLabel137"); // NOI18N
 
         jTextField99.setEditable(false);
         jTextField99.setName("jTextField99"); // NOI18N
 
-        jTextField100.setText(resourceMap.getString("jTextField100.text")); // NOI18N
         jTextField100.setName("jTextField100"); // NOI18N
         jTextField100.setPreferredSize(new java.awt.Dimension(50, 20));
 
-        jLabel138.setFont(resourceMap.getFont("jLabel138.font")); // NOI18N
-        jLabel138.setText(resourceMap.getString("jLabel138.text")); // NOI18N
         jLabel138.setName("jLabel138"); // NOI18N
 
-        jTextField101.setText(resourceMap.getString("jTextField101.text")); // NOI18N
         jTextField101.setName("jTextField101"); // NOI18N
 
-        jToggleButton2.setText(resourceMap.getString("jToggleButton2.text")); // NOI18N
         jToggleButton2.setName("jToggleButton2"); // NOI18N
         jToggleButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4375,7 +4361,6 @@ public class ManagGuiView extends FrameView {
         });
 
         jButton82.setIcon(new javax.swing.ImageIcon(getClass().getResource("/managgui/images/printer.png"))); // NOI18N
-        jButton82.setText(resourceMap.getString("jButton82.text")); // NOI18N
         jButton82.setName("jButton82"); // NOI18N
         jButton82.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4383,8 +4368,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton83.setIcon(resourceMap.getIcon("jButton83.icon")); // NOI18N
-        jButton83.setText(resourceMap.getString("jButton83.text")); // NOI18N
         jButton83.setName("jButton83"); // NOI18N
         jButton83.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4392,8 +4375,6 @@ public class ManagGuiView extends FrameView {
             }
         });
 
-        jButton84.setIcon(resourceMap.getIcon("jButton84.icon")); // NOI18N
-        jButton84.setText(resourceMap.getString("jButton84.text")); // NOI18N
         jButton84.setName("jButton84"); // NOI18N
         jButton84.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4412,7 +4393,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jLabel128)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField95, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 698, Short.MAX_VALUE)
                         .addComponent(jLabel129)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField100, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4436,7 +4417,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jLabel136)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField98, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)))
                 .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(risultatoFattViewLayout.createSequentialGroup()
                         .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4506,7 +4487,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton80)
                     .addComponent(jLabel133))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addComponent(jButton83)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton82)
@@ -5985,7 +5966,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // FATTURA sync
     private void jButton52MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton52MouseClicked
-        if(!this.billingSync(jTable8, fatturaView, jTextField53, jTextField63, jTextField54, jTextField56))
+        if(!this.billingSync(fatturaView))
             showWinAlert(fatturaView, "Controllare i dati inseriti nella tabella!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton52MouseClicked
 
@@ -6263,7 +6244,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // sync win warehouse
     private void jButton67MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton67MouseClicked
-        if(!this.billingSync(jTable11, ndcView, jTextField72, jTextField84, jTextField73, jTextField74))
+        if(!this.billingSync(ndcView))
             showWinAlert(ndcView, "Controllare i dati inseriti nella tabella!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton67MouseClicked
 
@@ -6300,7 +6281,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // RDA sync
     private void jButton71MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton71MouseClicked
-        // TODO add your handling code here:
+        this.billingSync(rdaView);
     }//GEN-LAST:event_jButton71MouseClicked
 
     // RDA delete all row
@@ -6374,8 +6355,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         try {
             this.checkBillingInfo();
-            // TODO call directly billingSync to check that every info is correct... or throw exception!
-            this.syncTable(evt);
+            if(!this.billingSync(billingCreation))
+                return;
             String iva = this.getIVAField();
             String pr = this.getTotalPriceField();
             Integer num = new Integer(this.getBillingNumberField());
@@ -6408,18 +6389,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jButton64MouseClicked
 
-    private void syncTable (java.awt.event.MouseEvent evt) {
-        // sync proper table when saving billing document
-        switch (this.bill) {
-            case ComClasses.Constants.BILL:
-                this.jButton52MouseClicked(evt);
-                break;
-            
-            case ComClasses.Constants.NDC:
-                this.jButton67MouseClicked(evt);
-        }
-    }
-    
     private String getIVAField () {
         switch (this.bill) {
             case ComClasses.Constants.BILL:
@@ -6446,6 +6415,21 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }
     
+    private void imponibileSetText (String text) {
+        switch (this.bill) {
+            case ComClasses.Constants.BILL:
+                jTextField53.setText(text);
+                break;
+            
+            case ComClasses.Constants.NDC:
+                jTextField72.setText(text);
+                break;
+                
+            default:
+                jTextField76.setText(text);
+        }
+    }
+    
     private String getEsentasseField () {
         switch (this.bill) {
             case ComClasses.Constants.BILL:
@@ -6455,7 +6439,23 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 return jTextField84.getText();
                 
             default:
+                // TODO esentasse field for RDA
                 return null;
+        }
+    }
+    
+    private void esentasseSetText (String text) {
+        switch (this.bill) {
+            case ComClasses.Constants.BILL:
+                jTextField63.setText(text);
+                break;
+            
+            case ComClasses.Constants.NDC:
+                jTextField84.setText(text);
+                break;
+                
+            default:
+                // TODO esentasse field for RDA
         }
     }
     
@@ -6496,8 +6496,22 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 
             default:
                 return jTextField78.getText();
+        }   
+    }
+    
+    private void totalPriceSetText (String text) {
+        switch (this.bill) {
+            case ComClasses.Constants.BILL:
+                jTextField56.setText(text);
+                break;
+            
+            case ComClasses.Constants.NDC:
+                jTextField74.setText(text);
+                break;
+                
+            default:
+                jTextField78.setText(text);
         }
-        
     }
     
     private void billingNumberSetText (String text) {
@@ -6514,8 +6528,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 jTextField83.setText(text);
         }
     }
-    
-    
+   
     private static ArrayList<Object> billingElements (JTable t, int billId) {
         // create an array of BillingElements object that have to be written into db
         int n = t.getModel().getRowCount();
@@ -6704,24 +6717,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             return "0";
     }
     
-    private static BigDecimal handleIVA (BigDecimal s, Integer percentage, boolean iva) {
-        
-        if(s != null) {
-            
-            BigDecimal tot = new BigDecimal(100 + percentage.intValue());
-            
-            if(iva)
-                return s.multiply(tot).divide(new BigDecimal(100), new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN);
-            else
-                return s.multiply(new BigDecimal(100)).divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN);
-            
-        } else {
-            return new BigDecimal(0);
-        }
-        
-        
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel billingCreation;
     private javax.swing.JPanel billingCustomerEdit;
@@ -6870,6 +6865,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private final javax.swing.JLabel jLabel136 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel137 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel138 = new javax.swing.JLabel();
+    private final javax.swing.JLabel jLabel139 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel14 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel16 = new javax.swing.JLabel();
@@ -7030,6 +7026,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField100;
     private javax.swing.JTextField jTextField101;
+    private javax.swing.JTextField jTextField102;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
@@ -7723,8 +7720,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         this.warehouseInfo = wi;
     }
     
-    private boolean billingSync (JTable JT, javax.swing.JPanel parent, JTextField imp, JTextField ese, JTextField iva, JTextField total) {
+    private boolean billingSync (javax.swing.JPanel parent) {
         
+        JTable JT = this.getBillingTable();
         boolean ret = false;
         int rc = JT.getRowCount();
         // check if the table is empty
@@ -7749,7 +7747,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     } catch (SharedClasses.MyDBException e) {
                         // first catch, custom exception
                         if(e.getCode() == ComClasses.Constants.DBNULL) {
-                            showWinAlert(parent, "Articolo ".concat(serial).concat(Client.Utils.exceptionMessage(e)).concat(", seriale inesistente."), "Attenzione!", JOptionPane.WARNING_MESSAGE);
+                            showWinAlert(parent, "Articolo ".concat(serial).concat(", seriale inesistente."), "Attenzione!", JOptionPane.WARNING_MESSAGE);
                             i++;
                             ret = false;
                             continue;
@@ -7776,9 +7774,23 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 i++;
             }
             
-            imp.setText(tot.toString());
-            ese.setText(noTaxTot.toString());
-            total.setText((handleIVA(tot, new Integer(iva.getText()), true).add(noTaxTot)).toString());
+            /*
+             * il 23% sul 50% dell’imponibile
+             * la cifra che ti verrà deve essere sottratta all’imponibile stesso 
+             * ed al risultato vai ad aggiungere l’iva (21%)
+             */
+            
+            this.imponibileSetText(tot.toString());
+            
+            if(this.bill == ComClasses.Constants.RDA) {
+                BigDecimal rit = getPercentage(tot, new Integer(this.jTextField85.getText()));                   // do something for imponibile R
+                rit = getPercentage(rit, new Integer(this.jTextField77.getText()));
+                jTextField102.setText(rit.toString());
+                tot = tot.subtract(rit);
+            }
+            
+            this.esentasseSetText(noTaxTot.toString());
+            this.totalPriceSetText((handleIVA(tot, new Integer(this.getIVAField()), true).add(noTaxTot)).toString());
         }
         return ret;
     }
@@ -7808,10 +7820,31 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }
     
-    private void printTextField (JTextField ... fs) {
-        // needed only for debugging purposes
-        for(JTextField f : fs)
-            System.out.println(f.getText());
+    
+    private static BigDecimal handleIVA (BigDecimal s, Integer percentage, boolean iva) {
+        
+        if(s != null) {
+            
+            BigDecimal tot = new BigDecimal(100 + percentage.intValue());
+            
+            if(iva)     // add iva
+                return s.multiply(tot).divide(new BigDecimal(100), new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN);
+            else        // subtract iva
+                return s.multiply(new BigDecimal(100)).divide(tot, new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN);
+            
+        } else {
+            return new BigDecimal(0);
+        }
+    }
+    
+    private static BigDecimal getPercentage (BigDecimal s, Integer percentage) {
+        
+        if(s != null) {
+            BigDecimal a = s.multiply(new BigDecimal(percentage));
+            return a.divide(new BigDecimal(100), new MathContext(6, RoundingMode.HALF_DOWN)).setScale(2, RoundingMode.HALF_DOWN);
+        } else {
+            return null;
+        }
         
     }
     
