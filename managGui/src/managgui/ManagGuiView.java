@@ -6313,70 +6313,110 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     private void jButton73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton73MouseClicked
 
-        try {
-            ComClasses.Request r = new ComClasses.Request(new SharedClasses.Billing(new Integer(jTextField87.getText())), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.select());
-            this.foundBills = Utils.arrayOperation(r);
-            setTableFoundBillData(jTable13, this.foundBills);
-            setTableFoundBillCustomerData(jTable13, this.foundBills);
-        } catch (SharedClasses.MyDBException e) {
-            
-        } catch (Exception e) {
-            
+        int shift = 0;
+        ComClasses.Request r;
+        this.foundBills = null;
+        // search by billing number
+        if(jTextField87.getText() != null && !jTextField87.getText().equals("")) {
+            try {
+                r = new ComClasses.Request(new SharedClasses.Billing(new Integer(jTextField87.getText())), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.select());
+                this.foundBills = Utils.arrayOperation(r);
+                setBillingTableFoundBillData(jTable13, this.foundBills, shift);
+                this.setBillingTableFoundCustomerData(jTable13, shift);
+            } catch (SharedClasses.MyDBException e) {
+
+            } catch (Exception e) {
+
+            }
         }
-            /*
-            WINDOW TO BE OPENED WHEN DOUBLE-CLICK ON TABLE ELEMENT
-            setDisableSync();
-            setCenterMonitorDim(1155, 500);
-            ricercaFattura = new FinestraSwing("Dettagli Pagamento", p.getPX(), p.getPY(), 1155, 500, risultatoFattView);
-            jToggleButton2.setSelected(false);
-        */
+        // necessary to manage results
+        if(this.foundBills != null)
+            shift += this.foundBills.size();
+        // search by partita iva
+        if(jTextField81.getText() != null && !jTextField81.getText().equals("")) {
+            try {
+                r = new ComClasses.Request(new SharedClasses.BillingCustomer(jTextField81.getText()), ComClasses.Constants.BILLCUS, ComClasses.Constants.FIELDSELECT, SharedClasses.BillingCustomer.idByivaSelect());
+                int cusId = Utils.intOperation(r);
+                // TODO check if the returned id is a valid one
+                r = new ComClasses.Request(new SharedClasses.Billing(new Integer(cusId)), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.selectByCustomer());
+                if(shift == 0)
+                    this.foundBills = Utils.arrayOperation(r);
+                else
+                    this.foundBills.addAll(Utils.arrayOperation(r));
+                setBillingTableFoundBillData(jTable13, this.foundBills, shift);
+                this.setBillingTableFoundCustomerData(jTable13, shift);
+            } catch (SharedClasses.MyDBException e) {
+
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+      
     }//GEN-LAST:event_jButton73MouseClicked
 
     // insert the billing data into jTable
-    private static void setTableFoundBillData (JTable t, ArrayList<Object> a) {
+    private static void setBillingTableFoundBillData (JTable t, ArrayList<Object> a, int shift) {
         
         int n = a.size();
         SharedClasses.Billing b = null;
         setJTableFoundBilling(t, n);
         
-        for(int i = 0; i < n; i++) {                    // take infos from every customer object
+        for(int i = shift; i < n; i++) {                    // take infos from every customer object
             b = (SharedClasses.Billing) a.get(i);
             t.setValueAt(b.getNumber(), i, 0);
             t.setValueAt(b.getPrice(), i, 6);
         }
     }
     
-    private void setTableFoundBillCustomerData (JTable t, ArrayList<Object> a) {
+    private void setBillingTableFoundCustomerData (JTable t, int shift) {
         
         int n = t.getRowCount();
         int last = -1;
         ComClasses.Request r;
         SharedClasses.Billing auxBill;
-        SharedClasses.BillingCustomer bCus;
+        SharedClasses.BillingCustomer bCus = null;
+        SharedClasses.Customer cus = null;
         
-        for(int i = 0; i < n; i++) { 
+        for(int i = shift; i < n; i++) { 
             auxBill = (SharedClasses.Billing)this.foundBills.get(i);
             if(auxBill.getCustomer() != last) {
+                // refresh info
                 last = auxBill.getCustomer();
                 r = new ComClasses.Request(new SharedClasses.BillingCustomer(last), ComClasses.Constants.BILLCUS, ComClasses.Constants.SELECT, SharedClasses.BillingCustomer.select());
                 try {
                     bCus = (SharedClasses.BillingCustomer)Utils.arrayOperation(r).get(0);
-                    t.setValueAt(bCus.getAddress(), i, 3);
-                    t.setValueAt(bCus.getIVA(), i, 4);
-                    t.setValueAt(bCus.getCF(), i, 5);
                 } catch (SharedClasses.MyDBException e) {
                     // TODO catch exception
                 } catch (Exception e) {
                     // TODO catch exception
                 }
+                try {
+                    r = new ComClasses.Request(new SharedClasses.Customer(last), ComClasses.Constants.CUSTOMER, ComClasses.Constants.SELECT, SharedClasses.Customer.idSelect());
+                    cus = (SharedClasses.Customer)Utils.arrayOperation(r).get(0);
+                } catch (SharedClasses.MyDBException e) {
+                    // TODO manage exception
+                } catch (Exception e) {
+                    // TODO manage exception
+                }
+            } // use previous info
+            if(bCus != null) {
+                t.setValueAt(bCus.getAddress(), i, 3);
+                t.setValueAt(bCus.getIVA(), i, 4);
+                t.setValueAt(bCus.getCF(), i, 5);
             }
-            
-        }
-        
+            if(cus != null) {
+                t.setValueAt(cus.getSurname(), i, 1);
+                t.setValueAt(cus.getName(), i, 2);
+            }
+        }   
     }
     
     private void jButton74MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton74MouseClicked
-        // TODO add your handling code here:
+        setJTableFoundBilling(jTable13, 0);
+        clearFields(jTextField81, jTextField82, jTextField87);
+        jTextField79.setText("Cognome");
+        jTextField80.setText("Nome");
+        this.foundBills = null;
     }//GEN-LAST:event_jButton74MouseClicked
 
     //open search
@@ -6386,7 +6426,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             setCenterMonitorDim(1155, 500);
             ricercaFattura = new FinestraSwing("Dettagli Pagamento", p.getPX(), p.getPY(), 1155, 500, risultatoFattView);
             jToggleButton2.setSelected(false);
-            
         }
     }//GEN-LAST:event_jTable13MouseClicked
 
@@ -7661,7 +7700,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     private static void setJTableFoundBilling (JTable jt, int n) {
         
-        String[] columnNames = new String[]{"Numero Pratica", "Nome", "Cognome", "Indirizzo", "P.Iva", "C.F.", "Totale Finale"};
+        String[] columnNames = new String[]{"Numero Pratica", "Cognome", "Nome", "Indirizzo", "P.Iva", "C.F.", "Totale Finale"};
         
         DefaultTableModel model = new DefaultTableModel(columnNames, n){
         
