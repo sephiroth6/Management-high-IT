@@ -87,12 +87,14 @@ public class ManagGuiView extends FrameView {
     private SharedClasses.Customer billingCustomer;
     private SharedClasses.BillingCustomer billingCustomerInfo;
     private boolean newBillingInfo;
+    private SharedClasses.Billing foundBill;
     
     private ArrayList<Object> repairRet;                // used by Repair search
     private ArrayList<Object> customerRet;
     private ArrayList<Object> billingCustomerRet;
     private ArrayList<Object> warehouseRet;
     private ArrayList<Object> usageRet;                 // used by Usage search
+    private ArrayList<Object> foundBills;
     private ArrayList<SharedClasses.UsageCache> cache;
     private ArrayList<SharedClasses.UsageCache> old;    // store the situation of usage before editing
     
@@ -5005,7 +5007,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             t.setValueAt(c.getTelephone(), i, 3);
             t.setValueAt(c.getNote(), i, 4);
         }
-        
     }
     
     // send the search request for Customer class and read the response
@@ -6311,13 +6312,69 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }//GEN-LAST:event_jTextField80MouseClicked
 
     private void jButton73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton73MouseClicked
-        setDisableSync();
+
+        try {
+            ComClasses.Request r = new ComClasses.Request(new SharedClasses.Billing(new Integer(jTextField87.getText())), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.select());
+            this.foundBills = Utils.arrayOperation(r);
+            setTableFoundBillData(jTable13, this.foundBills);
+            setTableFoundBillCustomerData(jTable13, this.foundBills);
+        } catch (SharedClasses.MyDBException e) {
+            
+        } catch (Exception e) {
+            
+        }
+            /*
+            WINDOW TO BE OPENED WHEN DOUBLE-CLICK ON TABLE ELEMENT
+            setDisableSync();
             setCenterMonitorDim(1155, 500);
             ricercaFattura = new FinestraSwing("Dettagli Pagamento", p.getPX(), p.getPY(), 1155, 500, risultatoFattView);
             jToggleButton2.setSelected(false);
-        
+        */
     }//GEN-LAST:event_jButton73MouseClicked
 
+    // insert the billing data into jTable
+    private static void setTableFoundBillData (JTable t, ArrayList<Object> a) {
+        
+        int n = a.size();
+        SharedClasses.Billing b = null;
+        setJTableFoundBilling(t, n);
+        
+        for(int i = 0; i < n; i++) {                    // take infos from every customer object
+            b = (SharedClasses.Billing) a.get(i);
+            t.setValueAt(b.getNumber(), i, 0);
+            t.setValueAt(b.getPrice(), i, 6);
+        }
+    }
+    
+    private void setTableFoundBillCustomerData (JTable t, ArrayList<Object> a) {
+        
+        int n = t.getRowCount();
+        int last = -1;
+        ComClasses.Request r;
+        SharedClasses.Billing auxBill;
+        SharedClasses.BillingCustomer bCus;
+        
+        for(int i = 0; i < n; i++) { 
+            auxBill = (SharedClasses.Billing)this.foundBills.get(i);
+            if(auxBill.getCustomer() != last) {
+                last = auxBill.getCustomer();
+                r = new ComClasses.Request(new SharedClasses.BillingCustomer(last), ComClasses.Constants.BILLCUS, ComClasses.Constants.SELECT, SharedClasses.BillingCustomer.select());
+                try {
+                    bCus = (SharedClasses.BillingCustomer)Utils.arrayOperation(r).get(0);
+                    t.setValueAt(bCus.getAddress(), i, 3);
+                    t.setValueAt(bCus.getIVA(), i, 4);
+                    t.setValueAt(bCus.getCF(), i, 5);
+                } catch (SharedClasses.MyDBException e) {
+                    // TODO catch exception
+                } catch (Exception e) {
+                    // TODO catch exception
+                }
+            }
+            
+        }
+        
+    }
+    
     private void jButton74MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton74MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton74MouseClicked
@@ -7538,11 +7595,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
-     private void getWarehouse () {
+    private void getWarehouse () {
          this.warehouseInfo = Client.Utils.getWarehouseInfo(); 
     }
     
-    private static void setJTableClient(JTable jt, int n){
+    private static void setJTableClient (JTable jt, int n){
         String[] columnNames = new String[]{"Cognome", "Nome", "Indirizzo", "Recapito", "Note"};
         
         DefaultTableModel model = new DefaultTableModel(columnNames, n){
@@ -7557,7 +7614,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jt.setModel(model);
     }
     
-    private static void setJTableRepair(JTable jt, int n){
+    private static void setJTableRepair (JTable jt, int n){
         String[] columnNames = new String[]{"Scheda", "Cognome", "Nome", "Imei-S/N", "Stato Lavorazione"};
         
          DefaultTableModel model = new DefaultTableModel(columnNames, n){
@@ -7572,7 +7629,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jt.setModel(model);
     }
     
-    private static void setJTableWarehouse(JTable jt, int n){
+    private static void setJTableWarehouse (JTable jt, int n){
         String[] columnNames = new String[]{"Codice Articolo", "Nome Generico", "Quantità", "Prezzo unitario", "Prezzo unitario ivato", "Note"};
         
         DefaultTableModel model = new DefaultTableModel(columnNames, n){
@@ -7587,8 +7644,24 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jt.setModel(model);
     }
     
-    private static void setJTableUsageWarehouse(JTable jt, int n) {
+    private static void setJTableUsageWarehouse (JTable jt, int n) {
         String[] columnNames = new String[]{"Codice Articolo", "Nome Generico", "Quantità Disponibile", "Prezzo Un.", "Prezzo Un. Ivato"};
+        
+        DefaultTableModel model = new DefaultTableModel(columnNames, n){
+        
+            private static final long serialVersionUID = 1L;
+            @Override
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
+        
+        jt.setModel(model);
+    }
+    
+    private static void setJTableFoundBilling (JTable jt, int n) {
+        
+        String[] columnNames = new String[]{"Numero Pratica", "Nome", "Cognome", "Indirizzo", "P.Iva", "C.F.", "Totale Finale"};
         
         DefaultTableModel model = new DefaultTableModel(columnNames, n){
         
@@ -7669,7 +7742,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         setJTableBilling(jTable11, 1);
         setJTableBilling(jTable12, 1);
     }
-    
     
     private void setUPBill(){
         jButton23.setText("Crea Scheda");
@@ -7825,7 +7897,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             return new BigDecimal(0);
         }
     }
-    
     
     private static BigDecimal handleIVA (BigDecimal s, Integer percentage, boolean iva) {
         
