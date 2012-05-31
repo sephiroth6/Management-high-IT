@@ -2093,10 +2093,7 @@ public class ManagGuiView extends FrameView {
         jTextField83.setPreferredSize(new java.awt.Dimension(50, 20));
 
         jButton81.setIcon(resourceMap.getIcon("jButton81.icon")); // NOI18N
-        jButton81.setMaximumSize(new java.awt.Dimension(53, 29));
-        jButton81.setMinimumSize(new java.awt.Dimension(53, 29));
         jButton81.setName("jButton81"); // NOI18N
-        jButton81.setPreferredSize(new java.awt.Dimension(53, 29));
 
         jLabel139.setText(resourceMap.getString("jLabel139.text")); // NOI18N
         jLabel139.setName("jLabel139"); // NOI18N
@@ -2216,7 +2213,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jLabel116))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton81, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton81)
                     .addComponent(jLabel117))
                 .addGap(219, 219, 219))
         );
@@ -2269,9 +2266,9 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton55))
                     .addComponent(fatturaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1144, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingCreationLayout.createSequentialGroup()
-                .addContainerGap(1972, Short.MAX_VALUE)
+                .addContainerGap(864, Short.MAX_VALUE)
                 .addComponent(jButton63)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton64)
@@ -2280,12 +2277,12 @@ public class ManagGuiView extends FrameView {
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(ndcView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1146, Short.MAX_VALUE)))
+                    .addContainerGap(38, Short.MAX_VALUE)))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(rdaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1118, Short.MAX_VALUE)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         billingCreationLayout.setVerticalGroup(
             billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -6335,7 +6332,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // search by partita iva
         if(jTextField81.getText() != null && !jTextField81.getText().equals("")) {
             try {
-                r = new ComClasses.Request(new SharedClasses.BillingCustomer(jTextField81.getText()), ComClasses.Constants.BILLCUS, ComClasses.Constants.FIELDSELECT, SharedClasses.BillingCustomer.idByivaSelect());
+                r = new ComClasses.Request(new SharedClasses.BillingCustomer(jTextField81.getText(), true), ComClasses.Constants.BILLCUS, ComClasses.Constants.FIELDSELECT, SharedClasses.BillingCustomer.idByColumnSelect("iva"));
                 int cusId = Utils.intOperation(r);
                 // TODO check if the returned id is a valid one
                 r = new ComClasses.Request(new SharedClasses.Billing(new Integer(cusId)), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.selectByCustomer());
@@ -6351,7 +6348,27 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 System.err.println(e.getMessage());
             }
         }
-      
+        if(this.foundBills != null)
+            shift += this.foundBills.size();
+        // search by partita codice fiscale
+        if(jTextField82.getText() != null && !jTextField82.getText().equals("")) {
+            try {
+                r = new ComClasses.Request(new SharedClasses.BillingCustomer(jTextField82.getText(), false), ComClasses.Constants.BILLCUS, ComClasses.Constants.FIELDSELECT, SharedClasses.BillingCustomer.idByColumnSelect("cf"));
+                int cusId = Utils.intOperation(r);
+                // TODO check if the returned id is a valid one
+                r = new ComClasses.Request(new SharedClasses.Billing(new Integer(cusId)), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.selectByCustomer());
+                if(shift == 0)
+                    this.foundBills = Utils.arrayOperation(r);
+                else
+                    this.foundBills.addAll(Utils.arrayOperation(r));
+                setBillingTableFoundBillData(jTable13, this.foundBills, shift);
+                this.setBillingTableFoundCustomerData(jTable13, shift);
+            } catch (SharedClasses.MyDBException e) {
+
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }//GEN-LAST:event_jButton73MouseClicked
 
     // insert the billing data into jTable
@@ -6359,7 +6376,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         int n = a.size();
         SharedClasses.Billing b = null;
-        setJTableFoundBilling(t, n);
+        if(shift == 0) {
+            setJTableFoundBilling(t, n);
+        } else {
+            DefaultTableModel mod = (DefaultTableModel)t.getModel();
+            mod.addRow(new Object []{"", "", "", "", "", "", ""});
+        }
         
         for(int i = shift; i < n; i++) {                    // take infos from every customer object
             b = (SharedClasses.Billing) a.get(i);
