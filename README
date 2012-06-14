@@ -1,6 +1,11 @@
 In the last part of the development, I will use this file as a history of the changes made in every commit.
 Claudio
 
+14-06-2012
+open billing elements in billing editing;
+billing search bugfix;
+GUI fixes.
+
 31-05-2012 d
 billing search by CF.
 
