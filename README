@@ -1,6 +1,9 @@
 In the last part of the development, I will use this file as a history of the changes made in every commit.
 Claudio
 
+15-06-2012
+billing update: number, price, iva.
+
 14-06-2012
 open billing elements in billing editing;
 billing search bugfix;
