@@ -6952,10 +6952,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
         // create the request object
         ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
-
+        ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
+        
         try {
-            int v = Utils.intOperation(r).intValue();
-            
+            Utils.intOperation(r).intValue();
+            Utils.intOperation(mr);
             jButton74MouseClicked(evt);
         
         } catch (SharedClasses.MyDBException e) {
