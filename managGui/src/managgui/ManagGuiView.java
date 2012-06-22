@@ -103,17 +103,9 @@ public class ManagGuiView extends FrameView {
         super(app);
 
         initComponents();
-                
-        // magazzino
-        jPanel5.setVisible(false);//lista risultato tabella articoli magazzino
-        jPanel6.setVisible(false);//aggiungi pezzo
-
-        // front-end accettazione
-        jPanel9.setVisible(false);
-        jPanel10.setVisible(false);
+        deactivateComponent(jPanel5, jPanel6, jPanel9, jPanel10, jButton45);        
         getConnection();
         getWarehouse();
-        jButton45.setVisible(false);
         
         /* NOT USED
         // status bar initialization - message timeout, idle icon and busy animation, etc
@@ -518,6 +510,8 @@ public class ManagGuiView extends FrameView {
         jTextField103 = new javax.swing.JTextField();
         jTextField104 = new javax.swing.JTextField();
         jTextField105 = new javax.swing.JTextField();
+        jLabel143 = new javax.swing.JLabel();
+        jButton85 = new javax.swing.JButton();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
@@ -4426,6 +4420,17 @@ public class ManagGuiView extends FrameView {
         jTextField105.setText(resourceMap.getString("jTextField105.text")); // NOI18N
         jTextField105.setName("jTextField105"); // NOI18N
 
+        jLabel143.setText(resourceMap.getString("jLabel143.text")); // NOI18N
+        jLabel143.setName("jLabel143"); // NOI18N
+
+        jButton85.setIcon(resourceMap.getIcon("jButton85.icon")); // NOI18N
+        jButton85.setName("jButton85"); // NOI18N
+        jButton85.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton85MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout risultatoFattViewLayout = new javax.swing.GroupLayout(risultatoFattView);
         risultatoFattView.setLayout(risultatoFattViewLayout);
         risultatoFattViewLayout.setHorizontalGroup(
@@ -4478,24 +4483,26 @@ public class ManagGuiView extends FrameView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(risultatoFattViewLayout.createSequentialGroup()
-                        .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton80, 0, 0, Short.MAX_VALUE)
-                            .addComponent(jButton75, 0, 0, Short.MAX_VALUE)
-                            .addComponent(jButton62, 0, 0, Short.MAX_VALUE)
-                            .addComponent(jButton61, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel138)
-                            .addComponent(jLabel133)
-                            .addComponent(jLabel132)
-                            .addComponent(jLabel131)))
-                    .addGroup(risultatoFattViewLayout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(jToggleButton2))
                     .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton82, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                        .addComponent(jButton83, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton83, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(risultatoFattViewLayout.createSequentialGroup()
+                        .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton85, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jButton80, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jButton75, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jButton62, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jButton61, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel143)
+                            .addComponent(jLabel138)
+                            .addComponent(jLabel133)
+                            .addComponent(jLabel132)
+                            .addComponent(jLabel131))))
                 .addContainerGap())
         );
         risultatoFattViewLayout.setVerticalGroup(
@@ -4549,7 +4556,11 @@ public class ManagGuiView extends FrameView {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton80))
                             .addComponent(jLabel133, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton85)
+                            .addComponent(jLabel143))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                         .addComponent(jButton83)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton82)
@@ -4720,11 +4731,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
      // esci e resetta valori
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
-       
         resetValScheda();
-        
         jPanel9.setVisible(false);
-               
     }//GEN-LAST:event_jButton17MouseClicked
 
     // repair INSERT
@@ -4733,15 +4741,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         int flagError = 0;
 
         if(jComboBox3.getSelectedIndex() == 0){
-            showWinAlert(jPanel9, "Selezionare una tipologia.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel9, "Selezionare una tipologia.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jComboBox1.getSelectedIndex() == 0){
-            showWinAlert(jPanel9, "Selezionare valore per estetica dispositivo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel9, "Selezionare valore per estetica dispositivo.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jTextField24.getText().equals("")){
-            showWinAlert(jPanel9, "Inserire un modello del prodotto.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel9, "Inserire un modello del prodotto.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jTextField25.getText().equals("")){
@@ -4750,7 +4758,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
         if(jCheckBox2.isSelected())
             if(jTextField26.getText().equals("")){
-                showWinAlert(jPanel9, "Controllare casella accessori.", "Warning", JOptionPane.WARNING_MESSAGE);
+                showWinAlert(jPanel9, "Controllare casella accessori.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
                 flagError++;
             }
         if(jTextArea5.getText().equals("")){
@@ -4895,7 +4903,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         //dato zozzo nn capisco da dove lo prende quindi lo forzo
         jLabel5.setText("Estetica dispositivo:");
         if(!checkInsertion(jTextField27, jTextField28, jTextField29, jTextField30)) {
-            showWinAlert(jPanel10, "Inserire almeno un campo.", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel10, "Inserire almeno un campo.", "Errore", JOptionPane.ERROR_MESSAGE);
             jTable3.setVisible(false);
         } else {
             this.repairSearchResult();
@@ -4904,7 +4912,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 setTableRepairData(jTable3, this.repairRet);
                 jTable3.setVisible(true);
             } else {
-                showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
                 jTable3.setVisible(false);
             }
              
@@ -4920,7 +4928,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         try {
             this.repairRet = Utils.arrayOperation(r);
         } catch (Exception e) {
-            showWinAlert(customerSearch, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerSearch, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
     
     }
@@ -5025,7 +5033,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         String name = jTextField12.getText();
         
         if(!checkCustomerSearch(surname, name)) { // info not inserted properly
-            showWinAlert(customerSearch, "Valori errati, riprovare...", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerSearch, "Valori errati, riprovare...", "Errore", JOptionPane.ERROR_MESSAGE);
             jTable2.setVisible(false);
         } else { // search can be executed
             this.customerSearchResult(name, surname, false); // execute the operation and
@@ -5034,7 +5042,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 setTableCustomerData(jTable2, this.customerRet);
                 jTable2.setVisible(true); // this was out of the if/else
             } else {
-                showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
                 jTable2.setVisible(false);
             }
             
@@ -5092,7 +5100,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         } catch (SharedClasses.MyDBException e) {
             showWinAlert(customerSearch, "Nessun cliente soddisfa le condizioni di ricerca.", "Cliente inesistente", JOptionPane.WARNING_MESSAGE);    
         } catch (Exception e) {
-            showWinAlert(customerSearch, Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerSearch, Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -5108,11 +5116,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         } catch (SharedClasses.MyDBException e) {
             if(e.getCode() != ComClasses.Constants.DBNULL) {
                 this.billingCustomerInfo = null;
-                showWinAlert(billingCustomerSearch, Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(billingCustomerSearch, Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             this.billingCustomerInfo = null;
-            showWinAlert(billingCustomerSearch, Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(billingCustomerSearch, Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -5333,19 +5341,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         int flagError = 0;
         
         if(jTextField4.getText().equals("")){
-            showWinAlert(jPanel6, "Inserire il codice articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel6, "Inserire il codice articolo.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jTextField6.getText().equals("")){
-            showWinAlert(jPanel6, "Inserire la quantita' dell'articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel6, "Inserire la quantita' dell'articolo.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jTextField52.getText().equals("")){
-            showWinAlert(jPanel6, "Inserire il prezzo unitario ivato.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel6, "Inserire il prezzo unitario ivato.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jTextField88.getText().equals("")){
-            showWinAlert(jPanel6, "Inserire il prezzo unitario, iva esclusa.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(jPanel6, "Inserire il prezzo unitario, iva esclusa.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         
@@ -5364,19 +5372,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         int flagError = 0;
         
         if(jTextField17.getText().equals("")){
-            showWinAlert(warehouseEdit, "Inserire il codice articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(warehouseEdit, "Inserire il codice articolo.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jTextField39.getText().equals("")){
-            showWinAlert(warehouseEdit, "Inserire la quantita' dell'articolo.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(warehouseEdit, "Inserire la quantita' dell'articolo.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jTextField41.getText().equals("")){
-            showWinAlert(warehouseEdit, "Inserire il prezzo unitario ivato.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(warehouseEdit, "Inserire il prezzo unitario ivato.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         if(jTextField89.getText().equals("")){
-            showWinAlert(warehouseEdit, "Inserire il prezzo unitario senza iva.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(warehouseEdit, "Inserire il prezzo unitario senza iva.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             flagError++;
         }
         
@@ -5396,12 +5404,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         try {
             // TODO exception if the value from the server is an exception
             if(Utils.intOperation(req).intValue() != 1)
-                showWinAlert(warehouseEdit, "Modifica non riuscita. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(warehouseEdit, "Modifica non riuscita. Riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
             
             this.sp = null;
         
         } catch (Exception e) {
-            showWinAlert(warehouseEdit, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(warehouseEdit, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -5473,7 +5481,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             jTextField91.setText(handleIVA(jTextField90.getText(), this.warehouseInfo.getIVA(), true));
             
         } catch (Exception e) {
-            showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -5494,7 +5502,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         String ins = jTextField50.getText();
         
         if(ins.equals(""))
-            showWinAlert(warehouseManagement, "Inserire un nome generico\noppure un codice articolo.", "Error Code", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(warehouseManagement, "Inserire un nome generico\noppure un codice articolo.", "Errore Code", JOptionPane.ERROR_MESSAGE);
         else {
             SharedClasses.Warehouse aux = new SharedClasses.Warehouse(ins);
             ComClasses.Request wr = new ComClasses.Request(aux, ComClasses.Constants.WARE, ComClasses.Constants.SELECT, SharedClasses.Warehouse.selectSerialName());
@@ -5503,7 +5511,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 this.warehouseRet = Utils.arrayOperation(wr);
                 setUsageWarehouseTable(jTable6, this.warehouseRet);
             } catch (Exception e) {
-                showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
             }
         }
         
@@ -5551,17 +5559,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(sel != -1){
             
             if(req.equals("")) // no quantity has been inserted
-                showWinAlert(warehouseManagement, "Inserire una quantità.", "Warning", JOptionPane.WARNING_MESSAGE);
+                showWinAlert(warehouseManagement, "Inserire una quantità.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             
             if(checkQuantity(req, jTable6, sel)) {                                  // check if the quantity inserted it's ok
                 importArticle(sel, req);                                            // do something to handle the situation
                 updateTotal(jTable7);
             } else {
-                showWinAlert(warehouseManagement, "Quantità pezzo disponibile insufficiente o quantità richiesta non corretta.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(warehouseManagement, "Quantità pezzo disponibile insufficiente o quantità richiesta non corretta.", "Errore", JOptionPane.ERROR_MESSAGE);
             }
             
         } else
-            showWinAlert(warehouseManagement, "Selezionare un pezzo prima di importalo.", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(warehouseManagement, "Selezionare un pezzo prima di importalo.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton39MouseClicked
 
     // set the JTextFields for the total price of repair spare parts
@@ -5619,7 +5627,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
                 if(w < 1) {
 
-                    showWinAlert(warehouseManagement, "Impossibile aggiungere pezzo: quantità non sufficiente.", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+                    showWinAlert(warehouseManagement, "Impossibile aggiungere pezzo: quantità non sufficiente.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
 
                 } else {
 
@@ -5641,11 +5649,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 }
                 
             } catch (Exception e) {
-                showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Warning Selection", JOptionPane.WARNING_MESSAGE);
+                showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Attenzione!", JOptionPane.WARNING_MESSAGE);
             }
             
         } else
-            showWinAlert(warehouseManagement, "Selezionare prima un pezzo\nper aumentarne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(warehouseManagement, "Selezionare prima un pezzo\nper aumentarne la quantità!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
         
         
     }//GEN-LAST:event_jButton40MouseClicked
@@ -5680,7 +5688,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
             
         } else
-            showWinAlert(warehouseManagement, "Selezionare prima un pezzo\nper diminuirne la quantità!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(warehouseManagement, "Selezionare prima un pezzo\nper diminuirne la quantità!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
         
     }//GEN-LAST:event_jButton44MouseClicked
     
@@ -5717,7 +5725,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
             
         } else
-            showWinAlert(warehouseManagement, "Selezionare prima un pezzo\nper cancellarlo dalla lista!", "Warning Selection", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(warehouseManagement, "Selezionare prima un pezzo\nper cancellarlo dalla lista!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
         
     }//GEN-LAST:event_jButton42MouseClicked
 
@@ -5784,7 +5792,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             warehouseUpdate();
             pezziUtilizzati.dispose();
         } catch (Exception e) {
-            showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(warehouseManagement, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_jButton38MouseClicked
@@ -5913,15 +5921,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         // check if all required fields are filled
         if(jTextField7.getText().equals("")){
-            showWinAlert(customerEdit, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerEdit, "Manca il Cognome.", "Errore", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
         if(jTextField8.getText().equals("")){
-            showWinAlert(customerEdit, "Manca il Nome.", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerEdit, "Manca il Nome.", "Errore", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
         if(jTextField10.getText().equals("")){
-            showWinAlert(customerEdit, "Manca un recapito telefonico.", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerEdit, "Manca un recapito telefonico.", "Errore", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
         
@@ -5942,13 +5950,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     jTextField20.setText(this.c.getName());
                     
                 } else if(v == ComClasses.Constants.RET_EXI) {
-                    showWinAlert(customerEdit, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+                    showWinAlert(customerEdit, "Utente già esistente.", "Errore", JOptionPane.ERROR_MESSAGE);
                 } else if(v == ComClasses.Constants.RET_EXC) {
-                    showWinAlert(customerEdit, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                    showWinAlert(customerEdit, "Eccezione durante l'inserimento del cliente. Riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
                 }
                     
             } catch (Exception e) {
-                showWinAlert(customerEdit, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(customerEdit, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButton16MouseClicked
@@ -5969,15 +5977,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         int flagError = 0;
         
         if(jTextField16.getText().equals("")){
-            showWinAlert(jPanel13, "Manca il Cognome.", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel13, "Manca il Cognome.", "Errore", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
         if(jTextField15.getText().equals("")){
-            showWinAlert(jPanel13, "Manca il Nome.", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel13, "Manca il Nome.", "Errore", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
         if(jTextField13.getText().equals("")){
-            showWinAlert(jPanel13, "Manca un recapito telefonico.", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel13, "Manca un recapito telefonico.", "Errore", JOptionPane.ERROR_MESSAGE);
             flagError++;
         }
         
@@ -6062,7 +6070,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 lastYear = Utils.intOperation(r).intValue();
             } catch (SharedClasses.MyDBException e) {
                 lastYear = 0;
-                showWinAlert(parent, "Attenzione! Impossibile recuperare anno emissione ultima fattura", "Warning", JOptionPane.WARNING_MESSAGE);
+                showWinAlert(parent, "Attenzione! Impossibile recuperare anno emissione ultima fattura", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             }
             Integer currentYear = SharedClasses.Utils.getYear(getDataOra(false));
             if(lastYear.compareTo(currentYear) == 0) {
@@ -6075,7 +6083,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 } catch (SharedClasses.MyDBException e) {
                     // cannot retrieve last billing number
                     last = 1;
-                    showWinAlert(parent, "Attenzione! Impossibile recuperare numero ultima fattura", "Warning", JOptionPane.WARNING_MESSAGE);
+                    showWinAlert(parent, "Attenzione! Impossibile recuperare numero ultima fattura", "Attenzione!", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
                 // happy new year! Start from 1
@@ -6084,10 +6092,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             number.setText(last.toString());
             year.setText(currentYear.toString());
         } catch (SharedClasses.MyDBException e) {
-             showWinAlert(parent, "Accertati che il server sia in esecuzione. Errore: ".concat(e.getMessage()), "Error", JOptionPane.ERROR_MESSAGE);
+             showWinAlert(parent, "Accertati che il server sia in esecuzione. Errore: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
              return;
         } catch (Exception e) {
-             showWinAlert(parent, "Accertati che il server sia in esecuzione. Errore: ".concat(e.getMessage()), "Error", JOptionPane.ERROR_MESSAGE);
+             showWinAlert(parent, "Accertati che il server sia in esecuzione. Errore: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
              return;
         }
     }
@@ -6103,7 +6111,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         if(ManagGuiView.neededInsertion(jTextField60, jTextField61, jTextField62, jTextField92, jTextField93, jTextField94) && (ManagGuiView.neededInsertion(jTextFieldCF) || ManagGuiView.neededInsertion(jTextFieldIVA))) {
                             
             if(!checkTaxCode(jTextFieldCF.getText())) {
-                showWinAlert(billingCustomerEdit, "Struttura codice fiscale errata!", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(billingCustomerEdit, "Struttura codice fiscale errata!", "Errore", JOptionPane.ERROR_MESSAGE);
             } else {
                 
                 SharedClasses.Customer auxC = new SharedClasses.Customer(jTextField61.getText(), jTextField62.getText(), jTextField60.getText(), jTextField59.getText(), jTextArea13.getText());
@@ -6125,12 +6133,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 } catch (SharedClasses.MyDBException e) {
                     // if editing and using an existing record, ignore the exception
                     if(!(this.billingCustomerEditing && e.getCode() == ComClasses.Constants.NOTDONE)) {
-                        showWinAlert(billingCustomerEdit, "Informazioni utente: ".concat(e.getMessage()), "Error", JOptionPane.ERROR_MESSAGE);
+                        showWinAlert(billingCustomerEdit, "Informazioni utente: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 } catch (Exception e) {
                     // catch every exception that is not a custom database exception and don't continue
-                    showWinAlert(billingCustomerEdit, "Riprova! Eccezione non prevista durante inserimento info utente: ".concat(e.getMessage()), "Error", JOptionPane.ERROR_MESSAGE);
+                    showWinAlert(billingCustomerEdit, "Riprova! Eccezione non prevista durante inserimento info utente: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
        
@@ -6153,11 +6161,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     v = Utils.intOperation(r).intValue();
                 } catch (SharedClasses.MyDBException e) {
                     if(!(this.billingCustomerEditing && e.getCode() == ComClasses.Constants.NOTDONE)) {
-                        showWinAlert(billingCustomerEdit, "Informazioni fatturazione: ".concat(e.getMessage()), "Error", JOptionPane.ERROR_MESSAGE);
+                        showWinAlert(billingCustomerEdit, "Informazioni fatturazione: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 } catch (Exception e) {
-                    showWinAlert(billingCustomerEdit, "Riprova! Eccezione non prevista durante inserimento info fatturazione: ".concat(e.getMessage()), "Error", JOptionPane.ERROR_MESSAGE);
+                    showWinAlert(billingCustomerEdit, "Riprova! Eccezione non prevista durante inserimento info fatturazione: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 
@@ -6177,7 +6185,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
         } else {
             // fill all text fields
-            showWinAlert(billingCustomerEdit, "Inserire tutti i dati obbligatori (cognome, nome, codice fiscale)!", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(billingCustomerEdit, "Inserire tutti i dati obbligatori (cognome, nome, codice fiscale)!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton57MouseClicked
 
@@ -6221,7 +6229,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         String name = jTextField66.getText();
         
         if(!checkCustomerSearch(surname, name)) { // info not inserted properly
-            showWinAlert(billingCustomerSearch, "Valori errati, riprovare...", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(billingCustomerSearch, "Valori errati, riprovare...", "Errore", JOptionPane.ERROR_MESSAGE);
             jTable9.setVisible(false);
         } else { // search can be executed
             this.customerSearchResult(name, surname, true); // execute the operation and
@@ -6544,12 +6552,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
             
             jTextField95.setText(this.foundBill.getDate());
-            jTextField96.setText("Imponibile here");
             jTextField97.setText(new Integer(this.foundBill.getIVA()).toString());
             jTextField98.setText(this.foundBill.getPrice().toString());
-            jTextField99.setText("Esentasse here");
             jTextField100.setText(new Integer(this.foundBill.getNumber()).toString());
             jTextField101.setText(this.foundBill.getDate().split("/")[2]);
+            jButton80MouseClicked(evt);
         }
     }//GEN-LAST:event_jTable13MouseClicked
 
@@ -6653,20 +6660,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 
             default:
                 jTextField76.setText(text);
-        }
-    }
-    
-    private String getEsentasseField () {
-        switch (this.bill) {
-            case ComClasses.Constants.BILL:
-                return jTextField63.getText();
-            
-            case ComClasses.Constants.NDC:
-                return jTextField84.getText();
-                
-            default:
-                // TODO esentasse field for RDA
-                return null;
         }
     }
     
@@ -6796,14 +6789,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         try {
             this.warehouseRet = Utils.arrayOperation(wr);
         } catch (Exception e) {
-            showWinAlert(customerSearch, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerSearch, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
         if(this.warehouseRet != null) {
             setTableWarehouseData(jTable1, this.warehouseRet);
             jTable1.setVisible(true); // this was out of the if/else
         } else {
-            showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
             jTable1.setVisible(false);
         }
     }//GEN-LAST:event_jButton76MouseClicked
@@ -6902,8 +6895,32 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         billingEditingSync();
     }//GEN-LAST:event_jButton75MouseClicked
 
+    // calculate billing total without syncing with warehouse
     private void jButton80MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton80MouseClicked
-        // TODO add your handling code here:
+        
+        DefaultTableModel mod = (DefaultTableModel)jTable10.getModel();
+        BigDecimal tot = new BigDecimal(0), noTaxTot = new BigDecimal(0);
+        int n = mod.getRowCount();
+        
+        for(int i = 0; i < n; i++) {
+            
+            if((Boolean)jTable10.getValueAt(i, 5))          // no taxes
+                noTaxTot = noTaxTot.add(updateTotal(jTable10, i, jTable10.getValueAt(i, 4)));
+            else
+                tot = tot.add(updateTotal(jTable10, i, jTable10.getValueAt(i, 4)));
+        }
+        
+        if(this.foundBill.getType() == ComClasses.Constants.RDA) {
+            BigDecimal rit = getPercentage(tot, new Integer(this.jTextField105.getText()));
+            rit = getPercentage(rit, new Integer(this.jTextField103.getText()));
+            jTextField104.setText(rit.toString());
+            tot = tot.subtract(rit);
+        }
+        
+        jTextField96.setText(tot.toString());
+        jTextField99.setText(noTaxTot.toString());
+        jTextField98.setText((handleIVA(tot, new Integer(this.foundBill.getIVA()), true).add(noTaxTot)).toString());
+        
     }//GEN-LAST:event_jButton80MouseClicked
 
     private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
@@ -6938,15 +6955,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
         try {
             int v = Utils.intOperation(r).intValue();
-            jButton74MouseClicked(evt);
             
-            if(v == ComClasses.Constants.RET_EXI)
-                showWinAlert(risultatoFattView, "Fattura già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
-            else if(v == ComClasses.Constants.RET_EXC)
-                showWinAlert(risultatoFattView, "Eccezione durante l'inserimento della fattura. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+            jButton74MouseClicked(evt);
         
+        } catch (SharedClasses.MyDBException e) {
+            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_jButton83MouseClicked
@@ -6955,6 +6970,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private void jButton84MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton84MouseClicked
         ricercaFattura.dispose();
     }//GEN-LAST:event_jButton84MouseClicked
+
+    private void jButton85MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton85MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton85MouseClicked
 
     // obtain the price without iva
     private static String handleIVA (String s, Integer percentage, boolean iva) {
@@ -7059,6 +7078,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton82;
     private javax.swing.JButton jButton83;
     private javax.swing.JButton jButton84;
+    private javax.swing.JButton jButton85;
     private javax.swing.JButton jButton9;
     private final javax.swing.JCheckBox jCheckBox1 = new javax.swing.JCheckBox();
     private javax.swing.JCheckBox jCheckBox2;
@@ -7120,6 +7140,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private final javax.swing.JLabel jLabel140 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel141 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel142 = new javax.swing.JLabel();
+    private javax.swing.JLabel jLabel143;
     private final javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel16 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel17 = new javax.swing.JLabel();
@@ -7456,7 +7477,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         JOptionPane.showMessageDialog(cmp, o, s, i);
     }
    
-        
     private void setCenterMonitorDim (int w, int h){
         // Get the size of the screen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -7517,7 +7537,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             jComboBox2.setSelectedIndex(this.de.getCondition()); // device condition
             
         } catch (Exception e) {
-            showWinAlert(jPanel10, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel10, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
             
         jComboBox6.setSelectedIndex(this.re.getStatus()); // repair status
@@ -7530,27 +7550,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField32.setEditable(false);
         jComboBox5.setEditable(false);
         jTextField33.setEditable(false);
-    }
-    
-    // TODO change this method using Repair and Details classes - maybe this method in not useful
-    private void setDataDbPracticeCreate(){
-        jTextField19.getText(); //cognome
-        jTextField20.getText(); //nome
-        jComboBox3.getSelectedItem(); //tipologia prodotto
-        jTextField24.getText(); //modello
-        jTextField25.getText(); //imei
-        if(jCheckBox2.isSelected())
-            jTextField26.getText(); //accessori
-        jTextArea5.getText(); //difetto dichiarato
-        jComboBox4.getSelectedItem(); //a priori si sa lo stato di lavorazione dato è la creazione iniziale
-        jTextField21.getText(); //data in
-        // TODO after insert in into database, clear all objects used
-    }
-    
-    private void resetDatiCliente(){
-        //reset val cliente
-        jTextArea2.setText(null);
-        clearFields(jTextField7, jTextField8, jTextField9, jTextField10);
     }
     
     // insert customer's info into edit window
@@ -7583,12 +7582,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             int v = Utils.intOperation(r).intValue();
 
             if(v == ComClasses.Constants.RET_EXI)
-                showWinAlert(customerEdit, "Utente già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(customerEdit, "Utente già esistente.", "Errore", JOptionPane.ERROR_MESSAGE);
             else if(v == ComClasses.Constants.RET_EXC)
-                showWinAlert(customerEdit, "Eccezione durante l'inserimento del cliente. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(customerEdit, "Eccezione durante l'inserimento del cliente. Riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
         
         } catch (Exception e) {
-            showWinAlert(customerEdit, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(customerEdit, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -7605,14 +7604,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             int v = Utils.intOperation(r).intValue();
 
             if(v == ComClasses.Constants.RET_EXI)
-                showWinAlert(jPanel6, "Pezzo di ricambio già esistente.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(jPanel6, "Pezzo di ricambio già esistente.", "Errore", JOptionPane.ERROR_MESSAGE);
             else if(v == ComClasses.Constants.RET_EXC)
-                showWinAlert(jPanel6, "Eccezione durante l'inserimento del pezzo. Riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
+                showWinAlert(jPanel6, "Eccezione durante l'inserimento del pezzo. Riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
             
             return v;
             
         } catch (Exception e) {
-            showWinAlert(jPanel6, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(jPanel6, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
             return ComClasses.Constants.RET_EXC;
         }
         
@@ -7668,7 +7667,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 this.cache.add(new SharedClasses.UsageCache(serial, qt));
             
         } else {
-            showWinAlert(warehouseManagement, "Pezzo terminato", "Error", JOptionPane.ERROR_MESSAGE);
+            showWinAlert(warehouseManagement, "Pezzo terminato", "Errore", JOptionPane.ERROR_MESSAGE);
         }
         
     }
@@ -7752,12 +7751,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
     }
     
-    private boolean controlloRietri(){
-        //controlla nel db se ci sono lavorazioni chiuse con questo imei
-        
-        return false;
-    }
-    
     protected static ImageIcon createImageIcon(String path, String description) {
         java.net.URL imgURL = ManagGuiView.class.getResource(path);
         if (imgURL != null) {
@@ -7777,13 +7770,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             try {                
                 Client.Utils.open(this.serverInfo.getAddress(), this.serverInfo.getPort()).close();                
             } catch (IOException e) {
-                showWinAlert(null, "Impossibile connettersi al server.\nVerificare che il server sia in esecuzione\ne controllare le impostazioni in File -> Setting IP.", "Warning", JOptionPane.WARNING_MESSAGE);
+                showWinAlert(null, "Impossibile connettersi al server.\nVerificare che il server sia in esecuzione\ne controllare le impostazioni in File -> Setting IP.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             }
             
         } catch (FileNotFoundException e) {
-            showWinAlert(null, "File impostazioni non trovato.\nPer utilizzare il programma inserire le info del server in\nFile -> Setting IP", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(null, "File impostazioni non trovato.\nPer utilizzare il programma inserire le info del server in\nFile -> Setting IP", "Attenzione!", JOptionPane.WARNING_MESSAGE);
         } catch (IOException e) {
-            showWinAlert(null, "Errore lettura dal file impostazioni.\nPer utilizzare il programma inserire nuovamente le info del server in\nFile -> Setting IP", "Warning", JOptionPane.WARNING_MESSAGE);
+            showWinAlert(null, "Errore lettura dal file impostazioni.\nPer utilizzare il programma inserire nuovamente le info del server in\nFile -> Setting IP", "Attenzione!", JOptionPane.WARNING_MESSAGE);
         }
         
     }
@@ -7872,21 +7865,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         
         DefaultTableModel model = (DefaultTableModel)jt.getModel();
         SharedClasses.BillingElements aux;
-        int n = arr.size();
+        BigDecimal pr;
+        BigDecimal tot = new BigDecimal(0), noTaxTot = new BigDecimal(0);
+        int units, n = arr.size();
         
         for(int i = 0; i < n; i++) {
             aux = (SharedClasses.BillingElements)arr.get(i);
-            model.addRow(new Object[] {aux.getType(), aux.getSerial(), aux.getDescription(), aux.getUnits(), aux.getPrice(), aux.getTax(), 0});
+            pr = aux.getPrice();
+            units = aux.getUnits();
+            model.addRow(new Object[] {aux.getType(), aux.getSerial(), aux.getDescription(), units, pr, aux.getTax(), 0});                
         }
         
     }
-    
-    //set always the top
-    private void toppy (FinestraSwing fn){
-        if(fn.isAlwaysOnTopSupported())
-            fn.setAlwaysOnTop(true);
-    }
-    
+
     private static void clearFields (JTextField ... f) {
         for(int i = 0; i < f.length; i++)
             f[i].setText(null);
@@ -7935,18 +7926,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         setJTableBilling(jTable11, 1);
         setJTableBilling(jTable12, 1);
     }
-    
-    private void setUPBill(){
-        jButton23.setText("Crea Scheda");
-        jButton24.setText("Cerca Scheda");
-        jButton30.setText("Nuova Fattura");
-        jButton31.setText("Nuova N.d.C.");
-        jButton34.setText("Nuova R.d.A.");
-        jLabel6.setText("Data fatturazione:");
-        jTextField42.setText(null);
-        jLabel18.setText("Numero pratica fatturazione:");
-    }
-    
+
     private static void setJTableSearchBill(JTable jt, int n){
         String[] columnNames = new String[]{"Numero Pratica", "Cognome", "Nome","Indirizzo", "P.Iva", "C.F.", "Totale Finale"};
         
@@ -7963,18 +7943,12 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                             
     }
     
-    private void setDisableSync(){
-        jButton62.setEnabled(false);
-        jButton61.setEnabled(false);
-        jButton75.setEnabled(false);
-        jButton80.setEnabled(false);
+    private void setDisableSync() {
+        disableComponent(jButton61, jButton62, jButton75, jButton80, jButton85);
     }
     
-    private void setEnableSync(){
-        jButton62.setEnabled(true);
-        jButton61.setEnabled(true);
-        jButton75.setEnabled(true);
-        jButton80.setEnabled(true);
+    private void setEnableSync() {
+        enableComponent(jButton61, jButton62, jButton75, jButton80, jButton85);
     }
   
     private static void activateComponent (JComponent ... n) {
@@ -7987,6 +7961,16 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             f.setVisible(false);
     }
 
+    private static void enableComponent (JComponent ... n) {
+        for(JComponent f : n)
+            f.setEnabled(true);
+    }
+    
+    private static void disableComponent (JComponent ... n) {
+        for(JComponent f : n)
+            f.setEnabled(false);
+    }
+    
     public void setWarehouseInfo (Client.WarehouseInfo wi) {
         this.warehouseInfo = wi;
     }
