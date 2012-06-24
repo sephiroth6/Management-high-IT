@@ -87,8 +87,10 @@ public class ManagGuiView extends FrameView {
     private SharedClasses.Customer billingCustomer;
     private SharedClasses.BillingCustomer billingCustomerInfo;
     private boolean newBillingInfo;
-    private SharedClasses.Billing foundBill;            // used in billing editing
-    
+    private SharedClasses.Billing foundBill;                            // used in billing editing
+    private SharedClasses.Customer foundBillingCustomer;                // used in billing editing
+    private SharedClasses.BillingCustomer foundBillingCustomerInfo;     // used in billing editing
+
     private ArrayList<Object> repairRet;                // used by Repair search
     private ArrayList<Object> customerRet;
     private ArrayList<Object> billingCustomerRet;
@@ -512,6 +514,8 @@ public class ManagGuiView extends FrameView {
         jTextField105 = new javax.swing.JTextField();
         jLabel143 = new javax.swing.JLabel();
         jButton85 = new javax.swing.JButton();
+        jButton86 = new javax.swing.JButton();
+        jLabel144 = new javax.swing.JLabel();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
@@ -4431,6 +4435,18 @@ public class ManagGuiView extends FrameView {
             }
         });
 
+        jButton86.setIcon(resourceMap.getIcon("jButton86.icon")); // NOI18N
+        jButton86.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton86.setName("jButton86"); // NOI18N
+        jButton86.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton86MouseClicked(evt);
+            }
+        });
+
+        jLabel144.setText(resourceMap.getString("jLabel144.text")); // NOI18N
+        jLabel144.setName("jLabel144"); // NOI18N
+
         javax.swing.GroupLayout risultatoFattViewLayout = new javax.swing.GroupLayout(risultatoFattView);
         risultatoFattView.setLayout(risultatoFattViewLayout);
         risultatoFattViewLayout.setHorizontalGroup(
@@ -4491,6 +4507,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton83, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(risultatoFattViewLayout.createSequentialGroup()
                         .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton86, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
                             .addComponent(jButton85, 0, 0, Short.MAX_VALUE)
                             .addComponent(jButton80, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
                             .addComponent(jButton75, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
@@ -4498,6 +4515,7 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jButton61, javax.swing.GroupLayout.PREFERRED_SIZE, 27, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel144)
                             .addComponent(jLabel143)
                             .addComponent(jLabel138)
                             .addComponent(jLabel133)
@@ -4560,7 +4578,11 @@ public class ManagGuiView extends FrameView {
                         .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton85)
                             .addComponent(jLabel143))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton86)
+                            .addComponent(jLabel144))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addComponent(jButton83)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton82)
@@ -4689,7 +4711,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     // set warehouse data into jTable
     private static void setTableWarehouseData (JTable t, ArrayList<Object> a) {
-        
         int n = a.size();
         SharedClasses.Warehouse w = null;
         setJTableWarehouse(t, n);
@@ -4703,7 +4724,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             t.setValueAt(w.getUnitPrice(), i, 4);
             t.setValueAt(w.getNote(), i, 5);
         }
-        
     }
     
     //aggiungi nuovo articolo magazzino
@@ -4767,9 +4787,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
         
         if(flagError == 0){
-            
             this.handleDevice(); // do proper operations on device info
-
             SharedClasses.Repair rep = new SharedClasses.Repair(this.c, this.d, jTextField21.getText(), jTextField26.getText());
             ComClasses.Request req = new ComClasses.Request(rep, ComClasses.Constants.REPAIR, ComClasses.Constants.INSERT, rep.insert());
 
@@ -4786,24 +4804,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 int n = JOptionPane.showConfirmDialog(jPanel9, "Scheda prodotto n° " + id + "\nStampare la ricevuta?", "Nuova Scheda prodotto aperta", JOptionPane.YES_NO_OPTION);
             
                 if(n == JOptionPane.YES_OPTION) {
-            
                     try {
                         Print.repairPrint(id, this.c, rep, this.d, det, true);
                     } catch (Exception e) {
                         showWinAlert(jPanel9, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
                     }
-                
-                }
-                
+                }   
             } catch (Exception e) {
                 showWinAlert(jPanel9, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
-            }
-            
+            }   
             this.resetObjects();
             resetValScheda();
             jPanel9.setVisible(false);
         }
-        
     }//GEN-LAST:event_jButton18MouseClicked
 
     // do proper device operations when inserting a new repair
@@ -4824,10 +4837,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 if(v == ComClasses.Constants.RET_EXC) // exception occourred
                     showWinAlert(customerSearch, "Eccezione occorsa durante l'operazione: riprovare.", "Error", JOptionPane.ERROR_MESSAGE);
                 else
-                    this.d.setID(v); // v now contains the existing id
+                    this.d.setID(v);    // v now contains the existing id
 
             } else {
-                this.d.setID(v); // v already contains the generated id
+                this.d.setID(v);        // v already contains the generated id
             }
         } catch (Exception e) {
             showWinAlert(customerSearch, Client.Utils.exceptionMessage(e), "Error", JOptionPane.ERROR_MESSAGE);
@@ -5939,7 +5952,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             ComClasses.Request r = new ComClasses.Request(this.c, ComClasses.Constants.CUSTOMER, ComClasses.Constants.INSERT, this.c.insert());
             
             try {
-                // TODO exception if the value from the server is an exception
                 int v = Client.Utils.intOperation(r).intValue();
             
                 if(v > 0) {
@@ -6532,14 +6544,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             setJTableBilling(jTable10, 0);
             this.foundElements = null;
             this.foundBill = (SharedClasses.Billing)this.foundBills.get(jTable13.getSelectedRow());
-            // retrieve customer's billing data (iva, cf, ...), calculate imponibile and esentasse
+            // TODO retrieve customer's billing data (iva, cf, ...)
             ComClasses.Request r = new ComClasses.Request(new SharedClasses.BillingElements(this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.SELECT, SharedClasses.BillingElements.select());
             
             try {
                 this.foundElements = Utils.arrayOperation(r);
                 setJTableFoundBillingElements(jTable10, this.foundElements);
             } catch (Exception e) {
-                // manage exception
+                // TODO manage exception
             }
             
             if(this.foundBill.getType() != ComClasses.Constants.RDA) {
@@ -6551,12 +6563,23 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 activateComponent(jLabel140, jLabel141, jLabel142, jTextField103, jTextField104, jTextField105);
             }
             
-            jTextField95.setText(this.foundBill.getDate());
-            jTextField97.setText(new Integer(this.foundBill.getIVA()).toString());
-            jTextField98.setText(this.foundBill.getPrice().toString());
-            jTextField100.setText(new Integer(this.foundBill.getNumber()).toString());
-            jTextField101.setText(this.foundBill.getDate().split("/")[2]);
-            jButton80MouseClicked(evt);
+            try {
+                r = new ComClasses.Request(new SharedClasses.Customer(this.foundBill.getCustomer()), ComClasses.Constants.CUSTOMER, ComClasses.Constants.SELECT, SharedClasses.Customer.idSelect());
+                this.foundBillingCustomer = (SharedClasses.Customer)Utils.arrayOperation(r).get(0);
+                r = new ComClasses.Request(new SharedClasses.BillingCustomer(this.foundBill.getCustomer()), ComClasses.Constants.BILLCUS, ComClasses.Constants.SELECT, SharedClasses.BillingCustomer.select());
+                this.foundBillingCustomerInfo = (SharedClasses.BillingCustomer)Utils.arrayOperation(r).get(0);
+                jTextField95.setText(this.foundBill.getDate());
+                jTextField97.setText(new Integer(this.foundBill.getIVA()).toString());
+                jTextField98.setText(this.foundBill.getPrice().toString());
+                jTextField100.setText(new Integer(this.foundBill.getNumber()).toString());
+                jTextField101.setText(this.foundBill.getDate().split("/")[2]);
+                jButton80MouseClicked(evt);
+                this.recalculateBilling();
+            } catch (SharedClasses.MyDBException e) {
+                // TODO manage exception
+            } catch (Exception e) {
+                // TODO manage exception
+            }
         }
     }//GEN-LAST:event_jTable13MouseClicked
 
@@ -6879,50 +6902,56 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // add row in billing editing
     private void jButton61MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton61MouseClicked
-        addBillingRow(jTable10);
+        if(jButton61.isEnabled())
+            addBillingRow(jTable10);
     }//GEN-LAST:event_jButton61MouseClicked
 
     // delete row in billing editing
     private void jButton62MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton62MouseClicked
-        if(jTable10.getSelectedRow() != -1){
-            DefaultTableModel model = (DefaultTableModel)jTable10.getModel();
-            model.removeRow(jTable10.getSelectedRow());
-        }
+        if(jButton62.isEnabled())
+            if(jTable10.getSelectedRow() != -1){
+                DefaultTableModel model = (DefaultTableModel)jTable10.getModel();
+                model.removeRow(jTable10.getSelectedRow());
+            }
     }//GEN-LAST:event_jButton62MouseClicked
 
     // sync in billing editing
     private void jButton75MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton75MouseClicked
-        billingEditingSync();
+        if(jButton75.isEnabled())
+            billingEditingSync();
     }//GEN-LAST:event_jButton75MouseClicked
 
     // calculate billing total without syncing with warehouse
     private void jButton80MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton80MouseClicked
-        
+        if(jButton80.isEnabled())
+            this.recalculateBilling();
+    }//GEN-LAST:event_jButton80MouseClicked
+
+    private void recalculateBilling() {
         DefaultTableModel mod = (DefaultTableModel)jTable10.getModel();
         BigDecimal tot = new BigDecimal(0), noTaxTot = new BigDecimal(0);
         int n = mod.getRowCount();
-        
+
         for(int i = 0; i < n; i++) {
-            
             if((Boolean)jTable10.getValueAt(i, 5))          // no taxes
                 noTaxTot = noTaxTot.add(updateTotal(jTable10, i, jTable10.getValueAt(i, 4)));
             else
                 tot = tot.add(updateTotal(jTable10, i, jTable10.getValueAt(i, 4)));
         }
-        
+
         if(this.foundBill.getType() == ComClasses.Constants.RDA) {
             BigDecimal rit = getPercentage(tot, new Integer(this.jTextField105.getText()));
             rit = getPercentage(rit, new Integer(this.jTextField103.getText()));
             jTextField104.setText(rit.toString());
             tot = tot.subtract(rit);
         }
-        
+
         jTextField96.setText(tot.toString());
         jTextField99.setText(noTaxTot.toString());
         jTextField98.setText((handleIVA(tot, new Integer(this.foundBill.getIVA()), true).add(noTaxTot)).toString());
         
-    }//GEN-LAST:event_jButton80MouseClicked
-
+    }
+    
     private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
 //        if(!jToggleButton2.isSelected()){
 //            jToggleButton2.setText("Blocca");
@@ -6942,7 +6971,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // billing editing - save, print and exit
     private void jButton82MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton82MouseClicked
+        
         ricercaFattura.dispose();
+        SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
+        // create the request object
+        ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
+        ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
+        
+        try {
+            Utils.intOperation(r).intValue();
+            Utils.intOperation(mr);
+            Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
+            
+            jButton74MouseClicked(evt);
+        
+        } catch (SharedClasses.MyDBException e) {
+            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton82MouseClicked
 
     // billing editing - save and exit
@@ -6973,8 +7020,28 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }//GEN-LAST:event_jButton84MouseClicked
 
     private void jButton85MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton85MouseClicked
-        // TODO add your handling code here:
+        if(jButton85.isEnabled())
+            setJTableBilling(jTable10, 0);
     }//GEN-LAST:event_jButton85MouseClicked
+
+    // delete selected billing
+    private void jButton86MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton86MouseClicked
+        if(jButton86.isEnabled()) {
+            
+            int n = JOptionPane.showConfirmDialog(risultatoFattView, "Vuoi davvero eliminare la fattura selezionata?", "Eliminazione fattura", JOptionPane.YES_NO_OPTION);
+            // confirmation needed to delete billing
+            if(n == JOptionPane.YES_OPTION) {
+                ComClasses.Request r = new ComClasses.Request(this.foundBill, ComClasses.Constants.BILLCLASS, ComClasses.Constants.DELETE, SharedClasses.Billing.delete());
+                ricercaFattura.dispose();
+                jButton74MouseClicked(evt);
+                try {
+                    Utils.intOperation(r);
+                } catch (Exception e) {
+                    showWinAlert(risultatoFattView,  "Impossibile eliminare la fattura: ".concat(Client.Utils.exceptionMessage(e)), "Errore!", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton86MouseClicked
 
     // obtain the price without iva
     private static String handleIVA (String s, Integer percentage, boolean iva) {
@@ -7080,6 +7147,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton83;
     private javax.swing.JButton jButton84;
     private javax.swing.JButton jButton85;
+    private javax.swing.JButton jButton86;
     private javax.swing.JButton jButton9;
     private final javax.swing.JCheckBox jCheckBox1 = new javax.swing.JCheckBox();
     private javax.swing.JCheckBox jCheckBox2;
@@ -7142,6 +7210,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private final javax.swing.JLabel jLabel141 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel142 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel143;
+    private javax.swing.JLabel jLabel144;
     private final javax.swing.JLabel jLabel15 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel16 = new javax.swing.JLabel();
     private final javax.swing.JLabel jLabel17 = new javax.swing.JLabel();
@@ -7465,13 +7534,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         return new String(ret);
     }
     
+    // return the month number in an appropriate String
     private static String lessThanTen (int i) {
-        
         if(i < 10)
             return "0".concat(Integer.toString(i));
-
         return Integer.toString(i);
-        
     }
     
     private void showWinAlert(Component cmp, Object o, String s, int i){
@@ -7580,13 +7647,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
         try {
             // TODO exception if value from the server is an exception
-            int v = Utils.intOperation(r).intValue();
+            Utils.intOperation(r).intValue();
 
+            /*
             if(v == ComClasses.Constants.RET_EXI)
                 showWinAlert(customerEdit, "Utente già esistente.", "Errore", JOptionPane.ERROR_MESSAGE);
             else if(v == ComClasses.Constants.RET_EXC)
                 showWinAlert(customerEdit, "Eccezione durante l'inserimento del cliente. Riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
-        
+            */
         } catch (Exception e) {
             showWinAlert(customerEdit, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
         }
@@ -7712,11 +7780,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     // delete usage for a selected Repair there were into the database
     private void usageDelete () throws Exception {
-        
         ComClasses.Request dr = new ComClasses.Request(null, ComClasses.Constants.USAGE, ComClasses.Constants.DELETE, SharedClasses.Usage.delete());
         // TODO exception if the value from the server is an exception
         Utils.intOperation(dr);
-        
     }
     
     // add to the warehouse the spare parts of the old Usage objects
@@ -7945,11 +8011,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     private void setDisableSync() {
-        disableComponent(jButton61, jButton62, jButton75, jButton80, jButton85);
+        disableComponent(jButton61, jButton62, jButton75, jButton80, jButton85, jButton86);
     }
     
     private void setEnableSync() {
-        enableComponent(jButton61, jButton62, jButton75, jButton80, jButton85);
+        enableComponent(jButton61, jButton62, jButton75, jButton80, jButton85, jButton86);
     }
   
     private static void activateComponent (JComponent ... n) {
