@@ -90,6 +90,7 @@ public class ManagGuiView extends FrameView {
     private SharedClasses.Billing foundBill;                            // used in billing editing
     private SharedClasses.Customer foundBillingCustomer;                // used in billing editing
     private SharedClasses.BillingCustomer foundBillingCustomerInfo;     // used in billing editing
+    private SharedClasses.Ritenuta foundRitenuta;                       // used in billing editing
 
     private ArrayList<Object> repairRet;                // used by Repair search
     private ArrayList<Object> customerRet;
@@ -516,6 +517,7 @@ public class ManagGuiView extends FrameView {
         jButton85 = new javax.swing.JButton();
         jButton86 = new javax.swing.JButton();
         jLabel144 = new javax.swing.JLabel();
+        jButton87 = new javax.swing.JButton();
 
         mainPanel.setName("mainPanel"); // NOI18N
 
@@ -4447,6 +4449,14 @@ public class ManagGuiView extends FrameView {
         jLabel144.setText(resourceMap.getString("jLabel144.text")); // NOI18N
         jLabel144.setName("jLabel144"); // NOI18N
 
+        jButton87.setText(resourceMap.getString("jButton87.text")); // NOI18N
+        jButton87.setName("jButton87"); // NOI18N
+        jButton87.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton87MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout risultatoFattViewLayout = new javax.swing.GroupLayout(risultatoFattView);
         risultatoFattView.setLayout(risultatoFattViewLayout);
         risultatoFattViewLayout.setHorizontalGroup(
@@ -4498,9 +4508,6 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jTextField98, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(risultatoFattViewLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jToggleButton2))
                     .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton82, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
@@ -4516,11 +4523,13 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel144)
-                            .addComponent(jLabel143)
                             .addComponent(jLabel138)
                             .addComponent(jLabel133)
-                            .addComponent(jLabel132)
-                            .addComponent(jLabel131))))
+                            .addComponent(jLabel131)
+                            .addComponent(jLabel143)
+                            .addComponent(jLabel132)))
+                    .addComponent(jToggleButton2)
+                    .addComponent(jButton87))
                 .addContainerGap())
         );
         risultatoFattViewLayout.setVerticalGroup(
@@ -4555,9 +4564,9 @@ public class ManagGuiView extends FrameView {
                             .addComponent(jTextField105, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField104, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(risultatoFattViewLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(10, 10, 10)
                         .addComponent(jToggleButton2)
-                        .addGap(17, 17, 17)
+                        .addGap(18, 18, 18)
                         .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton61)
                             .addComponent(jLabel138, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -4582,7 +4591,9 @@ public class ManagGuiView extends FrameView {
                         .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton86)
                             .addComponent(jLabel144))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton87)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                         .addComponent(jButton83)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton82)
@@ -6551,7 +6562,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 this.foundElements = Utils.arrayOperation(r);
                 setJTableFoundBillingElements(jTable10, this.foundElements);
             } catch (Exception e) {
-                // TODO manage exception
+                showWinAlert(ricercaFattura, "Impossibile aprire la fattura selezionata: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
+                ricercaFattura.dispose();
+                return;
             }
             
             if(this.foundBill.getType() != ComClasses.Constants.RDA) {
@@ -6559,26 +6572,43 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 deactivateComponent(jLabel140, jLabel141, jLabel142, jTextField103, jTextField104, jTextField105);
             } else {
                 // RDA: needs more text fields
-                // TODO retrieve rda info (ritenuta_info in db)
                 activateComponent(jLabel140, jLabel141, jLabel142, jTextField103, jTextField104, jTextField105);
+                r = new ComClasses.Request(new SharedClasses.Ritenuta(this.foundBill.getID()), ComClasses.Constants.RIT, ComClasses.Constants.SELECT, SharedClasses.Ritenuta.select());
+                try {
+                    this.foundRitenuta = (SharedClasses.Ritenuta)Utils.arrayOperation(r).get(0);
+                    jTextField103.setText(this.foundRitenuta.getRitenuta().toString());
+                    jTextField105.setText(this.foundRitenuta.getPercentage().toString());
+                } catch (SharedClasses.MyDBException e) {
+                    showWinAlert(ricercaFattura, "Impossibile aprire la fattura selezionata: ".concat(e.getMessage()), "Errore Database", JOptionPane.ERROR_MESSAGE);
+                    ricercaFattura.dispose();
+                } catch (Exception e) {
+                    showWinAlert(ricercaFattura, "Impossibile aprire la fattura selezionata: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
+                    ricercaFattura.dispose();
+                }
             }
             
             try {
+                // retrieve customer's info
                 r = new ComClasses.Request(new SharedClasses.Customer(this.foundBill.getCustomer()), ComClasses.Constants.CUSTOMER, ComClasses.Constants.SELECT, SharedClasses.Customer.idSelect());
                 this.foundBillingCustomer = (SharedClasses.Customer)Utils.arrayOperation(r).get(0);
+                // retrieve billing info (iva, cf, ...)
                 r = new ComClasses.Request(new SharedClasses.BillingCustomer(this.foundBill.getCustomer()), ComClasses.Constants.BILLCUS, ComClasses.Constants.SELECT, SharedClasses.BillingCustomer.select());
                 this.foundBillingCustomerInfo = (SharedClasses.BillingCustomer)Utils.arrayOperation(r).get(0);
+                // set text fields with appropriate infos
                 jTextField95.setText(this.foundBill.getDate());
                 jTextField97.setText(new Integer(this.foundBill.getIVA()).toString());
                 jTextField98.setText(this.foundBill.getPrice().toString());
                 jTextField100.setText(new Integer(this.foundBill.getNumber()).toString());
                 jTextField101.setText(this.foundBill.getDate().split("/")[2]);
                 jButton80MouseClicked(evt);
+                // update price details
                 this.recalculateBilling();
             } catch (SharedClasses.MyDBException e) {
-                // TODO manage exception
+                showWinAlert(ricercaFattura, "Impossibile aprire la fattura selezionata: ".concat(e.getMessage()), "Errore Database", JOptionPane.ERROR_MESSAGE);
+                ricercaFattura.dispose();
             } catch (Exception e) {
-                // TODO manage exception
+                showWinAlert(ricercaFattura, "Impossibile aprire la fattura selezionata: ".concat(e.getMessage()), "Errore", JOptionPane.ERROR_MESSAGE);
+                ricercaFattura.dispose();
             }
         }
     }//GEN-LAST:event_jTable13MouseClicked
@@ -6949,21 +6979,13 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         jTextField96.setText(tot.toString());
         jTextField99.setText(noTaxTot.toString());
         jTextField98.setText((handleIVA(tot, new Integer(this.foundBill.getIVA()), true).add(noTaxTot)).toString());
-        
     }
     
     private void jToggleButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MouseClicked
-//        if(!jToggleButton2.isSelected()){
-//            jToggleButton2.setText("Blocca");
-//            setEnableSync();
-//        }else{
-//            jToggleButton2.setText("Sblocca");
-//            setDisableSync();
-//        }
-        if(jToggleButton2.getText().equals("Sblocca")){
+        if(jToggleButton2.getText().equals("Sblocca")) {
             jToggleButton2.setText("Blocca");
             setEnableSync();
-        }else{
+        } else {
             jToggleButton2.setText("Sblocca");
             setDisableSync();
         }
@@ -6971,47 +6993,50 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // billing editing - save, print and exit
     private void jButton82MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton82MouseClicked
-        
-        ricercaFattura.dispose();
-        SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
-        // create the request object
-        ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
-        ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
-        
-        try {
-            Utils.intOperation(r).intValue();
-            Utils.intOperation(mr);
-            Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
-            
-            jButton74MouseClicked(evt);
-        
-        } catch (SharedClasses.MyDBException e) {
-            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
-        }
+       if(jTable10.getModel().getRowCount() > 0) {
+            ricercaFattura.dispose();
+            SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
+            // create the request object
+            ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
+            ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
+
+            try {
+                Utils.intOperation(r).intValue();
+                Utils.intOperation(mr);
+                Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
+                jButton74MouseClicked(evt);
+            } catch (SharedClasses.MyDBException e) {
+                showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+           showWinAlert(ricercaFattura, "Nessun elemento da fatturare.", "Errore", JOptionPane.ERROR_MESSAGE);
+       }
     }//GEN-LAST:event_jButton82MouseClicked
 
     // billing editing - save and exit
     private void jButton83MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton83MouseClicked
-        ricercaFattura.dispose();
-        // create the object with new data
-        SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
-        // create the request object
-        ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
-        ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
-        
-        try {
-            Utils.intOperation(r).intValue();
-            Utils.intOperation(mr);
-            jButton74MouseClicked(evt);
-        
-        } catch (SharedClasses.MyDBException e) {
-            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+        if(jTable10.getModel().getRowCount() > 0) {
+            ricercaFattura.dispose();
+            // create the object with new data
+            SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
+            // create the request object
+            ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
+            ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
+
+            try {
+                Utils.intOperation(r).intValue();
+                Utils.intOperation(mr);
+                jButton74MouseClicked(evt);
+            } catch (SharedClasses.MyDBException e) {
+                showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            showWinAlert(ricercaFattura, "Nessun elemento da fatturare.", "Errore", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_jButton83MouseClicked
 
     // billing editing - exit without saving
@@ -7042,6 +7067,33 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
         }
     }//GEN-LAST:event_jButton86MouseClicked
+
+    // edit selected billing customer info
+    private void jButton87MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton87MouseClicked
+        DatiClienteView = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 600, 500, billingCustomerEdit);
+        
+        if(this.foundBillingCustomer != null) {
+            jTextField59.setText(this.foundBillingCustomer.getTelephone());
+            jTextField61.setText(this.foundBillingCustomer.getName().toLowerCase());
+            jTextField62.setText(this.foundBillingCustomer.getSurname().toLowerCase());
+            jTextArea13.setText(this.foundBillingCustomer.getNote().toLowerCase());
+        } else {
+            showWinAlert(ricercaFattura, "Errore dati cliente", "Errore!", JOptionPane.ERROR_MESSAGE);
+            DatiClienteView.dispose();
+        }
+        
+        if(this.foundBillingCustomerInfo != null) {
+            jTextFieldCF.setText(this.foundBillingCustomerInfo.getCF().toLowerCase());       // CODICE FISCALE
+            jTextFieldIVA.setText(this.foundBillingCustomerInfo.getIVA().toLowerCase());     // PARTITA IVA
+            jTextField60.setText(this.foundBillingCustomerInfo.getAddress().toLowerCase());  // STREET NAME (billing_customer table, NOT customer table)
+            jTextField92.setText(this.foundBillingCustomerInfo.getCity().toLowerCase());     // CITY
+            jTextField93.setText(this.foundBillingCustomerInfo.getCAP().toLowerCase());      // CAP
+            jTextField94.setText(this.foundBillingCustomerInfo.getProv().toLowerCase());     // PROVINCE
+        } else {
+            showWinAlert(ricercaFattura, "Errore dati fatturazione cliente", "Errore!", JOptionPane.ERROR_MESSAGE);
+            DatiClienteView.dispose();
+        }
+    }//GEN-LAST:event_jButton87MouseClicked
 
     // obtain the price without iva
     private static String handleIVA (String s, Integer percentage, boolean iva) {
@@ -7148,6 +7200,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JButton jButton84;
     private javax.swing.JButton jButton85;
     private javax.swing.JButton jButton86;
+    private javax.swing.JButton jButton87;
     private javax.swing.JButton jButton9;
     private final javax.swing.JCheckBox jCheckBox1 = new javax.swing.JCheckBox();
     private javax.swing.JCheckBox jCheckBox2;
@@ -7829,9 +7882,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     private void getConnection () {
-        
         try {
-        
             this.serverInfo = Client.Utils.getSettings();
             
             try {                
@@ -7839,7 +7890,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             } catch (IOException e) {
                 showWinAlert(null, "Impossibile connettersi al server.\nVerificare che il server sia in esecuzione\ne controllare le impostazioni in File -> Setting IP.", "Attenzione!", JOptionPane.WARNING_MESSAGE);
             }
-            
         } catch (FileNotFoundException e) {
             showWinAlert(null, "File impostazioni non trovato.\nPer utilizzare il programma inserire le info del server in\nFile -> Setting IP", "Attenzione!", JOptionPane.WARNING_MESSAGE);
         } catch (IOException e) {
