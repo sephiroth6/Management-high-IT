@@ -6086,7 +6086,6 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="jTextField95">
           <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="jTextField95" noResource="true"/>
           </Properties>
           <AuxValues>

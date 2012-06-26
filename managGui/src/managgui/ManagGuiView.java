@@ -59,7 +59,8 @@ public class ManagGuiView extends FrameView {
     private FinestraSwing ricercaFattura;
     //private FinestraSwing gestioneRientri;            NOT USED
     private static final Object arr[] = {"Copia ricevuta", "Riepilogo riparazione", "Annulla stampa ed esci"};
-   
+    private static final Object billEditing[] = {"Ricalcola totale", "Sincronizza con magazzino", "Annulla operazione"};
+    
     //ico
     private final ImageIcon clienti = createImageIcon ("images/clienti2.png", "ico clienti scheda tab");
     private final ImageIcon frontEnd = createImageIcon ("images/frontend2.png", "ico accettazione scheda tab");
@@ -4270,7 +4271,6 @@ public class ManagGuiView extends FrameView {
 
         risultatoFattView.setName("risultatoFattView"); // NOI18N
 
-        jTextField95.setEnabled(false);
         jTextField95.setName("jTextField95"); // NOI18N
 
         jLabel128.setText(resourceMap.getString("jLabel128.text")); // NOI18N
@@ -6994,23 +6994,34 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     // billing editing - save, print and exit
     private void jButton82MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton82MouseClicked
        if(jTable10.getModel().getRowCount() > 0) {
-            ricercaFattura.dispose();
-            SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
-            // create the request object
-            ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
-            ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
+           
+           int n = JOptionPane.showOptionDialog(ricercaFattura, "Vuoi ricalcolare il totale senza sincronizzare o effettuare una nuova sincronizzazione col magazzino?", "Salva fattura", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, ManagGuiView.billEditing, ManagGuiView.billEditing[0]);            
+            
+           if (n == JOptionPane.YES_OPTION) {
+               jButton80MouseClicked(evt);
+           } else if (n == JOptionPane.NO_OPTION) {
+               jButton75MouseClicked(evt);
+           } else {
+               return;
+           }
+           
+           ricercaFattura.dispose();
+           SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
+           // create the request object
+           ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
+           ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
 
-            try {
-                Utils.intOperation(r).intValue();
-                Utils.intOperation(mr);
-                Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
-                jButton74MouseClicked(evt);
-            } catch (SharedClasses.MyDBException e) {
-                showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception e) {
-                showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
+           try {
+               Utils.intOperation(r).intValue();
+               Utils.intOperation(mr);
+               Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
+               jButton74MouseClicked(evt);
+           } catch (SharedClasses.MyDBException e) {
+               showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
+           } catch (Exception e) {
+               showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+           }
+       } else {
            showWinAlert(ricercaFattura, "Nessun elemento da fatturare.", "Errore", JOptionPane.ERROR_MESSAGE);
        }
     }//GEN-LAST:event_jButton82MouseClicked
@@ -7018,9 +7029,19 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     // billing editing - save and exit
     private void jButton83MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton83MouseClicked
         if(jTable10.getModel().getRowCount() > 0) {
+            // sync or calculate?
+            int n = JOptionPane.showOptionDialog(ricercaFattura, "Vuoi ricalcolare il totale senza sincronizzare o effettuare una nuova sincronizzazione col magazzino?", "Salva fattura", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, ManagGuiView.billEditing, ManagGuiView.billEditing[0]);            
+            
+            if (n == JOptionPane.YES_OPTION) {
+                jButton80MouseClicked(evt);
+            } else if (n == JOptionPane.NO_OPTION) {
+                jButton75MouseClicked(evt);
+            } else {
+                return;
+            }
             ricercaFattura.dispose();
             // create the object with new data
-            SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
+            SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), jTextField95.getText(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
             // create the request object
             ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
             ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
@@ -7030,7 +7051,9 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 Utils.intOperation(mr);
                 jButton74MouseClicked(evt);
             } catch (SharedClasses.MyDBException e) {
-                showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+                // if there was nothing to do, do nothing
+                if(e.getCode() != ComClasses.Constants.NOTDONE)
+                    showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
             } catch (Exception e) {
                 showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
             }
