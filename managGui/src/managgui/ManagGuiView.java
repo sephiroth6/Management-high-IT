@@ -7008,10 +7008,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
            ricercaFattura.dispose();
            SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
            // create the request object
-           ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
+           ComClasses.Request r;
            ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
 
            try {
+               if(b.getType() == ComClasses.Constants.RDA) {
+                    // if it's a RDA, update specific infos
+                    SharedClasses.Ritenuta rit = new SharedClasses.Ritenuta(b.getID(), new Integer(jTextField105.getText()), new Integer(jTextField103.getText()));
+                    r = new ComClasses.Request(rit, ComClasses.Constants.RIT, ComClasses.Constants.UPDATE, this.foundRitenuta.update(rit));
+                    Utils.intOperation(r);
+               }
+               r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
                Utils.intOperation(r).intValue();
                Utils.intOperation(mr);
                Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
@@ -7043,17 +7050,27 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             // create the object with new data
             SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), jTextField95.getText(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
             // create the request object
-            ComClasses.Request r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
+            ComClasses.Request r;
             ComClasses.Request mr = new ComClasses.MultiRequest(billingElements(jTable10, this.foundBill.getID()), ComClasses.Constants.BILLEL, ComClasses.Constants.UPDATE, SharedClasses.BillingElements.insert());
 
             try {
-                Utils.intOperation(r).intValue();
+                if(b.getType() == ComClasses.Constants.RDA) {
+                    // if it's a RDA, update specific infos
+                    SharedClasses.Ritenuta rit = new SharedClasses.Ritenuta(b.getID(), new Integer(jTextField105.getText()), new Integer(jTextField103.getText()));
+                    r = new ComClasses.Request(rit, ComClasses.Constants.RIT, ComClasses.Constants.UPDATE, this.foundRitenuta.update(rit));
+                    Utils.intOperation(r);
+                }
+                r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
+                Utils.intOperation(r);
                 Utils.intOperation(mr);
+                
                 jButton74MouseClicked(evt);
             } catch (SharedClasses.MyDBException e) {
                 // if there was nothing to do, do nothing
                 if(e.getCode() != ComClasses.Constants.NOTDONE)
                     showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+                else 
+                    showWinAlert(risultatoFattView, "Nessuna modifica da effettuare", "Nulla da modificare", JOptionPane.WARNING_MESSAGE);
             } catch (Exception e) {
                 showWinAlert(risultatoFattView, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
             }
