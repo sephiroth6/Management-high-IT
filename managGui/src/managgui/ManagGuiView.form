@@ -4795,7 +4795,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel71" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField48" pref="321" max="32767" attributes="0"/>
+                          <Component id="jTextField48" pref="361" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel68" min="-2" max="-2" attributes="0"/>
@@ -4805,12 +4805,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel69" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jTextField46" pref="492" max="32767" attributes="0"/>
+                          <Component id="jTextField46" pref="526" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel70" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jTextField47" pref="568" max="32767" attributes="0"/>
+                          <Component id="jTextField47" pref="578" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jToggleButton1" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>

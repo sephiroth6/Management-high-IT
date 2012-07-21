@@ -9,12 +9,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import org.jdesktop.application.Action;
-//import org.jdesktop.application.ResourceMap;              NOT USED
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
-//import org.jdesktop.application.TaskMonitor;              NOT USED
-//import java.awt.event.ActionEvent;                        NOT USED
-//import java.awt.event.ActionListener;                     NOT USED
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -24,10 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.DefaultCellEditor;
-//import javax.swing.Timer;                                 NOT USED
-//import javax.swing.Icon;                                  NOT USED
 import javax.swing.ImageIcon;
-//import javax.swing.JButton;                               NOT USED
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -57,7 +50,6 @@ public class ManagGuiView extends FrameView {
     private FinestraSwing DatiClienteSimply;
     private FinestraSwing pezziUtilizzati;
     private FinestraSwing ricercaFattura;
-    //private FinestraSwing gestioneRientri;            NOT USED
     private static final Object arr[] = {"Copia ricevuta", "Riepilogo riparazione", "Annulla stampa ed esci"};
     private static final Object billEditing[] = {"Ricalcola totale", "Sincronizza con magazzino", "Annulla operazione"};
     
@@ -110,49 +102,6 @@ public class ManagGuiView extends FrameView {
         deactivateComponent(jPanel5, jPanel6, jPanel9, jPanel10, jButton45);        
         getConnection();
         getWarehouse();
-        
-        /* NOT USED
-        // status bar initialization - message timeout, idle icon and busy animation, etc
-        ResourceMap resourceMap = getResourceMap();
-        int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
-        messageTimer = new Timer(messageTimeout, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
-        });
-        messageTimer.setRepeats(false);
-        int busyAnimationRate = resourceMap.getInteger("StatusBar.busyAnimationRate");
-        for (int i = 0; i < busyIcons.length; i++) {
-            busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
-        }
-        busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
-            }
-        });
-        idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
-        
-        // connecting action tasks to status bar via TaskMonitor
-        TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
-        taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                String propertyName = evt.getPropertyName();
-                if ("started".equals(propertyName)) {
-                    if (!busyIconTimer.isRunning()) {
-                        busyIconIndex = 0;
-                        busyIconTimer.start();
-                    }
-                } else if ("done".equals(propertyName)) {
-                    busyIconTimer.stop();
-                } else if ("message".equals(propertyName)) {
-                    String text = (String)(evt.getNewValue());
-                    messageTimer.restart();
-                } else if ("progress".equals(propertyName)) {
-                    int value = (Integer)(evt.getNewValue());
-                }
-            }
-        });
-         * 
-         */
     }
     
 
@@ -5068,21 +5017,20 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             } else {
                 showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
                 jTable2.setVisible(false);
-            }
-            
+            } 
         }
     }//GEN-LAST:event_jButton20MouseClicked
 
     // check if the fields for customer search have been properly modified
     private static boolean checkCustomerSearch (String a, String b) {
         
-        if(!a.equals("Cognome")) { // if a is equals to "Cognome" no fields have been edited
-            if(!a.equals("") || !b.equals("")) // if a or b are not equals to the empty string, it's ok
+        if(!a.equals("Cognome")) {                  // if a is equals to "Cognome" no fields have been edited
+            if(!a.equals("") || !b.equals(""))      // if a or b are not equals to the empty string, it's ok
                 return true;
             
-            return false; // a and b are equals to the empty string
+            return false;                           // a and b are equals to the empty string
         }
-        return false; // fields have not been edited
+        return false;                               // fields have not been edited
     }
     
     // insert the customer data into jTable
@@ -5109,7 +5057,6 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         ComClasses.Request r = new ComClasses.Request(cus, ComClasses.Constants.CUSTOMER, ComClasses.Constants.SELECT, cus.select());
         
         customerArrayFill(bill, r);
-        
     }
     
     private void customerArrayFill (boolean bill, ComClasses.Request r) {
@@ -6013,7 +5960,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
         
         if(flagError == 0){
-            setDatiClienteDb(jTextField15, jTextField16, jTextField14, jTextField13, jTextArea3);
+            setDatiClienteDb(this.c, jTextField15, jTextField16, jTextField14, jTextField13, jTextArea3);
             DatiClienteView.dispose();
         }
               
@@ -6227,7 +6174,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         this.billingCustomerEditing = false;
         this.newBillingInfo = true;
         DatiClienteView = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 600, 500, billingCustomerEdit);
-        clearFields(jTextField62, jTextField61, jTextFieldCF, jTextFieldIVA, jTextField60, jTextField59);
+        clearFields(jTextField62, jTextField61, jTextFieldCF, jTextFieldIVA, jTextField60, jTextField59, jTextField92, jTextField93, jTextField94);
         jTextArea13.setText(null);
     }//GEN-LAST:event_jButton54MouseClicked
 
@@ -6395,12 +6342,26 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         activateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);  // make visible buttons, textfield and label
     }//GEN-LAST:event_jButton34MouseClicked
 
+    /**
+     * Clean text fields for billing search by surname
+     * @param evt mouse click on "Cognome" text field in billing search
+     */
     private void jTextField79MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField79MouseClicked
-        // TODO add your handling code here:
+        if(jTextField79.getText().equals("Cognome"))
+            jTextField79.setText("");
+        if(jTextField80.getText().equals("Nome"))
+            jTextField80.setText("");
     }//GEN-LAST:event_jTextField79MouseClicked
 
+    /**
+     * Clean text fields for billing search by name
+     * @param evt mouse click on "Nome" text field in billing search
+     */
     private void jTextField80MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField80MouseClicked
-        // TODO add your handling code here:
+        if(jTextField80.getText().equals("Nome"))
+            jTextField80.setText("");
+        if(jTextField79.getText().equals("Cognome"))
+            jTextField79.setText("");
     }//GEN-LAST:event_jTextField80MouseClicked
 
     private void jButton73MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton73MouseClicked
@@ -6447,24 +6408,65 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             }
         }
         // search by codice fiscale
-        if(jTextField82.getText() != null && !jTextField82.getText().equals("")) {
+        String cf = jTextField82.getText();
+        if(cf != null && !cf.equals("")) {
+            if(checkTaxCode(cf)) {
+                try {
+                    r = new ComClasses.Request(new SharedClasses.BillingCustomer(jTextField82.getText(), false), ComClasses.Constants.BILLCUS, ComClasses.Constants.FIELDSELECT, SharedClasses.BillingCustomer.idByColumnSelect("cf"));
+                    int cusId = Utils.intOperation(r);
+                    // TODO check if the returned id is a valid one
+                    r = new ComClasses.Request(new SharedClasses.Billing(new Integer(cusId)), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.selectByCustomer());
+                    if(shift == 0)
+                        this.foundBills = Utils.arrayOperation(r);
+                    else
+                        this.foundBills.addAll(Utils.arrayOperation(r));
+                    setBillingTableFoundBillData(jTable13, this.foundBills, shift);
+                    this.setBillingTableFoundCustomerData(jTable13, shift);
+                    if(this.foundBills != null)
+                        shift = this.foundBills.size();
+                } catch (SharedClasses.MyDBException e) {
+
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+            } else {
+                showWinAlert(billingSearch, "Struttura del codice fiscale errata!", "Attenzione!", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+        
+        // search by customer name and/or surname
+        String surname = jTextField79.getText(), name = jTextField80.getText();
+        if(checkCustomerSearch(surname, name)) {
             try {
-                r = new ComClasses.Request(new SharedClasses.BillingCustomer(jTextField82.getText(), false), ComClasses.Constants.BILLCUS, ComClasses.Constants.FIELDSELECT, SharedClasses.BillingCustomer.idByColumnSelect("cf"));
-                int cusId = Utils.intOperation(r);
-                // TODO check if the returned id is a valid one
-                r = new ComClasses.Request(new SharedClasses.Billing(new Integer(cusId)), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.selectByCustomer());
-                if(shift == 0)
-                    this.foundBills = Utils.arrayOperation(r);
-                else
-                    this.foundBills.addAll(Utils.arrayOperation(r));
+                // retrieve an array of Customer object by name and/or surname
+                SharedClasses.Customer cus = new SharedClasses.Customer(name, surname);
+                r = new ComClasses.Request(cus, ComClasses.Constants.CUSTOMER, ComClasses.Constants.SELECT, cus.select());
+                ArrayList<Object> tmp = Utils.arrayOperation(r);
+                int n = tmp.size();
+                // retrieve bills for every customer
+                for(int i = 0; i < n; i++) {
+                    SharedClasses.Customer cast = (SharedClasses.Customer)tmp.get(i);
+                    r = new ComClasses.Request(new SharedClasses.Billing(new Integer(cast.getID())), ComClasses.Constants.BILLCLASS, ComClasses.Constants.SELECT, SharedClasses.Billing.selectByCustomer());
+                    try {
+                        if(this.foundBills == null)
+                            this.foundBills = Utils.arrayOperation(r);
+                        else
+                            this.foundBills.addAll(Utils.arrayOperation(r));
+                    } catch (SharedClasses.MyDBException e) {
+                            // continue loop
+                    } 
+                }
+                // set table
                 setBillingTableFoundBillData(jTable13, this.foundBills, shift);
                 this.setBillingTableFoundCustomerData(jTable13, shift);
             } catch (SharedClasses.MyDBException e) {
-
+                
             } catch (Exception e) {
-                System.err.println(e.getMessage());
-            }
-        }
+                
+            }  
+        } 
+        // delete multiple bill occurrences
+        this.cleanBillingTable();
     }//GEN-LAST:event_jButton73MouseClicked
 
     // insert the billing data into jTable
@@ -6535,6 +6537,32 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }   
     }
     
+    /**
+     * Removes duplicate entities from results table of billing search
+     */
+    
+    private void cleanBillingTable () {
+        
+        DefaultTableModel mod = (DefaultTableModel) jTable13.getModel();
+        
+        int n = mod.getRowCount();
+        int selRow = 0;
+        Integer num;
+        
+        while(selRow < n) {
+            num = (Integer)mod.getValueAt(selRow, 0);
+            for(int i = 0; i < n; i++) {
+                if(i != selRow)
+                    if(num.compareTo((Integer)mod.getValueAt(i, 0)) == 0) {
+                        mod.removeRow(i);
+                        this.foundBills.remove(i);
+                    }
+            }
+            selRow++;
+            n = mod.getRowCount();
+        }
+    }
+    
     private void jButton74MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton74MouseClicked
         setJTableFoundBilling(jTable13, 0);
         clearFields(jTextField81, jTextField82, jTextField87);
@@ -6552,6 +6580,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             setCenterMonitorDim(1155, 500);
             ricercaFattura = new FinestraSwing("Dettagli Pagamento", p.getPX(), p.getPY(), 1160, 500, risultatoFattView);
             jToggleButton2.setSelected(false);
+            jToggleButton2.setText("Sblocca");
             setJTableBilling(jTable10, 0);
             this.foundElements = null;
             this.foundBill = (SharedClasses.Billing)this.foundBills.get(jTable13.getSelectedRow());
@@ -7110,7 +7139,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
     // edit selected billing customer info
     private void jButton87MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton87MouseClicked
-        DatiClienteView = new FinestraSwing("Crea scheda dati cliente", p.getPX(), p.getPY(), 600, 500, billingCustomerEdit);
+        DatiClienteView = new FinestraSwing("Modifica dati cliente fatturazione", p.getPX(), p.getPY(), 600, 500, billingCustomerEdit);
         
         if(this.foundBillingCustomer != null) {
             jTextField59.setText(this.foundBillingCustomer.getTelephone());
@@ -7581,13 +7610,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JPanel warehouseEdit;
     private javax.swing.JPanel warehouseManagement;
     // End of variables declaration//GEN-END:variables
-/*  // NOT USED
-    private final Timer messageTimer;
-    private final Timer busyIconTimer;
-    private final Icon idleIcon;
-    private final Icon[] busyIcons = new Icon[15];
-    private int busyIconIndex = 0;
-*/
+
     private JDialog aboutBox;
     private JDialog settingBox;
     private JDialog warehouseBox;
@@ -7731,27 +7754,18 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     // customer UPDATE
-    private void setDatiClienteDb(JTextField nome, JTextField cognome, JTextField indirizzo, JTextField rec, JTextArea note){
+    private void setDatiClienteDb(SharedClasses.Customer old, JTextField nome, JTextField cognome, JTextField indirizzo, JTextField rec, JTextArea note){
 
         // create the object with new data
-        SharedClasses.Customer cus = new SharedClasses.Customer(this.c.getID(), nome.getText(), cognome.getText(), indirizzo.getText(), rec.getText(), note.getText());
+        SharedClasses.Customer cus = new SharedClasses.Customer(old.getID(), nome.getText(), cognome.getText(), indirizzo.getText(), rec.getText(), note.getText());
         // create the request object
-        ComClasses.Request r = new ComClasses.Request(cus, ComClasses.Constants.CUSTOMER, ComClasses.Constants.UPDATE, this.c.update(cus));
+        ComClasses.Request r = new ComClasses.Request(cus, ComClasses.Constants.CUSTOMER, ComClasses.Constants.UPDATE, old.update(cus));
 
         try {
-            // TODO exception if value from the server is an exception
             Utils.intOperation(r).intValue();
-
-            /*
-            if(v == ComClasses.Constants.RET_EXI)
-                showWinAlert(customerEdit, "Utente già esistente.", "Errore", JOptionPane.ERROR_MESSAGE);
-            else if(v == ComClasses.Constants.RET_EXC)
-                showWinAlert(customerEdit, "Eccezione durante l'inserimento del cliente. Riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
-            */
         } catch (Exception e) {
             showWinAlert(customerEdit, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        }   
     }
     
     private int setArticleWarehouseDB(JTextField code, JTextField name, JTextField n, JTextField up, JTextArea note, JTextField nip){
@@ -8101,11 +8115,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     }
     
     private void setDisableSync() {
-        disableComponent(jButton61, jButton62, jButton75, jButton80, jButton85, jButton86);
+        disableComponent(jButton61, jButton62, jButton75, jButton80, jButton85, jButton86, jButton87);
     }
     
     private void setEnableSync() {
-        enableComponent(jButton61, jButton62, jButton75, jButton80, jButton85, jButton86);
+        enableComponent(jButton61, jButton62, jButton75, jButton80, jButton85, jButton86, jButton87);
     }
   
     private static void activateComponent (JComponent ... n) {
@@ -8177,11 +8191,15 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
                 if(JT.getValueAt(i, 3) == null)             // set quantity
                     JT.setValueAt(1, i, 3);
-                                    
-                if((Boolean)JT.getValueAt(i, 5))        // no taxes
-                    noTaxTot = noTaxTot.add(updateTotal(JT, i, JT.getValueAt(i, 4)));
-                else                                    // taxes
-                    tot = tot.add(updateTotal(JT, i, JT.getValueAt(i, 4)));
+                           
+                try {
+                    if((Boolean)JT.getValueAt(i, 5))        // no taxes
+                        noTaxTot = noTaxTot.add(updateTotal(JT, i, JT.getValueAt(i, 4)));
+                    else                                    // taxes
+                        tot = tot.add(updateTotal(JT, i, JT.getValueAt(i, 4)));
+                } catch (Exception e) {
+                    return false;
+                }
                 
                 i++;
             }
@@ -8249,13 +8267,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     jTable10.setValueAt(w.getNoIvaPrice(), i, 4);     // set price without iva
                 } 
     
-                if(jTable10.getValueAt(i, 3) == null)             // set quantity
+                if(jTable10.getValueAt(i, 3) == null)               // set quantity
                     jTable10.setValueAt(1, i, 3);
-                                    
-                if((Boolean)jTable10.getValueAt(i, 5))        // no taxes
-                    noTaxTot = noTaxTot.add(updateTotal(jTable10, i, jTable10.getValueAt(i, 4)));
-                else                                    // taxes
-                    tot = tot.add(updateTotal(jTable10, i, jTable10.getValueAt(i, 4)));
+                              
+                try {
+                    if((Boolean)jTable10.getValueAt(i, 5))              // no taxes
+                        noTaxTot = noTaxTot.add(updateTotal(jTable10, i, jTable10.getValueAt(i, 4)));
+                    else                                                // taxes
+                        tot = tot.add(updateTotal(jTable10, i, jTable10.getValueAt(i, 4)));
+                } catch (Exception e) {
+                    return false;
+                }
                 
                 i++;
             }
@@ -8284,6 +8306,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private static BigDecimal updateTotal (JTable JT, int row, Object price) {
         // returns item quantity * item price
         BigDecimal aux = null;
+        
         if(price instanceof BigDecimal)
             aux = (BigDecimal)price;
         else if(price instanceof String)
