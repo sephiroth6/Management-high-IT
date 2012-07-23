@@ -6543,7 +6543,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     
     private void cleanBillingTable () {
         
-        DefaultTableModel mod = (DefaultTableModel) jTable13.getModel();
+        final DefaultTableModel mod = (DefaultTableModel) jTable13.getModel();
         
         int n = mod.getRowCount();
         int selRow = 0;
@@ -6556,10 +6556,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     if(num.compareTo((Integer)mod.getValueAt(i, 0)) == 0) {
                         mod.removeRow(i);
                         this.foundBills.remove(i);
+                        n--;
                     }
             }
             selRow++;
-            n = mod.getRowCount();
         }
     }
     
@@ -7045,10 +7045,24 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     // if it's a RDA, update specific infos
                     SharedClasses.Ritenuta rit = new SharedClasses.Ritenuta(b.getID(), new Integer(jTextField105.getText()), new Integer(jTextField103.getText()));
                     r = new ComClasses.Request(rit, ComClasses.Constants.RIT, ComClasses.Constants.UPDATE, this.foundRitenuta.update(rit));
-                    Utils.intOperation(r);
+                    try {    
+                        Utils.intOperation(r);
+                    } catch (SharedClasses.MyDBException e) {
+                        if(e.getCode() != ComClasses.Constants.NOTDONE) {
+                            showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                    }
                }
                r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
-               Utils.intOperation(r).intValue();
+               try {
+                   Utils.intOperation(r).intValue();
+               } catch (SharedClasses.MyDBException e) {
+                   if(e.getCode() != ComClasses.Constants.NOTDONE) {
+                       showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
+                       return;
+                   }
+               }
                Utils.intOperation(mr);
                Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
                jButton74MouseClicked(evt);
@@ -7087,12 +7101,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                     // if it's a RDA, update specific infos
                     SharedClasses.Ritenuta rit = new SharedClasses.Ritenuta(b.getID(), new Integer(jTextField105.getText()), new Integer(jTextField103.getText()));
                     r = new ComClasses.Request(rit, ComClasses.Constants.RIT, ComClasses.Constants.UPDATE, this.foundRitenuta.update(rit));
-                    Utils.intOperation(r);
+                    try {    
+                        Utils.intOperation(r);
+                    } catch (SharedClasses.MyDBException e) {
+                        if(e.getCode() != ComClasses.Constants.NOTDONE) {
+                            showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                    }
                 }
                 r = new ComClasses.Request(b, ComClasses.Constants.BILLCLASS, ComClasses.Constants.UPDATE, this.foundBill.update(b));
-                Utils.intOperation(r);
+                try {
+                    Utils.intOperation(r);
+                } catch (SharedClasses.MyDBException e) {
+                        if(e.getCode() != ComClasses.Constants.NOTDONE) {
+                            showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        }
+                }
                 Utils.intOperation(mr);
-                
                 jButton74MouseClicked(evt);
             } catch (SharedClasses.MyDBException e) {
                 // if there was nothing to do, do nothing
