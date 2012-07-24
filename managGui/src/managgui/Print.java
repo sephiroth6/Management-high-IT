@@ -34,6 +34,8 @@ public class Print implements Printable {
     private boolean esentasse = false;
     // is it a billing?
     private final int billing;
+    private final int pages;
+    private int [] tableIndex;
     
     private final String totalImp;
     private final String percentage;
@@ -58,6 +60,7 @@ public class Print implements Printable {
         this.de = de;
         this.receipt = re;
         this.billing = -1;
+        this.pages = 0;
         this.bc = null;
         this.t = null;
         this.totalImp = null;
@@ -81,6 +84,9 @@ public class Print implements Printable {
         this.total = tot;
         this.date = dt;
         this.rit = ri;
+        this.pages = calculatePages();
+        this.tableIndex = new int[this.pages + 1];
+        this.tableIndex[0] = 0;
         this.r = null;
         this.d = null;
         this.de = null;
@@ -140,7 +146,7 @@ public class Print implements Printable {
     
     public int print(Graphics grap, PageFormat pageFormat, int pageIndex) throws PrinterException {
 
-        if(pageIndex > 0)
+        if(pageIndex > this.pages)
             return NO_SUCH_PAGE;
 
         int x = (int)pageFormat.getImageableX();
@@ -159,7 +165,7 @@ public class Print implements Printable {
         FontRenderContext frc = grapdd.getFontRenderContext();     
         
         // logo and header
-        this.writeHeader(grapdd, frc, b, firstX, firstY);
+        this.writeHeader(grapdd, frc, b, firstX, firstY, (Integer)pageIndex + 1);
         
         if(this.billing < 0) {                                         // don't print billing informations
             drawLogo(imageX, imageY, grapdd);
@@ -200,9 +206,10 @@ public class Print implements Printable {
             firstY += shortHeightLines(6);
             final int address = this.writeBillingCustomer(grapdd, frc, b, f, (int)pageFormat.getImageableWidth()/2, firstY);
             firstY += shortHeightLines(7 + address);
-            firstY = this.writeTable(grapdd, frc, b, footer, firstX, firstY, width);
+            firstY = this.writeTable(grapdd, frc, b, footer, firstX, firstY, width, pageIndex);
             firstY += heightLines(1);
-            this.writeBillingFooter(grapdd, frc, b, f, firstX, height - heightLines(5));
+            if(pageIndex == this.pages)
+                this.writeBillingFooter(grapdd, frc, b, f, firstX, height - heightLines(5));
         }
         this.writeFooter(grapdd, frc, footer, firstX, height);
         
@@ -331,12 +338,14 @@ public class Print implements Printable {
          g.drawImage(logo, x, y, null);
      }
      
-     private void writeHeader (Graphics2D g, FontRenderContext fRend, Font b, int x, int y) {
+     private void writeHeader (Graphics2D g, FontRenderContext fRend, Font b, int x, int y, Integer index) {
          String header;
         
          if(this.billing >= 0) {
              header = this.billingName();
-             g.drawGlyphVector(b.createGlyphVector(fRend, header.concat(this.number.concat(" - DATA EMISSIONE: ".concat(this.date)))), x, y);
+             Integer pgNumber = (Integer)this.pages;
+             pgNumber++;
+             g.drawGlyphVector(b.createGlyphVector(fRend, header.concat(this.number.concat(" - DATA EMISSIONE: ".concat(this.date).concat(" - PAGINA ").concat(index.toString()).concat("/").concat(pgNumber.toString())))), x, y);
          } else {
              
              if(this.receipt)
@@ -452,7 +461,7 @@ public class Print implements Printable {
                      toWrite.append(tokens[k].concat(" "));     // add token
                      lineLength += tokens[k].length() + 1;
                  } else if (i == 3) {
-                     toWrite.append("…");                       // address end
+                     toWrite.append("...");                       // address end
                      lineLength = 41;
                  } else {
                      break;
@@ -464,44 +473,49 @@ public class Print implements Printable {
          return n;   
      }
      
-     private int writeTable (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y, int w) {
+     private int writeTable (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y, int w, int pageIndex) {
          // print the billing table
          DefaultTableModel model = (DefaultTableModel)this.t.getModel();
          int n = model.getRowCount();
          int m = model.getColumnCount();
+         int localDescriptionRows = 0;
+         int i;
          
          writeColumnsNames(g, fRend, b, x, y);
          // horizontal lines
-         g.drawLine(x - 5, y - 10, w - 40, y - 10);     // up
-         g.drawLine(x - 5, y + 5, w - 40, y + 5);       // down
+         g.drawLine(x - 5, y - 10, w - 40, y - 10);         // up
+         g.drawLine(x - 5, y + 5, w - 40, y + 5);           // down
          // vertical lines
-         g.drawLine(x - 5, y - 10, x - 5, y + 5);       // left margin
-         //g.drawLine(w - 15, y - 10, w - 15, y + 5);     // right margin
-         g.drawLine(x + 49, y - 10, x + 49, y + 5);     // between "TIPOLOGIA" and "CODICE"
-         g.drawLine(x + 148, y - 10, x + 148, y + 5);   // between "CODICE" and "DESCRIZIONE"
-         g.drawLine(x + 380, y - 10, x + 380, y + 5);   // between "DESCRIZIONE" and "Q.TA'"
-         g.drawLine(x + 416, y - 10, x + 416, y + 5);   // between "Q.TA'" and "PREZZO"
-         g.drawLine(x + 481, y - 10, x + 481, y + 5);   // between "PREZZO" and "TOT"
-         g.drawLine(x + 526, y - 10, x + 526, y + 5);   // between "TOT" and "IVA"
+         g.drawLine(x - 5, y - 10, x - 5, y + 5);           // left margin
+         g.drawLine(x + 49, y - 10, x + 49, y + 5);         // between "TIPOLOGIA" and "CODICE"
+         g.drawLine(x + 148, y - 10, x + 148, y + 5);       // between "CODICE" and "DESCRIZIONE"
+         g.drawLine(x + 380, y - 10, x + 380, y + 5);       // between "DESCRIZIONE" and "Q.TA'"
+         g.drawLine(x + 416, y - 10, x + 416, y + 5);       // between "Q.TA'" and "PREZZO"
+         g.drawLine(x + 481, y - 10, x + 481, y + 5);       // between "PREZZO" and "TOT"
+         g.drawLine(x + 526, y - 10, x + 526, y + 5);       // right margin
          y += shortHeightLines(1);
          
-         for(int i = 0; i < n; i++) {
+         for(i = this.tableIndex[pageIndex]; i < n; i++) {
              int auxYA = y + 5 - shortHeightLines(1), auxYB, descriptionRows;
              descriptionRows = printRow(g, fRend, f, x, y, i, m, model);
+             localDescriptionRows += descriptionRows;
              // horizontal line
              g.drawLine(x - 5, y + 5 + shortHeightLines(descriptionRows - 1), w - 40, y + 5 + shortHeightLines(descriptionRows - 1));
              // vertical lines
              auxYB = y + 5 + shortHeightLines(descriptionRows - 1);
-             g.drawLine(x - 5, auxYA, x - 5, auxYB);          // left
-             //g.drawLine(w - 15, auxYA, w - 15, auxYB);        // right
+             g.drawLine(x - 5, auxYA, x - 5, auxYB);            // left
              g.drawLine(x + 49, auxYA, x + 49, auxYB);
              g.drawLine(x + 148, auxYA, x + 148, auxYB);
              g.drawLine(x + 380, auxYA, x + 380, auxYB);
              g.drawLine(x + 416, auxYA, x + 416, auxYB);
              g.drawLine(x + 481, auxYA, x + 481, auxYB);
-             g.drawLine(x + 526, auxYA, x + 526, auxYB);
+             g.drawLine(x + 526, auxYA, x + 526, auxYB);        // right
              y += shortHeightLines(descriptionRows);
-         }         
+             if(localDescriptionRows >= 27) {
+                 this.tableIndex[pageIndex + 1] = i + 1;
+                 break;
+             }
+         }
          return y;
      }
      
@@ -533,7 +547,7 @@ public class Print implements Printable {
                  
                  if(cn > 2) {
                      cn = 2;
-                     longCodeCut = cod.substring(0, 35).concat("…");
+                     longCodeCut = cod.substring(0, 35).concat("...");
                  }
                  
                  if(cn == 2) {
@@ -626,25 +640,7 @@ public class Print implements Printable {
          g.drawGlyphVector(f.createGlyphVector(fRend, "TOT (€)"), x + 485, y);
      }
      
-     private void writeBillingFooter (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y) {
-         /*
-         // write final billing values
-         g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Imponibile"), x, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, this.totalImp.concat("€")), x + 100, y);
-         
-         if(this.rit != null) {
-             g.drawGlyphVector(b.createGlyphVector(fRend, "Ritenuta"), x, y + heightLines(1));
-             g.drawGlyphVector(f.createGlyphVector(fRend, this.rit.getRitenuta().toString().concat("%")), x + 100, y + heightLines(1));
-             g.drawGlyphVector(f.createGlyphVector(fRend, this.rit.getPercentage().toString().concat("% dell'imponibile")), x + 100, y + heightLines(2));
-             y += heightLines(2);
-         }
-         
-         g.drawGlyphVector(b.createGlyphVector(fRend, "Aliquota"), x, y + heightLines(1));
-         g.drawGlyphVector(f.createGlyphVector(fRend, this.percentage.concat("%")), x + 100, y + heightLines(1));
-         g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Fattura"), x, y + heightLines(2));
-         g.drawGlyphVector(f.createGlyphVector(fRend, this.total.concat("€")), x + 100, y + heightLines(2));
-          * */
-         
+     private void writeBillingFooter (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y) {      
          g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Imponibile "), x, y);
          g.drawGlyphVector(f.createGlyphVector(fRend, this.totalImp.concat("€")), x + 90, y);
          g.drawGlyphVector(b.createGlyphVector(fRend, "Aliquota"), x + 160, y);
@@ -674,6 +670,46 @@ public class Print implements Printable {
          final BigDecimal oneHundred = BigDecimal.TEN.multiply(BigDecimal.TEN);
          
          return toDivide.divide(oneHundred).toString();
+     }
+     
+     private int calculatePages () {
+         
+         if(this.billing < 0)
+             return 0;
+         else
+             return (new BigDecimal(calculateRows()).divide(new BigDecimal(27), 0, BigDecimal.ROUND_UP)).intValue() - 1;
+         
+     }
+     
+     private int calculateRows () {
+         
+         final DefaultTableModel model = (DefaultTableModel)this.t.getModel();
+         final int n = model.getRowCount();
+         int i, descRows, codeRows, ret = 0;
+         String desc, code;
+         
+         for(i = 0; i < n; i++) {
+             desc = (String)t.getValueAt(i, 2);
+             code = (String)t.getValueAt(i, 1);
+             // calculate how many rows the descriptions and the codes need
+             descRows = new BigDecimal(desc.length()).divide(new BigDecimal(44), 0, BigDecimal.ROUND_UP).intValue();
+             
+             if(descRows == 0) descRows = 1;
+             
+             if(descRows > 4) descRows = 4;
+             
+             codeRows = new BigDecimal(code.length()).divide(new BigDecimal(18), 0, BigDecimal.ROUND_UP).intValue();
+             
+             if(codeRows == 0) codeRows = 1;
+             
+             if(codeRows > 2) codeRows = 2;
+             // add the maximum value between the one for the description and the one for the code
+             if(descRows > codeRows)
+                 ret += descRows;
+             else
+                 ret += codeRows;
+         }
+         return ret;
      }
      
 }

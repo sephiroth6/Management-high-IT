@@ -6682,7 +6682,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 r = new ComClasses.Request(rit, ComClasses.Constants.RIT, ComClasses.Constants.INSERT, SharedClasses.Ritenuta.insert());
                 Utils.intOperation(r);
             }
-            Print.repairPrint(num, this.billingCustomer, this.billingCustomerInfo, this.bill, this.getBillingTable(), this.getImponibileField(), iva, pr, this.getDataField(), rit);
+            try {
+                Print.repairPrint(num, this.billingCustomer, this.billingCustomerInfo, this.bill, this.getBillingTable(), this.getImponibileField(), iva, pr, this.getDataField(), rit);
+            } catch (Exception e) {
+                showWinAlert(billingCreation, e.getMessage(), "Errore Stampa", JOptionPane.ERROR_MESSAGE);
+            }
             // update billing number field            
             r = new ComClasses.Request(null, ComClasses.Constants.BILLCLASS, ComClasses.Constants.NUMBERSELECT, SharedClasses.Billing.singleSelect());
             // SELECT last billing number   
@@ -7064,7 +7068,11 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                    }
                }
                Utils.intOperation(mr);
-               Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
+               try {
+                   Print.repairPrint(b.getNumber(), this.foundBillingCustomer, this.foundBillingCustomerInfo, this.foundBill.getType(), jTable10, jTextField96.getText(), jTextField97.getText(), jTextField98.getText(), jTextField95.getText(), null);
+               } catch (Exception e) {
+                   showWinAlert(billingCreation, e.getMessage(), "Errore Stampa", JOptionPane.ERROR_MESSAGE);
+               }
                jButton74MouseClicked(evt);
            } catch (SharedClasses.MyDBException e) {
                showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
