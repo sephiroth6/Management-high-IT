@@ -31,6 +31,7 @@ public class Print implements Printable {
     
     // is it a copy of a receipt?
     private final boolean receipt;
+    private boolean esentasse = false;
     // is it a billing?
     private final int billing;
     
@@ -201,7 +202,7 @@ public class Print implements Printable {
             firstY += shortHeightLines(7 + address);
             firstY = this.writeTable(grapdd, frc, b, footer, firstX, firstY, width);
             firstY += heightLines(1);
-            this.writeBillingFooter(grapdd, frc, b, f, firstX, firstY);
+            this.writeBillingFooter(grapdd, frc, b, f, firstX, height - heightLines(5));
         }
         this.writeFooter(grapdd, frc, footer, firstX, height);
         
@@ -397,11 +398,11 @@ public class Print implements Printable {
      }
  
      private static void writeBillingInfo (Graphics2D g, FontRenderContext fRend, Font f, int x, int y) {
-         g.drawGlyphVector(f.createGlyphVector(fRend, "MR. Cooper di Pette Davide"), x + 20, y + shortHeightLines(1));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "via Michele di Lando 22/24"), x + 20, y + shortHeightLines(2));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "Roma, 00162"), x + 20, y + shortHeightLines(3));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "P.IVA 11549761002"), x + 20, y + shortHeightLines(4));
-         g.drawGlyphVector(f.createGlyphVector(fRend, "CF PTTDVD85E20H501E"), x + 20, y + shortHeightLines(5));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "MR. Cooper di Pette Davide"), x, y + shortHeightLines(1));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "via Michele di Lando 22/24"), x, y + shortHeightLines(2));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "Roma, 00162"), x, y + shortHeightLines(3));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "P.IVA 11549761002"), x, y + shortHeightLines(4));
+         g.drawGlyphVector(f.createGlyphVector(fRend, "CF PTTDVD85E20H501E"), x, y + shortHeightLines(5));
      }
      
      private int writeBillingCustomer (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y) {
@@ -471,11 +472,11 @@ public class Print implements Printable {
          
          writeColumnsNames(g, fRend, b, x, y);
          // horizontal lines
-         g.drawLine(x - 5, y - 10, w - 15, y - 10);     // up
-         g.drawLine(x - 5, y + 5, w - 15, y + 5);       // down
+         g.drawLine(x - 5, y - 10, w - 40, y - 10);     // up
+         g.drawLine(x - 5, y + 5, w - 40, y + 5);       // down
          // vertical lines
          g.drawLine(x - 5, y - 10, x - 5, y + 5);       // left margin
-         g.drawLine(w - 15, y - 10, w - 15, y + 5);     // right margin
+         //g.drawLine(w - 15, y - 10, w - 15, y + 5);     // right margin
          g.drawLine(x + 49, y - 10, x + 49, y + 5);     // between "TIPOLOGIA" and "CODICE"
          g.drawLine(x + 148, y - 10, x + 148, y + 5);   // between "CODICE" and "DESCRIZIONE"
          g.drawLine(x + 380, y - 10, x + 380, y + 5);   // between "DESCRIZIONE" and "Q.TA'"
@@ -488,11 +489,11 @@ public class Print implements Printable {
              int auxYA = y + 5 - shortHeightLines(1), auxYB, descriptionRows;
              descriptionRows = printRow(g, fRend, f, x, y, i, m, model);
              // horizontal line
-             g.drawLine(x - 5, y + 5 + shortHeightLines(descriptionRows - 1), w - 15, y + 5 + shortHeightLines(descriptionRows - 1));
+             g.drawLine(x - 5, y + 5 + shortHeightLines(descriptionRows - 1), w - 40, y + 5 + shortHeightLines(descriptionRows - 1));
              // vertical lines
              auxYB = y + 5 + shortHeightLines(descriptionRows - 1);
              g.drawLine(x - 5, auxYA, x - 5, auxYB);          // left
-             g.drawLine(w - 15, auxYA, w - 15, auxYB);        // right
+             //g.drawLine(w - 15, auxYA, w - 15, auxYB);        // right
              g.drawLine(x + 49, auxYA, x + 49, auxYB);
              g.drawLine(x + 148, auxYA, x + 148, auxYB);
              g.drawLine(x + 380, auxYA, x + 380, auxYB);
@@ -504,11 +505,11 @@ public class Print implements Printable {
          return y;
      }
      
-     private static int printRow (Graphics2D g, FontRenderContext fRend, Font f, int x, int y, int row, int col, DefaultTableModel m) {
+     private int printRow (Graphics2D g, FontRenderContext fRend, Font f, int x, int y, int row, int col, DefaultTableModel m) {
          int ret = 0, pc;
          // print a billing row
          for(int i = 0; i < col; i++) {
-             pc = printColumn(g, fRend, f, x, y, row, i, m);
+             pc = this.printColumn(g, fRend, f, x, y, row, i, m);
              if(pc > ret)
                  ret = pc;
          }
@@ -516,7 +517,7 @@ public class Print implements Printable {
          return ret;
      }
      
-     private static int printColumn (Graphics2D g, FontRenderContext fRend, Font f, int x, int y, int row, int col, DefaultTableModel m) {
+     private int printColumn (Graphics2D g, FontRenderContext fRend, Font f, int x, int y, int row, int col, DefaultTableModel m) {
          // print an element of a row
          switch(col) {
              case 0:    // type
@@ -548,6 +549,11 @@ public class Print implements Printable {
                  String desc = m.getValueAt(row, col).toString();
                  String[] tokens = desc.split("\\s+");
                  
+                 if((Boolean)m.getValueAt(row, 5)) {
+                     this.esentasse = true;
+                     tokens[0] = "*".concat(tokens[0]);
+                 }
+                 
                  int i, j = tokens.length, k = 0, n = new BigDecimal(desc.length()).divide(new BigDecimal(44), 0, BigDecimal.ROUND_UP).intValue();
                  int lineLength;
                  
@@ -566,7 +572,8 @@ public class Print implements Printable {
                             lineLength += tokens[k].length() + 1;
                          }
                          else if (i == 3) {
-                             toWrite.append("…");
+                             //toWrite.append("…");
+                             toWrite.append("...");
                              lineLength = 44;
                          } else {
                              break;
@@ -588,14 +595,6 @@ public class Print implements Printable {
                  
              case 4:    // price
                  g.drawGlyphVector(f.createGlyphVector(fRend, m.getValueAt(row, col).toString()), x + 420, y);
-                 return 0;
-                 
-             case 5:    // tax?
-                 Boolean aux = (Boolean)m.getValueAt(row, col);
-                 if(!aux)
-                     g.drawGlyphVector(f.createGlyphVector(fRend, "sì"), x + 530, y);
-                 else
-                     g.drawGlyphVector(f.createGlyphVector(fRend, "no"), x + 530, y);
                  return 0;
                  
              case 6:    // total price (price * quantity)
@@ -625,10 +624,10 @@ public class Print implements Printable {
          g.drawGlyphVector(f.createGlyphVector(fRend, "Q.TA'"), x + 384, y);
          g.drawGlyphVector(f.createGlyphVector(fRend, "PREZZO (€)"), x + 420, y);
          g.drawGlyphVector(f.createGlyphVector(fRend, "TOT (€)"), x + 485, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, "IVA"), x + 530, y);
      }
      
      private void writeBillingFooter (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y) {
+         /*
          // write final billing values
          g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Imponibile"), x, y);
          g.drawGlyphVector(f.createGlyphVector(fRend, this.totalImp.concat("€")), x + 100, y);
@@ -644,6 +643,37 @@ public class Print implements Printable {
          g.drawGlyphVector(f.createGlyphVector(fRend, this.percentage.concat("%")), x + 100, y + heightLines(1));
          g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Fattura"), x, y + heightLines(2));
          g.drawGlyphVector(f.createGlyphVector(fRend, this.total.concat("€")), x + 100, y + heightLines(2));
+          * */
+         
+         g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Imponibile "), x, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, this.totalImp.concat("€")), x + 90, y);
+         g.drawGlyphVector(b.createGlyphVector(fRend, "Aliquota"), x + 160, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, this.percentage.concat("%")), x + 210, y);
+         g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Iva"), x + 245, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, calculateIVA(this.totalImp, this.percentage).concat("€")), x + 300, y);
+         g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Documento"), x + 365, y);
+         g.drawGlyphVector(f.createGlyphVector(fRend, this.total.concat("€")), x + 465, y);
+         
+         if(this.rit != null) {
+             g.drawGlyphVector(b.createGlyphVector(fRend, "Ritenuta"), x, y + heightLines(1));
+             g.drawGlyphVector(f.createGlyphVector(fRend, this.rit.getRitenuta().toString().concat("%")), x + 100, y + heightLines(1));
+             g.drawGlyphVector(f.createGlyphVector(fRend, this.rit.getPercentage().toString().concat("% dell'imponibile")), x + 200, y + heightLines(1));
+         }
+         
+         if(this.esentasse)
+             if(this.rit != null)
+                 g.drawGlyphVector(b.createGlyphVector(fRend, "*Iva assolta ai sensi dell'art.74 del D.P.R. 633/1972"), x, y + heightLines(2));
+            else
+                 g.drawGlyphVector(b.createGlyphVector(fRend, "*Iva assolta ai sensi dell'art.74 del D.P.R. 633/1972"), x, y + heightLines(1));
+     }
+     
+     private static String calculateIVA (String imp, String percentage) {
+         
+         final BigDecimal percentageBD = new BigDecimal(percentage);
+         final BigDecimal toDivide = new BigDecimal(imp).multiply(percentageBD);
+         final BigDecimal oneHundred = BigDecimal.TEN.multiply(BigDecimal.TEN);
+         
+         return toDivide.divide(oneHundred).toString();
      }
      
 }

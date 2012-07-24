@@ -8372,6 +8372,10 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }
     
+    private static String calculateIVA (BigDecimal tot, BigDecimal imp) {
+        return tot.min(imp).toString();
+    }
+    
     private static BigDecimal getPercentage (BigDecimal s, Integer percentage) {
         
         if(s != null) {
