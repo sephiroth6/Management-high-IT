@@ -71,7 +71,7 @@
                                   <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="223" max="32767" attributes="0"/>
+                          <EmptySpace pref="55" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -94,13 +94,13 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="217" max="32767" attributes="0"/>
+                          <EmptySpace pref="201" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="250" max="32767" attributes="0"/>
+                              <EmptySpace pref="249" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -723,7 +723,7 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jButton11" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane5" alignment="0" pref="1008" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane5" alignment="0" pref="1000" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -905,7 +905,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane21" alignment="0" pref="1030" max="32767" attributes="0"/>
+                              <Component id="jScrollPane21" alignment="0" pref="1026" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -934,7 +934,7 @@
                               <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane21" pref="732" max="32767" attributes="0"/>
+                          <Component id="jScrollPane21" pref="729" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1047,13 +1047,13 @@
                                   <Component id="jButton6" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="312" max="32767" attributes="0"/>
+                          <EmptySpace pref="288" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="448" max="32767" attributes="0"/>
+                              <EmptySpace pref="396" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1079,13 +1079,13 @@
                               <Component id="jLabel124" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="298" max="32767" attributes="0"/>
+                          <EmptySpace pref="296" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="302" max="32767" attributes="0"/>
+                              <EmptySpace pref="305" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1146,7 +1146,7 @@
                               <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="445" max="32767" attributes="0"/>
+                              <EmptySpace pref="466" max="32767" attributes="0"/>
                               <Component id="jButton10" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
@@ -1544,13 +1544,13 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="billingCreation" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="194" max="32767" attributes="0"/>
+                          <EmptySpace pref="184" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               <Component id="billingSearch" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="347" max="32767" attributes="0"/>
+                              <EmptySpace pref="350" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1614,10 +1614,10 @@
                                   </Group>
                                   <Component id="fatturaView" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="36" max="32767" attributes="0"/>
+                              <EmptySpace pref="215" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="864" max="32767" attributes="0"/>
+                              <EmptySpace pref="1068" max="32767" attributes="0"/>
                               <Component id="jButton63" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton64" min="-2" max="-2" attributes="0"/>
@@ -1627,7 +1627,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="ndcView" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                                  <EmptySpace pref="219" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
@@ -1669,14 +1669,14 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                                   <Component id="ndcView" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                                  <EmptySpace pref="55" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                                   <Component id="rdaView" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="60" max="32767" attributes="0"/>
+                                  <EmptySpace pref="68" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1887,6 +1887,9 @@
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="jTable8" noResource="true"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable8MouseClicked"/>
+                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="setJTableBilling(jTable8, 1);"/>
                               </AuxValues>
@@ -1898,7 +1901,7 @@
                             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton50.icon"/>
                             <Property name="toolTipText" type="java.lang.String" resourceKey="jButton50.toolTipText"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Cursore predefinito"/>
+                              <Color id="Default Cursor"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jButton50" noResource="true"/>
                           </Properties>
@@ -2270,6 +2273,9 @@
                                 </Property>
                                 <Property name="name" type="java.lang.String" value="jTable11" noResource="true"/>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable11MouseClicked"/>
+                              </Events>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="setJTableBilling(jTable11, 1);"/>
                               </AuxValues>
@@ -2281,7 +2287,7 @@
                             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton65.icon"/>
                             <Property name="toolTipText" type="java.lang.String" resourceKey="jButton65.toolTipText"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Cursore predefinito"/>
+                              <Color id="Default Cursor"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jButton65" noResource="true"/>
                           </Properties>
@@ -2505,7 +2511,7 @@
                                               </Group>
                                               <Component id="jScrollPane25" alignment="0" min="-2" pref="883" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="27" max="32767" attributes="0"/>
+                                          <EmptySpace pref="206" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -2647,7 +2653,7 @@
                             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton69.icon"/>
                             <Property name="toolTipText" type="java.lang.String" resourceKey="jButton69.toolTipText"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Cursore predefinito"/>
+                              <Color id="Default Cursor"/>
                             </Property>
                             <Property name="name" type="java.lang.String" value="jButton69" noResource="true"/>
                           </Properties>
@@ -2892,7 +2898,7 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane26" pref="1090" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane26" pref="1344" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -5201,7 +5207,7 @@
             <Property name="text" type="java.lang.String" resourceKey="jButton40.text"/>
             <Property name="toolTipText" type="java.lang.String" resourceKey="jButton40.toolTipText"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursore predefinito"/>
+              <Color id="Default Cursor"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jButton40" noResource="true"/>
           </Properties>
@@ -6142,7 +6148,7 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton61.icon"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursore predefinito"/>
+              <Color id="Default Cursor"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jButton61" noResource="true"/>
           </Properties>
@@ -6400,7 +6406,7 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jButton86.icon"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Cursore predefinito"/>
+              <Color id="Default Cursor"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jButton86" noResource="true"/>
           </Properties>

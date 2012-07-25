@@ -8,6 +8,9 @@ import Client.Utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdesktop.application.Action;
@@ -21,6 +24,8 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
+import javax.sound.midi.SysexMessage;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -28,12 +33,14 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 /**
 *
 * @author Angelo
@@ -96,6 +103,9 @@ public class ManagGuiView extends FrameView {
     private ArrayList<Object> foundElements;            // used in billing editing
     private ArrayList<SharedClasses.UsageCache> cache;
     private ArrayList<SharedClasses.UsageCache> old;    // store the situation of usage before editing
+    
+    private static JTable modello1;                            //senza descrizione
+    private static JTable modello2;                            //con descrizione
     
     public ManagGuiView(SingleFrameApplication app) {
         super(app);
@@ -913,7 +923,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton12)
                         .addGap(18, 18, 18)
                         .addComponent(jButton11))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -979,7 +989,7 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -997,12 +1007,12 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton46))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(250, Short.MAX_VALUE)))
+                    .addContainerGap(249, Short.MAX_VALUE)))
         );
 
         jButton1.setVisible(false);
@@ -1075,7 +1085,7 @@ public class ManagGuiView extends FrameView {
             .addGroup(mainCustomerSearchLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainCustomerSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
+                    .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 1026, Short.MAX_VALUE)
                     .addGroup(mainCustomerSearchLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1099,7 +1109,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1219,7 +1229,7 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jScrollPane3))
                 .addGap(159, 159, 159))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(445, Short.MAX_VALUE)
+                .addContainerGap(466, Short.MAX_VALUE)
                 .addComponent(jButton10)
                 .addGap(20, 20, 20))
             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -1391,12 +1401,12 @@ public class ManagGuiView extends FrameView {
                         .addComponent(jButton5)
                         .addGap(49, 49, 49)
                         .addComponent(jButton6)))
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
             .addGroup(mainWarehouseEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainWarehouseEditLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(448, Short.MAX_VALUE)))
+                    .addContainerGap(396, Short.MAX_VALUE)))
         );
         mainWarehouseEditLayout.setVerticalGroup(
             mainWarehouseEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1414,12 +1424,12 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addComponent(jLabel124))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addContainerGap(296, Short.MAX_VALUE))
             .addGroup(mainWarehouseEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainWarehouseEditLayout.createSequentialGroup()
                     .addGap(135, 135, 135)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(302, Short.MAX_VALUE)))
+                    .addContainerGap(305, Short.MAX_VALUE)))
         );
 
         //jLabel83.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1499,6 +1509,11 @@ public class ManagGuiView extends FrameView {
             }
         ));
         jTable8.setName("jTable8"); // NOI18N
+        jTable8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable8MouseClicked(evt);
+            }
+        });
         jScrollPane17.setViewportView(jTable8);
         setJTableBilling(jTable8, 1);
 
@@ -1735,6 +1750,11 @@ public class ManagGuiView extends FrameView {
             }
         ));
         jTable11.setName("jTable11"); // NOI18N
+        jTable11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable11MouseClicked(evt);
+            }
+        });
         jScrollPane24.setViewportView(jTable11);
         setJTableBilling(jTable11, 1);
 
@@ -2104,7 +2124,7 @@ public class ManagGuiView extends FrameView {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField70, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane25, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 883, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)))
                 .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton81, 0, 0, Short.MAX_VALUE)
                     .addGroup(rdaViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2222,9 +2242,9 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton55))
                     .addComponent(fatturaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, billingCreationLayout.createSequentialGroup()
-                .addContainerGap(864, Short.MAX_VALUE)
+                .addContainerGap(1068, Short.MAX_VALUE)
                 .addComponent(jButton63)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton64)
@@ -2233,7 +2253,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(ndcView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(38, Short.MAX_VALUE)))
+                    .addContainerGap(219, Short.MAX_VALUE)))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addContainerGap()
@@ -2266,12 +2286,12 @@ public class ManagGuiView extends FrameView {
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addGap(98, 98, 98)
                     .addComponent(ndcView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(48, Short.MAX_VALUE)))
+                    .addContainerGap(55, Short.MAX_VALUE)))
             .addGroup(billingCreationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(billingCreationLayout.createSequentialGroup()
                     .addGap(97, 97, 97)
                     .addComponent(rdaView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(60, Short.MAX_VALUE)))
+                    .addContainerGap(68, Short.MAX_VALUE)))
         );
 
         fatturaView.setVisible(false);
@@ -2364,7 +2384,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(billingSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, billingSearchLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane26, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE))
+                        .addComponent(jScrollPane26, javax.swing.GroupLayout.DEFAULT_SIZE, 1344, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, billingSearchLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(billingSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -2453,12 +2473,12 @@ public class ManagGuiView extends FrameView {
                     .addComponent(jButton24))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(billingCreation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
             .addGroup(mainBillingEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainBillingEditLayout.createSequentialGroup()
                     .addGap(53, 53, 53)
                     .addComponent(billingSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(347, Short.MAX_VALUE)))
+                    .addContainerGap(350, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Fatturazione", mainBillingEdit);
@@ -3537,7 +3557,7 @@ public class ManagGuiView extends FrameView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel71)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField48, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+                        .addComponent(jTextField48, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
                     .addGroup(customerInfoViewLayout.createSequentialGroup()
                         .addComponent(jLabel68)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -3545,11 +3565,11 @@ public class ManagGuiView extends FrameView {
                     .addGroup(customerInfoViewLayout.createSequentialGroup()
                         .addComponent(jLabel69)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField46, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
+                        .addComponent(jTextField46, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerInfoViewLayout.createSequentialGroup()
                         .addComponent(jLabel70)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField47, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE))
+                        .addComponent(jTextField47, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE))
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -4461,7 +4481,7 @@ public class ManagGuiView extends FrameView {
                 .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton82, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                        .addComponent(jButton82, javax.swing.GroupLayout.PREFERRED_SIZE, 214, Short.MAX_VALUE)
                         .addComponent(jButton83, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(risultatoFattViewLayout.createSequentialGroup()
                         .addGroup(risultatoFattViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -5830,6 +5850,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         //set forzato dato che da valore sporco
         jLabel4.setText("Estetica dispositivo:");
         
+        
     }//GEN-LAST:event_jButton46MouseClicked
 
     private void jButton47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton47MouseClicked
@@ -6028,6 +6049,8 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         this.bill = Client.Constants.FATTURA;
         clearFields(jTextField53, jTextField63);
         activateComponent(jLabel60, jTextField57, jTextField58, jButton54, jButton55, jButton63, jButton64);  // make visible buttons, textfield and label
+        
+
     }//GEN-LAST:event_jButton30MouseClicked
 
     // prepare billing number and billing year
@@ -7225,6 +7248,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_jButton87MouseClicked
 
+    private void jTable11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable11MouseClicked
+        
+    }//GEN-LAST:event_jTable11MouseClicked
+
+    private void jTable8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable8MouseClicked
+        
+    }//GEN-LAST:event_jTable8MouseClicked
+
     // obtain the price without iva
     private static String handleIVA (String s, Integer percentage, boolean iva) {
         
@@ -8130,6 +8161,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         checkbox.setVisible(true);
         checkbox.setEnabled(true);
         
+        
         esentasse.setCellEditor(new DefaultCellEditor(checkbox));
         
         jt.getDefaultRenderer(model.getColumnClass(n));
@@ -8149,9 +8181,32 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         comboBox.setVisible(true);
         type.setCellEditor(new DefaultCellEditor(comboBox));
         esentasse.setCellRenderer(new CheckBoxRenderer());
+        
+        //modello1 = jt;
+        //modello1.setModel(jt.getModel());
+        
+        TableColumn descr = jt.getColumnModel().getColumn(2);
+        JComboBox listadescr = new JComboBox();
+        listadescr.addItem("");
+        
+        listadescr.addItem("e che cazzo");
+        listadescr.addItem("fancullizzation");
+        listadescr.addItem("ce la facciamo?");
+            
+        listadescr.setSelectedIndex(0);
+        listadescr.setEnabled(true);
+        listadescr.setVisible(true);
+        listadescr.setEditable(true);
+        //magheggio infernale per l'auto compleamento
+        AutoCompleteDecorator.decorate(listadescr);
+        descr.setCellEditor(new DefaultCellEditor(listadescr));
+        //modello2 = jt;
+        //modello2.setModel(jt.getModel());
         for(int i = 0; i < n; i++)
             model.addRow(new Object[]{"", "", "", 1, "", false, ""});       
     }
+
+
     
     private void resetBillingTables () {
         setJTableBilling(jTable8, 1);
