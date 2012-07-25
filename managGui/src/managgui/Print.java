@@ -512,7 +512,8 @@ public class Print implements Printable {
              g.drawLine(x + 526, auxYA, x + 526, auxYB);        // right
              y += shortHeightLines(descriptionRows);
              if(localDescriptionRows >= 27) {
-                 this.tableIndex[pageIndex + 1] = i + 1;
+                 if(pageIndex < this.pages)
+                    this.tableIndex[pageIndex + 1] = i + 1;
                  break;
              }
          }

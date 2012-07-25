@@ -8,6 +8,8 @@ import Client.Utils;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.SingleFrameApplication;
 import org.jdesktop.application.FrameView;
@@ -7031,14 +7033,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
            int n = JOptionPane.showOptionDialog(ricercaFattura, "Vuoi ricalcolare il totale senza sincronizzare o effettuare una nuova sincronizzazione col magazzino?", "Salva fattura", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, ManagGuiView.billEditing, ManagGuiView.billEditing[0]);            
             
            if (n == JOptionPane.YES_OPTION) {
-               jButton80MouseClicked(evt);
+               if(!jButton80.isEnabled()) {
+                   jButton80.setEnabled(true);
+                   jButton80MouseClicked(evt);
+                   jButton80.setEnabled(false);
+               } else {
+                   jButton80MouseClicked(evt);
+               }
            } else if (n == JOptionPane.NO_OPTION) {
-               jButton75MouseClicked(evt);
+               if(!jButton75.isEnabled()) {
+                   jButton75.setEnabled(true);
+                   jButton75MouseClicked(evt);
+                   jButton75.setEnabled(false);
+               } else {
+                   jButton75MouseClicked(evt);
+               }
            } else {
                return;
            }
            
-           ricercaFattura.dispose();
            SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), this.foundBill.getDate(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
            // create the request object
            ComClasses.Request r;
@@ -7074,6 +7087,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                    showWinAlert(billingCreation, e.getMessage(), "Errore Stampa", JOptionPane.ERROR_MESSAGE);
                }
                jButton74MouseClicked(evt);
+               ricercaFattura.dispose();
            } catch (SharedClasses.MyDBException e) {
                showWinAlert(billingSearch, Client.Utils.exceptionMessage(e), "Errore Database", JOptionPane.ERROR_MESSAGE);
            } catch (Exception e) {
@@ -7090,13 +7104,25 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
             // sync or calculate?
             int n = JOptionPane.showOptionDialog(ricercaFattura, "Vuoi ricalcolare il totale senza sincronizzare o effettuare una nuova sincronizzazione col magazzino?", "Salva fattura", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, ManagGuiView.billEditing, ManagGuiView.billEditing[0]);            
             
-            if (n == JOptionPane.YES_OPTION) {
-                jButton80MouseClicked(evt);
-            } else if (n == JOptionPane.NO_OPTION) {
-                jButton75MouseClicked(evt);
-            } else {
-                return;
-            }
+             if (n == JOptionPane.YES_OPTION) {
+               if(!jButton80.isEnabled()) {
+                   jButton80.setEnabled(true);
+                   jButton80MouseClicked(evt);
+                   jButton80.setEnabled(false);
+               } else {
+                   jButton80MouseClicked(evt);
+               }
+           } else if (n == JOptionPane.NO_OPTION) {
+               if(!jButton75.isEnabled()) {
+                   jButton75.setEnabled(true);
+                   jButton75MouseClicked(evt);
+                   jButton75.setEnabled(false);
+               } else {
+                   jButton75MouseClicked(evt);
+               }
+           } else {
+               return;
+           }
             ricercaFattura.dispose();
             // create the object with new data
             SharedClasses.Billing b = new SharedClasses.Billing(this.foundBill.getID(), this.foundBill.getType(), jTextField95.getText(), new Integer(jTextField100.getText()), jTextField98.getText(), new Integer(jTextField97.getText()), this.foundBill.getCustomer());
