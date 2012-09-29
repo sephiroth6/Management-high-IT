@@ -650,8 +650,10 @@ public class Print implements Printable {
      private void writeBillingFooter (Graphics2D g, FontRenderContext fRend, Font b, Font f, int x, int y) {      
          g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Imponibile "), x, y);
          g.drawGlyphVector(f.createGlyphVector(fRend, this.totalImp.concat("€")), x + 90, y);
-         g.drawGlyphVector(b.createGlyphVector(fRend, "Aliquota"), x + 160, y);
-         g.drawGlyphVector(f.createGlyphVector(fRend, this.percentage.concat("%")), x + 210, y);
+         if(!this.esentasse) {
+            g.drawGlyphVector(b.createGlyphVector(fRend, "Aliquota"), x + 160, y);
+            g.drawGlyphVector(f.createGlyphVector(fRend, this.percentage.concat("%")), x + 210, y);
+         }
          g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Iva"), x + 245, y);
          g.drawGlyphVector(f.createGlyphVector(fRend, calculateIVA(this.totalImp, this.percentage).concat("€")), x + 300, y);
          g.drawGlyphVector(b.createGlyphVector(fRend, "Totale Documento"), x + 365, y);
