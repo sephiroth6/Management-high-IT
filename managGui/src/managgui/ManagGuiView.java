@@ -4895,7 +4895,7 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
                 setTableRepairData(jTable3, this.repairRet);
                 jTable3.setVisible(true);
             } else {
-                showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
+                //showWinAlert(customerSearch, "Errore durante la ricerca: riprovare.", "Errore", JOptionPane.ERROR_MESSAGE);
                 jTable3.setVisible(false);
             }
              
@@ -4911,7 +4911,18 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         try {
             this.repairRet = Utils.arrayOperation(r);
         } catch (Exception e) {
-            showWinAlert(customerSearch, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+            
+            if(e instanceof SharedClasses.MyDBException) {
+             
+                SharedClasses.MyDBException my = (SharedClasses.MyDBException)e;
+                // nothing found on the db
+                if(my.getCode() == ComClasses.Constants.DBNULL)
+                    showWinAlert(customerSearch, "Nessun risultato per la ricerca corrispondente.", "Warning", JOptionPane.WARNING_MESSAGE);
+                
+            } else {
+                // another exception
+                showWinAlert(customerSearch, Client.Utils.exceptionMessage(e), "Errore", JOptionPane.ERROR_MESSAGE);
+            }
         }
     
     }
@@ -7752,14 +7763,17 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
         // TODO check some fields
         String optional = this.re.getOptional();
         
-        jTextField31.setText(this.c.getSurname().toLowerCase()); // customer' surname
-        jTextField32.setText(this.c.getName().toLowerCase()); // customer's name
+        jTextField31.setText(this.c.getSurname().toLowerCase());                // customer' surname
+        jTextField32.setText(this.c.getName().toLowerCase());                   // customer's name
         
-        jComboBox5.setSelectedIndex(this.d.getType()); // device type
-        jTextField36.setText(this.d.getModel().toLowerCase()); // device model
-        jTextField37.setText(this.d.getIdentification().toLowerCase()); // device serial number
+        jComboBox5.setSelectedIndex(this.d.getType());                          // device type
+        jTextField36.setText(this.d.getModel().toLowerCase());                  // device model
+        jTextField37.setText(this.d.getIdentification().toLowerCase());         // device serial number
         
-        if(optional != null) { // optional
+        jCheckBox3.setSelected(false);                                          // clean optional infos
+        jTextField38.setText("");
+        
+        if(optional != null && !optional.equals("")) { // optional
             jCheckBox3.setSelected(true);
             jTextField38.setText(optional.toLowerCase());
         }
